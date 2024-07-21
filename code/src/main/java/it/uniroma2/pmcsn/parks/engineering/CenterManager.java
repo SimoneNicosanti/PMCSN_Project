@@ -8,4 +8,11 @@ public class CenterManager {
         centerMap = new HashMap<>();
     }
 
+    public void addCenterList(List<Center> centerList) {
+
+        for(Center: center in centerList) {
+            this.centerMap.put(center.name, );
+        }
+    }
+
 }
