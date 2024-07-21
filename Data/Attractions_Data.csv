@@ -1,16 +1,16 @@
-Name,Rating,Duration,MinimumHeight,Wait per 100 People Ahead,TotalSeats,Vehicles
-The Amazing Adventures of Spider-Man,4.5 stars,7 minutes,40 inches,7 minutes,12,
-Caro-Seuss-el,3.5 stars,2 minutes,None,3 minutes,,
-The Cat in the Hat,4 stars,4.5 minutes,None,6 minutes,,
-Doctor Doom's Fearfall,4 stars,2 minutes,52 inches,4 minutes,16,2
-Dudley Do-Right's Ripsaw Falls,4 stars,6 minutes,44 inches,7 minutes,,
-Flight of the Hippogriff,3.5 stars,2 minutes,36 inches,5 minutes,2,7
-Hagrid's Magical Creatures Motorbike Adventure,5 stars,3 minutes,48 inches,10 minutes,,
-Harry Potter and the Forbidden Journey,4.5 stars,5 minutes,48 inches,8 minutes,4,47
-The Incredible Hulk Coaster,4.5 stars,3 minutes,54 inches,6 minutes,32,1
-Jurassic Park River Adventure,4.5 stars,7 minutes,42 inches,5 minutes,,
-Jurassic World VelociCoaster,5 stars,3 minutes,51 inches,9 minutes,24,4
-Popeye & Bluto's Bilge-Rat Barges,4 stars,6 minutes,42 inches,6 minutes,12,
-Pteranodon Flyers,3.5 stars,2 minutes,36 inches,4 minutes,,
-Skull Island: Reign of Kong,4 stars,6 minutes,36 inches,7 minutes,66,1
-Storm Force Accelatron,3 stars,2 minutes,None,3 minutes,5,12
+Name,Rating,Duration[min],MinimumHeight[inch],Wait per 100 People Ahead[min],TotalSeats,Vehicles
+The Amazing Adventures of Spider-Man,4.5,7,40,7,12,
+Caro-Seuss-el,3.5,2,None,3,,
+The Cat in the Hat,4,4.5,None,6,,
+Doctor Doom's Fearfall,4,2,52,4,16,2
+Dudley Do-Right's Ripsaw Falls,4,6,44,7,,
+Flight of the Hippogriff,3.5,2,36,5,2,7
+Hagrid's Magical Creatures Motorbike Adventure,5,3,48,10,,
+Harry Potter and the Forbidden Journey,4.5,5,48,8,4,47
+The Incredible Hulk Coaster,4.5,3,54,6,32,1
+Jurassic Park River Adventure,4.5,7,42,5,,
+Jurassic World VelociCoaster,5,3,51,9,24,4
+Popeye & Bluto's Bilge-Rat Barges,4,6,42,6,12,
+Pteranodon Flyers,3.5 ,2,36,4,,
+Skull Island: Reign of Kong,4,6,36,7,66,1
+Storm Force Accelatron,3,2,None,3,5,12

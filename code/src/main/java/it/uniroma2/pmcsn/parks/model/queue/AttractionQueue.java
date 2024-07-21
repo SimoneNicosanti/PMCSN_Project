@@ -1,19 +1,23 @@
-package it.uniroma2.pmcsn.parks.model;
+package it.uniroma2.pmcsn.parks.model.queue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttractionQueue implements Queue {
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-    private List<EnqueuedGroup> queueList ;
+
+
+public class AttractionQueue implements Queue<RiderGroup> {
+
+    private List<EnqueuedItem<RiderGroup>> queueList ;
 
     public AttractionQueue() {
         this.queueList = new ArrayList<>() ;
     }
 
     @Override
-    public void enqueue(RiderGroup group, double entranceTime) {
-        EnqueuedGroup enqueuedGroup = new EnqueuedGroup(group, entranceTime) ;
+    public void enqueue(EnqueuedItem<RiderGroup> enqueuedGroup) {
         queueList.add(enqueuedGroup) ;
     }
 
@@ -22,7 +26,7 @@ public class AttractionQueue implements Queue {
         RiderGroup riderGroup = null ;
         
         if (queueList.size() > 0) {
-            EnqueuedGroup enqueuedGroup = queueList.remove(0) ;
+            EnqueuedItem<RiderGroup> enqueuedGroup = queueList.remove(0) ;
             riderGroup = enqueuedGroup.getGroup() ;
             double entranceTime = enqueuedGroup.getQueueEntranceTime() ;
             riderGroup.incrementQueueTime(exitTime - entranceTime) ;
@@ -33,11 +37,11 @@ public class AttractionQueue implements Queue {
     @Override
     public int getNextSize() {
         if (queueList.size() > 0) {
-            EnqueuedGroup enqueuedGroup = queueList.get(0) ;
+            EnqueuedItem<RiderGroup> enqueuedGroup = queueList.get(0) ;
             return enqueuedGroup.getGroup().getGroupSize() ;
             
         }
         return 0 ;
-    } 
+    }
 
 }

@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.examples;
+package it.uniroma2.pmcsn.parks.random.examples;
 
 /* -------------------------------------------------------------------------
  * This program - an extension of program ssq1.c - simulates a single-server

@@ -1,12 +1,18 @@
-package it.uniroma2.pmcsn.parks.model;
+package it.uniroma2.pmcsn.parks.engineering;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.queue.AttractionQueue;
+import it.uniroma2.pmcsn.parks.model.queue.EnqueuedItem;
+
 public class AttractionQueueManager implements QueueManager<RiderGroup> {
 
-    private Queue priorityQueue ;
-    private Queue normalQueue ;
+    private Queue<RiderGroup> priorityQueue ;
+    private Queue<RiderGroup> normalQueue ;
 
     public AttractionQueueManager() {
         this.priorityQueue = new AttractionQueue() ;
@@ -15,12 +21,13 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
 
     @Override
     public void addToQueues(RiderGroup group, double currentTime) {
+        EnqueuedItem<RiderGroup> enqueuedGroup = new EnqueuedItem<RiderGroup>(group, currentTime);
         switch (group.getPriority()) {
             case PRIORITY:
-                priorityQueue.enqueue(group, currentTime);
+                priorityQueue.enqueue(enqueuedGroup);
                 break ;
             case NORMAL:
-                normalQueue.enqueue(group, currentTime);
+                normalQueue.enqueue(enqueuedGroup);
                 break ;
         }
         

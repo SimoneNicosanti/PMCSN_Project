@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.examples;
+package it.uniroma2.pmcsn.parks.random.examples;
 /* ------------------------------------------------------------------------- 
  * This program is a next-event simulation of a multi-user time-sharing
  * system.  All users begin with the thinking task and the simulation ends 

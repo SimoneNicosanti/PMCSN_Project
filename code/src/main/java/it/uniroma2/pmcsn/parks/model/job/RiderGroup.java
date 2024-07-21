@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model;
+package it.uniroma2.pmcsn.parks.model.job;
 
 public class RiderGroup {
 
@@ -8,6 +8,8 @@ public class RiderGroup {
     private double systemEntranceTime ;
     private int numberOfRides ;
     private GroupPriority priority ;
+
+    //TODO Add number of rides per attraction --> Map<String,Int> / Map<Enum,Int>
 
 
     public RiderGroup(int groupSize, GroupPriority groupPriority) {
@@ -49,7 +51,7 @@ public class RiderGroup {
         this.queueTime += queueTimeInc ;
     }
 
-    public void incrementRides(double ridingTimeInc) {
+    public void incrementRidesInfo(double ridingTimeInc) {
         this.ridingTime += ridingTimeInc ;
         this.numberOfRides++ ;
     }
