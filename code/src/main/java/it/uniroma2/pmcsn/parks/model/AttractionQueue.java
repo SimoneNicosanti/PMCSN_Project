@@ -20,6 +20,7 @@ public class AttractionQueue implements Queue {
     @Override
     public RiderGroup dequeue(double exitTime) {
         RiderGroup riderGroup = null ;
+        
         if (queueList.size() > 0) {
             EnqueuedGroup enqueuedGroup = queueList.remove(0) ;
             riderGroup = enqueuedGroup.getGroup() ;

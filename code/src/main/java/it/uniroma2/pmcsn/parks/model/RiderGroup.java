@@ -7,14 +7,16 @@ public class RiderGroup {
     private double ridingTime ;
     private double systemEntranceTime ;
     private int numberOfRides ;
+    private GroupPriority priority ;
 
 
-    public RiderGroup(int groupSize) {
+    public RiderGroup(int groupSize, GroupPriority groupPriority) {
         this.groupSize = groupSize ;
         this.queueTime = 0.0 ;
         this.ridingTime = 0.0 ;
         this.systemEntranceTime = 0.0 ;
         this.numberOfRides = 0 ;
+        this.priority = groupPriority ;
     }
 
 
@@ -38,6 +40,11 @@ public class RiderGroup {
         return this.systemEntranceTime;
     }
 
+    public GroupPriority getPriority() {
+        return priority;
+    }
+
+    
     public void incrementQueueTime(double queueTimeInc) {
         this.queueTime += queueTimeInc ;
     }
@@ -53,5 +60,8 @@ public class RiderGroup {
         this.numberOfRides++ ;
     
     }
+
+
+
 
 }
