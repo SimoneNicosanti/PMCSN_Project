@@ -7,12 +7,13 @@ import java.util.List;
 import com.opencsv.CSVReader;
 
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.Restaurant;
 
-public class AttractionBuilder {
+public class RestaurantBuilder {
 
     public List<Attraction> buildFromFile(String fileName) {
         
-        List<Attraction> attractionList = new ArrayList<>() ;
+        List<Attraction> restaurantList = new ArrayList<>() ;
 
         try (
             FileReader filereader = new FileReader(fileName) ;
@@ -26,11 +27,11 @@ public class AttractionBuilder {
 
             // Read line by line - (Name, Popularity, AvgDuration)
             while ((nextRecord = csvReader.readNext()) != null) { 
-                String attractionName = nextRecord[0] ;
-                double attractionPopularity = Double.valueOf(nextRecord[1]) ;
-                double attractionAvgDuration = Double.valueOf(nextRecord[2]) ;
+                String restaurantName = nextRecord[0] ;
+                double restaurantPopularity = Double.valueOf(nextRecord[1]) ;
+                double restaurantAvgDuration = Double.valueOf(nextRecord[2]) ;
                 
-                attractionList.add(buildAttraction(attractionName, attractionPopularity, attractionAvgDuration));
+                restaurantList.add(buildRestaurant(restaurantName, restaurantPopularity, restaurantAvgDuration));
                 // TODO Build Attraction class
             } 
         } 
@@ -38,11 +39,12 @@ public class AttractionBuilder {
             e.printStackTrace(); 
         } 
 
-        return attractionList ;
+        return restaurantList ;
     }
 
-    public Attraction buildAttraction(String name, double popularity, double avgDuration) {
-        return new Attraction(name, 1, popularity, avgDuration) ;
+    public Restaurant buildRestaurant() {
+        //TODO
+        return null;
     }
 
 }

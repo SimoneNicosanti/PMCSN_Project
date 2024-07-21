@@ -12,4 +12,6 @@ public interface Center<T> {
     public List<T> endService() ;
 
     public double startService(double currentTime);
+
+    public String getName();
 }
