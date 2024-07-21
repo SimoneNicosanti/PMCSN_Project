@@ -29,7 +29,7 @@ public class AttractionQueue implements Queue<RiderGroup> {
             EnqueuedItem<RiderGroup> enqueuedGroup = queueList.remove(0) ;
             riderGroup = enqueuedGroup.getGroup() ;
             double entranceTime = enqueuedGroup.getQueueEntranceTime() ;
-            riderGroup.incrementQueueTime(exitTime - entranceTime) ;
+            riderGroup.getGroupStats().incrementQueueTime(exitTime - entranceTime) ;
         }
         return riderGroup ;
     }

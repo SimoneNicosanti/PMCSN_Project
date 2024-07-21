@@ -8,4 +8,6 @@ public interface QueueManager<T> {
 
     public List<T> extractFromQueues(int numberOfSeats, double currentTime) ;
 
+    public boolean areQueuesEmpty();
+
 }

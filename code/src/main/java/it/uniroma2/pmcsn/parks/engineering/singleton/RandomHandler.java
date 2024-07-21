@@ -51,4 +51,9 @@ public class RandomHandler {
         return distributionGenerator.uniform(a, b) ;
     }
 
+    public double getExponential(int stream, double m) {
+        streamGenerator.selectStream(stream);
+        return distributionGenerator.exponential(m);
+    }
+
 }

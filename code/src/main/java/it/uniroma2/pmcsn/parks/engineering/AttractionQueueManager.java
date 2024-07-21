@@ -30,7 +30,6 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 normalQueue.enqueue(enqueuedGroup);
                 break ;
         }
-        
     }
 
     @Override
@@ -57,6 +56,11 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
             }
         }
         return extractedList ;
+    }
+
+    @Override
+    public boolean areQueuesEmpty() {
+        return priorityQueue.getNextSize() == 0 && normalQueue.getNextSize() == 0 ;
     }
 
 }

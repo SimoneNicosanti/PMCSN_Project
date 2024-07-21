@@ -1,0 +1,11 @@
+package it.uniroma2.pmcsn.parks.engineering;
+
+public class CenterManager {
+
+    private Map<String, Center> centerMap;
+
+    public CenterManager() {
+        centerMap = new HashMap<>();
+    }
+
+}

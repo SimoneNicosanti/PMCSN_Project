@@ -30,6 +30,7 @@ public class AttractionBuilder {
                 double attractionPopularity = Double.valueOf(nextRecord[1]) ;
                 double attractionAvgDuration = Double.valueOf(nextRecord[2]) ;
                 
+                attractionList.add(buildAttraction(attractionName, attractionPopularity, attractionAvgDuration));
                 // TODO Build Attraction class
             } 
         } 
@@ -42,7 +43,7 @@ public class AttractionBuilder {
 
     public Attraction buildAttraction(String name, double popularity, double avgDuration) {
         // TODO Fix this method --> Create constructor acepting these params
-        return new Attraction(1) ;
+        return new Attraction(name, 1, popularity, avgDuration) ;
     }
 
 }
