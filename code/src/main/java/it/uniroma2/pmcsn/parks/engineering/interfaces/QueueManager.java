@@ -6,7 +6,7 @@ public interface QueueManager<T> {
 
     public void addToQueues(T item, double currentTime) ;
 
-    public List<T> extractFromQueues(int numberOfSeats, double currentTime) ;
+    public List<T> extractFromQueues(int slotNumber, double currentTime) ;
 
     public boolean areQueuesEmpty();
 

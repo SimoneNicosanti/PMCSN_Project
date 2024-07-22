@@ -8,12 +8,13 @@ import java.util.Map;
 import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class EventHandler<T> {
     
@@ -65,7 +66,8 @@ public class EventHandler<T> {
     /**
      * Create the next arrival event.
      */
-    public void scheduleNewArrival(Center<RiderGroup> entranceCenter, double currentTime) {
+    public void scheduleNewArrival(Center<RiderGroup> entranceCenter) {
+        double currentTime = ClockHandler.getInstance().getClock();
         //TODO find a correct distribution for coming jobs
         double arrivalTime = RandomHandler.getInstance().getExponential(arrivalStream, 1); 
 

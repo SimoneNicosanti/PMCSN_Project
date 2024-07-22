@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.controller;
 
 import it.uniroma2.pmcsn.parks.engineering.CenterManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
@@ -15,14 +16,15 @@ public class Controller {
         this.centerManager = new CenterManager<>();
     }
 
-
     public void startSimulation() {
+        // Initialize system clock
+        ClockHandler.getInstance().setClock(0);
 
         // Schedule first arrival
-        eventHandler.scheduleNewArrival(centerManager.getCenterByName(Config.ENTRANCE), 0);
+        eventHandler.scheduleNewArrival(centerManager.getCenterByName(Config.ENTRANCE));
 
         // TODO set end cycle condition
-        while(true) {
+        while (true) {
             Event<RiderGroup> nextEvent = eventHandler.getNextEvent();
 
             switch (nextEvent.getEventType()) {
@@ -33,11 +35,11 @@ public class Controller {
                     // Start service and schedule a new end_process event
                     break;
                 case END_PROCESS:
-                    // End the service and schedule a new start_process event if the queue is not empty
+                    // End the service and schedule a new start_process event if the queue is not
+                    // empty
                     break;
             }
-            
-            
+
         }
     }
 }
