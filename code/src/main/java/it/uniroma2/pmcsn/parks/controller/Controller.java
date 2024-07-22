@@ -1,11 +1,13 @@
 package it.uniroma2.pmcsn.parks.controller;
 
 import it.uniroma2.pmcsn.parks.engineering.CenterManager;
+import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class Controller {
 
@@ -32,11 +34,16 @@ public class Controller {
 
         // TODO set end cycle condition
         while (true) {
-            Event<RiderGroup> nextEvent = eventHandler.getNextEvent();
+            Event<RiderGroup> event = eventHandler.getNextEvent();
 
-            switch (nextEvent.getEventType()) {
+            // Check if the clock is entering in a new interval -> if so, change probabilities
+            ClockHandler.getInstance().setClock(event.getEventTime());
+
+            switch (event.getEventType()) {
                 case ARRIVAL:
                     // Add new job to the Entrance center
+                    Center<RiderGroup> entrance = centerManager.getCenterByName(Config.ENTRANCE);
+                    entrance.arrival(event.getJob());
                     break;
                 case START_PROCESS:
                     // Start service and schedule a new end_process event

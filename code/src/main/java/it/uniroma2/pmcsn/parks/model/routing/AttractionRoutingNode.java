@@ -8,7 +8,10 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Center;public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
+import it.uniroma2.pmcsn.parks.model.server.Center;
+
+
+public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
     private List<Attraction> attractionList;
     private int randomStreamIdx;
@@ -27,10 +30,12 @@ import it.uniroma2.pmcsn.parks.model.server.Center;public class AttractionRoutin
         double routingProb = RandomHandler.getInstance().getRandom(randomStreamIdx);
         double cumulativeSum = probabilityArray.get(0);
         Attraction routeAttraction = null;
-        for (int routingIdx = 0; routingIdx < attractionList.size(); routingIdx++) {
+        for (int i = 0; i < attractionList.size(); i++) {
             if (routingProb < cumulativeSum) {
-                routeAttraction = attractionList.get(routingIdx);
+                routeAttraction = attractionList.get(i);
+                break;
             }
+            cumulativeSum += probabilityArray.get(i);
         }
 
         return routeAttraction;

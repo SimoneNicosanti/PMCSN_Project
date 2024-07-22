@@ -1,7 +1,5 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
-import javax.management.RuntimeErrorException;
-
 import it.uniroma2.pmcsn.parks.random.Rngs ;
 import it.uniroma2.pmcsn.parks.random.Rvgs ;
 

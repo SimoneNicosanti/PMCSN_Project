@@ -35,7 +35,8 @@ public abstract class Center<T> extends RandomStream {
         }
         double currentTime = ClockHandler.getInstance().getClock();
         List<T> servingJobs = queueManager.extractFromQueues(slotNumber, currentTime);
-        this.currentServingJobs = servingJobs;
+        //TODO Where deleting jobs from currentServingJobs? Here or in endService?
+        this.currentServingJobs.addAll(servingJobs);
     }
 
     protected void ensureJobsAreServing() {

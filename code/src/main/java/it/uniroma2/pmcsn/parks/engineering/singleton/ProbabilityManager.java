@@ -24,6 +24,10 @@ public class ProbabilityManager {
         return instance ;
     }
 
+    public double getProbability(String nodeName) {
+        return probabilityMap.get(nodeName);
+    }
+
     // Change the probabilities of the input nodes 
     public void changeProbabilities(List<Pair<String, Double>> probabilities) {
 
