@@ -51,4 +51,8 @@ public class Event<T> implements Comparable<Event<T>> {
         this.eventTime += eventTime;
     }
 
+    public String getName() {
+        return this.id.toString();
+    }
+
 }

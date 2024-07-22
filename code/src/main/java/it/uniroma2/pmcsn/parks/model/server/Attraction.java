@@ -20,6 +20,7 @@ public class Attraction extends Center<RiderGroup> {
 
     @Override
     public double getDistribution() {
+        int streamIndex = this.getStream(this.name);
         return RandomHandler.getInstance().getUniform(streamIndex, 0, 1);
     }
 

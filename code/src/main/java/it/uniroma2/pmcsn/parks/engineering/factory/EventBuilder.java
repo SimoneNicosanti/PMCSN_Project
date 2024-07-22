@@ -1,7 +1,7 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
 import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.RandomStream;
+import it.uniroma2.pmcsn.parks.engineering.RandomStreams;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
@@ -11,7 +11,7 @@ import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 
-public class EventBuilder extends RandomStream {
+public class EventBuilder extends RandomStreams {
     private final EventType eventType;
     private final Center<RiderGroup> center;
 
@@ -34,15 +34,20 @@ public class EventBuilder extends RandomStream {
         if (eventType != EventType.ARRIVAL || center.getName() != Config.ENTRANCE) {
             throw new RuntimeException("The builder does not match the requested event");
         }
-
+        // Build the event and add the stream associated to it
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
         double currentTime = ClockHandler.getInstance().getClock();
         RiderGroup job = buildRiderGroup(currentTime);
+        Event<RiderGroup> event = new Event<>(poolId, center, currentTime, job);
+        this.addStream(event.getName());
+        // Get the event stream index
+        int streamIndex = this.getStream(event.getName());
         // TODO find a correct distribution for coming jobs
+        // Add the distribution time to the event, based on the arrival time
         double arrivalTime = RandomHandler.getInstance().getExponential(streamIndex, 1);
+        event.addDistributionTime(arrivalTime);
 
-        return new Event<RiderGroup>(poolId, center, currentTime + arrivalTime, job);
-
+        return event;
     }
 
     private RiderGroup buildRiderGroup(double currentTime) {
