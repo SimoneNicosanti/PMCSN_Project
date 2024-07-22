@@ -1,27 +1,27 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class Event<T> implements Comparable<Event<T>> {
 
-    private double eventTime ;
-    private Center<T> eventCenter ;
-    private EventType eventType ;
-    private T job ;
+    private EventsPoolId id;
+    private double eventTime;
+    private Center<T> eventCenter;
+    private T job;
+
+    public Event(EventsPoolId id, Center<T> eventCenter, double eventTime, T job) {
+        this.id = id;
+        this.eventTime = eventTime;
+        this.eventCenter = eventCenter;
+        this.job = job;
+    }
+
+    public EventsPoolId getPoolId() {
+        return this.id;
+    }
 
     public T getJob() {
-        return job ;
-    }
-
-    public EventType getEventType() {
-        return eventType;
-    }
-
-    public Event(Center<T> eventCenter, EventType eventType, double eventTime, T job) {
-        this.eventTime = eventTime ;
-        this.eventCenter = eventCenter ;
-        this.eventType = eventType ;
-        this.job = job ;
+        return job;
     }
 
     public double getEventTime() {
@@ -32,18 +32,23 @@ public class Event<T> implements Comparable<Event<T>> {
         return this.eventCenter;
     }
 
+    public EventType getEventType() {
+        return this.id.getEventType();
+    }
 
     @Override
     public int compareTo(Event<T> otherEvent) {
         if (this.getEventTime() < otherEvent.getEventTime()) {
-            return -1 ;
+            return -1;
         } else if (this.getEventTime() == otherEvent.getEventTime()) {
-            return 0 ;
+            return 0;
         } else {
-            return 1 ;
+            return 1;
         }
     }
 
-
+    public void addDistributionTime(double distributionTime) {
+        this.eventTime += eventTime;
+    }
 
 }

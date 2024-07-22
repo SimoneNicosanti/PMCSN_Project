@@ -2,8 +2,12 @@ package it.uniroma2.pmcsn.parks.controller;
 
 import it.uniroma2.pmcsn.parks.engineering.CenterManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class Controller {
 
@@ -15,14 +19,19 @@ public class Controller {
         this.centerManager = new CenterManager<>();
     }
 
-
     public void startSimulation() {
+        // Initialize system clock
+        ClockHandler.getInstance().setClock(0);
 
         // Schedule first arrival
-        eventHandler.scheduleNewArrival(centerManager.getCenterByName(Config.ENTRANCE), 0);
+        Center<RiderGroup> entranceCenter = centerManager.getCenterByName(Config.ENTRANCE);
+        Event<RiderGroup> entranceEvent = new EventBuilder(EventType.ARRIVAL, entranceCenter)
+                .buildEntranceArrivalEvent();
+
+        eventHandler.scheduleNewEvent(entranceEvent);
 
         // TODO set end cycle condition
-        while(true) {
+        while (true) {
             Event<RiderGroup> nextEvent = eventHandler.getNextEvent();
 
             switch (nextEvent.getEventType()) {
@@ -33,11 +42,11 @@ public class Controller {
                     // Start service and schedule a new end_process event
                     break;
                 case END_PROCESS:
-                    // End the service and schedule a new start_process event if the queue is not empty
+                    // End the service and schedule a new start_process event if the queue is not
+                    // empty
                     break;
             }
-            
-            
+
         }
     }
 }
