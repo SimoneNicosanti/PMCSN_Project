@@ -65,7 +65,7 @@ public class Restaurant implements Center<RiderGroup> {
         
         // Save the current time for each group
         for (RiderGroup riderGroup : servingList) {
-            this.currentServing.add(new ServingGroup(riderGroup, currentTime))
+            this.currentServing.add(new ServingGroup(riderGroup, currentTime));
         }
 
         double serviceTime = RandomHandler.getInstance().getUniform(streamIndex, 0, 1) ;

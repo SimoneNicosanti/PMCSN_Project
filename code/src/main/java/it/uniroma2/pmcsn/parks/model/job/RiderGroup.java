@@ -1,11 +1,12 @@
 package it.uniroma2.pmcsn.parks.model.job;
 
+import it.uniroma2.pmcsn.parks.model.stats.GroupStats;
+
 public class RiderGroup {
 
     private int groupSize ;
     private GroupPriority priority ;
     private GroupStats stats;
-
 
     public RiderGroup(int groupSize, GroupPriority groupPriority, double systemEntranceTime) {
         this.groupSize = groupSize ;
@@ -24,10 +25,5 @@ public class RiderGroup {
     public GroupStats getGroupStats() {
         return this.stats;
     }
-
-	public int getVisitsPerAttraction(String name) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'getVisitsPerAttraction'");
-	}
 
 }

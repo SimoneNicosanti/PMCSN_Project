@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.job;
+package it.uniroma2.pmcsn.parks.model.stats;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -9,7 +9,6 @@ public class GroupStats {
     private double ridingTime ;
     private double systemEntranceTime ;
     private Map<String, Integer> numberOfRidesPerAttraction; // number of rides per attraction
-
 
     public GroupStats(double systemEntranceTime) {
         this.queueTime = 0;
@@ -56,6 +55,14 @@ public class GroupStats {
             return 0 ;
         }
         return numberOfRides ;
-        
+    }
+
+    public int getTotalNumberOfVisits() {
+        int sum = 0;
+        for (int visits : numberOfRidesPerAttraction.values()) {
+            sum += visits;
+        }
+
+        return sum;
     }
 }
