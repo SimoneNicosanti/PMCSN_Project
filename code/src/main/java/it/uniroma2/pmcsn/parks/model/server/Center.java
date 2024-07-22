@@ -3,11 +3,11 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.RandomStream;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 
-public abstract class Center<T> {
+public abstract class Center<T> extends RandomStream {
     protected final String name;
 
     protected QueueManager<T> queueManager;
@@ -16,15 +16,12 @@ public abstract class Center<T> {
     protected double currentServiceTime;
     private final int slotNumber;
 
-    protected final int streamIndex;
-
     public Center(String name, QueueManager<T> queueManager, int slotNumber) {
         this.name = name;
         this.queueManager = queueManager;
         this.currentServingJobs = null;
         this.currentServiceTime = 0.0;
         this.slotNumber = slotNumber;
-        this.streamIndex = RandomHandler.getInstance().getNewStreamIndex();
     }
 
     public void arrival(T job) {

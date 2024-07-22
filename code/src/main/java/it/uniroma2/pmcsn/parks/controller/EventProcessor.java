@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
@@ -26,10 +27,10 @@ public class EventProcessor<T> {
         // TODO PASS A VALID LIST TO THIS
     }
 
-    public List<Event<RiderGroup>> processEvent(Event<T> event) {
+    public List<Event<T>> processEvent(Event<T> event) {
         Center<T> center = event.getEventCenter();
         T job = event.getJob();
-        List<Event<RiderGroup>> nextEvents = null;
+        List<Event<T>> nextEvents = null;
         switch (event.getEventType()) {
             case ARRIVAL:
                 center.arrival(job);
@@ -50,14 +51,15 @@ public class EventProcessor<T> {
         return nextEvents;
     }
 
-    // Poi ci pensa Ema a sistemare i generics :-) :-D
-    private List<Event<RiderGroup>> generateNextEventsFromArrival(Event<T> event) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    // I fixed the Generic issue, but I need to understand the logic you've
+    // introduced beforehand, why create different branches and a list if you have a
+    // single event in input ??? Can't you just return a single new event ??
+    private List<Event<T>> generateNextEventsFromArrival(Event<T> event) {
+        List<Event<T>> newEventList = new ArrayList<>();
         if (event.getEventCenter() instanceof Attraction) {
             Attraction attraction = (Attraction) event.getEventCenter();
             if (!attraction.isServing()) {
-                Event<RiderGroup> newEvent = new Event<RiderGroup>(attraction, EventType.START_PROCESS,
-                        ClockHandler.getInstance().getClock(), (RiderGroup) event.getJob());
+                Event<T> newEvent = EventBuilder.buildEventFrom(event, EventType.START_PROCESS);
                 newEventList.add(newEvent);
             }
         }
@@ -67,13 +69,11 @@ public class EventProcessor<T> {
         return newEventList;
     }
 
-    private List<Event<RiderGroup>> generateNextEventsFromStart(Event<T> event, double serviceTime) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    private List<Event<T>> generateNextEventsFromStart(Event<T> event, double serviceTime) {
+        List<Event<T>> newEventList = new ArrayList<>();
         if (event.getEventCenter() instanceof Attraction) {
-            Attraction attraction = (Attraction) event.getEventCenter();
-
-            Event<RiderGroup> newEvent = new Event<RiderGroup>(attraction, EventType.END_PROCESS,
-                    ClockHandler.getInstance().getClock() + serviceTime, null);
+            Event<T> newEvent = EventBuilder.buildEventFrom(event, EventType.END_PROCESS);
+            newEvent.addDistributionTime(serviceTime);
             newEventList.add(newEvent);
         }
         // if (event.getEventCenter() instanceof Entrance) {}

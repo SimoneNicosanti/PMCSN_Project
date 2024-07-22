@@ -5,86 +5,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.tuple.Pair;
-
-import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
-import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 
 public class EventHandler<T> {
-    
-    private Map<Pair<String, EventType>, List<Event<RiderGroup>>> eventMap ;
-    private int arrivalStream; //TODO set arrival stream
+
+    private Map<EventsPoolId, List<Event<T>>> eventMap;
 
     public EventHandler() {
-        this.eventMap = new HashMap<Pair<String, EventType>, List<Event<RiderGroup>>>() ;
+        this.eventMap = new HashMap<>();
     }
 
-    public Event<RiderGroup> getNextEvent() {
-        Event<RiderGroup> nextEvent = null ;
-        Pair<String, EventType> nextListKey = null ;
-        for (Pair<String, EventType> pair : eventMap.keySet()) {
-            List<Event<RiderGroup>> currentEventList = eventMap.get(pair) ;
+    public Event<T> getNextEvent() {
+        Event<T> nextEvent = null;
+        EventsPoolId nextEventsPoolId = null;
+        for (EventsPoolId id : eventMap.keySet()) {
+            List<Event<T>> currentEventList = eventMap.get(id);
             if (currentEventList.size() > 0) {
                 if (nextEvent == null) {
-                    nextEvent = currentEventList.get(0) ;
-                    nextListKey = pair ;
-                }
-                else {
+                    nextEvent = currentEventList.get(0);
+                    nextEventsPoolId = id;
+                } else {
                     // Lists are ordered, so the first elem is the lowest
-                    Event<RiderGroup> currentEvent = currentEventList.get(0) ;
+                    Event<T> currentEvent = currentEventList.get(0);
                     if (nextEvent.getEventTime() > currentEvent.getEventTime()) {
-                        nextEvent = currentEvent ;
-                        nextListKey = pair ;
+                        nextEvent = currentEvent;
+                        nextEventsPoolId = id;
                     }
                 }
             }
         }
 
-        if (nextListKey != null) {
-            eventMap.get(nextListKey).remove(0) ;
+        if (nextEventsPoolId != null) {
+            eventMap.get(nextEventsPoolId).remove(0);
         }
 
-        return nextEvent ;
+        return nextEvent;
     }
 
-    public void addNewEvent(Pair<String, EventType> eventKey, Event<RiderGroup> newEvent) {
-        List<Event<RiderGroup>> eventList = eventMap.get(eventKey) ;
+    public void scheduleNewEvent(Event<T> event) {
+        EventsPoolId poolId = event.getPoolId();
+        List<Event<T>> eventList = eventMap.get(poolId);
         if (eventList == null) {
-            eventList = new ArrayList<>() ;
-            eventMap.put(eventKey, eventList) ;
+            eventList = new ArrayList<>();
+            eventMap.put(poolId, eventList);
         }
-        eventList.add(newEvent) ;
+        eventList.add(event);
         eventList.sort(null);
-    }
-
-    /**
-     * Create the next arrival event.
-     */
-    public void scheduleNewArrival(Center<RiderGroup> entranceCenter) {
-        double currentTime = ClockHandler.getInstance().getClock();
-        //TODO find a correct distribution for coming jobs
-        double arrivalTime = RandomHandler.getInstance().getExponential(arrivalStream, 1); 
-
-        Pair<String, EventType> eventKey = Pair.of(Config.ENTRANCE, EventType.ARRIVAL);
-
-        RiderGroup job = getNewJob(currentTime);
-
-        Event<RiderGroup> event = new Event<RiderGroup>(entranceCenter, EventType.ARRIVAL, currentTime + arrivalTime, job);
-
-        addNewEvent(eventKey, event);
-    }
-
-    private RiderGroup getNewJob(double currentTime) {
-        int groupSize = 0; //TODO find a distribution for group sizes
-        GroupPriority priority = GroupPriority.NORMAL; //TODO find a distribution for group priorities
-
-        return new RiderGroup(groupSize, priority, currentTime);
     }
 
 }
