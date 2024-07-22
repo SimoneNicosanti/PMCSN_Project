@@ -9,6 +9,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 
@@ -19,11 +20,11 @@ public class EventProcessor<T> {
     private double RESTAURANT_AREA_THR = 0.2;
     private double ATTRACTION_AREA_THR = 0.6;
 
-    private AttractionRoutingComputer attractionRoutingComputer;
+    private AttractionRoutingNode attractionRoutingNode;
 
     public EventProcessor() {
         this.routingRandomStreamIdx = RandomHandler.getInstance().getNewStreamIndex();
-        this.attractionRoutingComputer = new AttractionRoutingComputer(null);
+        this.attractionRoutingNode = new AttractionRoutingNode(null);
         // TODO PASS A VALID LIST TO THIS
     }
 
@@ -58,7 +59,7 @@ public class EventProcessor<T> {
         List<Event<T>> newEventList = new ArrayList<>();
         if (event.getEventCenter() instanceof Attraction) {
             Attraction attraction = (Attraction) event.getEventCenter();
-            if (!attraction.isServing()) {
+            if (!attraction.isEmpty()) {
                 Event<T> newEvent = EventBuilder.buildEventFrom(event, EventType.START_PROCESS);
                 newEventList.add(newEvent);
             }
@@ -94,16 +95,8 @@ public class EventProcessor<T> {
                     // Schedule Arrival in restaurant
                 } else if (areaProbability <= RESTAURANT_AREA_THR + ATTRACTION_AREA_THR) {
                     // GO TO OTHER ATTRACTIONS
-                    // Schedule Arrival in attraction
-                    /*
-                     * Need to know for each attraction:
-                     * - number of visits by a job per each attraction
-                     * - popularity of attraction
-                     * - (number of people in queue in that attraction)
-                     * 
-                     */
-                    Attraction nextAttraction = attractionRoutingComputer
-                            .computeNextAttractionForJob((RiderGroup) completedJob);
+                    Attraction nextAttraction = (Attraction) attractionRoutingNode.route((RiderGroup) completedJob) ;
+
                     Event<RiderGroup> newEvent = new Event<RiderGroup>(nextAttraction, EventType.ARRIVAL,
                             ClockHandler.getInstance().getClock(), (RiderGroup) completedJob);
                     newEventList.add(newEvent);

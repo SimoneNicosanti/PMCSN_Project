@@ -9,6 +9,8 @@ public class Event<T> implements Comparable<Event<T>> {
     private Center<T> eventCenter;
     private T job;
 
+    private int streamIndex;
+
     public Event(EventsPoolId id, Center<T> eventCenter, double eventTime, T job) {
         this.id = id;
         this.eventTime = eventTime;

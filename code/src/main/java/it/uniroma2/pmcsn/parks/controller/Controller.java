@@ -1,13 +1,11 @@
 package it.uniroma2.pmcsn.parks.controller;
 
 import it.uniroma2.pmcsn.parks.engineering.CenterManager;
-import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class Controller {
 
@@ -20,14 +18,16 @@ public class Controller {
     }
 
     public void startSimulation() {
-        // Initialize system clock
+        // Initialize system clock and Event Builder
         ClockHandler.getInstance().setClock(0);
+        EventBuilder eventBuilder = new EventBuilder(centerManager);
 
-        // Schedule first arrival
-        Center<RiderGroup> entranceCenter = centerManager.getCenterByName(Config.ENTRANCE);
-        Event<RiderGroup> entranceEvent = new EventBuilder(EventType.ARRIVAL, entranceCenter)
-                .buildEntranceArrivalEvent();
-
+        // TODO find a correct distribution (plus create a class for handling system
+        // arrivals -> stream 0 for not but will be handled by arrival system class)
+        // Add the distribution time to the event, based on the arrival time
+        double arrivalTime = RandomHandler.getInstance().getExponential(0, 1);
+        Event<RiderGroup> entranceEvent = eventBuilder.buildEntranceNewArrivalEvent(arrivalTime);
+        // Schedule event
         eventHandler.scheduleNewEvent(entranceEvent);
 
         // TODO set end cycle condition

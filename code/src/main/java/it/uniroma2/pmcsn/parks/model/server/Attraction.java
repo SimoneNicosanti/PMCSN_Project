@@ -8,28 +8,37 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class Attraction extends Center<RiderGroup> {
 
+    protected double currentServiceTime;
     private double popularity;
     private double avgDuration;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new AttractionQueueManager(), numberOfSeats);
-
+        this.currentServiceTime = 0.0;
         this.popularity = popularity;
         this.avgDuration = avgDuration;
     }
 
     @Override
-    public double getDistribution() {
-        int streamIndex = this.getStream(this.name);
-        return RandomHandler.getInstance().getUniform(streamIndex, 0, 1);
+    public double startService() {
+        this.serveJobs();
+
+        this.currentServiceTime = RandomHandler.getInstance().getUniform(streamIndex, 0, 1);
+
+        return this.currentServiceTime;
     }
 
     @Override
-    public List<RiderGroup> terminateJobs() {
+    public List<RiderGroup> endService() {
+        this.ensureJobsAreServing();
         for (RiderGroup riderGroup : currentServingJobs) {
             riderGroup.getGroupStats().incrementRidesInfo(this.name, currentServiceTime);
         }
-        return currentServingJobs;
+        List<RiderGroup> terminatedJobs = currentServingJobs;
+        this.currentServingJobs = null;
+        this.currentServiceTime = 0;
+
+        return terminatedJobs;
     }
 
     public double getPopularity() {

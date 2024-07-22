@@ -1,9 +1,8 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
+import it.uniroma2.pmcsn.parks.engineering.CenterManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.RandomStreams;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
@@ -11,16 +10,14 @@ import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 
-public class EventBuilder extends RandomStreams {
-    private final EventType eventType;
-    private final Center<RiderGroup> center;
+public class EventBuilder {
+    private CenterManager<RiderGroup> centerManager;
 
-    public EventBuilder(EventType eventType, Center<RiderGroup> center) {
-        this.eventType = eventType;
-        this.center = center;
+    public EventBuilder(CenterManager<RiderGroup> centerManager) {
+        this.centerManager = centerManager;
     }
 
-    public static <T> Event<T> buildEventFrom(Event<T> event, EventType newEventType) {
+    public <T> Event<T> buildEventFrom(Event<T> event, EventType newEventType) {
         if (event.getEventType() == newEventType) {
             throw new RuntimeException("Cannot produce a " + newEventType + " event from itself");
         }
@@ -30,22 +27,13 @@ public class EventBuilder extends RandomStreams {
     }
 
     // ** Builds an arrival associated to the Entrance Center */
-    public Event<RiderGroup> buildEntranceArrivalEvent() {
-        if (eventType != EventType.ARRIVAL || center.getName() != Config.ENTRANCE) {
-            throw new RuntimeException("The builder does not match the requested event");
-        }
+    public Event<RiderGroup> buildEntranceNewArrivalEvent(double arrivalTime) {
+        Center<RiderGroup> entranceCenter = centerManager.getCenterByName(Config.ENTRANCE);
         // Build the event and add the stream associated to it
-        EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
+        EventsPoolId poolId = new EventsPoolId(entranceCenter.getName(), EventType.ARRIVAL);
         double currentTime = ClockHandler.getInstance().getClock();
         RiderGroup job = buildRiderGroup(currentTime);
-        Event<RiderGroup> event = new Event<>(poolId, center, currentTime, job);
-        this.addStream(event.getName());
-        // Get the event stream index
-        int streamIndex = this.getStream(event.getName());
-        // TODO find a correct distribution for coming jobs
-        // Add the distribution time to the event, based on the arrival time
-        double arrivalTime = RandomHandler.getInstance().getExponential(streamIndex, 1);
-        event.addDistributionTime(arrivalTime);
+        Event<RiderGroup> event = new Event<>(poolId, entranceCenter, currentTime + arrivalTime, job);
 
         return event;
     }
