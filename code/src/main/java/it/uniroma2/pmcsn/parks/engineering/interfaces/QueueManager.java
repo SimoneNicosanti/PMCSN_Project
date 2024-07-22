@@ -4,9 +4,9 @@ import java.util.List;
 
 public interface QueueManager<T> {
 
-    public void addToQueues(T item, double currentTime) ;
+    public void addToQueues(T item);
 
-    public List<T> extractFromQueues(int slotNumber, double currentTime) ;
+    public List<T> extractFromQueues(Integer slotNumber);
 
     public boolean areQueuesEmpty();
 

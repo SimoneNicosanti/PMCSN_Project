@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.AttractionQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
@@ -23,19 +23,18 @@ public class Attraction extends Center<RiderGroup> {
     public double startService() {
         this.serveJobs();
 
-        this.currentServiceTime = RandomHandler.getInstance().getUniform(streamIndex, 0, 1);
+        this.currentServiceTime = RandomHandler.getInstance().getUniform(name, 0, 1);
 
         return this.currentServiceTime;
     }
 
     @Override
     public List<RiderGroup> endService() {
-        this.ensureJobsAreServing();
         for (RiderGroup riderGroup : currentServingJobs) {
             riderGroup.getGroupStats().incrementRidesInfo(this.name, currentServiceTime);
         }
         List<RiderGroup> terminatedJobs = currentServingJobs;
-        this.currentServingJobs = null;
+        this.currentServingJobs.clear();
         this.currentServiceTime = 0;
 
         return terminatedJobs;

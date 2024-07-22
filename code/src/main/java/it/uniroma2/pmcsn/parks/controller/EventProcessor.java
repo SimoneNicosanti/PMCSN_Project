@@ -12,10 +12,11 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.model.server.Entrance;
 
 public class EventProcessor<T> {
 
-    private int routingRandomStreamIdx;
+    private final String processorName = "EventProcessor";
 
     private double RESTAURANT_AREA_THR = 0.2;
     private double ATTRACTION_AREA_THR = 0.6;
@@ -23,8 +24,8 @@ public class EventProcessor<T> {
     private AttractionRoutingNode attractionRoutingNode;
 
     public EventProcessor() {
-        this.routingRandomStreamIdx = RandomHandler.getInstance().getNewStreamIndex();
         this.attractionRoutingNode = new AttractionRoutingNode(null);
+        RandomHandler.getInstance().assignNewStream(processorName);
         // TODO PASS A VALID LIST TO THIS
     }
 
@@ -57,14 +58,21 @@ public class EventProcessor<T> {
     // single event in input ??? Can't you just return a single new event ??
     private List<Event<T>> generateNextEventsFromArrival(Event<T> event) {
         List<Event<T>> newEventList = new ArrayList<>();
-        if (event.getEventCenter() instanceof Attraction) {
-            Attraction attraction = (Attraction) event.getEventCenter();
-            if (!attraction.isEmpty()) {
-                Event<T> newEvent = EventBuilder.buildEventFrom(event, EventType.START_PROCESS);
+        Center<T> center = event.getEventCenter();
+        double currentTime = ClockHandler.getInstance().getClock();
+
+        if (center instanceof Attraction) {
+            // I still don't get why you check that it must be empty and not just serving
+            if (center.isEmpty()) {
+                Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS, event.getJob(),
+                        currentTime);
                 newEventList.add(newEvent);
             }
         }
-        // if (event.getEventCenter() instanceof Entrance) {}
+
+        if (center instanceof Entrance) {
+
+        }
         // if (event.getEventCenter() instanceof Restaurant) {}
 
         return newEventList;
@@ -72,9 +80,12 @@ public class EventProcessor<T> {
 
     private List<Event<T>> generateNextEventsFromStart(Event<T> event, double serviceTime) {
         List<Event<T>> newEventList = new ArrayList<>();
-        if (event.getEventCenter() instanceof Attraction) {
-            Event<T> newEvent = EventBuilder.buildEventFrom(event, EventType.END_PROCESS);
-            newEvent.addDistributionTime(serviceTime);
+        Center<T> center = event.getEventCenter();
+        double currentTime = ClockHandler.getInstance().getClock();
+
+        if (center instanceof Attraction) {
+            Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS, event.getJob(),
+                    currentTime + serviceTime);
             newEventList.add(newEvent);
         }
         // if (event.getEventCenter() instanceof Entrance) {}
@@ -95,7 +106,7 @@ public class EventProcessor<T> {
                     // Schedule Arrival in restaurant
                 } else if (areaProbability <= RESTAURANT_AREA_THR + ATTRACTION_AREA_THR) {
                     // GO TO OTHER ATTRACTIONS
-                    Attraction nextAttraction = (Attraction) attractionRoutingNode.route((RiderGroup) completedJob) ;
+                    Attraction nextAttraction = (Attraction) attractionRoutingNode.route((RiderGroup) completedJob);
 
                     Event<RiderGroup> newEvent = new Event<RiderGroup>(nextAttraction, EventType.ARRIVAL,
                             ClockHandler.getInstance().getClock(), (RiderGroup) completedJob);

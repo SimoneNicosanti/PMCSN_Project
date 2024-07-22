@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.engineering;
+package it.uniroma2.pmcsn.parks.engineering.queue;
 
 import java.util.List;
 

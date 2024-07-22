@@ -1,10 +1,8 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.RestaurantQueueManager;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;

@@ -4,10 +4,10 @@ import it.uniroma2.pmcsn.parks.engineering.CenterManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.model.server.Entrance;
 
 public class Controller {
 
@@ -20,25 +20,18 @@ public class Controller {
     }
 
     public void startSimulation() {
-        // Initialize system clock and Event Builder
-        ClockHandler.getInstance().setClock(0);
-        EventBuilder eventBuilder = new EventBuilder(centerManager);
 
-        // TODO find a correct distribution (plus create a class for handling system
-        // arrivals -> stream 0 for not but will be handled by arrival system class)
-        // Add the distribution time to the event, based on the arrival time
-        double arrivalTime = RandomHandler.getInstance().getExponential(0, 1);
-        Event<RiderGroup> entranceEvent = eventBuilder.buildEntranceNewArrivalEvent(arrivalTime);
-        // Schedule event
-        eventHandler.scheduleNewEvent(entranceEvent);
+        this.init_simulation();
 
-        // TODO set end cycle condition
+        // TODO: set end cycle condition and use EventProcessor to process events
         while (true) {
             Event<RiderGroup> event = eventHandler.getNextEvent();
 
-            // Check if the clock is entering in a new interval -> if so, change probabilities
+            // Check if the clock is entering in a new interval -> if so, change
+            // probabilities
             ClockHandler.getInstance().setClock(event.getEventTime());
 
+            // TODO: Ask Andrea if this was the old logic and thus we need to delete it
             switch (event.getEventType()) {
                 case ARRIVAL:
                     // Add new job to the Entrance center
@@ -55,5 +48,19 @@ public class Controller {
             }
 
         }
+    }
+
+    /*
+     * Initialize the simulation.
+     * It sets the clock to 0 and schedules the first event.
+     */
+    private void init_simulation() {
+        ClockHandler.getInstance().setClock(0);
+
+        Entrance entranceCenter = (Entrance) centerManager.getCenterByName(Config.ENTRANCE);
+        double arrivalInterval = entranceCenter.getArrivalInterval();
+        Event<RiderGroup> entranceEvent = EventBuilder.buildEntranceArrivalEvent(entranceCenter, arrivalInterval);
+        // Event scheduling
+        eventHandler.scheduleNewEvent(entranceEvent);
     }
 }
