@@ -11,10 +11,10 @@ import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 public class Attraction extends Center<RiderGroup> {
 
-    protected double currentServiceTime;
+    private double currentServiceTime;
     private double popularity;
     private double avgDuration;
-    private ArrayList<RiderGroup> currentServingJobs;
+    private List<RiderGroup> currentServingJobs;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new AttractionQueueManager(), numberOfSeats);

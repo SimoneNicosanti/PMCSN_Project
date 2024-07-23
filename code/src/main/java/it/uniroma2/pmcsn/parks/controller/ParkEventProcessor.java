@@ -19,7 +19,7 @@ import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 import it.uniroma2.pmcsn.parks.model.server.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.Restaurant;
-
+import it.uniroma2.pmcsn.parks.utils.TestingUtils;
 
 public class ParkEventProcessor implements EventProcessor<RiderGroup> {
 
@@ -28,28 +28,17 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
 
     public ParkEventProcessor() {
         this.centersManager = new CentersManager<>();
-        // Delete this later
-        List<Center<RiderGroup>> centerList = new ArrayList<>();
-        Entrance dummyEntrance = new Entrance(Config.ENTRANCE, 3);
-        centerList.add(dummyEntrance);
 
-        Attraction attraction1 = new Attraction("Attraction1", 10, 3, 10);
-        centerList.add(attraction1);
-        Attraction attraction2 = new Attraction("Attraction2", 100, 5, 5);
-        centerList.add(attraction2);
-        Restaurant rest1 = new Restaurant("Stupid Restaurant", 10, 1, 10);
-        centerList.add(rest1);
-        Restaurant rest2 = new Restaurant("Smart Restaurant", 100, 2, 5);
-        centerList.add(rest2);
+        // Just for testing, delete once the system is live
+        List<Center<RiderGroup>> centers = TestingUtils.createTestingCentersList();
 
-        this.centersManager.addCenterList(centerList);
+        this.centersManager.addCenterList(centers);
 
-        List<Attraction> attractions = centersManager.getAttractions();
-        List<Restaurant> restaurants = centersManager.getRestaurants();
+        // Create the Network Routing Node
+        List<Attraction> attractions = this.centersManager.getAttractions();
+        List<Restaurant> restaurants = this.centersManager.getRestaurants();
         this.networkRoutingNode = new NetworkRoutingNode(new AttractionRoutingNode(attractions),
                 new RestaurantRoutingNode(restaurants));
-
-        // TODO PASS A VALID LIST TO THIS
     }
 
     @Override
@@ -112,7 +101,8 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
     }
 
     @Override
-    public List<Event<RiderGroup>> generateNextEventsFromStart(Event<RiderGroup> event, List<ServingGroup<RiderGroup>> startedJobs) {
+    public List<Event<RiderGroup>> generateNextEventsFromStart(Event<RiderGroup> event,
+            List<ServingGroup<RiderGroup>> startedJobs) {
         List<Event<RiderGroup>> newEventList = new ArrayList<>();
         Center<RiderGroup> center = event.getEventCenter();
         double currentTime = ClockHandler.getInstance().getClock();
@@ -121,12 +111,13 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         // In this way we are generating multiple events with same end instant for all
         // jobs on the same attraction ride
         for (ServingGroup<RiderGroup> servingGroup : startedJobs) {
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS, List.of(servingGroup.getGroup()),
-                currentTime + servingGroup.getServiceTime());
+            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS,
+                    List.of(servingGroup.getGroup()),
+                    currentTime + servingGroup.getServiceTime());
             newEventList.add(newEvent);
 
             System.out.println("Generated " + newEvent.getEventType().name() + " event on center "
-                + newEvent.getEventCenter().getName() + " for time " + newEvent.getEventTime());
+                    + newEvent.getEventCenter().getName() + " for time " + newEvent.getEventTime());
         }
 
         return newEventList;

@@ -9,10 +9,9 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 public class ParkController extends Controller<RiderGroup> {
 
     private ParkEventProcessor eventProcessor;
-
+    
     public ParkController() {
         this.eventProcessor = new ParkEventProcessor();
-
     }
 
     @Override

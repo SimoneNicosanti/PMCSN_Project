@@ -16,7 +16,6 @@ public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
 
     public RestaurantRoutingNode(List<Restaurant> restaurantList) {
         this.restaurantList = restaurantList;
-        // RandomHandler.getInstance().assignNewStream(Config.RESTAURANT_ROUTING_NODE);
     }
 
     @Override

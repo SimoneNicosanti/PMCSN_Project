@@ -25,7 +25,7 @@ public class Entrance extends Center<RiderGroup> {
 
     @Override
     public boolean isCenterEmpty() {
-        return (currentServingJobs.isEmpty()) && queueManager.areQueuesEmpty();
+        return currentServingJobs.isEmpty() && queueManager.areQueuesEmpty();
     }
 
     @Override

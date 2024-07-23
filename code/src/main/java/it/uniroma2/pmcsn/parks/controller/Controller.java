@@ -9,7 +9,6 @@ public abstract class Controller<T> {
 
     public Controller() {
         this.eventsPool = new EventsPool<>();
-
     }
 
     protected void init_clock() {

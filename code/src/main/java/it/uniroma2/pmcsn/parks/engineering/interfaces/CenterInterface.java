@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.engineering.interfaces;
 
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
+import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 public interface CenterInterface<T> {
 
@@ -23,11 +23,11 @@ public interface CenterInterface<T> {
      * 
      * @return Double : time for this service
      */
-    public abstract Pair<List<T>, Double> startService();
+    public List<ServingGroup<T>> startService();
 
     /*
      * @param endedJobs : job ending service with this call (may be one or more)
      */
-    public abstract void endService(List<T> endedJobs);
-    
+    public void endService(List<T> endedJobs);
+
 }

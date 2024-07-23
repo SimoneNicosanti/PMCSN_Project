@@ -34,7 +34,7 @@ public class Restaurant extends Center<RiderGroup> {
     }
 
     public boolean isServing() {
-        return currentServingJobs != null && queueManager.areQueuesEmpty();
+        return !currentServingJobs.isEmpty();
     }
 
     public boolean isCenterEmpty() {
@@ -66,7 +66,9 @@ public class Restaurant extends Center<RiderGroup> {
 
         // Save the current time for each group
         for (RiderGroup riderGroup : servingList) {
-            double serviceTime = RandomHandler.getInstance().getRandom(this.name); // TODO find the correct distribution
+            // TODO: Choose distribution. As in the entrance, it might make sense to weight
+            // for the group size
+            double serviceTime = riderGroup.getGroupSize() * RandomHandler.getInstance().getRandom(this.name);
             newServingGroups.add(new ServingGroup<RiderGroup>(riderGroup, serviceTime));
         }
 
@@ -85,7 +87,7 @@ public class Restaurant extends Center<RiderGroup> {
         for (RiderGroup targetGroup : targetGroups) {
             // Looking for the target group...
             if (!this.currentServingJobs.remove(targetGroup)) {
-                throw new RuntimeException();
+                throw new RuntimeException("Group not found in the current serving jobs");
             }
         }
 

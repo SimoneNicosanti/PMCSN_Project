@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.engineering.queue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
@@ -29,9 +30,20 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
 
     @Override
     public List<RiderGroup> extractFromQueues(Integer slotNumber) {
+        List<RiderGroup> extractedGroups = new ArrayList<>();
 
-        // TODO Auto-generated method stub
-        return null;
+        int usedSlots = 0;
+        while (true) {
+            int nextGroupSize = normalQueue.getNextSize();
+            if (nextGroupSize > 0 && nextGroupSize <= slotNumber - usedSlots) {
+                extractedGroups.add(normalQueue.dequeue());
+                usedSlots += nextGroupSize;
+            } else {
+                break;
+            }
+        }
+
+        return extractedGroups;
     }
 
 }
