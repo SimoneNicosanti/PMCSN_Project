@@ -2,6 +2,8 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.queue.EntranceQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -10,6 +12,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
 public class Entrance extends Center<RiderGroup> {
     private double serviceTime;
+    protected RiderGroup currentServingJob;
 
     public Entrance(String name) {
         super(name, new EntranceQueueManager(), Config.MAX_GROUP_SIZE);
@@ -21,25 +24,30 @@ public class Entrance extends Center<RiderGroup> {
     }
 
     @Override
-    public double startService() {
-        this.serveJobs();
+    public Pair<List<RiderGroup>, Double> startService() {
+        List<RiderGroup> jobsToServe = queueManager.extractFromQueues(null);
 
-        int numOfRiders = this.currentServingJobs.get(0).getGroupSize();
-        this.serviceTime = numOfRiders * RandomHandler.getInstance().getUniform(name, 0, 1);
+        if (jobsToServe.size() > 1) {
+            throw new RuntimeException();
+        }
 
-        return this.serviceTime;
+        this.currentServingJob = jobsToServe.get(0);
+
+        int numOfRiders = this.currentServingJob.getGroupSize();
+
+        this.serviceTime = numOfRiders * RandomHandler.getInstance().getRandom(this.name); // TODO add the correct
+                                                                                           // distribution
+
+        return Pair.of(jobsToServe, serviceTime);
     }
 
     @Override
     public List<RiderGroup> endService() {
-        for (RiderGroup riderGroup : currentServingJobs) {
-            riderGroup.getGroupStats().incrementRidesInfo(this.name, serviceTime);
-        }
-        List<RiderGroup> terminatedJobs = currentServingJobs;
-        this.currentServingJobs.clear();
+        this.currentServingJob.getGroupStats().incrementRidesInfo(this.name, serviceTime);
+        this.currentServingJob = null;
         this.serviceTime = 0;
 
-        return terminatedJobs;
+        return List.of(this.currentServingJob);
     }
 
 }

@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
@@ -7,20 +8,19 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class Restaurant extends Center<RiderGroup> {
-    
+
     private double popularity;
     private double avgDuration;
-
-    private int streamIndex ;
+    protected List<ServingGroup> currentServingJobs;
 
     public Restaurant(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new RestaurantQueueManager(), numberOfSeats);
         this.popularity = popularity;
         this.avgDuration = avgDuration;
-        
-        this.streamIndex = RandomHandler.getInstance().getNewStreamIndex() ;
+        this.currentServingJobs = new ArrayList<>();
     }
 
     public String getName() {
@@ -39,58 +39,76 @@ public class Restaurant extends Center<RiderGroup> {
         return currentServingJobs != null && queueManager.areQueuesEmpty();
     }
 
-    @Override
-    public void arrival(RiderGroup group, double currentTime) {
-        currentTime = ClockHandler.getInstance().getClock();
-        queueManager.addToQueues(group, currentTime) ;
+    public boolean isCenterEmpty() {
+        return !this.isServing() && this.queueManager.areQueuesEmpty();
+    }
 
-        // TODO Schedule startService event
+    private int getBusySlots() {
+        int sum = 0;
+
+        for (ServingGroup group : currentServingJobs) {
+            sum += group.getGroup().getGroupSize();
+        }
+
+        return sum;
+    }
+
+    private int getFreeSlots() {
+        return slotNumber - this.getBusySlots();
     }
 
     @Override
-    public double startService(double currentTime) {
-        if (currentServingJobs != null) {
-            throw new RuntimeException("Cannot start a new service because there are still riders to serve");
-        }
-        List<RiderGroup> servingList =  queueManager.extractFromQueues(numberOfSeats, currentTime);
-        
+    public Pair<List<RiderGroup>, Double> startService() {
+
+        List<RiderGroup> servingList = queueManager.extractFromQueues(this.getFreeSlots());
+
         // Save the current time for each group
         for (RiderGroup riderGroup : servingList) {
-            this.currentServingJobs.add(new ServingGroup(riderGroup, currentTime));
+            this.currentServingJobs.add(new ServingGroup(riderGroup, ClockHandler.getInstance().getClock()));
         }
 
-        double serviceTime = RandomHandler.getInstance().getUniform(streamIndex, 0, 1) ;
+        double serviceTime = RandomHandler.getInstance().getRandom(this.name); // TODO find the correct distribution
 
-        return serviceTime ;
-        // TODO Schedule endService event
-        
+        return Pair.of(servingList, serviceTime);
     }
 
+    /**
+     * End service for targeted groups.
+     */
     @Override
-    public List<RiderGroup> endService(RiderGroup targetGroup) { //TODO we need to know the group that finished... this doesn't respect the interface
+    public void endService(List<RiderGroup> targetGroups) {
         if (currentServingJobs.isEmpty()) {
             throw new RuntimeException("Cannot end service because there are no riders to serve");
         }
 
-        ServingGroup groupToDelete = null;
-
-        // Looking for the target group...
-        for (ServingGroup group : currentServingJobs) {
-            if(group.getGroup().equals(targetGroup)) {
-                // Group found! :)
-                groupToDelete = group;
+        for (RiderGroup targetGroup : targetGroups) {
+            // Looking for the target group...
+            if (!removeGroup(this.currentServingJobs, targetGroup)) {
+                throw new RuntimeException();
             }
         }
 
-        if(groupToDelete == null) {
-            // Group not found :(
-            throw new RuntimeException("Cannot end service because the target group is not in the restaurant");
+        return;
+    }
+
+    /**
+     * Return true if the group is successfully deleted, false otherwise (e.g. group
+     * not found).
+     */
+    private boolean removeGroup(List<ServingGroup> list, RiderGroup targetGroup) {
+
+        ServingGroup groupToDelete = null;
+
+        for (ServingGroup servingGroup : list) {
+            if (servingGroup.getGroup().equals(targetGroup)) {
+                groupToDelete = servingGroup;
+            }
         }
 
-        currentServingJobs.remove(groupToDelete);
+        if (groupToDelete == null) {
+            return false;
+        }
 
-        return null ;
-
-        // TODO Schedule startService event
+        return list.remove(groupToDelete);
     }
 }

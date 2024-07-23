@@ -24,7 +24,7 @@ public class CenterManager<T> {
 
     public Center<T> getCenterByName(String name) {
         if (!centerMap.containsKey(name)) {
-            throw new RuntimeException("Center " + name + " does not exist");
+            throw new RuntimeException("Center " + name + " does not exist") ;
         }
         return centerMap.get(name);
     }

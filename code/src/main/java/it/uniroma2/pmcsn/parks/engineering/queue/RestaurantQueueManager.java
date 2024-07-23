@@ -5,32 +5,32 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.queue.AttractionQueue;
+import it.uniroma2.pmcsn.parks.model.queue.RestaurantQueue;
 
 public class RestaurantQueueManager implements QueueManager<RiderGroup> {
-    
-    private Queue<RiderGroup> normalQueue ;
+
+    private Queue<RiderGroup> normalQueue;
 
     public RestaurantQueueManager() {
-        
-        this.normalQueue = new AttractionQueue() ;
+        this.normalQueue = new RestaurantQueue();
     }
 
     @Override
-    public void addToQueues(RiderGroup item, double currentTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addToQueues'");
-    }
+    public void addToQueues(RiderGroup item) {
+        normalQueue.enqueue(item);
 
-    @Override
-    public List<RiderGroup> extractFromQueues(int slotNumber, double currentTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'extractFromQueues'");
     }
 
     @Override
     public boolean areQueuesEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'areQueuesEmpty'");
+        return normalQueue.getNextSize() == 0;
     }
+
+    @Override
+    public List<RiderGroup> extractFromQueues(Integer slotNumber) {
+
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

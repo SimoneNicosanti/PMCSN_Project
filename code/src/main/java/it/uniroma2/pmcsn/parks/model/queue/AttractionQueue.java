@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class AttractionQueue implements Queue<RiderGroup> {
@@ -15,19 +16,21 @@ public class AttractionQueue implements Queue<RiderGroup> {
     }
 
     @Override
-    public void enqueue(EnqueuedItem<RiderGroup> enqueuedGroup) {
+    public void enqueue(RiderGroup group) {
+        double currentTime = ClockHandler.getInstance().getClock();
+        EnqueuedItem<RiderGroup> enqueuedGroup = new EnqueuedItem<RiderGroup>(group, currentTime);
         queueList.add(enqueuedGroup);
     }
 
     @Override
-    public RiderGroup dequeue(double exitTime) {
+    public RiderGroup dequeue() {
         RiderGroup riderGroup = null;
 
         if (queueList.size() > 0) {
             EnqueuedItem<RiderGroup> enqueuedGroup = queueList.remove(0);
             riderGroup = enqueuedGroup.getGroup();
             double entranceTime = enqueuedGroup.getQueueEntranceTime();
-            riderGroup.getGroupStats().incrementQueueTime(exitTime - entranceTime);
+            riderGroup.getGroupStats().incrementQueueTime(ClockHandler.getInstance().getClock() - entranceTime);
         }
         return riderGroup;
     }

@@ -1,7 +1,7 @@
 package it.uniroma2.pmcsn.parks.model.job;
 
 public class ServingGroup {
-    
+
     private RiderGroup group;
     private double initialTime;
 

@@ -1,5 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller;
 
+import java.util.List;
+
 import it.uniroma2.pmcsn.parks.engineering.CenterManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
@@ -31,21 +33,8 @@ public class Controller {
             // probabilities
             ClockHandler.getInstance().setClock(event.getEventTime());
 
-            // TODO: Ask Andrea if this was the old logic and thus we need to delete it
-            switch (event.getEventType()) {
-                case ARRIVAL:
-                    // Add new job to the Entrance center
-                    Center<RiderGroup> entrance = centerManager.getCenterByName(Config.ENTRANCE);
-                    entrance.arrival(event.getJob());
-                    break;
-                case START_PROCESS:
-                    // Start service and schedule a new end_process event
-                    break;
-                case END_PROCESS:
-                    // End the service and schedule a new start_process event if the queue is not
-                    // empty
-                    break;
-            }
+            EventProcessor<RiderGroup> eventProcessor = new EventProcessor<>();
+            List<Event<RiderGroup>> eventsToSchedule = eventProcessor.processEvent(event);
 
         }
     }

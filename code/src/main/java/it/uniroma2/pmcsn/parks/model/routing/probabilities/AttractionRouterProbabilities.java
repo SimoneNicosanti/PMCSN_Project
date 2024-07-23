@@ -21,8 +21,7 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             if (visitsToAttraction == 0) {
                 visitsToAttraction = 1;
             }
-            AttractionQueueManager queueManager = (AttractionQueueManager) attraction.getQueueManager();
-            int queueLength = queueManager.queueLength(job.getPriority());
+            int queueLength = attraction.getQueueLenght(job.getPriority());
             if (queueLength == 0) {
                 queueLength = 1;
             }

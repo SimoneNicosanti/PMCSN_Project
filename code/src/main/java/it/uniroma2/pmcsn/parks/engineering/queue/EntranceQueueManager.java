@@ -24,9 +24,7 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         if (group.getGroupSize() > Config.MAX_GROUP_SIZE) {
             throw new RuntimeException("Group size exceeds the maximum group size");
         }
-        double currentTime = ClockHandler.getInstance().getClock();
-        EnqueuedItem<RiderGroup> enqueuedGroup = new EnqueuedItem<RiderGroup>(group, currentTime);
-        queue.enqueue(enqueuedGroup);
+        queue.enqueue(group);
     }
 
     @Override
@@ -34,7 +32,7 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         double currentTime = ClockHandler.getInstance().getClock();
         // If there are groups in the queue, they surely do not exceed the maximum group
         // size
-        RiderGroup riderGroup = queue.dequeue(currentTime);
+        RiderGroup riderGroup = queue.dequeue();
         return new ArrayList<>(List.of(riderGroup));
     }
 

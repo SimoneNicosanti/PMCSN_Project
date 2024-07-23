@@ -3,6 +3,8 @@ package it.uniroma2.pmcsn.parks.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -31,31 +33,31 @@ public class EventProcessor<T> {
 
     public List<Event<T>> processEvent(Event<T> event) {
         Center<T> center = event.getEventCenter();
-        T job = event.getJob();
+        List<T> jobList = event.getJobList();
         List<Event<T>> nextEvents = null;
         switch (event.getEventType()) {
             case ARRIVAL:
-                center.arrival(job);
+                center.arrival(jobList.get(0));
                 nextEvents = generateNextEventsFromArrival(event);
                 break;
 
             case START_PROCESS:
-                double serviceTime = center.startService();
-                nextEvents = generateNextEventsFromStart(event, serviceTime);
+                Pair<List<T>, Double> couple = center.startService();
+                double serviceTime = couple.getRight();
+                List<T> startedJobs = couple.getLeft();
+                nextEvents = generateNextEventsFromStart(event, startedJobs, serviceTime);
                 break;
 
             case END_PROCESS:
-                List<T> completedJobList = center.endService();
-                nextEvents = generateNextEventsFromEnd(event, completedJobList);
+                List<T> endedJobs = event.getJobList();
+                center.endService(endedJobs);
+                nextEvents = generateNextEventsFromEnd(event);
                 break;
         }
 
         return nextEvents;
     }
 
-    // I fixed the Generic issue, but I need to understand the logic you've
-    // introduced beforehand, why create different branches and a list if you have a
-    // single event in input ??? Can't you just return a single new event ??
     private List<Event<T>> generateNextEventsFromArrival(Event<T> event) {
         List<Event<T>> newEventList = new ArrayList<>();
         Center<T> center = event.getEventCenter();
@@ -63,8 +65,8 @@ public class EventProcessor<T> {
 
         if (center instanceof Attraction) {
             // I still don't get why you check that it must be empty and not just serving
-            if (center.isEmpty()) {
-                Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS, event.getJob(),
+            if (center.isCenterEmpty()) {
+                Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS, event.getJobList(),
                         currentTime);
                 newEventList.add(newEvent);
             }
@@ -78,13 +80,13 @@ public class EventProcessor<T> {
         return newEventList;
     }
 
-    private List<Event<T>> generateNextEventsFromStart(Event<T> event, double serviceTime) {
+    private List<Event<T>> generateNextEventsFromStart(Event<T> event, List<T> startedJobs, double serviceTime) {
         List<Event<T>> newEventList = new ArrayList<>();
         Center<T> center = event.getEventCenter();
         double currentTime = ClockHandler.getInstance().getClock();
 
         if (center instanceof Attraction) {
-            Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS, event.getJob(),
+            Event<T> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS, event.getJobList(),
                     currentTime + serviceTime);
             newEventList.add(newEvent);
         }
@@ -95,10 +97,12 @@ public class EventProcessor<T> {
 
     }
 
-    private List<Event<RiderGroup>> generateNextEventsFromEnd(Event<T> event, List<T> completedJobList) {
+    private List<Event<T>> generateNextEventsFromEnd(Event<T> event) {
+        // TODO To schedule next service event in attraction we have to check if the
+        // system is not empty
         List<Event<RiderGroup>> newEventList = new ArrayList<>();
         if (event.getEventCenter() instanceof Attraction) {
-            for (T completedJob : completedJobList) {
+            for (T completedJob : event.getJobList()) {
                 double areaProbability = RandomHandler.getInstance().getRandom(routingRandomStreamIdx);
 
                 if (areaProbability <= RESTAURANT_AREA_THR) {

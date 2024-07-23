@@ -23,14 +23,12 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
 
     @Override
     public void addToQueues(RiderGroup group) {
-        double currentTime = ClockHandler.getInstance().getClock();
-        EnqueuedItem<RiderGroup> enqueuedGroup = new EnqueuedItem<RiderGroup>(group, currentTime);
         switch (group.getPriority()) {
             case PRIORITY:
-                priorityQueue.enqueue(enqueuedGroup);
+                priorityQueue.enqueue(group);
                 break;
             case NORMAL:
-                normalQueue.enqueue(enqueuedGroup);
+                normalQueue.enqueue(group);
                 break;
         }
     }
@@ -39,20 +37,19 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
     public List<RiderGroup> extractFromQueues(Integer numberOfSeats) {
         List<RiderGroup> extractedList = new ArrayList<>();
         int usedSeats = 0;
-        double currentTime = ClockHandler.getInstance().getClock();
         while (true) {
             if (priorityQueue.getNextSize() <= numberOfSeats - usedSeats && priorityQueue.getNextSize() != 0) {
-                RiderGroup riderGroup = priorityQueue.dequeue(currentTime);
+                RiderGroup riderGroup = priorityQueue.dequeue();
                 if (riderGroup == null) {
-                    // No one in code to serve --> Go to next queue
+                    // No one in the queue to serve --> Go to next queue
                     continue;
                 }
                 usedSeats += riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
             } else if (normalQueue.getNextSize() <= numberOfSeats - usedSeats && normalQueue.getNextSize() != 0) {
-                RiderGroup riderGroup = normalQueue.dequeue(currentTime);
+                RiderGroup riderGroup = normalQueue.dequeue();
                 if (riderGroup == null) {
-                    // No one in code to serve
+                    // No one in the queue to serve
                     break;
                 }
                 usedSeats += riderGroup.getGroupSize();

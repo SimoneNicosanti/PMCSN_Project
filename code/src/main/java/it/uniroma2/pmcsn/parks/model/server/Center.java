@@ -1,8 +1,8 @@
-
 package it.uniroma2.pmcsn.parks.model.server;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -11,51 +11,43 @@ public abstract class Center<T> {
     protected final String name;
 
     protected QueueManager<T> queueManager;
-
-    protected List<T> currentServingJobs;
     protected final int slotNumber;
 
     public Center(String name, QueueManager<T> queueManager, int slotNumber) {
         this.name = name;
         this.queueManager = queueManager;
-        this.currentServingJobs = new ArrayList<>();
         this.slotNumber = slotNumber;
-        // Assing a new named stream to the center
+        // Assign a new named stream to the center
         RandomHandler.getInstance().assignNewStream(name);
 
     }
 
+    /*
+     * Add a job to the center queue.
+     * 
+     * @param job : job to enqueue with this call
+     */
     public void arrival(T job) {
         queueManager.addToQueues(job);
     }
 
-    protected void serveJobs() {
-        if (!this.isServerEmpty()) {
-            throw new RuntimeException("Cannot start service, there are ongoing jobs to serve");
-        }
-        List<T> servingJobs = queueManager.extractFromQueues(slotNumber);
-        this.currentServingJobs.addAll(servingJobs);
-
-    }
-
-    protected boolean isServerEmpty() {
-        return currentServingJobs.isEmpty();
-    }
-
-    public boolean isEmpty() {
-        return this.isServerEmpty() && queueManager.areQueuesEmpty();
-    }
-
-    public QueueManager<T> getQueueManager() {
-        return queueManager;
-    }
+    public abstract boolean isCenterEmpty();
 
     public String getName() {
         return name;
     }
 
-    public abstract double startService();
+    /*
+     * @return List<T> : List of jobs starting service with this call (may be one or
+     * more)
+     * 
+     * @return Double : time for this service
+     */
+    public abstract Pair<List<T>, Double> startService();
 
-    public abstract List<T> endService();
+    /*
+     * @param endedJobs : job ending service with this call (may be one or more)
+     */
+    public abstract void endService(List<T> endedJobs);
 
 }

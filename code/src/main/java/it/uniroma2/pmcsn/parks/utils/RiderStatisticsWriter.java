@@ -9,7 +9,6 @@ import org.apache.commons.csv.CSVFormat.Builder;
 
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-
 public class RiderStatisticsWriter {
 
     private String filepath;
@@ -18,42 +17,41 @@ public class RiderStatisticsWriter {
 
         this.filepath = outputFileName;
 
-        String[] header = { "Group Size", "Priority", "Queue Time", "Riding Time", "Total Time", "Number of rides"};
+        String[] header = { "Group Size", "Priority", "Queue Time", "Riding Time", "Total Time", "Number of rides" };
 
-        //TODO Check if file already exists
+        // TODO Check if file already exists
         // File file = new File(outputFileName);
 
         // if (file.exists()) {
-        //     System.out.println("Il file esiste.");
+        // System.out.println("Il file esiste.");
         // } else {
-        //     System.out.println("Il file non esiste.");
+        // System.out.println("Il file non esiste.");
         // }
 
         try (
-            Writer writer = new FileWriter(this.filepath);
-            CSVPrinter csvPrinter = new CSVPrinter(writer, Builder.create(CSVFormat.DEFAULT).setHeader(header).build())
-        ) {} catch (IOException e) {
+                Writer writer = new FileWriter(this.filepath);
+                CSVPrinter csvPrinter = new CSVPrinter(writer,
+                        Builder.create(CSVFormat.DEFAULT).setHeader(header).build())) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void writeStatistics(RiderGroup riderGroup) {
 
-        Integer groupSize = riderGroup.getGroupSize() ;
-        Integer priority = riderGroup.getPriority().ordinal() ;
-        Double totalQueueTime = riderGroup.getGroupStats().getQueueTime() ;
-        Double totalRidingTime = riderGroup.getGroupStats().getRidingTime() ;
-        Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits() ;
+        Integer groupSize = riderGroup.getGroupSize();
+        Integer priority = riderGroup.getPriority().ordinal();
+        Double totalQueueTime = riderGroup.getGroupStats().getQueueTime();
+        Double totalRidingTime = riderGroup.getGroupStats().getRidingTime();
+        Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
 
         try (
-            Writer writer = new FileWriter(this.filepath);
-            CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT))
-        {
+                Writer writer = new FileWriter(this.filepath);
+                CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
             csvPrinter.printRecord(groupSize, priority, totalQueueTime, totalRidingTime, totalRiding);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        
     }
 }

@@ -4,9 +4,9 @@ import it.uniroma2.pmcsn.parks.model.queue.EnqueuedItem;
 
 public interface Queue<T> {
 
-    public void enqueue(EnqueuedItem<T> item);
+    public void enqueue(T item);
 
-    public T dequeue(double exitTime);
+    public T dequeue();
 
     public int getNextSize();
 
