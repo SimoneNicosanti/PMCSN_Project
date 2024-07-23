@@ -3,12 +3,13 @@ package it.uniroma2.pmcsn.parks.model.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
-import org.apache.commons.lang3.tuple.Pair;
 
 public class Restaurant extends Center<RiderGroup> {
 
@@ -86,6 +87,7 @@ public class Restaurant extends Center<RiderGroup> {
             if (!removeGroup(this.currentServingJobs, targetGroup)) {
                 throw new RuntimeException();
             }
+            
         }
 
         return;

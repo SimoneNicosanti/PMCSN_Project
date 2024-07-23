@@ -11,9 +11,9 @@ public abstract class Center<T> {
     protected final String name;
 
     protected QueueManager<T> queueManager;
-    protected final int slotNumber;
+    protected final Integer slotNumber;
 
-    public Center(String name, QueueManager<T> queueManager, int slotNumber) {
+    public Center(String name, QueueManager<T> queueManager, Integer slotNumber) {
         this.name = name;
         this.queueManager = queueManager;
         this.slotNumber = slotNumber;

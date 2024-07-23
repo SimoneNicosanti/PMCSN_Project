@@ -2,7 +2,6 @@ package it.uniroma2.pmcsn.parks.model.routing.probabilities;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
 

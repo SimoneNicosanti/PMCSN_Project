@@ -12,7 +12,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
     private RoutingNode<RiderGroup> attractionNode;
     private RoutingNode<RiderGroup> restaurantNode;
 
-    public NetworkRoutingNode(int stream, RoutingNode<RiderGroup> attractionNode,
+    public NetworkRoutingNode(RoutingNode<RiderGroup> attractionNode,
             RoutingNode<RiderGroup> restaurantNode) {
         this.attractionNode = attractionNode;
         this.restaurantNode = restaurantNode;
@@ -23,15 +23,19 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
     // attractions are usually most likely to be visited
     public Center<RiderGroup> route(RiderGroup job) {
         double attractionProb = ProbabilityManager.getInstance().getProbability(attractionNode.getName());
+        double restaurantProb = ProbabilityManager.getInstance().getProbability(restaurantNode.getName());
 
         double routingProb = RandomHandler.getInstance().getRandom(Config.NETWORK_ROUTING_NODE);
 
         if (routingProb <= attractionProb) {
             // Go to attractions
             return attractionNode.route(job);
-        } else {
+        } else if (routingProb <= attractionProb + restaurantProb) {
             // Go to restaurants
             return restaurantNode.route(job);
+        } else {
+            // Go to exit
+            return null ;
         }
     }
 

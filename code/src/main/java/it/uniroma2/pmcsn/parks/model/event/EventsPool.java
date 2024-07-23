@@ -1,18 +1,15 @@
-package it.uniroma2.pmcsn.parks.controller;
+package it.uniroma2.pmcsn.parks.model.event;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.model.event.Event;
-import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
-
-public class EventHandler<T> {
+public class EventsPool<T> {
 
     private Map<EventsPoolId, List<Event<T>>> eventMap;
 
-    public EventHandler() {
+    public EventsPool() {
         this.eventMap = new HashMap<>();
     }
 
@@ -52,6 +49,12 @@ public class EventHandler<T> {
         }
         eventList.add(event);
         eventList.sort(null);
+    }
+
+    public void scheduleNewEvents(List<Event<T>> events) {
+        for (Event<T> event : events) {
+            scheduleNewEvent(event);
+        }
     }
 
 }

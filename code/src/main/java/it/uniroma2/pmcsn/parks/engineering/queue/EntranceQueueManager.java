@@ -3,37 +3,44 @@ package it.uniroma2.pmcsn.parks.engineering.queue;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.queue.AttractionQueue;
-import it.uniroma2.pmcsn.parks.model.queue.EnqueuedItem;
+import it.uniroma2.pmcsn.parks.model.queue.EntranceQueue;
+import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
 
 public class EntranceQueueManager implements QueueManager<RiderGroup> {
 
     private Queue<RiderGroup> queue;
 
     public EntranceQueueManager() {
-        this.queue = new AttractionQueue();
+        this.queue = new EntranceQueue(new FifoQueue());
     }
 
     @Override
     public void addToQueues(RiderGroup group) {
-        if (group.getGroupSize() > Config.MAX_GROUP_SIZE) {
-            throw new RuntimeException("Group size exceeds the maximum group size");
-        }
         queue.enqueue(group);
     }
 
+    /**
+     * @Params slotNumber: it represents the number of group that must be dequeued.
+     * 
+     * @Return: a list with a number of groups equal to slotNumber
+     */
     @Override
     public List<RiderGroup> extractFromQueues(Integer slotNumber) {
-        double currentTime = ClockHandler.getInstance().getClock();
-        // If there are groups in the queue, they surely do not exceed the maximum group
-        // size
-        RiderGroup riderGroup = queue.dequeue();
-        return new ArrayList<>(List.of(riderGroup));
+        if (slotNumber == null || slotNumber == 0) {
+            throw new RuntimeException(
+                    "The slot number shouldn't be null or 0");
+        }
+
+        List<RiderGroup> list = new ArrayList<>();
+
+        for (int i = 0; i < slotNumber; i++) {
+            list.add(queue.dequeue());
+        }
+
+        return list;
     }
 
     @Override

@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.opencsv.CSVReader;
 
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Restaurant;
 
 public class RestaurantBuilder {

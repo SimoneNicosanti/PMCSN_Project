@@ -5,11 +5,10 @@ import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.AttractionQueue;
-import it.uniroma2.pmcsn.parks.model.queue.EnqueuedItem;
+import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
 
 public class AttractionQueueManager implements QueueManager<RiderGroup> {
 
@@ -17,8 +16,8 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
     private Queue<RiderGroup> normalQueue;
 
     public AttractionQueueManager() {
-        this.priorityQueue = new AttractionQueue();
-        this.normalQueue = new AttractionQueue();
+        this.priorityQueue = new AttractionQueue(new FifoQueue());
+        this.normalQueue = new AttractionQueue(new FifoQueue());
     }
 
     @Override

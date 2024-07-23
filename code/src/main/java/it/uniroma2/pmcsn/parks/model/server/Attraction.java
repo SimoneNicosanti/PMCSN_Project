@@ -9,7 +9,6 @@ import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 public class Attraction extends Center<RiderGroup> {
 

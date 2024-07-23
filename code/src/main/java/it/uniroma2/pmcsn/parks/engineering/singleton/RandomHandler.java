@@ -55,7 +55,7 @@ public class RandomHandler {
 
     public int getStream(String name) {
         if (!this.assignedStreams.containsKey(name)) {
-            throw new RuntimeException("Named stream not found");
+            this.assignNewStream(name);
         }
         return this.assignedStreams.get(name);
     }
