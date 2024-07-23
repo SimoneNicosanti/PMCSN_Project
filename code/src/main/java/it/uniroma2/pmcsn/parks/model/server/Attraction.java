@@ -54,7 +54,7 @@ public class Attraction extends Center<RiderGroup> {
     }
 
     @Override
-    public void endService(List<RiderGroup> endedJobs) {
+    public void endService(RiderGroup endedJob) {
         for (RiderGroup riderGroup : currentServingJobs) {
             riderGroup.getGroupStats().incrementRidesInfo(this.name, this.currentServiceTime);
         }

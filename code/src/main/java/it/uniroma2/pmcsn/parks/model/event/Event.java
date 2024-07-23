@@ -1,7 +1,5 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
-import java.util.List;
-
 import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class Event<T> implements Comparable<Event<T>> {
@@ -9,21 +7,21 @@ public class Event<T> implements Comparable<Event<T>> {
     private EventsPoolId id;
     private double eventTime;
     private Center<T> eventCenter;
-    private List<T> jobList;
+    private T job;
 
-    public Event(EventsPoolId id, Center<T> eventCenter, double eventTime, List<T> job) {
+    public Event(EventsPoolId id, Center<T> eventCenter, double eventTime, T job) {
         this.id = id;
         this.eventTime = eventTime;
         this.eventCenter = eventCenter;
-        this.jobList = job;
+        this.job = job;
     }
 
     public EventsPoolId getPoolId() {
         return this.id;
     }
 
-    public List<T> getJobList() {
-        return jobList;
+    public T getJob() {
+        return job;
     }
 
     public double getEventTime() {

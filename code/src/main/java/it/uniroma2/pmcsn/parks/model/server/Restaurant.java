@@ -79,16 +79,14 @@ public class Restaurant extends Center<RiderGroup> {
      * End service for targeted groups.
      */
     @Override
-    public void endService(List<RiderGroup> targetGroups) {
+    public void endService(RiderGroup endendJob) {
         if (currentServingJobs.isEmpty()) {
             throw new RuntimeException("Cannot end service because there are no riders to serve");
         }
 
-        for (RiderGroup targetGroup : targetGroups) {
-            // Looking for the target group...
-            if (!this.currentServingJobs.remove(targetGroup)) {
-                throw new RuntimeException("Group not found in the current serving jobs");
-            }
+        // Looking for the target group...
+        if (!this.currentServingJobs.remove(endendJob)) {
+            throw new RuntimeException("Group not found in the current serving jobs");
         }
 
         return;

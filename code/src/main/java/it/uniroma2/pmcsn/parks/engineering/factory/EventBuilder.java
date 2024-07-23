@@ -1,7 +1,5 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
-import java.util.List;
-
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -27,7 +25,7 @@ public class EventBuilder {
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
         Event<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
-                List.of(riderGroup), ClockHandler.getInstance().getClock() + interarrivalTime);
+                riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         return arrivalEvent;
 
@@ -44,10 +42,10 @@ public class EventBuilder {
 
     // Builds a new generic event
     public static Event<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
-            List<RiderGroup> groups,
+            RiderGroup job,
             double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
-        return new Event<>(poolId, center, eventTime, groups);
+        return new Event<>(poolId, center, eventTime, job);
     }
 
 }

@@ -47,11 +47,8 @@ public class Entrance extends Center<RiderGroup> {
     }
 
     @Override
-    public void endService(List<RiderGroup> endedJobs) {
-
-        this.currentServingJobs.removeAll(endedJobs);
-
-        return;
+    public void endService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
     }
 
 }
