@@ -43,4 +43,8 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         return queue.getNextSize() == 0;
     }
 
+    public int queueLength() {
+        return queue.queueLength();
+    }
+
 }

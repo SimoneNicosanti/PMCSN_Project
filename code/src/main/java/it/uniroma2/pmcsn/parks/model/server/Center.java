@@ -42,15 +42,20 @@ public abstract class Center<T> {
         return currentServingJobs.isEmpty();
     }
 
-    public abstract double startService();
-
-    public abstract List<T> endService();
-
     public boolean isEmpty() {
         return this.isServerEmpty() && queueManager.areQueuesEmpty();
+    }
+
+    public QueueManager<T> getQueueManager() {
+        return queueManager;
     }
 
     public String getName() {
         return name;
     }
+
+    public abstract double startService();
+
+    public abstract List<T> endService();
+
 }

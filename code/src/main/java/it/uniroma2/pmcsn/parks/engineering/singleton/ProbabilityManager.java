@@ -8,7 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 public class ProbabilityManager {
 
-    private static ProbabilityManager instance = null ;
+    private static ProbabilityManager instance = null;
 
     private Map<String, Double> probabilityMap;
 
@@ -19,22 +19,21 @@ public class ProbabilityManager {
     // NB: The Probability Manager must be filled after the first creation
     public static ProbabilityManager getInstance() {
         if (instance == null) {
-            instance = new ProbabilityManager() ;
+            instance = new ProbabilityManager();
         }
-        return instance ;
+        return instance;
     }
 
     public double getProbability(String nodeName) {
         return probabilityMap.get(nodeName);
     }
 
-    // Change the probabilities of the input nodes 
+    // Change the probabilities of the input nodes
     public void changeProbabilities(List<Pair<String, Double>> probabilities) {
 
         for (Pair<String, Double> pair : probabilities) {
             probabilityMap.put(pair.getLeft(), pair.getRight());
         }
     }
-
 
 }
