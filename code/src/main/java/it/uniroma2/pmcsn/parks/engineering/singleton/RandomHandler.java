@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.random.Rngs;
@@ -23,6 +24,7 @@ public class RandomHandler {
         this.streamGenerator = new Rngs();
         this.streamGenerator.plantSeeds(SEED);
         this.distributionGenerator = new Rvgs(streamGenerator);
+        this.assignedStreams = new HashMap<>();
 
         this.streamCount = 0;
     }

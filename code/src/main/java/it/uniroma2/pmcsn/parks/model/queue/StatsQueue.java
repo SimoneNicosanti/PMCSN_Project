@@ -9,7 +9,8 @@ import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 /**
  * StatsQueue implement the Decoretor GOF pattern. Its responsibility is to
- * collect data during the simulation. Implement the method retrieveStats to collect stats.
+ * collect data during the simulation. Implement the method retrieveStats to
+ * collect stats.
  */
 public abstract class StatsQueue<T> implements Queue<T> {
 
@@ -17,7 +18,7 @@ public abstract class StatsQueue<T> implements Queue<T> {
     private Map<T, Double> entranceTimeMap;
     protected QueueStats queueStats;
 
-    public StatsQueue(Queue<T> queue) {
+    protected StatsQueue(Queue<T> queue) {
         this.queue = queue;
         this.entranceTimeMap = new HashMap<>();
         this.queueStats = new QueueStats();
@@ -38,7 +39,7 @@ public abstract class StatsQueue<T> implements Queue<T> {
     @Override
     public T dequeue() {
 
-        T item = dequeue();
+        T item = this.queue.dequeue();
 
         double entranceTime = entranceTimeMap.get(item);
         double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;

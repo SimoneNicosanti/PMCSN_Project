@@ -2,10 +2,8 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 public abstract class Center<T> {
     protected final String name;
@@ -18,8 +16,7 @@ public abstract class Center<T> {
         this.queueManager = queueManager;
         this.slotNumber = slotNumber;
         // Assign a new named stream to the center
-        RandomHandler.getInstance().assignNewStream(name);
-
+        // RandomHandler.getInstance().assignNewStream(name);
     }
 
     /*
@@ -43,7 +40,7 @@ public abstract class Center<T> {
      * 
      * @return Double : time for this service
      */
-    public abstract Pair<List<T>, Double> startService();
+    public abstract List<ServingGroup<T>> startService();
 
     /*
      * @param endedJobs : job ending service with this call (may be one or more)

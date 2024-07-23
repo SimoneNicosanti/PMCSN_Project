@@ -12,6 +12,7 @@ public class ParkController extends Controller<RiderGroup> {
 
     public ParkController() {
         this.eventProcessor = new ParkEventProcessor();
+
     }
 
     @Override
@@ -22,19 +23,21 @@ public class ParkController extends Controller<RiderGroup> {
         this.eventsPool.scheduleNewEvent(arrivalEvent);
 
         // TODO Set termination condition
-        int processedEventNumber = 0 ;
-        while (processedEventNumber < 1000) {
+        int processedEventNumber = 0;
+        while (processedEventNumber < 100) {
             Event<RiderGroup> nexEvent = this.eventsPool.getNextEvent();
             if (nexEvent == null) {
-                continue ;
+                continue;
             }
             ClockHandler.getInstance().setClock(nexEvent.getEventTime());
 
             List<Event<RiderGroup>> newEventsList = this.eventProcessor.processEvent(nexEvent);
+            System.out.println("Processed Event");
 
             this.eventsPool.scheduleNewEvents(newEventsList);
 
-            processedEventNumber++ ;
+            processedEventNumber++;
+
         }
     }
 

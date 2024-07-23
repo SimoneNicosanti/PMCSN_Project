@@ -3,9 +3,10 @@ package it.uniroma2.pmcsn.parks.utils;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+
 import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVFormat.Builder;
+import org.apache.commons.csv.CSVPrinter;
 
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
@@ -42,7 +43,7 @@ public class RiderStatisticsWriter {
         Integer groupSize = riderGroup.getGroupSize();
         Integer priority = riderGroup.getPriority().ordinal();
         Double totalQueueTime = riderGroup.getGroupStats().getQueueTime();
-        Double totalRidingTime = riderGroup.getGroupStats().getRidingTime();
+        Double totalRidingTime = riderGroup.getGroupStats().getServiceTime();
         Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
 
         try (

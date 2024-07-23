@@ -16,7 +16,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
             RoutingNode<RiderGroup> restaurantNode) {
         this.attractionNode = attractionNode;
         this.restaurantNode = restaurantNode;
-        RandomHandler.getInstance().assignNewStream(Config.RESTAURANT_ROUTING_NODE);
+        // RandomHandler.getInstance().assignNewStream(Config.RESTAURANT_ROUTING_NODE);
     }
 
     // TODO: I would not implement this with a uniform probability, since
@@ -35,7 +35,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
             return restaurantNode.route(job);
         } else {
             // Go to exit
-            return null ;
+            return null;
         }
     }
 

@@ -29,14 +29,14 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
      */
     @Override
     public List<RiderGroup> extractFromQueues(Integer slotNumber) {
-        if (slotNumber == null || slotNumber == 0) {
-            throw new RuntimeException(
-                    "The slot number shouldn't be null or 0");
-        }
 
         List<RiderGroup> list = new ArrayList<>();
 
         for (int i = 0; i < slotNumber; i++) {
+            RiderGroup group = queue.dequeue();
+            if (group == null) {
+                break;
+            }
             list.add(queue.dequeue());
         }
 

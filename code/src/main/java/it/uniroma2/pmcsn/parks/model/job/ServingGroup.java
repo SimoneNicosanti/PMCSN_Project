@@ -1,21 +1,21 @@
 package it.uniroma2.pmcsn.parks.model.job;
 
-public class ServingGroup {
+public class ServingGroup<T> {
 
-    private RiderGroup group;
-    private double initialTime;
+    private T group;
+    private double serviceTime;
 
-    public ServingGroup(RiderGroup group, double initialTime) {
+    public ServingGroup(T group, double initialTime) {
         this.group = group;
-        this.initialTime = initialTime;
+        this.serviceTime = initialTime;
     }
 
-    public RiderGroup getGroup() {
+    public T getGroup() {
         return group;
     }
 
-    public double getInitialTime() {
-        return initialTime;
+    public double getServiceTime() {
+        return serviceTime;
     }
 
 }

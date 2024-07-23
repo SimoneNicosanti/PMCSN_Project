@@ -3,10 +3,7 @@ package it.uniroma2.pmcsn.parks.model.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
@@ -15,7 +12,7 @@ public class Restaurant extends Center<RiderGroup> {
 
     private double popularity;
     private double avgDuration;
-    protected List<ServingGroup> currentServingJobs;
+    protected List<RiderGroup> currentServingJobs;
 
     public Restaurant(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new RestaurantQueueManager(), numberOfSeats);
@@ -47,8 +44,8 @@ public class Restaurant extends Center<RiderGroup> {
     private int getBusySlots() {
         int sum = 0;
 
-        for (ServingGroup group : currentServingJobs) {
-            sum += group.getGroup().getGroupSize();
+        for (RiderGroup group : currentServingJobs) {
+            sum += group.getGroupSize();
         }
 
         return sum;
@@ -59,18 +56,21 @@ public class Restaurant extends Center<RiderGroup> {
     }
 
     @Override
-    public Pair<List<RiderGroup>, Double> startService() {
+    public List<ServingGroup<RiderGroup>> startService() {
+
+        List<ServingGroup<RiderGroup>> newServingGroups = new ArrayList<>();
 
         List<RiderGroup> servingList = queueManager.extractFromQueues(this.getFreeSlots());
 
+        this.currentServingJobs.addAll(servingList);
+
         // Save the current time for each group
         for (RiderGroup riderGroup : servingList) {
-            this.currentServingJobs.add(new ServingGroup(riderGroup, ClockHandler.getInstance().getClock()));
+            double serviceTime = RandomHandler.getInstance().getRandom(this.name); // TODO find the correct distribution
+            newServingGroups.add(new ServingGroup<RiderGroup>(riderGroup, serviceTime));
         }
 
-        double serviceTime = RandomHandler.getInstance().getRandom(this.name); // TODO find the correct distribution
-
-        return Pair.of(servingList, serviceTime);
+        return newServingGroups;
     }
 
     /**
@@ -84,33 +84,11 @@ public class Restaurant extends Center<RiderGroup> {
 
         for (RiderGroup targetGroup : targetGroups) {
             // Looking for the target group...
-            if (!removeGroup(this.currentServingJobs, targetGroup)) {
+            if (!this.currentServingJobs.remove(targetGroup)) {
                 throw new RuntimeException();
             }
-            
         }
 
         return;
-    }
-
-    /**
-     * Return true if the group is successfully deleted, false otherwise (e.g. group
-     * not found).
-     */
-    private boolean removeGroup(List<ServingGroup> list, RiderGroup targetGroup) {
-
-        ServingGroup groupToDelete = null;
-
-        for (ServingGroup servingGroup : list) {
-            if (servingGroup.getGroup().equals(targetGroup)) {
-                groupToDelete = servingGroup;
-            }
-        }
-
-        if (groupToDelete == null) {
-            return false;
-        }
-
-        return list.remove(groupToDelete);
     }
 }

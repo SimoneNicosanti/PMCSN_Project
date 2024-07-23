@@ -3,12 +3,11 @@ package it.uniroma2.pmcsn.parks.model.server;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 public class Attraction extends Center<RiderGroup> {
 
@@ -26,14 +25,20 @@ public class Attraction extends Center<RiderGroup> {
     }
 
     @Override
-    public Pair<List<RiderGroup>, Double> startService() {
+    public List<ServingGroup<RiderGroup>> startService() {
         // Choose next groups to serve
-        this.currentServingJobs.addAll(queueManager.extractFromQueues(this.slotNumber));
+        List<RiderGroup> startedGroups = queueManager.extractFromQueues(this.slotNumber);
+        this.currentServingJobs.addAll(startedGroups);
 
         // Choosing next service time for that attraction ride
         this.currentServiceTime = RandomHandler.getInstance().getUniform(name, 0, 1);
 
-        return Pair.of(this.currentServingJobs, this.currentServiceTime);
+        List<ServingGroup<RiderGroup>> returnList = new ArrayList<>();
+        for (RiderGroup riderGroup : startedGroups) {
+            returnList.add(new ServingGroup<RiderGroup>(riderGroup, this.currentServiceTime));
+        }
+
+        return returnList;
     }
 
     public int getQueueLenght(GroupPriority priority) {

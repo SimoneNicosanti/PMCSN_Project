@@ -1,21 +1,21 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.queue.EntranceQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
 public class Entrance extends Center<RiderGroup> {
 
-    private RiderGroup currentServingJob;
+    private List<RiderGroup> currentServingJobs;
 
-    public Entrance(String name) {
-        super(name, new EntranceQueueManager(), null);
-        this.currentServingJob = null;
+    public Entrance(String name, int slotNumber) {
+        super(name, new EntranceQueueManager(), slotNumber);
+        this.currentServingJobs = new ArrayList<>();
     }
 
     public double getArrivalInterval() {
@@ -25,35 +25,31 @@ public class Entrance extends Center<RiderGroup> {
 
     @Override
     public boolean isCenterEmpty() {
-        return (currentServingJob == null) && queueManager.areQueuesEmpty();
+        return (currentServingJobs.isEmpty()) && queueManager.areQueuesEmpty();
     }
 
     @Override
-    public Pair<List<RiderGroup>, Double> startService() {
-        List<RiderGroup> jobsToServe = queueManager.extractFromQueues(null);
+    public List<ServingGroup<RiderGroup>> startService() {
+        List<ServingGroup<RiderGroup>> servingGroups = new ArrayList<>();
+        int freeSlots = slotNumber - currentServingJobs.size();
+        List<RiderGroup> jobsToServe = queueManager.extractFromQueues(freeSlots);
 
-        if (jobsToServe.size() > 1) {
-            throw new RuntimeException("Cannot extract more than a job from the queue");
+        this.currentServingJobs.addAll(jobsToServe);
+
+        for (RiderGroup group : jobsToServe) {
+            int numOfRiders = group.getGroupSize();
+            // TODO Choose distribution
+            double serviceTime = numOfRiders * RandomHandler.getInstance().getRandom(this.name);
+            servingGroups.add(new ServingGroup<RiderGroup>(group, serviceTime));
         }
 
-        this.currentServingJob = jobsToServe.get(0);
-
-        int numOfRiders = this.currentServingJob.getGroupSize();
-
-        // TODO Choose distribution
-        double serviceTime = numOfRiders * RandomHandler.getInstance().getRandom(this.name);
-
-        return Pair.of(jobsToServe, serviceTime);
+        return servingGroups;
     }
 
     @Override
     public void endService(List<RiderGroup> endedJobs) {
-        // Entrance can handle only a job at a time
-        if (endedJobs.size() != 1 || !endedJobs.get(0).equals(this.currentServingJob)) {
-            throw new RuntimeException("Ended job is not the one being served");
-        }
 
-        this.currentServingJob = null;
+        this.currentServingJobs.removeAll(endedJobs);
 
         return;
     }
