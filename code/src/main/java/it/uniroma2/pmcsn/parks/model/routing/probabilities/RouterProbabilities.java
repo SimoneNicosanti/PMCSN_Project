@@ -16,13 +16,15 @@ public abstract class RouterProbabilities<T> {
     public abstract List<Double> compute(T job);
 
     protected void normalize() {
+        if (sumProbabilites == 0.0) {
+            throw new RuntimeException("Probabilities not set");
+        }
 
         for (int idx = 0; idx < probabilities.size(); idx++) {
             double normalized = probabilities.get(idx) / sumProbabilites;
             probabilities.set(idx, normalized);
         }
 
-        throw new RuntimeException("Routing error: no attraction selected");
     }
 
     public int getRouteIdxFromRand(double randomProb) {
