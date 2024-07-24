@@ -18,9 +18,13 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
     }
 
     @Override
+    public List<Queue<RiderGroup>> getQueues() {
+        return List.of(normalQueue);
+    }
+
+    @Override
     public void addToQueues(RiderGroup item) {
         normalQueue.enqueue(item);
-
     }
 
     @Override

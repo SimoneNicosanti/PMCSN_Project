@@ -21,6 +21,11 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
     }
 
     @Override
+    public List<Queue<RiderGroup>> getQueues() {
+        return List.of(priorityQueue, normalQueue);
+    }
+
+    @Override
     public void addToQueues(RiderGroup group) {
         switch (group.getPriority()) {
             case PRIORITY:

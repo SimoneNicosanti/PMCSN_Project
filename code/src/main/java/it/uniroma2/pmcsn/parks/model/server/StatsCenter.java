@@ -3,15 +3,16 @@ package it.uniroma2.pmcsn.parks.model.server;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 
-public abstract class StatsCenter<T> implements CenterInterface<T> {
+public class StatsCenter implements CenterInterface<RiderGroup> {
 
     protected CenterStats stats;
-    private CenterInterface<T> center;
+    private CenterInterface<RiderGroup> center;
 
-    protected StatsCenter(Center<T> center) {
+    public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
         this.stats = new CenterStats();
     }
@@ -20,12 +21,19 @@ public abstract class StatsCenter<T> implements CenterInterface<T> {
         return stats;
     }
 
-    public String getName() {
-        return null;
+    @Override
+    public boolean canServe(Integer jobSize) {
+        return this.center.canServe(jobSize);
     }
 
-    public boolean isCenterEmpty() {
-        return false;
+    @Override
+    public String getName() {
+        return this.center.getName();
+    }
+
+    @Override
+    public boolean isQueueEmptyAndCanServe(Integer jobSlots) {
+        return this.center.isQueueEmptyAndCanServe(jobSlots);
     }
 
     /*
@@ -33,7 +41,8 @@ public abstract class StatsCenter<T> implements CenterInterface<T> {
      * 
      * @param job : job to enqueue with this call
      */
-    public void arrival(T job) {
+    @Override
+    public void arrival(RiderGroup job) {
         this.collectArrivalStats(job);
 
         this.center.arrival(job);
@@ -43,8 +52,9 @@ public abstract class StatsCenter<T> implements CenterInterface<T> {
      * @return List<T> : List of jobs starting service with this call (may be one or
      * more)
      */
-    public List<ServingGroup<T>> startService() {
-        List<ServingGroup<T>> servingGroups = this.center.startService();
+    @Override
+    public List<ServingGroup<RiderGroup>> startService() {
+        List<ServingGroup<RiderGroup>> servingGroups = this.center.startService();
 
         this.collectStartServiceStats(servingGroups);
 
@@ -54,7 +64,8 @@ public abstract class StatsCenter<T> implements CenterInterface<T> {
     /*
      * @param endedJobs : job ending service with this call
      */
-    public void endService(T endedJob) {
+    @Override
+    public void endService(RiderGroup endedJob) {
 
         this.center.endService(endedJob);
 
@@ -63,15 +74,19 @@ public abstract class StatsCenter<T> implements CenterInterface<T> {
         return;
     }
 
-    // Method useful for adding new
-    protected void collectEndServiceStats(T endedJob) {
+    // Method useful for collecting new stats
+    protected void collectEndServiceStats(RiderGroup endedJob) {
     }
 
-    protected void collectStartServiceStats(List<ServingGroup<T>> servingGroups) {
+    protected void collectStartServiceStats(List<ServingGroup<RiderGroup>> servingGroups) {
 
+        for (ServingGroup<RiderGroup> group : servingGroups) {
+            this.stats.addServingData(group.getServiceTime(), group.getGroup().getGroupSize());
+        }
     }
 
-    protected void collectArrivalStats(T job) {
+    // Method useful for collecting new stats
+    protected void collectArrivalStats(RiderGroup job) {
     }
 
 }

@@ -25,7 +25,7 @@ public class ParkController extends Controller<RiderGroup> {
 
         // TODO Set termination condition
         int processedEventNumber = 0;
-        while (processedEventNumber < 100) {
+        while (processedEventNumber < 300) {
             Event<RiderGroup> nexEvent = this.eventsPool.getNextEvent();
             if (nexEvent == null) {
                 continue;

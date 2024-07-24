@@ -30,7 +30,7 @@ public class TestingUtils {
         String restName2 = "Smart_Restaurant";
         Restaurant rest1 = new Restaurant(restName1, 100, 1, 10);
         centerList.add(rest1);
-
+        
         Restaurant rest2 = new Restaurant(restName2, 100, 2, 5);
         centerList.add(rest2);
 

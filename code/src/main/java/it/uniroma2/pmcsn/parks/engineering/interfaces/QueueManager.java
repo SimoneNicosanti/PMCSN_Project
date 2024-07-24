@@ -10,4 +10,6 @@ public interface QueueManager<T> {
 
     public boolean areQueuesEmpty();
 
+    public List<Queue<T>> getQueues();
+
 }

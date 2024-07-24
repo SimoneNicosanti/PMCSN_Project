@@ -3,8 +3,6 @@ package it.uniroma2.pmcsn.parks.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.SystemUtils;
-
 import it.uniroma2.pmcsn.parks.engineering.CentersManager;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
@@ -57,7 +55,6 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
                 nextEvents.addAll(generateServiceEventFromArrival(event));
                 center.arrival(job);
                 nextEvents.addAll(generateArrivalEventFromArrival(event));
-
                 break;
 
             case START_PROCESS:
@@ -75,12 +72,48 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         return nextEvents;
     }
 
+    /*
+     * Arrival:
+        * 1. call center.arrival()
+            * - check if isQueueEmptyAndCanServe()
+            * - enqueue
+            * - return condition
+        * 2. if returnedCondition
+            * - startedList = center.startService()
+            * - generate end event for started jobs
+     * End Service:
+     *  1. ...
+     *  2. if canServe
+     *  3.      startedJobList = startProcess()
+     *  4.      generate end event for started jobs
+     */
+
+    /*
+     * - EventPool singleton shared among the centers
+     * - Fake center for exiting jobs for collecting stats
+     * - Each center has the next routingNode, so can retrieve the next center for generating a new event using ".route()"
+     *
+     * Arrival:
+        * 1. call center.arrival()
+            * - if isQueueEmptyAndCanServe(), then startServe and generate next event
+            * - else enqueue
+            * - if Entrance regenerate arrival event
+     * End Service:
+     *  1. ...
+     *  2. center.endService()
+            * - free served jobs
+            * - try starting the next job, if Attraction wait all jobs and then start a new ride
+            * 
+     */
+
     private List<Event<RiderGroup>> generateServiceEventFromArrival(Event<RiderGroup> event) {
         List<Event<RiderGroup>> newEventList = new ArrayList<>();
         Center<RiderGroup> center = event.getEventCenter();
         double currentTime = ClockHandler.getInstance().getClock();
-
-        if (center.isCenterEmpty()) {
+            
+        // If the job of the arrival event can be served by the center, we generate a
+        // START_PROCESS event
+        if (center.isQueueEmptyAndCanServe(event.getJob().getGroupSize())) {
             // Starting service immediately
             Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS,
                     event.getJob(), currentTime);
@@ -155,7 +188,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         // generate a not used service time (or we have to change the interface and if
         // the newServingJobs list is empty we can return a 0 service time)
         // TODO Check if it is better to move
-        if (!event.getEventCenter().isCenterEmpty()) {
+        if (event.getEventCenter().canServe(event.getJob().getGroupSize())) {
             newEventList.add(
                     EventBuilder.buildEventFrom(event.getEventCenter(), EventType.START_PROCESS, completedJob,
                             currentTime));

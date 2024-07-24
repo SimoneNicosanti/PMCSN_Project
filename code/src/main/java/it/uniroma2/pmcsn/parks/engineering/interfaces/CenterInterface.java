@@ -15,7 +15,7 @@ public interface CenterInterface<T> {
 
     public String getName();
 
-    public boolean isCenterEmpty();
+    public boolean isQueueEmptyAndCanServe(Integer jobSize);
 
     /*
      * @return List<T> : List of jobs starting service with this call (may be one or
@@ -29,5 +29,10 @@ public interface CenterInterface<T> {
      * @param endedJobs : job ending service with this call
      */
     public void endService(T endedJob);
+
+    /**
+     * Return if the center is able to process the job with size "jobSize"
+     */
+    public boolean canServe(Integer jobSize);
 
 }

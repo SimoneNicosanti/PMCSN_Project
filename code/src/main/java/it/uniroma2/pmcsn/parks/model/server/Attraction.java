@@ -55,16 +55,16 @@ public class Attraction extends Center<RiderGroup> {
 
     @Override
     public void endService(RiderGroup endedJob) {
-        for (RiderGroup riderGroup : currentServingJobs) {
-            riderGroup.getGroupStats().incrementRidesInfo(this.name, this.currentServiceTime);
+        endedJob.getGroupStats().incrementRidesInfo(this.name, this.currentServiceTime);
+        this.currentServingJobs.remove(endedJob) ;
+        if (this.currentServingJobs.isEmpty()) {
+            this.currentServiceTime = 0;
         }
-        this.currentServingJobs.clear();
-        this.currentServiceTime = 0;
     }
 
     @Override
-    public boolean isCenterEmpty() {
-        return queueManager.areQueuesEmpty() && this.currentServingJobs.isEmpty();
+    public boolean canServe(Integer jobSize) {
+        return this.currentServingJobs.isEmpty();
     }
 
 }

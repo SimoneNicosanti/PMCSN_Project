@@ -1,0 +1,276 @@
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 15.488515650693326
+Simulation Clock >>> 15.488515650693326
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 15.488515650693326
+Simulation Clock >>> 15.488515650693326
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 15.488515650693326
+Simulation Clock >>> 15.488515650693326
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 15.488515650693326
+Simulation Clock >>> 15.488515650693326
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 36.24229541626283
+Simulation Clock >>> 15.488515650693326
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 104.68036897051942
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 31.53259729951964
+Simulation Clock >>> 31.53259729951964
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 31.53259729951964
+Simulation Clock >>> 31.53259729951964
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 31.53259729951964
+Simulation Clock >>> 31.53259729951964
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 31.53259729951964
+Simulation Clock >>> 31.53259729951964
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 113.01497940959864
+Simulation Clock >>> 31.53259729951964
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 35.90363055399672
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 35.90363055399672
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 35.90363055399672
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 35.90363055399672
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 87.54373192795609
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Processing
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 36.24229541626283
+Simulation Clock >>> 36.24229541626283
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 37.59397449517188
+Simulation Clock >>> 37.59397449517188
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 37.59397449517188
+Simulation Clock >>> 37.59397449517188
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 37.59397449517188
+Simulation Clock >>> 37.59397449517188
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 37.59397449517188
+Simulation Clock >>> 37.59397449517188
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 169.14976754377898
+Simulation Clock >>> 37.59397449517188
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 42.00630704501176
+Simulation Clock >>> 42.00630704501176
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 42.00630704501176
+Simulation Clock >>> 42.00630704501176
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 42.00630704501176
+Simulation Clock >>> 42.00630704501176
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 42.00630704501176
+Simulation Clock >>> 42.00630704501176
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 86.84943170141106
+Simulation Clock >>> 42.00630704501176
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 48.44783414134966
+Simulation Clock >>> 48.44783414134966
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 48.44783414134966
+Simulation Clock >>> 48.44783414134966
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 48.44783414134966
+Simulation Clock >>> 48.44783414134966
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 48.44783414134966
+Simulation Clock >>> 48.44783414134966
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 64.06540640405477
+Simulation Clock >>> 48.44783414134966
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 51.032131857386304
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 51.032131857386304
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 51.032131857386304
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 51.032131857386304
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 193.508369200301
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 52.72786616972431
+Simulation Clock >>> 52.72786616972431
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Smart_Restaurant
+Event Time >>> 52.72786616972431
+Simulation Clock >>> 52.72786616972431
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 52.72786616972431
+Simulation Clock >>> 52.72786616972431
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 52.72786616972431
+Simulation Clock >>> 52.72786616972431
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Smart_Restaurant
+Event Time >>> 133.02971939263736
+Simulation Clock >>> 52.72786616972431
+

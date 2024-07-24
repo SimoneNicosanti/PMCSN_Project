@@ -16,4 +16,8 @@ public class CenterStats extends GeneralStats {
         this.serviceTime += serviceTime;
         this.servedJobs += servedJobs;
     }
+
+    public double getAvgServiceTime() {
+        return this.serviceTime / this.servedJobs;
+    }
 }

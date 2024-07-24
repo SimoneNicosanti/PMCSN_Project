@@ -16,6 +16,11 @@ public abstract class Center<T> implements CenterInterface<T> {
     }
 
     @Override
+    public boolean isQueueEmptyAndCanServe(Integer jobSize) {
+        return this.queueManager.areQueuesEmpty() && canServe(jobSize);
+    }
+
+    @Override
     public void arrival(T job) {
         queueManager.addToQueues(job);
     }

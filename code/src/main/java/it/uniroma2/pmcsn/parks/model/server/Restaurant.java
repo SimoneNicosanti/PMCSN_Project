@@ -33,12 +33,9 @@ public class Restaurant extends Center<RiderGroup> {
         return this.avgDuration;
     }
 
-    public boolean isServing() {
-        return !currentServingJobs.isEmpty();
-    }
-
-    public boolean isCenterEmpty() {
-        return !this.isServing() && this.queueManager.areQueuesEmpty();
+    @Override
+    public boolean canServe(Integer jobSize) {
+        return getFreeSlots() >= jobSize;
     }
 
     private int getBusySlots() {
@@ -79,13 +76,13 @@ public class Restaurant extends Center<RiderGroup> {
      * End service for targeted groups.
      */
     @Override
-    public void endService(RiderGroup endendJob) {
+    public void endService(RiderGroup endedJob) {
         if (currentServingJobs.isEmpty()) {
             throw new RuntimeException("Cannot end service because there are no riders to serve");
         }
 
         // Looking for the target group...
-        if (!this.currentServingJobs.remove(endendJob)) {
+        if (!this.currentServingJobs.remove(endedJob)) {
             throw new RuntimeException("Group not found in the current serving jobs");
         }
 

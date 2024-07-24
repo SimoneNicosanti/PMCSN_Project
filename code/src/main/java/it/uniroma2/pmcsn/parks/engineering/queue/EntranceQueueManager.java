@@ -18,6 +18,11 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
     }
 
     @Override
+    public List<Queue<RiderGroup>> getQueues() {
+        return List.of(queue);
+    }
+
+    @Override
     public void addToQueues(RiderGroup group) {
         queue.enqueue(group);
     }
