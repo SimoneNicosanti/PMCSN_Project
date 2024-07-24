@@ -21,14 +21,14 @@ public class TestingUtils {
         Entrance entrance = new Entrance(Config.ENTRANCE, 3);
         centerList.add(entrance);
 
-        Attraction attraction1 = new Attraction("Attraction1", 10, 3, 10);
+        Attraction attraction1 = new Attraction("Attraction_1", 10, 3, 10);
         centerList.add(attraction1);
-        Attraction attraction2 = new Attraction("Attraction2", 100, 5, 5);
+        Attraction attraction2 = new Attraction("Attraction_2", 100, 5, 5);
         centerList.add(attraction2);
 
-        String restName1 = "Stupid Restaurant";
-        String restName2 = "Smart Restaurant";
-        Restaurant rest1 = new Restaurant(restName1, 10, 1, 10);
+        String restName1 = "Stupid_Restaurant";
+        String restName2 = "Smart_Restaurant";
+        Restaurant rest1 = new Restaurant(restName1, 100, 1, 10);
         centerList.add(rest1);
 
         Restaurant rest2 = new Restaurant(restName2, 100, 2, 5);

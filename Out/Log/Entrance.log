@@ -1,0 +1,102 @@
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 1.4918151921287826
+Simulation Clock >>> 1.4918151921287826
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Entrance
+Event Time >>> 1.4918151921287826
+Simulation Clock >>> 1.4918151921287826
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 2.944426544422096
+Simulation Clock >>> 1.4918151921287826
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Entrance
+Event Time >>> 1.4918151921287826
+Simulation Clock >>> 1.4918151921287826
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Entrance
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 1.4918151921287826
+
+Simulation Type >> Processing
+Event Type >> END_PROCESS
+Center >>> Entrance
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 2.944426544422096
+Simulation Clock >>> 2.944426544422096
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Entrance
+Event Time >>> 2.944426544422096
+Simulation Clock >>> 2.944426544422096
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 3.829320521245757
+Simulation Clock >>> 2.944426544422096
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Entrance
+Event Time >>> 2.944426544422096
+Simulation Clock >>> 2.944426544422096
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Entrance
+Event Time >>> 6.5374183294712225
+Simulation Clock >>> 2.944426544422096
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 3.829320521245757
+Simulation Clock >>> 3.829320521245757
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 5.26406006239703
+Simulation Clock >>> 3.829320521245757
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 5.26406006239703
+Simulation Clock >>> 5.26406006239703
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Entrance
+Event Time >>> 8.06327784277272
+Simulation Clock >>> 5.26406006239703
+
+Simulation Type >> Processing
+Event Type >> END_PROCESS
+Center >>> Entrance
+Event Time >>> 6.5374183294712225
+Simulation Clock >>> 6.5374183294712225
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Entrance
+Event Time >>> 6.5374183294712225
+Simulation Clock >>> 6.5374183294712225
+

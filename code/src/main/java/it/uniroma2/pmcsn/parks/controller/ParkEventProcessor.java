@@ -21,6 +21,7 @@ import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 import it.uniroma2.pmcsn.parks.model.server.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.Restaurant;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.TestingUtils;
 
 public class ParkEventProcessor implements EventProcessor<RiderGroup> {
@@ -49,7 +50,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         RiderGroup job = event.getJob();
         List<Event<RiderGroup>> nextEvents = new ArrayList<>();
 
-        logEvent("Processing", event);
+        EventLogger.logEvent("Processing", event);
 
         switch (event.getEventType()) {
             case ARRIVAL:
@@ -87,7 +88,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         }
 
         for (Event<RiderGroup> newEvent : newEventList) {
-            logEvent("Generated", newEvent);
+            EventLogger.logEvent("Generated", newEvent);
         }
 
         return newEventList;
@@ -104,7 +105,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         }
 
         for (Event<RiderGroup> newEvent : newEventList) {
-            logEvent("Generated", newEvent);
+            EventLogger.logEvent("Generated", newEvent);
         }
 
         return newEventList;
@@ -125,15 +126,13 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
                     currentTime + servingGroup.getServiceTime());
             newEventList.add(newEvent);
 
-            logEvent("Generated", newEvent);
+            EventLogger.logEvent("Generated", newEvent);
         }
 
         return newEventList;
     }
 
     private List<Event<RiderGroup>> generateNextEventsFromEnd(Event<RiderGroup> event) {
-        // TODO To schedule next service event in attraction we have to check if the
-        // system is not empty
         List<Event<RiderGroup>> newEventList = new ArrayList<>();
         double currentTime = ClockHandler.getInstance().getClock();
         RiderGroup completedJob = event.getJob();
@@ -143,12 +142,27 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
             // TODO Manage exit from system
             // Take stats and print on csv
             // Find a way to manage
+            EventLogger.logExit(ClockHandler.getInstance().getClock());
             System.out.println("Job exits from System");
         } else {
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL,
-                    completedJob, currentTime);
-            newEventList.add(newEvent);
-            logEvent("Generated", newEvent);
+            // Scheduling arrival to next center
+            newEventList.add(EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, completedJob, currentTime));
+        }
+
+        // Scheduling new service on the center that has just finished serving: we have
+        // to
+        // generate the new start only if the center is not empty, otherwise we would
+        // generate a not used service time (or we have to change the interface and if
+        // the newServingJobs list is empty we can return a 0 service time)
+        // TODO Check if it is better to move
+        if (!event.getEventCenter().isCenterEmpty()) {
+            newEventList.add(
+                    EventBuilder.buildEventFrom(event.getEventCenter(), EventType.START_PROCESS, completedJob,
+                            currentTime));
+        }
+
+        for (Event<RiderGroup> newEvent : newEventList) {
+            EventLogger.logEvent("Generated", newEvent);
         }
 
         return newEventList;
@@ -161,15 +175,6 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
 
     public void setCenters(List<Center<RiderGroup>> centerList) {
         this.centersManager.addCenterList(centerList);
-    }
-
-    private void logEvent(String processingType, Event event) {
-        System.out.println("Simulation Type >> " + processingType);
-        System.out.println("Event Type >> " + event.getEventType().name());
-        System.out.println("Center >>> " + event.getEventCenter().getName());
-        System.out.println("Event Time >>> " + event.getEventTime());
-        System.out.println("Simulation Clock >>> " + ClockHandler.getInstance().getClock());
-        System.out.println("");
     }
 
 }

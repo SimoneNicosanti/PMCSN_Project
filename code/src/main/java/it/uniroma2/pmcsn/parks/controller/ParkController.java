@@ -5,6 +5,7 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public class ParkController extends Controller<RiderGroup> {
 
@@ -16,6 +17,7 @@ public class ParkController extends Controller<RiderGroup> {
 
     @Override
     public void startSimulation() {
+        EventLogger.prepareLog();
 
         this.init_clock();
         Event<RiderGroup> arrivalEvent = eventProcessor.generateArrivalEvent();
@@ -23,7 +25,7 @@ public class ParkController extends Controller<RiderGroup> {
 
         // TODO Set termination condition
         int processedEventNumber = 0;
-        while (processedEventNumber < 50) {
+        while (processedEventNumber < 100) {
             Event<RiderGroup> nexEvent = this.eventsPool.getNextEvent();
             if (nexEvent == null) {
                 continue;

@@ -1,0 +1,42 @@
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Attraction_2
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Attraction_2
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Generated
+Event Type >> START_PROCESS
+Center >>> Attraction_2
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Processing
+Event Type >> START_PROCESS
+Center >>> Attraction_2
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Generated
+Event Type >> END_PROCESS
+Center >>> Attraction_2
+Event Time >>> 7.716410204690463
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Generated
+Event Type >> ARRIVAL
+Center >>> Attraction_2
+Event Time >>> 6.5374183294712225
+Simulation Clock >>> 6.5374183294712225
+
+Simulation Type >> Processing
+Event Type >> ARRIVAL
+Center >>> Attraction_2
+Event Time >>> 6.5374183294712225
+Simulation Clock >>> 6.5374183294712225
+
