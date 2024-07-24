@@ -12,20 +12,23 @@ import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class EventBuilder {
 
+    private static int riderGroupId = 0;
+
     public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
-        double interarrivalTime = RandomHandler.getInstance().getUniform("ARRIVAL BUILDER - ARRIVAL DISTRIBUTION", 0,
+        double interarrivalTime = RandomHandler.getInstance().getExponential("ARRIVAL BUILDER - ARRIVAL DISTRIBUTION",
                 1);
+
         int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform("ARRIVAL BUILDER - GROUP SIZE", 1, 10))
                 .intValue();
-
         GroupPriority priority = computeGroupPriority();
-
-        RiderGroup riderGroup = new RiderGroup(groupSize, priority,
+        RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
         Event<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
+
+        riderGroupId++;
 
         return arrivalEvent;
 

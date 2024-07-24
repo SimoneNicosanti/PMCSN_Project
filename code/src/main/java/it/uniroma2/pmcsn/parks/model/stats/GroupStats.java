@@ -28,7 +28,11 @@ public class GroupStats extends GeneralStats {
 
     public void incrementRidesInfo(String centerName, double ridingTimeInc) {
         this.serviceTime += ridingTimeInc;
-        this.numberOfRidesPerAttraction.put(centerName, numberOfRidesPerAttraction.get(centerName) + 1);
+        Integer count = numberOfRidesPerAttraction.get(centerName);
+        if (count == null)
+            // Case in which the attraction is not in the map yet
+            count = 0;
+        this.numberOfRidesPerAttraction.put(centerName, count + 1);
     }
 
     public void changeAfterRide(String centerName, double queueTimeInc, double ridingTimeInc) {

@@ -37,7 +37,7 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
             if (group == null) {
                 break;
             }
-            list.add(queue.dequeue());
+            list.add(group);
         }
 
         return list;

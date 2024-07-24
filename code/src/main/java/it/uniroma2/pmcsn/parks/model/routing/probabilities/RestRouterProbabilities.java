@@ -20,7 +20,9 @@ public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
 
         // TODO different routing for restaurant? Based on queue occupation?
         for (Restaurant restaurant : restaurants) {
-            this.probabilities.add(manager.getProbability(restaurant.getName()));
+            Double restProb = manager.getProbability(restaurant.getName());
+            this.probabilities.add(restProb);
+            this.sumProbabilites += restProb;
         }
 
         this.normalize();

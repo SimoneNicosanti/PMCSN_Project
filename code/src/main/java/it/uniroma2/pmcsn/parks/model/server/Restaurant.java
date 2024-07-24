@@ -68,7 +68,7 @@ public class Restaurant extends Center<RiderGroup> {
         for (RiderGroup riderGroup : servingList) {
             // TODO: Choose distribution. As in the entrance, it might make sense to weight
             // for the group size
-            double serviceTime = riderGroup.getGroupSize() * RandomHandler.getInstance().getRandom(this.name);
+            double serviceTime = riderGroup.getGroupSize() * RandomHandler.getInstance().getUniform(this.name, 10, 20);
             newServingGroups.add(new ServingGroup<RiderGroup>(riderGroup, serviceTime));
         }
 

@@ -35,24 +35,29 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
     @Override
     public List<RiderGroup> extractFromQueues(Integer numberOfSeats) {
         List<RiderGroup> extractedList = new ArrayList<>();
-        int usedSeats = 0;
+        int freeSlots = numberOfSeats;
         while (true) {
-            if (priorityQueue.getNextSize() <= numberOfSeats - usedSeats && priorityQueue.getNextSize() != 0) {
+            if (priorityQueue.getNextSize() <= freeSlots && priorityQueue.getNextSize() != 0) {
+                // Get job from priority queue
                 RiderGroup riderGroup = priorityQueue.dequeue();
                 if (riderGroup == null) {
                     // No one in the queue to serve --> Go to next queue
                     continue;
                 }
-                usedSeats += riderGroup.getGroupSize();
+                freeSlots -= riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
-            } else if (normalQueue.getNextSize() <= numberOfSeats - usedSeats && normalQueue.getNextSize() != 0) {
+            } else if (normalQueue.getNextSize() <= freeSlots && normalQueue.getNextSize() != 0) {
+                // Get job from normal queue
                 RiderGroup riderGroup = normalQueue.dequeue();
                 if (riderGroup == null) {
                     // No one in the queue to serve
                     break;
                 }
-                usedSeats += riderGroup.getGroupSize();
+                freeSlots -= riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
+            } else {
+                // No job is available for the number of free seats
+                break;
             }
         }
         return extractedList;

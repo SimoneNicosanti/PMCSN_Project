@@ -31,7 +31,7 @@ public class Attraction extends Center<RiderGroup> {
         this.currentServingJobs.addAll(startedGroups);
 
         // Choosing next service time for that attraction ride
-        this.currentServiceTime = RandomHandler.getInstance().getUniform(name, 0, 1);
+        this.currentServiceTime = RandomHandler.getInstance().getUniform(name, avgDuration - 0.5, avgDuration + 0.5);
 
         List<ServingGroup<RiderGroup>> returnList = new ArrayList<>();
         for (RiderGroup riderGroup : startedGroups) {

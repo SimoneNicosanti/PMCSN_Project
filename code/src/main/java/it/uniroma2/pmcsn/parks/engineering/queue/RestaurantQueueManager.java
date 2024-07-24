@@ -32,12 +32,12 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
     public List<RiderGroup> extractFromQueues(Integer slotNumber) {
         List<RiderGroup> extractedGroups = new ArrayList<>();
 
-        int usedSlots = 0;
+        int freeSlots = slotNumber;
         while (true) {
             int nextGroupSize = normalQueue.getNextSize();
-            if (nextGroupSize > 0 && nextGroupSize <= slotNumber - usedSlots) {
+            if (nextGroupSize > 0 && nextGroupSize <= freeSlots) {
                 extractedGroups.add(normalQueue.dequeue());
-                usedSlots += nextGroupSize;
+                freeSlots -= nextGroupSize;
             } else {
                 break;
             }

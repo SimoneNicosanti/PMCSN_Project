@@ -41,8 +41,16 @@ public abstract class StatsQueue<T> implements Queue<T> {
 
         T item = this.queue.dequeue();
 
-        double entranceTime = entranceTimeMap.get(item);
-        double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
+        if (item == null)
+            return null;
+
+        Double entranceTime = entranceTimeMap.get(item);
+
+        // Integrity check: every enqued item should have been added in "enqueue" method
+        if (entranceTime == null)
+            throw new RuntimeException("The entrance time must be defined for the enqueued item");
+
+        Double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
 
         this.retrieveStats(item, entranceTime, waitingTime);
 

@@ -39,7 +39,7 @@ public class Entrance extends Center<RiderGroup> {
         for (RiderGroup group : jobsToServe) {
             int numOfRiders = group.getGroupSize();
             // TODO Choose distribution
-            double serviceTime = numOfRiders * RandomHandler.getInstance().getRandom(this.name);
+            double serviceTime = numOfRiders * RandomHandler.getInstance().getExponential(this.name, 0.5);
             servingGroups.add(new ServingGroup<RiderGroup>(group, serviceTime));
         }
 
