@@ -44,7 +44,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
     @Override
     public List<Event<RiderGroup>> processEvent(Event<RiderGroup> event) {
         Center<RiderGroup> center = event.getEventCenter();
-        List<RiderGroup> jobList = event.getJobList();
+        RiderGroup job = event.getJob();
         List<Event<RiderGroup>> nextEvents = null;
 
         System.out.println("Processing " + event.getEventType().name() + " event on center "
@@ -55,7 +55,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         switch (event.getEventType()) {
             case ARRIVAL:
                 nextEvents = generateNextEventsFromArrival(event);
-                center.arrival(jobList.get(0));
+                center.arrival(job);
                 break;
 
             case START_PROCESS:
@@ -64,8 +64,8 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
                 break;
 
             case END_PROCESS:
-                List<RiderGroup> endedJobs = event.getJobList();
-                center.endService(endedJobs);
+                RiderGroup endedJob = event.getJob();
+                center.endService(endedJob);
                 nextEvents = generateNextEventsFromEnd(event);
                 break;
         }
@@ -82,7 +82,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         if (center.isCenterEmpty()) {
             // Starting service immediately
             Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS,
-                    event.getJobList(), currentTime);
+                    event.getJob(), currentTime);
             newEventList.add(newEvent);
         }
 
@@ -112,7 +112,7 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         // jobs on the same attraction ride
         for (ServingGroup<RiderGroup> servingGroup : startedJobs) {
             Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS,
-                    List.of(servingGroup.getGroup()),
+                    servingGroup.getGroup(),
                     currentTime + servingGroup.getServiceTime());
             newEventList.add(newEvent);
 
@@ -129,23 +129,21 @@ public class ParkEventProcessor implements EventProcessor<RiderGroup> {
         // system is not empty
         List<Event<RiderGroup>> newEventList = new ArrayList<>();
         double currentTime = ClockHandler.getInstance().getClock();
+        RiderGroup completedJob = event.getJob();
 
-        for (RiderGroup completedJob : event.getJobList()) {
-            Center<RiderGroup> nextCenter = networkRoutingNode.route(completedJob);
-            if (nextCenter == null) {
-                // TODO Manage exit from system
-                // Take stats and print on csv
-                // Find a way to manage
-            }
-
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL,
-                    List.of(completedJob), currentTime);
-            newEventList.add(newEvent);
-
-            System.out.println("Generated " + newEvent.getEventType().name() + " event on center "
-                    + newEvent.getEventCenter().getName() + " for time " + newEvent.getEventTime());
-
+        Center<RiderGroup> nextCenter = networkRoutingNode.route(completedJob);
+        if (nextCenter == null) {
+            // TODO Manage exit from system
+            // Take stats and print on csv
+            // Find a way to manage
         }
+
+        Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL,
+                completedJob, currentTime);
+        newEventList.add(newEvent);
+
+        System.out.println("Generated " + newEvent.getEventType().name() + " event on center "
+                + newEvent.getEventCenter().getName() + " for time " + newEvent.getEventTime());
 
         return newEventList;
     }

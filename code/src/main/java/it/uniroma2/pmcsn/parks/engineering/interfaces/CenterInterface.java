@@ -26,8 +26,8 @@ public interface CenterInterface<T> {
     public List<ServingGroup<T>> startService();
 
     /*
-     * @param endedJobs : job ending service with this call (may be one or more)
+     * @param endedJobs : job ending service with this call
      */
-    public void endService(List<T> endedJobs);
+    public void endService(T endedJob);
 
 }
