@@ -1,213 +1,186 @@
 package it.uniroma2.pmcsn.parks.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ParkEventProcessor {
 
-import it.uniroma2.pmcsn.parks.engineering.CentersManager;
-import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.EventProcessor;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.model.event.Event;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
-import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
-import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
-import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
-import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Center;
-import it.uniroma2.pmcsn.parks.model.server.Entrance;
-import it.uniroma2.pmcsn.parks.model.server.Restaurant;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.TestingUtils;
+    // private CentersManager<RiderGroup> centersManager;
+    // private NetworkRoutingNode networkRoutingNode;
 
-public class ParkEventProcessor implements EventProcessor<RiderGroup> {
+    // public ParkEventProcessor() {
+    //     this.centersManager = new CentersManager<>();
 
-    private CentersManager<RiderGroup> centersManager;
-    private NetworkRoutingNode networkRoutingNode;
+    //     // Just for testing, delete once the system is live
+    //     List<CenterInterface<RiderGroup>> centers = TestingUtils.createTestingCentersList();
 
-    public ParkEventProcessor() {
-        this.centersManager = new CentersManager<>();
+    //     this.centersManager.addCenterList(centers);
 
-        // Just for testing, delete once the system is live
-        List<Center<RiderGroup>> centers = TestingUtils.createTestingCentersList();
+    //     // Create the Network Routing Node
+    //     List<Attraction> attractions = this.centersManager.getAttractions();
+    //     List<Restaurant> restaurants = this.centersManager.getRestaurants();
+    //     this.networkRoutingNode = new NetworkRoutingNode(new AttractionRoutingNode(attractions),
+    //             new RestaurantRoutingNode(restaurants));
+    // }
 
-        this.centersManager.addCenterList(centers);
+    // @Override
+    // public List<Event<RiderGroup>> processEvent(Event<RiderGroup> event) {
+    //     CenterInterface<RiderGroup> center = event.getEventCenter();
+    //     RiderGroup job = event.getJob();
+    //     List<Event<RiderGroup>> nextEvents = new ArrayList<>();
 
-        // Create the Network Routing Node
-        List<Attraction> attractions = this.centersManager.getAttractions();
-        List<Restaurant> restaurants = this.centersManager.getRestaurants();
-        this.networkRoutingNode = new NetworkRoutingNode(new AttractionRoutingNode(attractions),
-                new RestaurantRoutingNode(restaurants));
-    }
+    //     EventLogger.logEvent("Processing", event);
 
-    @Override
-    public List<Event<RiderGroup>> processEvent(Event<RiderGroup> event) {
-        Center<RiderGroup> center = event.getEventCenter();
-        RiderGroup job = event.getJob();
-        List<Event<RiderGroup>> nextEvents = new ArrayList<>();
+    //     switch (event.getEventType()) {
+    //         case ARRIVAL:
+    //             center.arrival(job);
+    //             break;
 
-        EventLogger.logEvent("Processing", event);
+    //         case END_PROCESS:
+    //             RiderGroup endedJob = event.getJob();
+    //             center.endService(endedJob);
+    //             break;
+    //     }
 
-        switch (event.getEventType()) {
-            case ARRIVAL:
-                nextEvents.addAll(generateServiceEventFromArrival(event));
-                center.arrival(job);
-                nextEvents.addAll(generateArrivalEventFromArrival(event));
-                break;
+    //     return nextEvents;
+    // }
 
-            case START_PROCESS:
-                List<ServingGroup<RiderGroup>> startedJobs = center.startService();
-                nextEvents.addAll(generateNextEventsFromStart(event, startedJobs));
-                break;
+    // /*
+    //  * Arrival:
+    //  * 1. call center.arrival()
+    //  * - check if isQueueEmptyAndCanServe()
+    //  * - enqueue
+    //  * - return condition
+    //  * 2. if returnedCondition
+    //  * - startedList = center.startService()
+    //  * - generate end event for started jobs
+    //  * End Service:
+    //  * 1. ...
+    //  * 2. if canServe
+    //  * 3. startedJobList = startProcess()
+    //  * 4. generate end event for started jobs
+    //  */
 
-            case END_PROCESS:
-                RiderGroup endedJob = event.getJob();
-                center.endService(endedJob);
-                nextEvents.addAll(generateNextEventsFromEnd(event));
-                break;
-        }
+    // /*
+    //  * - EventPool singleton shared among the centers
+    //  * - Fake center for exiting jobs for collecting stats FATTO
+    //  * - Each center has the next routingNode, so can retrieve the next center for
+    //  * generating a new event using ".route()"
+    //  *
+    //  * Arrival:
+    //  * 1. call center.arrival()
+    //  * - if isQueueEmptyAndCanServe(), then startServe which will generate a next
+    //  * EndProcess event
+    //  * - else enqueue
+    //  * - if Entrance regenerate arrival event
+    //  * End Service:
+    //  * 1. ...
+    //  * 2. center.endService()
+    //  * - free served jobs
+    //  * - try starting the next job, if Attraction wait all jobs and then start a new
+    //  * ride
+    //  * 
+    //  */
 
-        return nextEvents;
-    }
+    // private List<Event<RiderGroup>> generateServiceEventFromArrival(Event<RiderGroup> event) {
+    //     List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    //     CenterInterface<RiderGroup> center = event.getEventCenter();
+    //     double currentTime = ClockHandler.getInstance().getClock();
 
-    /*
-     * Arrival:
-        * 1. call center.arrival()
-            * - check if isQueueEmptyAndCanServe()
-            * - enqueue
-            * - return condition
-        * 2. if returnedCondition
-            * - startedList = center.startService()
-            * - generate end event for started jobs
-     * End Service:
-     *  1. ...
-     *  2. if canServe
-     *  3.      startedJobList = startProcess()
-     *  4.      generate end event for started jobs
-     */
+    //     // If the job of the arrival event can be served by the center, we generate a
+    //     // START_PROCESS event
+    //     if (center.isQueueEmptyAndCanServe(event.getJob().getGroupSize())) {
+    //         // Starting service immediately
+    //         Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS,
+    //                 event.getJob(), currentTime);
+    //         newEventList.add(newEvent);
+    //     }
 
-    /*
-     * - EventPool singleton shared among the centers
-     * - Fake center for exiting jobs for collecting stats
-     * - Each center has the next routingNode, so can retrieve the next center for generating a new event using ".route()"
-     *
-     * Arrival:
-        * 1. call center.arrival()
-            * - if isQueueEmptyAndCanServe(), then startServe and generate next event
-            * - else enqueue
-            * - if Entrance regenerate arrival event
-     * End Service:
-     *  1. ...
-     *  2. center.endService()
-            * - free served jobs
-            * - try starting the next job, if Attraction wait all jobs and then start a new ride
-            * 
-     */
+    //     for (Event<RiderGroup> newEvent : newEventList) {
+    //         EventLogger.logEvent("Generated", newEvent);
+    //     }
 
-    private List<Event<RiderGroup>> generateServiceEventFromArrival(Event<RiderGroup> event) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
-        Center<RiderGroup> center = event.getEventCenter();
-        double currentTime = ClockHandler.getInstance().getClock();
-            
-        // If the job of the arrival event can be served by the center, we generate a
-        // START_PROCESS event
-        if (center.isQueueEmptyAndCanServe(event.getJob().getGroupSize())) {
-            // Starting service immediately
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.START_PROCESS,
-                    event.getJob(), currentTime);
-            newEventList.add(newEvent);
-        }
+    //     return newEventList;
+    // }
 
-        for (Event<RiderGroup> newEvent : newEventList) {
-            EventLogger.logEvent("Generated", newEvent);
-        }
+    // private List<Event<RiderGroup>> generateArrivalEventFromArrival(Event<RiderGroup> event) {
+    //     List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    //     CenterInterface<RiderGroup> center = event.getEventCenter();
 
-        return newEventList;
-    }
+    //     if (center instanceof Entrance) {
+    //         // Has to schedule new arrival event to the system
+    //         Event<RiderGroup> newArrivalEvent = generateArrivalEvent();
+    //         newEventList.add(newArrivalEvent);
+    //     }
 
-    private List<Event<RiderGroup>> generateArrivalEventFromArrival(Event<RiderGroup> event) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
-        Center<RiderGroup> center = event.getEventCenter();
+    //     for (Event<RiderGroup> newEvent : newEventList) {
+    //         EventLogger.logEvent("Generated", newEvent);
+    //     }
 
-        if (center instanceof Entrance) {
-            // Has to schedule new arrival event to the system
-            Event<RiderGroup> newArrivalEvent = generateArrivalEvent();
-            newEventList.add(newArrivalEvent);
-        }
+    //     return newEventList;
+    // }
 
-        for (Event<RiderGroup> newEvent : newEventList) {
-            EventLogger.logEvent("Generated", newEvent);
-        }
+    // private List<Event<RiderGroup>> generateNextEventsFromStart(Event<RiderGroup> event,
+    //         List<ServingGroup<RiderGroup>> startedJobs) {
+    //     List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    //     CenterInterface<RiderGroup> center = event.getEventCenter();
+    //     double currentTime = ClockHandler.getInstance().getClock();
 
-        return newEventList;
-    }
+    //     // TODO Add different managing for different kinds of centers
+    //     // In this way we are generating multiple events with same end instant for all
+    //     // jobs on the same attraction ride
+    //     for (ServingGroup<RiderGroup> servingGroup : startedJobs) {
+    //         Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS,
+    //                 servingGroup.getGroup(),
+    //                 currentTime + servingGroup.getNewServiceTime());
+    //         newEventList.add(newEvent);
 
-    private List<Event<RiderGroup>> generateNextEventsFromStart(Event<RiderGroup> event,
-            List<ServingGroup<RiderGroup>> startedJobs) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
-        Center<RiderGroup> center = event.getEventCenter();
-        double currentTime = ClockHandler.getInstance().getClock();
+    //         EventLogger.logEvent("Generated", newEvent);
+    //     }
 
-        // TODO Add different managing for different kinds of centers
-        // In this way we are generating multiple events with same end instant for all
-        // jobs on the same attraction ride
-        for (ServingGroup<RiderGroup> servingGroup : startedJobs) {
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.END_PROCESS,
-                    servingGroup.getGroup(),
-                    currentTime + servingGroup.getServiceTime());
-            newEventList.add(newEvent);
+    //     return newEventList;
+    // }
 
-            EventLogger.logEvent("Generated", newEvent);
-        }
+    // private List<Event<RiderGroup>> generateNextEventsFromEnd(Event<RiderGroup> event) {
+    //     List<Event<RiderGroup>> newEventList = new ArrayList<>();
+    //     double currentTime = ClockHandler.getInstance().getClock();
+    //     RiderGroup completedJob = event.getJob();
 
-        return newEventList;
-    }
+    //     CenterInterface<RiderGroup> nextCenter = networkRoutingNode.route(completedJob);
+    //     if (nextCenter == null) {
+    //         // TODO Manage exit from system
+    //         // Take stats and print on csv
+    //         // Find a way to manage
+    //         EventLogger.logExit(ClockHandler.getInstance().getClock());
+    //         System.out.println("Job exits from System");
+    //     } else {
+    //         // Scheduling arrival to next center
+    //         newEventList.add(EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, completedJob, currentTime));
+    //     }
 
-    private List<Event<RiderGroup>> generateNextEventsFromEnd(Event<RiderGroup> event) {
-        List<Event<RiderGroup>> newEventList = new ArrayList<>();
-        double currentTime = ClockHandler.getInstance().getClock();
-        RiderGroup completedJob = event.getJob();
+    //     // Scheduling new service on the center that has just finished serving: we have
+    //     // to
+    //     // generate the new start only if the center is not empty, otherwise we would
+    //     // generate a not used service time (or we have to change the interface and if
+    //     // the newServingJobs list is empty we can return a 0 service time)
+    //     // TODO Check if it is better to move
+    //     if (event.getEventCenter().canServe(event.getJob().getGroupSize())) {
+    //         newEventList.add(
+    //                 EventBuilder.buildEventFrom(event.getEventCenter(), EventType.START_PROCESS, completedJob,
+    //                         currentTime));
+    //     }
 
-        Center<RiderGroup> nextCenter = networkRoutingNode.route(completedJob);
-        if (nextCenter == null) {
-            // TODO Manage exit from system
-            // Take stats and print on csv
-            // Find a way to manage
-            EventLogger.logExit(ClockHandler.getInstance().getClock());
-            System.out.println("Job exits from System");
-        } else {
-            // Scheduling arrival to next center
-            newEventList.add(EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, completedJob, currentTime));
-        }
+    //     for (Event<RiderGroup> newEvent : newEventList) {
+    //         EventLogger.logEvent("Generated", newEvent);
+    //     }
 
-        // Scheduling new service on the center that has just finished serving: we have
-        // to
-        // generate the new start only if the center is not empty, otherwise we would
-        // generate a not used service time (or we have to change the interface and if
-        // the newServingJobs list is empty we can return a 0 service time)
-        // TODO Check if it is better to move
-        if (event.getEventCenter().canServe(event.getJob().getGroupSize())) {
-            newEventList.add(
-                    EventBuilder.buildEventFrom(event.getEventCenter(), EventType.START_PROCESS, completedJob,
-                            currentTime));
-        }
+    //     return newEventList;
+    // }
 
-        for (Event<RiderGroup> newEvent : newEventList) {
-            EventLogger.logEvent("Generated", newEvent);
-        }
+    // public Event<RiderGroup> generateArrivalEvent() {
+    //     CenterInterface<RiderGroup> entranceCenter = centersManager.getCenterByName(Config.ENTRANCE);
+    //     return EventBuilder.getNewArrivalEvent(entranceCenter);
+    // }
 
-        return newEventList;
-    }
-
-    public Event<RiderGroup> generateArrivalEvent() {
-        Center<RiderGroup> entranceCenter = centersManager.getCenterByName(Config.ENTRANCE);
-        return EventBuilder.getNewArrivalEvent(entranceCenter);
-    }
-
-    public void setCenters(List<Center<RiderGroup>> centerList) {
-        this.centersManager.addCenterList(centerList);
-    }
+    // public void setCenters(List<CenterInterface<RiderGroup>> centerList) {
+    //     this.centersManager.addCenterList(centerList);
+    // }
 
 }

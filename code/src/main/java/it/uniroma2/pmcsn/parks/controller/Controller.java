@@ -1,7 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.model.event.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 
 public abstract class Controller<T> {
 

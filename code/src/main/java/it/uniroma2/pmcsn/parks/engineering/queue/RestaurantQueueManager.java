@@ -50,4 +50,8 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
         return extractedGroups;
     }
 
+    public Queue<RiderGroup> getQueue() {
+        return normalQueue;
+    }
+
 }

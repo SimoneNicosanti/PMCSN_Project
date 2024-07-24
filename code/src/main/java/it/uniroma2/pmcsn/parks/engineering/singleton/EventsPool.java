@@ -1,13 +1,25 @@
-package it.uniroma2.pmcsn.parks.model.event;
+package it.uniroma2.pmcsn.parks.engineering.singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
+
 public class EventsPool<T> {
 
+    private static EventsPool instance = null;
+
     private Map<EventsPoolId, List<Event<T>>> eventMap;
+
+    public static <T> EventsPool<T> getInstance() {
+        if (instance == null) {
+            instance = new EventsPool<>();
+        }
+        return instance;
+    }
 
     public EventsPool() {
         this.eventMap = new HashMap<>();

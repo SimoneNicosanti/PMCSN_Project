@@ -1,29 +1,28 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 
 public class StatsCenter implements CenterInterface<RiderGroup> {
 
     protected CenterStats stats;
     private CenterInterface<RiderGroup> center;
+    private Map<RiderGroup, Double> startServingTimeMap;
 
-    public StatsCenter(Center<RiderGroup> center) {
+    public StatsCenter(CenterInterface<RiderGroup> center) {
         this.center = center;
         this.stats = new CenterStats();
+        this.startServingTimeMap = new HashMap<>();
     }
 
     public CenterStats getCenterStats() {
         return stats;
-    }
-
-    @Override
-    public boolean canServe(Integer jobSize) {
-        return this.center.canServe(jobSize);
     }
 
     @Override
@@ -53,12 +52,12 @@ public class StatsCenter implements CenterInterface<RiderGroup> {
      * more)
      */
     @Override
-    public List<ServingGroup<RiderGroup>> startService() {
-        List<ServingGroup<RiderGroup>> servingGroups = this.center.startService();
+    protected void startService() {
+        List<RiderGroup> servingGroups = this.center.startService();
 
-        this.collectStartServiceStats(servingGroups);
-
-        return servingGroups;
+        for (RiderGroup group : servingGroups) {
+            startServingTimeMap.put(group, ClockHandler.getInstance().getClock());
+        }
     }
 
     /*
@@ -66,23 +65,21 @@ public class StatsCenter implements CenterInterface<RiderGroup> {
      */
     @Override
     public void endService(RiderGroup endedJob) {
+        double servingTime = ClockHandler.getInstance().getClock() - startServingTimeMap.get(endedJob);
+
+        this.collectEndServiceStats(endedJob, servingTime);
 
         this.center.endService(endedJob);
-
-        this.collectEndServiceStats(endedJob);
 
         return;
     }
 
     // Method useful for collecting new stats
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-    }
+    protected void collectEndServiceStats(RiderGroup endedJob, double serviceTime) {
+        if (this.center instanceof Attraction)
+            endedJob.getGroupStats().incrementRidesInfo(center.getName(), serviceTime);
 
-    protected void collectStartServiceStats(List<ServingGroup<RiderGroup>> servingGroups) {
-
-        for (ServingGroup<RiderGroup> group : servingGroups) {
-            this.stats.addServingData(group.getServiceTime(), group.getGroup().getGroupSize());
-        }
+        this.stats.addServingData(serviceTime, endedJob.getGroupSize());
     }
 
     // Method useful for collecting new stats

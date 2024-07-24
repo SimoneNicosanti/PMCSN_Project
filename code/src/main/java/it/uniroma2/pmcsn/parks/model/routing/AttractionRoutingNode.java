@@ -19,7 +19,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
     }
 
     @Override
-    public Center<RiderGroup> route(RiderGroup riderGroup) {
+    public Center route(RiderGroup riderGroup) {
         double routingProb = RandomHandler.getInstance().getRandom(Config.ATTRACTION_ROUTING_NODE);
 
         // Computing normalized probability array for each attraction

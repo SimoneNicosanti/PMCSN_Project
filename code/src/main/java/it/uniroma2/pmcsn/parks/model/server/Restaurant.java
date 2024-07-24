@@ -6,13 +6,11 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
 
-public class Restaurant extends Center<RiderGroup> {
+public class Restaurant extends Center {
 
     private double popularity;
     private double avgDuration;
-    protected List<RiderGroup> currentServingJobs;
 
     public Restaurant(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new RestaurantQueueManager(), numberOfSeats);
@@ -52,26 +50,6 @@ public class Restaurant extends Center<RiderGroup> {
         return slotNumber - this.getBusySlots();
     }
 
-    @Override
-    public List<ServingGroup<RiderGroup>> startService() {
-
-        List<ServingGroup<RiderGroup>> newServingGroups = new ArrayList<>();
-
-        List<RiderGroup> servingList = queueManager.extractFromQueues(this.getFreeSlots());
-
-        this.currentServingJobs.addAll(servingList);
-
-        // Save the current time for each group
-        for (RiderGroup riderGroup : servingList) {
-            // TODO: Choose distribution. As in the entrance, it might make sense to weight
-            // for the group size
-            double serviceTime = riderGroup.getGroupSize() * RandomHandler.getInstance().getUniform(this.name, 10, 20);
-            newServingGroups.add(new ServingGroup<RiderGroup>(riderGroup, serviceTime));
-        }
-
-        return newServingGroups;
-    }
-
     /**
      * End service for targeted groups.
      */
@@ -87,5 +65,30 @@ public class Restaurant extends Center<RiderGroup> {
         }
 
         return;
+    }
+
+    @Override
+    protected List<RiderGroup> getJobsToServe() {
+        return queueManager.extractFromQueues(this.getFreeSlots());
+    }
+
+    @Override
+    protected Double getNewServiceTime(RiderGroup group) {
+        return group.getGroupSize() * RandomHandler.getInstance().getUniform(this.name, 10, 20);
+    }
+
+    @Override
+    public void arrival(RiderGroup job) {
+        this.commonArrivalManagement(job);
+    }
+
+    @Override
+    protected void terminateService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
+
+        RiderGroup group = ((RestaurantQueueManager) this.queueManager).getQueue().getNextJob();
+        if (group != null) {
+            this.startService();
+        }
     }
 }

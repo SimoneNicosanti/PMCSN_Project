@@ -1,21 +1,21 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.queue.EntranceQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
-public class Entrance extends Center<RiderGroup> {
-
-    private List<RiderGroup> currentServingJobs;
+public class Entrance extends Center {
 
     public Entrance(String name, int slotNumber) {
         super(name, new EntranceQueueManager(), slotNumber);
-        this.currentServingJobs = new ArrayList<>();
+
     }
 
     public double getArrivalInterval() {
@@ -29,26 +29,39 @@ public class Entrance extends Center<RiderGroup> {
     }
 
     @Override
-    public List<ServingGroup<RiderGroup>> startService() {
-        List<ServingGroup<RiderGroup>> servingGroups = new ArrayList<>();
+    protected List<RiderGroup> getJobsToServe() {
         int freeSlots = slotNumber - currentServingJobs.size();
-        List<RiderGroup> jobsToServe = queueManager.extractFromQueues(freeSlots);
+        return queueManager.extractFromQueues(freeSlots);
+    }
 
-        this.currentServingJobs.addAll(jobsToServe);
+    @Override
+    protected void terminateService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
 
-        for (RiderGroup group : jobsToServe) {
-            int numOfRiders = group.getGroupSize();
-            // TODO Choose distribution
-            double serviceTime = numOfRiders * RandomHandler.getInstance().getExponential(this.name, 0.5);
-            servingGroups.add(new ServingGroup<RiderGroup>(group, serviceTime));
+        RiderGroup job = ((EntranceQueueManager) this.queueManager).getQueue().getNextJob();
+        if (job != null) {
+            this.startService();
         }
+    }
 
-        return servingGroups;
+    @Override
+    protected Double getNewServiceTime(RiderGroup job) {
+        return job.getGroupSize() * RandomHandler.getInstance().getExponential(this.name, 0.5);
+    }
+
+    @Override
+    public void arrival(RiderGroup job) {
+        this.commonArrivalManagement(job);
+
+        Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
+        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
+        EventLogger.logEvent("Generated", newArrivalEvent);
+
     }
 
     @Override
     public void endService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
+        this.commonEndManagement(endedJob);
     }
 
 }

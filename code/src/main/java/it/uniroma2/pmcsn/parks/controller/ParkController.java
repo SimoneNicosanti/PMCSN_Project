@@ -1,7 +1,9 @@
 package it.uniroma2.pmcsn.parks.controller;
 
-import java.util.List;
-
+import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
+import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -9,10 +11,11 @@ import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public class ParkController extends Controller<RiderGroup> {
 
-    private ParkEventProcessor eventProcessor;
+    private NetworkBuilder networkBuilder;
 
     public ParkController() {
-        this.eventProcessor = new ParkEventProcessor();
+        this.networkBuilder = new NetworkBuilder();
+        this.networkBuilder.buildNetwork();
     }
 
     @Override
@@ -20,21 +23,30 @@ public class ParkController extends Controller<RiderGroup> {
         EventLogger.prepareLog();
 
         this.init_clock();
-        Event<RiderGroup> arrivalEvent = eventProcessor.generateArrivalEvent();
+        CenterInterface<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Config.ENTRANCE);
+        Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         this.eventsPool.scheduleNewEvent(arrivalEvent);
 
         // TODO Set termination condition
         int processedEventNumber = 0;
         while (processedEventNumber < 300) {
-            Event<RiderGroup> nexEvent = this.eventsPool.getNextEvent();
-            if (nexEvent == null) {
+            Event<RiderGroup> nextEvent = this.eventsPool.getNextEvent();
+            if (nextEvent == null) {
                 continue;
             }
-            ClockHandler.getInstance().setClock(nexEvent.getEventTime());
+            ClockHandler.getInstance().setClock(nextEvent.getEventTime());
 
-            List<Event<RiderGroup>> newEventsList = this.eventProcessor.processEvent(nexEvent);
+            RiderGroup job = nextEvent.getJob();
+            CenterInterface<RiderGroup> center = nextEvent.getEventCenter();
+            switch (nextEvent.getEventType()) {
+                case ARRIVAL:
+                    center.arrival(job);
+                    break;
 
-            this.eventsPool.scheduleNewEvents(newEventsList);
+                case END_PROCESS:
+                    center.endService(job);
+                    break;
+            }
 
             processedEventNumber++;
 

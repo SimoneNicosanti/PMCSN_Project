@@ -57,4 +57,8 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         return queue.queueLength();
     }
 
+    public Queue<RiderGroup> getQueue() {
+        return queue;
+    }
+
 }

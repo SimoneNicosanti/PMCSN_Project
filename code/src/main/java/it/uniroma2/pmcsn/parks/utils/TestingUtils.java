@@ -7,7 +7,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
-import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Center;
 import it.uniroma2.pmcsn.parks.model.server.Entrance;
@@ -15,8 +14,8 @@ import it.uniroma2.pmcsn.parks.model.server.Restaurant;
 
 public class TestingUtils {
 
-    public static List<Center<RiderGroup>> createTestingCentersList() {
-        List<Center<RiderGroup>> centerList = new ArrayList<>();
+    public static List<Center> createTestingCentersList() {
+        List<Center> centerList = new ArrayList<>();
 
         Entrance entrance = new Entrance(Config.ENTRANCE, 3);
         centerList.add(entrance);
@@ -30,7 +29,7 @@ public class TestingUtils {
         String restName2 = "Smart_Restaurant";
         Restaurant rest1 = new Restaurant(restName1, 100, 1, 10);
         centerList.add(rest1);
-        
+
         Restaurant rest2 = new Restaurant(restName2, 100, 2, 5);
         centerList.add(rest2);
 

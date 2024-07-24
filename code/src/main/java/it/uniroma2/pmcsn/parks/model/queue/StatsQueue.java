@@ -67,4 +67,9 @@ public abstract class StatsQueue<T> implements Queue<T> {
         return queue.queueLength();
     }
 
+    @Override
+    public T getNextJob() {
+        return queue.getNextJob();
+    }
+
 }

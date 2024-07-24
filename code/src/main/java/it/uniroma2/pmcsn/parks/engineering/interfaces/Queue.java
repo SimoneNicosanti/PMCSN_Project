@@ -1,6 +1,5 @@
 package it.uniroma2.pmcsn.parks.engineering.interfaces;
 
-
 public interface Queue<T> {
 
     public void enqueue(T item);
@@ -10,5 +9,7 @@ public interface Queue<T> {
     public int getNextSize();
 
     public int queueLength();
+
+    public T getNextJob();
 
 }

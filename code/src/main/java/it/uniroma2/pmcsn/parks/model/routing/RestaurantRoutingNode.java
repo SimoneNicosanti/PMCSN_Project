@@ -19,7 +19,7 @@ public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
     }
 
     @Override
-    public Center<RiderGroup> route(RiderGroup riderGroup) {
+    public Center route(RiderGroup riderGroup) {
 
         double routingProb = RandomHandler.getInstance().getRandom(Config.RESTAURANT_ROUTING_NODE);
 
