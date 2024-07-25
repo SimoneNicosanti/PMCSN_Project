@@ -52,7 +52,7 @@ public class StatsCenter implements CenterInterface<RiderGroup> {
      * more)
      */
     @Override
-    protected void startService() {
+    protected List<RiderGroup> startService() {
         List<RiderGroup> servingGroups = this.center.startService();
 
         for (RiderGroup group : servingGroups) {

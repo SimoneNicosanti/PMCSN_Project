@@ -51,7 +51,7 @@ public abstract class Center implements CenterInterface<RiderGroup> {
     /**
      * Start the service and schedule the correlated END_PROCESS events
      */
-    protected void startService() {
+    public List<RiderGroup> startService() {
         List<RiderGroup> jobsToServe = this.getJobsToServe();
 
         this.currentServingJobs.addAll(jobsToServe);
@@ -65,6 +65,8 @@ public abstract class Center implements CenterInterface<RiderGroup> {
                     ClockHandler.getInstance().getClock() + serviceTime);
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
         }
+
+        return jobsToServe;
     }
 
     /**
