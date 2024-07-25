@@ -11,7 +11,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
-public class Entrance extends Center {
+public class Entrance extends StatsCenter {
 
     public Entrance(String name, int slotNumber) {
         super(name, new EntranceQueueManager(), slotNumber);
@@ -47,8 +47,7 @@ public class Entrance extends Center {
     }
 
     @Override
-    public void arrival(RiderGroup job) {
-        this.commonArrivalManagement(job);
+    public void doArrival(RiderGroup job) {
 
         Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
@@ -57,7 +56,7 @@ public class Entrance extends Center {
     }
 
     @Override
-    public void endService(RiderGroup endedJob) {
+    public void doEndService(RiderGroup endedJob) {
         this.commonEndManagement(endedJob);
     }
 

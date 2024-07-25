@@ -14,9 +14,6 @@ public class EventBuilder {
 
     private static int riderGroupId = 0;
 
-    public EventBuilder() {
-    }
-
     public static Event<RiderGroup> getNewArrivalEvent(CenterInterface<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
         double interarrivalTime = RandomHandler.getInstance().getExponential("ARRIVAL BUILDER - ARRIVAL DISTRIBUTION",

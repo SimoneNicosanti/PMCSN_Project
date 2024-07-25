@@ -7,7 +7,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-public class Attraction extends Center {
+public class Attraction extends StatsCenter {
 
     private double currentServiceTime;
     private double popularity;
@@ -64,12 +64,12 @@ public class Attraction extends Center {
     }
 
     @Override
-    public void arrival(RiderGroup job) {
-        this.commonArrivalManagement(job);
+    public void doArrival(RiderGroup job) {
+
     }
 
     @Override
-    public void endService(RiderGroup endedJob) {
+    public void doEndService(RiderGroup endedJob) {
         this.commonEndManagement(endedJob);
     }
 

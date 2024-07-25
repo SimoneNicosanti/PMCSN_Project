@@ -18,9 +18,7 @@ import it.uniroma2.pmcsn.parks.utils.EventLogger;
 public abstract class Center implements CenterInterface<RiderGroup> {
 
     protected final String name;
-
     protected List<RiderGroup> currentServingJobs;
-
     protected QueueManager<RiderGroup> queueManager;
     protected final Integer slotNumber;
 
@@ -38,7 +36,6 @@ public abstract class Center implements CenterInterface<RiderGroup> {
      * it adds it to a queue and starts the service, otherwise it just adds
      * the job to the queue.
      */
-
     protected void commonArrivalManagement(RiderGroup job) {
         int jobSize = job.getGroupSize();
 
@@ -50,29 +47,6 @@ public abstract class Center implements CenterInterface<RiderGroup> {
             // If job cannot be served immediately, we add it to queue
             this.queueManager.addToQueues(job);
         }
-    }
-
-    /**
-     * Start the service and schedule the correlated END_PROCESS events
-     */
-    public List<RiderGroup> startService() {
-        List<RiderGroup> jobsToServe = this.getJobsToServe();
-
-        this.currentServingJobs.addAll(jobsToServe);
-
-        for (RiderGroup job : jobsToServe) {
-            double serviceTime = this.getNewServiceTime(job);
-
-            // Schedule an END_PROCESS event
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(this, EventType.END_PROCESS,
-                    job,
-                    ClockHandler.getInstance().getClock() + serviceTime);
-            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
-
-            EventLogger.logEvent("Schedule ", newEvent);
-        }
-
-        return jobsToServe;
     }
 
     /**
@@ -114,6 +88,11 @@ public abstract class Center implements CenterInterface<RiderGroup> {
     public List<Queue<RiderGroup>> getQueues() {
         return queueManager.getQueues();
     }
+
+    /**
+     * Start the service and schedule the correlated END_PROCESS events
+     */
+    public abstract List<RiderGroup> startService();
 
     /**
      * Terminate the service for the job and start the next service if possible

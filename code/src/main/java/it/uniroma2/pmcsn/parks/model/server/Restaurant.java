@@ -7,7 +7,7 @@ import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-public class Restaurant extends Center {
+public class Restaurant extends StatsCenter {
 
     private double popularity;
     private double avgDuration;
@@ -54,7 +54,7 @@ public class Restaurant extends Center {
      * End service for targeted groups.
      */
     @Override
-    public void endService(RiderGroup endedJob) {
+    public void doEndService(RiderGroup endedJob) {
         if (currentServingJobs.isEmpty()) {
             throw new RuntimeException("Cannot end service because there are no riders to serve");
         }
@@ -78,14 +78,13 @@ public class Restaurant extends Center {
     }
 
     @Override
-    public void arrival(RiderGroup job) {
-        this.commonArrivalManagement(job);
+    public void doArrival(RiderGroup job) {
     }
 
     @Override
     protected void terminateService(RiderGroup endedJob) {
         this.currentServingJobs.remove(endedJob);
 
-        this.startService();
+        this.doStartService();
     }
 }

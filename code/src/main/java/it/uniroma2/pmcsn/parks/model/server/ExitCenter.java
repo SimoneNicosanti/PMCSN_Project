@@ -2,41 +2,38 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
 //** Fake center for exiting jobs */
-public class ExitCenter extends Center {
+public class ExitCenter implements CenterInterface<RiderGroup> {
+    String name;
 
-    RiderStatisticsWriter writer;
-
-    public ExitCenter(String name, RiderStatisticsWriter writer) {
-        super(name, null, null);
-        this.writer = writer;
-    }
-
-    @Override
-    public boolean isQueueEmptyAndCanServe(Integer jobSize) {
-        return true;
+    public ExitCenter(String name) {
+        this.name = name;
     }
 
     @Override
     public void arrival(RiderGroup job) {
-        // TODO save job stats
-        writer.writeStatistics(job);
+        // TODO change filename for the different configuration
+        String filename = Config.JOB_STATS_FILENAME;
+        RiderStatisticsWriter.writeStatistics(filename, job);
         EventLogger.logExit(ClockHandler.getInstance().getClock());
     }
 
     @Override
-    public boolean canServe(Integer jobSize) {
-        return true;
+    public String getName() {
+        return name;
     }
 
     @Override
-    public List<RiderGroup> startService() {
-        return null;
+    public boolean isQueueEmptyAndCanServe(Integer jobSize) {
+        return false;
     }
 
     @Override
@@ -44,17 +41,12 @@ public class ExitCenter extends Center {
     }
 
     @Override
-    protected List<RiderGroup> getJobsToServe() {
-        return null;
+    public void setNextRoutingNode(RoutingNode<RiderGroup> nextRoutingNode) {
     }
 
     @Override
-    protected Double getNewServiceTime(RiderGroup group) {
+    public List<RiderGroup> startService() {
         return null;
-    }
-
-    @Override
-    protected void terminateService(RiderGroup endedJob) {
     }
 
 }

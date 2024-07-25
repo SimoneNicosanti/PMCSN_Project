@@ -5,6 +5,7 @@ public class Config {
     public static final String ATTRACTION_ROUTING_NODE = "AttractionRoutingNode";
     public static final String NETWORK_ROUTING_NODE = "NetworkRoutingNode";
     public static final String RESTAURANT_ROUTING_NODE = "RestaurantRoutingNode";
+    public static final String EXIT = "Exit";
 
     public static final String DATA_PATH = "/Out/Data";
     public static final String STATS_CASE_DIR_NAME = "Ciao/";

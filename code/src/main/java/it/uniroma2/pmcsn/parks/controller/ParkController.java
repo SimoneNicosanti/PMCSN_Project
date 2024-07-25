@@ -10,6 +10,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
+import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
 public class ParkController implements Controller<RiderGroup> {
 
@@ -23,13 +24,15 @@ public class ParkController implements Controller<RiderGroup> {
     @Override
     public void startSimulation() {
 
+        RiderStatisticsWriter.resetStatistics("");
+
         this.init_simulation();
 
         this.scheduleArrivalEvent();
 
         // TODO Set termination condition
         int processedEventNumber = 0;
-        while (processedEventNumber < 300) {
+        while (processedEventNumber < 500) {
             Event<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             if (nextEvent == null) {
                 continue;

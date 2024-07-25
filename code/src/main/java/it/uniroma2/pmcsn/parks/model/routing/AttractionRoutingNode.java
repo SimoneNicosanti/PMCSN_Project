@@ -8,7 +8,6 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Center;
 
 public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
@@ -19,7 +18,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
     }
 
     @Override
-    public Center route(RiderGroup riderGroup) {
+    public Attraction route(RiderGroup riderGroup) {
         double routingProb = RandomHandler.getInstance().getRandom(Config.ATTRACTION_ROUTING_NODE);
 
         // Computing normalized probability array for each attraction
