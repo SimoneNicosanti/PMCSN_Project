@@ -11,9 +11,9 @@ public class QueueStats {
         this.numberOfItems = 0;
     }
 
-    public void updateStats(double waitingTime) {
+    public void updateStats(double waitingTime, int numberOfPerson) {
         this.totalWaitingTime += waitingTime;
-        this.numberOfItems++;
+        this.numberOfItems += numberOfPerson;
     }
 
     public double getAvgWaitingTime() {

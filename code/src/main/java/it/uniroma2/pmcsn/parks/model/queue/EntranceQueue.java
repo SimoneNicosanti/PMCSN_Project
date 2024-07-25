@@ -12,7 +12,7 @@ public class EntranceQueue extends StatsQueue<RiderGroup> {
     @Override
     protected void retrieveStats(RiderGroup group, double entranceTime, double waitingTime) {
 
-        queueStats.updateStats(waitingTime);
+        queueStats.updateStats(waitingTime, group.getGroupSize());
     }
 
 }

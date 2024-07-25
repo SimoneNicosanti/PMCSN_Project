@@ -43,13 +43,4 @@ public class FifoQueue implements Queue<RiderGroup> {
         }
         return sum;
     }
-
-    @Override
-    public RiderGroup getNextJob() {
-        if (queueList.size() > 0) {
-            return queueList.get(0);
-        }
-        return null;
-    }
-
 }

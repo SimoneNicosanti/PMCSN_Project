@@ -9,7 +9,4 @@ public interface Queue<T> {
     public int getNextSize();
 
     public int queueLength();
-
-    public T getNextJob();
-
 }

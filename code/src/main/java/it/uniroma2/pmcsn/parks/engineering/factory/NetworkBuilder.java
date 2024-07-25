@@ -26,7 +26,6 @@ public class NetworkBuilder {
     }
 
     public void buildNetwork() {
-
         // Just for testing, delete once the system is live
         List<Center> centers = TestingUtils.createTestingCentersList();
         this.addCenterList(centers);
@@ -46,7 +45,7 @@ public class NetworkBuilder {
             attraction.setNextRoutingNode(networkRoutingNode);
         }
         for (Restaurant restaurant : restaurants) {
-            restaurant.setNextRoutingNode(restaurantsRoutingNode);
+            restaurant.setNextRoutingNode(networkRoutingNode);
         }
         entrance.setNextRoutingNode(networkRoutingNode);
     }

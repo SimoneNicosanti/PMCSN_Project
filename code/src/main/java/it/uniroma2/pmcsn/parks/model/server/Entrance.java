@@ -38,10 +38,7 @@ public class Entrance extends Center {
     protected void terminateService(RiderGroup endedJob) {
         this.currentServingJobs.remove(endedJob);
 
-        RiderGroup job = ((EntranceQueueManager) this.queueManager).getQueue().getNextJob();
-        if (job != null) {
-            this.startService();
-        }
+        this.startService();
     }
 
     @Override

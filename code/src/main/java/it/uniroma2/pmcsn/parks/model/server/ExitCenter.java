@@ -2,13 +2,19 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
+import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
 //** Fake center for exiting jobs */
 public class ExitCenter extends Center {
 
-    public ExitCenter(String name) {
+    RiderStatisticsWriter writer;
+
+    public ExitCenter(String name, RiderStatisticsWriter writer) {
         super(name, null, null);
+        this.writer = writer;
     }
 
     @Override
@@ -19,6 +25,8 @@ public class ExitCenter extends Center {
     @Override
     public void arrival(RiderGroup job) {
         // TODO save job stats
+        writer.writeStatistics(job);
+        EventLogger.logExit(ClockHandler.getInstance().getClock());
     }
 
     @Override
@@ -27,7 +35,8 @@ public class ExitCenter extends Center {
     }
 
     @Override
-    protected void startService() {
+    public List<RiderGroup> startService() {
+        return null;
     }
 
     @Override

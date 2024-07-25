@@ -34,7 +34,7 @@ public class Attraction extends Center {
 
     @Override
     protected void terminateService(RiderGroup endedJob) {
-        // TODO: remember to collect stats through StatsCenter
+
         this.currentServingJobs.remove(endedJob);
 
         if (currentServingJobs.isEmpty()) {

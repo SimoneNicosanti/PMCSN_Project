@@ -11,11 +11,13 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
 
     private RoutingNode<RiderGroup> attractionNode;
     private RoutingNode<RiderGroup> restaurantNode;
+    private CenterInterface<RiderGroup> exitCenter;
 
     public NetworkRoutingNode(RoutingNode<RiderGroup> attractionNode,
-            RoutingNode<RiderGroup> restaurantNode) {
+            RoutingNode<RiderGroup> restaurantNode, CenterInterface<RiderGroup> exitCenter) {
         this.attractionNode = attractionNode;
         this.restaurantNode = restaurantNode;
+        this.exitCenter = exitCenter;
     }
 
     // TODO: I would not implement this with a uniform probability, since
@@ -34,8 +36,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
             return restaurantNode.route(job);
         } else {
             // Go to exit
-            // TODO Return ExitCenter
-            return null;
+            return exitCenter;
         }
     }
 

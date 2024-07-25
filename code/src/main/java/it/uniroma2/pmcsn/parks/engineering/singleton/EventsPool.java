@@ -7,6 +7,7 @@ import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public class EventsPool<T> {
 

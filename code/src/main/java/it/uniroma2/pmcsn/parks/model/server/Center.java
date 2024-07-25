@@ -7,11 +7,13 @@ import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public abstract class Center implements CenterInterface<RiderGroup> {
 
@@ -40,10 +42,12 @@ public abstract class Center implements CenterInterface<RiderGroup> {
     protected void commonArrivalManagement(RiderGroup job) {
         int jobSize = job.getGroupSize();
 
+        // If job arrives and can be served immediately, we schedule the new job
         if (this.isQueueEmptyAndCanServe(jobSize)) {
             this.queueManager.addToQueues(job);
             this.startService();
         } else {
+            // If job cannot be served immediately, we add it to queue
             this.queueManager.addToQueues(job);
         }
     }
@@ -64,6 +68,8 @@ public abstract class Center implements CenterInterface<RiderGroup> {
                     job,
                     ClockHandler.getInstance().getClock() + serviceTime);
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+
+            EventLogger.logEvent("Schedule ", newEvent);
         }
 
         return jobsToServe;
@@ -74,12 +80,16 @@ public abstract class Center implements CenterInterface<RiderGroup> {
      * next center that is returned by the network routing node.
      */
     protected void commonEndManagement(RiderGroup endedJob) {
+        // Removing this job from service
         this.terminateService(endedJob);
 
+        // Scheduling arrival to new center
         CenterInterface<RiderGroup> center = nextRoutingNode.route(endedJob);
         Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 ClockHandler.getInstance().getClock());
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+
+        EventLogger.logEvent("Schedule ", newEvent);
     }
 
     /**
@@ -99,6 +109,10 @@ public abstract class Center implements CenterInterface<RiderGroup> {
     @Override
     public void setNextRoutingNode(RoutingNode<RiderGroup> nextRoutingNode) {
         this.nextRoutingNode = nextRoutingNode;
+    }
+
+    public List<Queue<RiderGroup>> getQueues() {
+        return queueManager.getQueues();
     }
 
     /**

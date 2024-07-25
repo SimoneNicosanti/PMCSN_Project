@@ -1,28 +1,57 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.queue.StatsQueue;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
+import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 public class StatsCenter implements CenterInterface<RiderGroup> {
 
-    protected CenterStats stats;
-    private CenterInterface<RiderGroup> center;
+    private CenterStats stats;
+    private Center center;
     private Map<RiderGroup, Double> startServingTimeMap;
+    private List<StatsQueue<RiderGroup>> queues;
 
-    public StatsCenter(CenterInterface<RiderGroup> center) {
+    public StatsCenter(Center center) {
         this.center = center;
         this.stats = new CenterStats();
         this.startServingTimeMap = new HashMap<>();
+        this.queues = new ArrayList<>();
+
+        List<Queue<RiderGroup>> centerQueues = this.center.getQueues();
+
+        for (Queue<RiderGroup> queue : centerQueues) {
+            if (!(queue instanceof StatsQueue<RiderGroup>))
+                throw new RuntimeException("Expected a center with all stats queues");
+
+            this.queues.add((StatsQueue<RiderGroup>) queue);
+        }
+
     }
 
     public CenterStats getCenterStats() {
+        stats.setQueueStats(getQueueStats());
+
         return stats;
+    }
+
+    private List<QueueStats> getQueueStats() {
+        List<QueueStats> queueStats = new ArrayList<>();
+
+        for (StatsQueue<RiderGroup> queue : this.queues) {
+            queueStats.add(queue.getQueueStats());
+        }
+
+        return queueStats;
     }
 
     @Override
@@ -52,12 +81,17 @@ public class StatsCenter implements CenterInterface<RiderGroup> {
      * more)
      */
     @Override
-    protected List<RiderGroup> startService() {
+    public List<RiderGroup> startService() {
+
+        // Start service
         List<RiderGroup> servingGroups = this.center.startService();
 
+        // Collect data
         for (RiderGroup group : servingGroups) {
             startServingTimeMap.put(group, ClockHandler.getInstance().getClock());
         }
+
+        return servingGroups;
     }
 
     /*
@@ -72,6 +106,11 @@ public class StatsCenter implements CenterInterface<RiderGroup> {
         this.center.endService(endedJob);
 
         return;
+    }
+
+    @Override
+    public void setNextRoutingNode(RoutingNode<RiderGroup> nextRoutingNode) {
+        this.center.setNextRoutingNode(nextRoutingNode);
     }
 
     // Method useful for collecting new stats

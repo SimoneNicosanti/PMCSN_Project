@@ -86,9 +86,6 @@ public class Restaurant extends Center {
     protected void terminateService(RiderGroup endedJob) {
         this.currentServingJobs.remove(endedJob);
 
-        RiderGroup group = ((RestaurantQueueManager) this.queueManager).getQueue().getNextJob();
-        if (group != null) {
-            this.startService();
-        }
+        this.startService();
     }
 }

@@ -9,10 +9,11 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class EventLogger {
 
-    public static void logEvent(String processingType, Event event) {
+    public static void logEvent(String processingType, Event<RiderGroup> event) {
 
         Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName() + ".log");
         Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");

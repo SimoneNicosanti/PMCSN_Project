@@ -1,13 +1,20 @@
 package it.uniroma2.pmcsn.parks.utils;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVFormat.Builder;
 import org.apache.commons.csv.CSVPrinter;
+import org.apache.commons.io.FileUtils;
 
+import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class RiderStatisticsWriter {
@@ -20,15 +27,6 @@ public class RiderStatisticsWriter {
 
         String[] header = { "Group Size", "Priority", "Queue Time", "Riding Time", "Total Time", "Number of rides" };
 
-        // TODO Check if file already exists
-        // File file = new File(outputFileName);
-
-        // if (file.exists()) {
-        // System.out.println("Il file esiste.");
-        // } else {
-        // System.out.println("Il file non esiste.");
-        // }
-
         try (
                 Writer writer = new FileWriter(this.filepath);
                 CSVPrinter csvPrinter = new CSVPrinter(writer,
@@ -36,6 +34,19 @@ public class RiderStatisticsWriter {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void resetStatistics(String statsCase) {
+        Path statisticsDirectory = Path.of(Config.DATA_PATH, statsCase);
+
+        try {
+            FileUtils.deleteDirectory(statisticsDirectory.toFile());
+            new File(statisticsDirectory.toString()).mkdirs();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 
     public void writeStatistics(RiderGroup riderGroup) {
@@ -47,7 +58,7 @@ public class RiderStatisticsWriter {
         Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
 
         try (
-                Writer writer = new FileWriter(this.filepath);
+                Writer writer = new FileWriter(this.filepath, true);
                 CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT)) {
             csvPrinter.printRecord(groupSize, priority, totalQueueTime, totalRidingTime, totalRiding);
         } catch (IOException e) {

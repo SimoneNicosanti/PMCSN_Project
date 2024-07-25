@@ -13,7 +13,7 @@ public class AttractionQueue extends StatsQueue<RiderGroup> {
     protected void retrieveStats(RiderGroup group, double entranceTime, double waitingTime) {
 
         group.getGroupStats().incrementQueueTime(waitingTime);
-        queueStats.updateStats(waitingTime);
+        queueStats.updateStats(waitingTime, group.getGroupSize());
     }
 
 }
