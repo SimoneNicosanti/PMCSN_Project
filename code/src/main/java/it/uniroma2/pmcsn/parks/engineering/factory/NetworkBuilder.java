@@ -11,8 +11,8 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
 import it.uniroma2.pmcsn.parks.utils.TestingUtils;
 
 public class NetworkBuilder {
@@ -25,10 +25,10 @@ public class NetworkBuilder {
 
     public void buildNetwork() {
         // Just for testing, delete once the system is live
-        List<Restaurant> restaurants = TestingUtils.createTestingRestaurants();
-        List<Attraction> attractions = TestingUtils.createTestingAttractions();
+        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile("RestaurantsData.csv") ; // TestingUtils.createTestingRestaurants();
+        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile("AttractionsData.csv") ; // TestingUtils.createTestingAttractions();
 
-        Center<RiderGroup> entranceCenter = TestingUtils.createTestingEntrance();
+        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0) ; //TestingUtils.createTestingEntrance();
         Center<RiderGroup> exitCenter = TestingUtils.createTestingExit();
 
         // Create the routing nodes
@@ -59,6 +59,10 @@ public class NetworkBuilder {
             throw new RuntimeException("Center " + name + " does not exist");
         }
         return centerMap.get(name);
+    }
+
+    public List<Center<RiderGroup>> getAllCenters() {
+        return List.copyOf(centerMap.values());
     }
 
 }

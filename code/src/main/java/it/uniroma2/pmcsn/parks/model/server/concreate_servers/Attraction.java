@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.server;
+package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 
 public class Attraction extends StatsCenter {
 

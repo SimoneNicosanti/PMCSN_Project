@@ -8,10 +8,10 @@ import org.apache.commons.lang3.tuple.Pair;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.CenterFactory;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Entrance;
-import it.uniroma2.pmcsn.parks.model.server.ExitCenter;
-import it.uniroma2.pmcsn.parks.model.server.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Entrance;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
 
 public class TestingUtils {
 
@@ -41,7 +41,7 @@ public class TestingUtils {
     }
 
     public static Entrance createTestingEntrance() {
-        return (Entrance) CenterFactory.buildEntrance(Config.ENTRANCE, 3);
+        return (Entrance) CenterFactory.buildEntrance(Config.ENTRANCE, 3, 0.5);
     }
 
     public static ExitCenter createTestingExit() {

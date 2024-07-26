@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.server;
+package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 
 public class Restaurant extends StatsCenter {
 

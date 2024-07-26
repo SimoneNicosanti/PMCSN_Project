@@ -1,0 +1,44 @@
+{
+    "timeIntervals": [ 
+        {
+            "start": "09:00",
+            "end": "12:00",
+            "routingProbability": {
+                "attractions": 0.90,
+                "restaurants": 0.05,
+                "exit": 0.05
+            }
+        },
+        {
+            "start": "12:00",
+            "end": "14:00",
+            "routingProbability": {
+                "attractions": 0.60,
+                "restaurants": 0.45,
+                "exit": 0.05
+            }
+        },
+        {
+            "start": "14:00",
+            "end": "19:00",
+            "routingProbability": {
+                "attractions": 0.90,
+                "restaurants": 0.05,
+                "exit": 0.05
+            }
+        },
+        {
+            "start": "19:00",
+            "end": "22:00",
+            "routingProbability": {
+                "attractions": 0.70,
+                "restaurants": 0.15,
+                "exit": 0.15
+            }
+        }
+    ],
+
+    "entranceDistribution": "Exponential",
+    "attractionsDistribution": "Uniform",
+    "restaurantsDistribution": "Exponential"
+}

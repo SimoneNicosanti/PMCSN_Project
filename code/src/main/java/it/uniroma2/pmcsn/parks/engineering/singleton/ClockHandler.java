@@ -3,13 +3,11 @@ package it.uniroma2.pmcsn.parks.engineering.singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.uniroma2.pmcsn.parks.model.Interval;
 
 public class ClockHandler {
 
-    private double clock;
+    private Double clock;
 
     private static ClockHandler instance = null;
     private List<Interval> intervals;

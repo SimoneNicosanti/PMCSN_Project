@@ -19,4 +19,12 @@ public class Interval {
         return time >= this.start && time < this.end;
     }
 
+    public double getStart() {
+        return this.start;
+    }
+
+    public double getEnd() {
+        return this.end;
+    }
+
 }

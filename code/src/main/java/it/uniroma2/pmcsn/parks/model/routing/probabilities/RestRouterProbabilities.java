@@ -2,9 +2,9 @@ package it.uniroma2.pmcsn.parks.model.routing.probabilities;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
 
 public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
 
@@ -16,7 +16,7 @@ public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
 
     @Override
     public List<Double> compute(RiderGroup job) {
-        ProbabilityManager manager = ProbabilityManager.getInstance();
+        ConfigManager manager = ConfigManager.getInstance();
 
         // TODO different routing for restaurant? Based on queue occupation or
         // popularity?

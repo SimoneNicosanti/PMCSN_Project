@@ -14,6 +14,7 @@ import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.StatsQueue;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
@@ -44,6 +45,10 @@ public abstract class StatsCenter extends AbstractCenter {
     protected abstract void doArrival(RiderGroup job);
 
     protected abstract void doEndService(RiderGroup endedJob);
+
+    public void resetCenterStats() {
+        this.stats = new CenterStats();
+    }
 
     public CenterStats getCenterStats() {
         stats.setQueueStats(getQueueStats());

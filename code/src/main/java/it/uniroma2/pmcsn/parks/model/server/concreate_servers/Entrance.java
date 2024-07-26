@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.server;
+package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
 
 import java.util.List;
 
@@ -8,19 +8,17 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
 public class Entrance extends StatsCenter {
 
-    public Entrance(String name, int slotNumber) {
+    private double avgServiceTime;
+
+    public Entrance(String name, int slotNumber, double avgServiceTime) {
         super(name, new EntranceQueueManager(), slotNumber);
-
-    }
-
-    public double getArrivalInterval() {
-        // TODO: not sure about distribution
-        return RandomHandler.getInstance().getExponential(name, 0.1);
+        this.avgServiceTime = avgServiceTime;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class Entrance extends StatsCenter {
 
     @Override
     protected Double getNewServiceTime(RiderGroup job) {
-        return job.getGroupSize() * RandomHandler.getInstance().getExponential(this.name, 0.5);
+        return job.getGroupSize() * RandomHandler.getInstance().getExponential(this.name, avgServiceTime);
     }
 
     @Override

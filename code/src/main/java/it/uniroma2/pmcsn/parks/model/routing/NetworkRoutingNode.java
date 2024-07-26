@@ -3,7 +3,7 @@ package it.uniroma2.pmcsn.parks.model.routing;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
@@ -23,8 +23,8 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
     // TODO: I would not implement this with a uniform probability, since
     // attractions are usually most likely to be visited
     public Center<RiderGroup> route(RiderGroup job) {
-        double attractionProb = ProbabilityManager.getInstance().getProbability(attractionNode.getName());
-        double restaurantProb = ProbabilityManager.getInstance().getProbability(restaurantNode.getName());
+        double attractionProb = ConfigManager.getInstance().getProbability(attractionNode.getName());
+        double restaurantProb = ConfigManager.getInstance().getProbability(restaurantNode.getName());
 
         double routingProb = RandomHandler.getInstance().getRandom(Config.NETWORK_ROUTING_NODE);
 

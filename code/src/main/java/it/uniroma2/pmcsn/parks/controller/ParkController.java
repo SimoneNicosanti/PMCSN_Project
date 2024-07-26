@@ -6,10 +6,12 @@ import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
@@ -27,21 +29,19 @@ public class ParkController implements Controller<RiderGroup> {
     @Override
     public void startSimulation() {
 
+        this.init_simulation();
+
         clockHandler = ClockHandler.getInstance();
 
-        RiderStatisticsWriter.resetStatistics("General");
-        this.init_simulation();
         this.scheduleArrivalEvent();
 
-        // TODO Set termination condition
-        int processedEventNumber = 0;
-        while (processedEventNumber < 10_000) {
+        while (true) {
             Event<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             if (nextEvent == null) {
+                // When all the events finish, the simulation ends
                 break;
             }
 
-            // TODO Check if we are now in a new interval time of the day
             clockHandler.setClock(nextEvent.getEventTime());
             this.checkInterval();
 
@@ -57,21 +57,50 @@ public class ParkController implements Controller<RiderGroup> {
                     break;
             }
 
-            processedEventNumber++;
         }
+
+        // write end stats
+        writeCenterStats(currentInterval);
+
     }
 
     private void checkInterval() {
         Interval interval = clockHandler.getInterval(clockHandler.getClock());
 
         if (!interval.equals(this.currentInterval)) {
-            // TODO time interval changed -> change probabilities
-            // TODO save stats for the ended interval
+            // Save stats for the ended interval time
+            writeCenterStats(interval);
+
+            if (Config.INTERVAL_STATS)
+                // Reset stats for the next interval time
+                resetCenterStats();
+
+            // Change the parameters based on the interval
+            changeParameters(interval);
             this.currentInterval = interval;
         }
     }
 
+    private void changeParameters(Interval interval) {
+        ConfigHandler.getInstance().changeParameters(interval);
+    }
+
+    private void writeCenterStats(Interval interval) {
+        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
+            RiderStatisticsWriter.writeCenterStatistics("Center", interval.getStart() + "-" + interval.getEnd(),
+                    center);
+        }
+    }
+
+    private void resetCenterStats() {
+        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
+            ((StatsCenter) center).resetCenterStats();
+        }
+    }
+
     private void init_simulation() {
+        // Reset statistics
+        RiderStatisticsWriter.resetStatistics("General");
         // Prepare the logger and set the system clock to 0
         EventLogger.prepareLog();
         ClockHandler.getInstance().setClock(0);
@@ -82,5 +111,4 @@ public class ParkController implements Controller<RiderGroup> {
         Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
     }
-
 }
