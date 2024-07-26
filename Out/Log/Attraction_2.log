@@ -1,0 +1,1295 @@
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 0
+Event Time >>> 2.5128469425856776
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 0
+Event Time >>> 7.716410204690463
+Simulation Clock >>> 2.5128469425856776
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 2
+Event Time >>> 4.249565131544366
+Simulation Clock >>> 4.249565131544366
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 2
+Event Time >>> 12.91863526475398
+Simulation Clock >>> 7.716410204690463
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 0
+Event Time >>> 7.716410204690463
+Simulation Clock >>> 7.716410204690463
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 0
+Event Time >>> 17.524509590883365
+Simulation Clock >>> 12.91863526475398
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 2
+Event Time >>> 12.91863526475398
+Simulation Clock >>> 12.91863526475398
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 16.613377941989263
+Simulation Clock >>> 16.613377941989263
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 11
+Event Time >>> 16.758760825880614
+Simulation Clock >>> 16.758760825880614
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 11
+Event Time >>> 22.684106182447074
+Simulation Clock >>> 17.524509590883365
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 2
+Event Time >>> 22.684106182447074
+Simulation Clock >>> 17.524509590883365
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 22.684106182447074
+Simulation Clock >>> 17.524509590883365
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 12
+Event Time >>> 18.243349201139335
+Simulation Clock >>> 18.243349201139335
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 4
+Event Time >>> 18.300489137426375
+Simulation Clock >>> 18.300489137426375
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 12
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 22.684106182447074
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 4
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 22.684106182447074
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 22.684106182447074
+Simulation Clock >>> 22.684106182447074
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 26.234704037835918
+Simulation Clock >>> 26.234704037835918
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 32.393362062522236
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 32.393362062522236
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 4
+Event Time >>> 27.57117755417147
+Simulation Clock >>> 27.57117755417147
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 18
+Event Time >>> 29.095647187170133
+Simulation Clock >>> 29.095647187170133
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 30.077656693445043
+Simulation Clock >>> 30.077656693445043
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 30.58605999801558
+Simulation Clock >>> 30.58605999801558
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 21
+Event Time >>> 30.935487241893075
+Simulation Clock >>> 30.935487241893075
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 32.393362062522236
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 21
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 4
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 18
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 32.393362062522236
+Simulation Clock >>> 32.393362062522236
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 35.01594073616841
+Simulation Clock >>> 35.01594073616841
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 37.06176466223712
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 42.52365549939701
+Simulation Clock >>> 37.06176466223712
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 42.52365549939701
+Simulation Clock >>> 37.06176466223712
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 7
+Event Time >>> 42.52365549939701
+Simulation Clock >>> 37.06176466223712
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 37.06176466223712
+Simulation Clock >>> 37.06176466223712
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 32
+Event Time >>> 41.68348769569115
+Simulation Clock >>> 41.68348769569115
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 34
+Event Time >>> 42.420605661912255
+Simulation Clock >>> 42.420605661912255
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 42.52365549939701
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 32
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 34
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 35
+Event Time >>> 42.969773270718036
+Simulation Clock >>> 42.969773270718036
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 43.33300567164761
+Simulation Clock >>> 43.33300567164761
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 38
+Event Time >>> 45.19067739108904
+Simulation Clock >>> 45.19067739108904
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 11
+Event Time >>> 45.655492151991
+Simulation Clock >>> 45.655492151991
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 20
+Event Time >>> 45.655492151991
+Simulation Clock >>> 45.655492151991
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 40
+Event Time >>> 47.06522245535375
+Simulation Clock >>> 47.06522245535375
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 3
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 11
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 20
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 35
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 38
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 40
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 47.456256044364046
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 43
+Event Time >>> 50.10042537794529
+Simulation Clock >>> 50.10042537794529
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 45
+Event Time >>> 51.40626327023869
+Simulation Clock >>> 51.40626327023869
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 20
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 45
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 19
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 43
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 40
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 44
+Event Time >>> 52.72786616972431
+Simulation Clock >>> 52.72786616972431
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 15
+Event Time >>> 54.128248394619746
+Simulation Clock >>> 54.128248394619746
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 24
+Event Time >>> 54.67652413376629
+Simulation Clock >>> 54.67652413376629
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 25
+Event Time >>> 55.76668893378424
+Simulation Clock >>> 55.76668893378424
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 20
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 44
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 15
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 25
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 40
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 24
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 58.24548855548893
+Simulation Clock >>> 58.24548855548893
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 58.57986253564109
+Simulation Clock >>> 58.57986253564109
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 50
+Event Time >>> 60.1637926934437
+Simulation Clock >>> 60.1637926934437
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 51
+Event Time >>> 60.405373146998485
+Simulation Clock >>> 60.405373146998485
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 15
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 25
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 22
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 50
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 51
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 54
+Event Time >>> 62.65138746684979
+Simulation Clock >>> 62.65138746684979
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 55
+Event Time >>> 64.33208356320885
+Simulation Clock >>> 64.33208356320885
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 53
+Event Time >>> 65.01994545062705
+Simulation Clock >>> 65.01994545062705
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 50
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 36
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 15
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 25
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 53
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 54
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 55
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 1
+Event Time >>> 67.03498431326472
+Simulation Clock >>> 67.03498431326472
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 52
+Event Time >>> 71.39113834480622
+Simulation Clock >>> 71.39113834480622
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 57
+Event Time >>> 72.10043727017043
+Simulation Clock >>> 72.10043727017043
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 53
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 54
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 50
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 1
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 52
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 57
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 74.77682762398389
+Simulation Clock >>> 74.77682762398389
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 75.47614133875523
+Simulation Clock >>> 75.47614133875523
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 9
+Event Time >>> 75.47614133875523
+Simulation Clock >>> 75.47614133875523
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 52
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 53
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 54
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 9
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 57
+Event Time >>> 77.39670493431082
+Simulation Clock >>> 77.39670493431082
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 65
+Event Time >>> 80.45632016374164
+Simulation Clock >>> 80.45632016374164
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 66
+Event Time >>> 80.58283630708603
+Simulation Clock >>> 80.58283630708603
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 56
+Event Time >>> 81.7927539664875
+Simulation Clock >>> 81.7927539664875
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 66
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 49
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 52
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 57
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 65
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 56
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 9
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 69
+Event Time >>> 84.01657888297916
+Simulation Clock >>> 84.01657888297916
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 68
+Event Time >>> 84.39585085709933
+Simulation Clock >>> 84.39585085709933
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 14
+Event Time >>> 87.50254840643149
+Simulation Clock >>> 87.50254840643149
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 87.78084992938561
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 69
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 9
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 68
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 14
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 87.78084992938561
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 12
+Event Time >>> 87.96407895818388
+Simulation Clock >>> 87.96407895818388
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 72
+Event Time >>> 88.20944806716581
+Simulation Clock >>> 88.20944806716581
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 74
+Event Time >>> 90.58383087671967
+Simulation Clock >>> 90.58383087671967
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 76
+Event Time >>> 91.45061540588256
+Simulation Clock >>> 91.45061540588256
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 68
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 12
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 72
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 74
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 76
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 14
+Event Time >>> 92.48858602396459
+Simulation Clock >>> 92.48858602396459
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 78
+Event Time >>> 93.40518253228794
+Simulation Clock >>> 93.40518253228794
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 93.86792777128733
+Simulation Clock >>> 93.86792777128733
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 77
+Event Time >>> 93.87570211401176
+Simulation Clock >>> 93.87570211401176
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 45
+Event Time >>> 95.19107659851602
+Simulation Clock >>> 95.19107659851602
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 13
+Event Time >>> 95.19107659851602
+Simulation Clock >>> 95.19107659851602
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 23
+Event Time >>> 95.79025681314293
+Simulation Clock >>> 95.79025681314293
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 81
+Event Time >>> 95.9174374006852
+Simulation Clock >>> 95.9174374006852
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 83
+Event Time >>> 96.87370938733176
+Simulation Clock >>> 96.87370938733176
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 12
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 48
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 74
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 27
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 77
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 45
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 62
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 68
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 14
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 78
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 13
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 23
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 81
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Attraction_2
+Group Id >>> 83
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 76
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Attraction_2
+Group Id >>> 84
+Event Time >>> 98.10084858051948
+Simulation Clock >>> 98.10084858051948
+

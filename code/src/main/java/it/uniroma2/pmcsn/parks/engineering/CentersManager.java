@@ -6,39 +6,39 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.server.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.Restaurant;
 
 public class CentersManager<T> {
 
-    private Map<String, CenterInterface<T>> centerMap;
+    private Map<String, Center<T>> centerMap;
 
     public CentersManager() {
         centerMap = new HashMap<>();
     }
 
-    public void addCenterList(List<CenterInterface<T>> centerList) {
+    public void addCenterList(List<Center<T>> centerList) {
 
-        for (CenterInterface<T> center : centerList) {
+        for (Center<T> center : centerList) {
             this.centerMap.put(center.getName(), center);
         }
     }
 
-    public CenterInterface<T> getCenterByName(String name) {
+    public Center<T> getCenterByName(String name) {
         if (!centerMap.containsKey(name)) {
             throw new RuntimeException("Center " + name + " does not exist");
         }
         return centerMap.get(name);
     }
 
-    public Collection<CenterInterface<T>> getAllCenters() {
+    public Collection<Center<T>> getAllCenters() {
         return centerMap.values();
     }
 
     public List<Attraction> getAttractions() {
         List<Attraction> attractions = new ArrayList<>();
-        for (CenterInterface<T> center : centerMap.values()) {
+        for (Center<T> center : centerMap.values()) {
             if (center instanceof Attraction) {
                 attractions.add((Attraction) center);
             }
@@ -48,7 +48,7 @@ public class CentersManager<T> {
 
     public List<Restaurant> getRestaurants() {
         List<Restaurant> restaurants = new ArrayList<>();
-        for (CenterInterface<T> center : centerMap.values()) {
+        for (Center<T> center : centerMap.values()) {
             if (center instanceof Restaurant) {
                 restaurants.add((Restaurant) center);
             }

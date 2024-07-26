@@ -1,0 +1,200 @@
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 2
+Event Time >>> 22.684106182447074
+Simulation Clock >>> 22.684106182447074
+
+Simulation Type >> Exit
+Simulation Clock >>> 22.684106182447074
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 17
+Event Time >>> 30.149015459465318
+Simulation Clock >>> 30.149015459465318
+
+Simulation Type >> Exit
+Simulation Clock >>> 30.149015459465318
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 5
+Event Time >>> 35.90363055399672
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Exit
+Simulation Clock >>> 35.90363055399672
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 8
+Event Time >>> 36.24229541626283
+Simulation Clock >>> 36.24229541626283
+
+Simulation Type >> Exit
+Simulation Clock >>> 36.24229541626283
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 29
+Event Time >>> 40.172063666077676
+Simulation Clock >>> 40.172063666077676
+
+Simulation Type >> Exit
+Simulation Clock >>> 40.172063666077676
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 7
+Event Time >>> 42.52365549939701
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Exit
+Simulation Clock >>> 42.52365549939701
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 30
+Event Time >>> 44.50311704284682
+Simulation Clock >>> 44.50311704284682
+
+Simulation Type >> Exit
+Simulation Clock >>> 44.50311704284682
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 42
+Event Time >>> 51.032131857386304
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Exit
+Simulation Clock >>> 51.032131857386304
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 38
+Event Time >>> 52.01716214820456
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Exit
+Simulation Clock >>> 52.01716214820456
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 43
+Event Time >>> 57.515700633932084
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Exit
+Simulation Clock >>> 57.515700633932084
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 41
+Event Time >>> 59.245893855490955
+Simulation Clock >>> 59.245893855490955
+
+Simulation Type >> Exit
+Simulation Clock >>> 59.245893855490955
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 20
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Exit
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 44
+Event Time >>> 62.46694518722763
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Exit
+Simulation Clock >>> 62.46694518722763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 37
+Event Time >>> 65.34654287504222
+Simulation Clock >>> 65.34654287504222
+
+Simulation Type >> Exit
+Simulation Clock >>> 65.34654287504222
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 51
+Event Time >>> 66.99277731641637
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Exit
+Simulation Clock >>> 66.99277731641637
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 25
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Exit
+Simulation Clock >>> 72.4354853858483
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 58
+Event Time >>> 73.09244848017934
+Simulation Clock >>> 73.09244848017934
+
+Simulation Type >> Exit
+Simulation Clock >>> 73.09244848017934
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 59
+Event Time >>> 78.60925046143227
+Simulation Clock >>> 78.60925046143227
+
+Simulation Type >> Exit
+Simulation Clock >>> 78.60925046143227
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 53
+Event Time >>> 82.42552876893535
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Exit
+Simulation Clock >>> 82.42552876893535
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Exit
+Group Id >>> 79
+Event Time >>> 95.35191139108366
+Simulation Clock >>> 95.35191139108366
+
+Simulation Type >> Exit
+Simulation Clock >>> 95.35191139108366
+

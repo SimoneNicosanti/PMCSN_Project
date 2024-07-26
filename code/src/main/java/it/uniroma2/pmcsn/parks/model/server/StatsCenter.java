@@ -18,7 +18,7 @@ import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
-public abstract class StatsCenter extends Center {
+public abstract class StatsCenter extends AbstractCenter {
 
     private CenterStats stats;
     private Map<RiderGroup, Double> startServingTimeMap;

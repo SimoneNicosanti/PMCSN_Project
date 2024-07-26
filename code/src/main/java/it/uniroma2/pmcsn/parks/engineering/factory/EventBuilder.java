@@ -1,7 +1,7 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
 import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
@@ -14,7 +14,7 @@ public class EventBuilder {
 
     private static int riderGroupId = 0;
 
-    public static Event<RiderGroup> getNewArrivalEvent(CenterInterface<RiderGroup> arrivalCenter) {
+    public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
         double interarrivalTime = RandomHandler.getInstance().getExponential("ARRIVAL BUILDER - ARRIVAL DISTRIBUTION",
                 1);
@@ -30,6 +30,10 @@ public class EventBuilder {
 
         riderGroupId++;
 
+        if (riderGroup.getGroupId() == 0) {
+            System.out.println(riderGroup.getPriority().toString());
+        }
+
         return arrivalEvent;
 
     }
@@ -44,7 +48,7 @@ public class EventBuilder {
     }
 
     // Builds a new generic event
-    public static Event<RiderGroup> buildEventFrom(CenterInterface<RiderGroup> center, EventType eventType,
+    public static Event<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
             RiderGroup job,
             double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);

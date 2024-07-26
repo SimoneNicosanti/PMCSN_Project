@@ -20,7 +20,8 @@ public class EventLogger {
 
         String logString = "Simulation Type >> " + processingType + "\n" +
                 "Event Type >> " + event.getEventType().name() + "\n" +
-                "Center >>> " + event.getEventCenter().getName() + "\n" +
+                "Center Name >>> " + event.getEventCenter().getName() + "\n" +
+                "Group Id >>> " + event.getJob().getGroupId() + "\n" +
                 "Event Time >>> " + event.getEventTime() + "\n" +
                 "Simulation Clock >>> " + ClockHandler.getInstance().getClock() + "\n\n";
 

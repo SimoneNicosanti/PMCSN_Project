@@ -1,15 +1,15 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 
 public class Event<T> implements Comparable<Event<T>> {
 
     private EventsPoolId id;
     private double eventTime;
-    private CenterInterface<T> eventCenter;
+    private Center<T> eventCenter;
     private T job;
 
-    public Event(EventsPoolId id, CenterInterface<T> eventCenter, double eventTime, T job) {
+    public Event(EventsPoolId id, Center<T> eventCenter, double eventTime, T job) {
         this.id = id;
         this.eventTime = eventTime;
         this.eventCenter = eventCenter;
@@ -28,7 +28,7 @@ public class Event<T> implements Comparable<Event<T>> {
         return this.eventTime;
     }
 
-    public CenterInterface<T> getEventCenter() {
+    public Center<T> getEventCenter() {
         return this.eventCenter;
     }
 

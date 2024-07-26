@@ -70,7 +70,6 @@ public class Attraction extends StatsCenter {
 
     @Override
     public void doEndService(RiderGroup endedJob) {
-        this.commonEndManagement(endedJob);
     }
 
 }

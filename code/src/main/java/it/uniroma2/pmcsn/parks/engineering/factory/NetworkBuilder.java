@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import it.uniroma2.pmcsn.parks.engineering.Config;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
@@ -17,7 +20,7 @@ import it.uniroma2.pmcsn.parks.utils.TestingUtils;
 
 public class NetworkBuilder {
 
-    private Map<String, CenterInterface<RiderGroup>> centerMap;
+    private Map<String, Center<RiderGroup>> centerMap;
 
     public NetworkBuilder() {
         this.centerMap = new HashMap<>();
@@ -28,14 +31,18 @@ public class NetworkBuilder {
         List<Restaurant> restaurants = TestingUtils.createTestingRestaurants();
         List<Attraction> attractions = TestingUtils.createTestingAttractions();
 
-        CenterInterface<RiderGroup> entranceCenter = TestingUtils.createTestingEntrance();
-        CenterInterface<RiderGroup> exitCenter = TestingUtils.createTestingExit();
+        Center<RiderGroup> entranceCenter = TestingUtils.createTestingEntrance();
+        Center<RiderGroup> exitCenter = TestingUtils.createTestingExit();
 
         // Create the routing nodes
         RoutingNode<RiderGroup> attractionRoutingNode = new AttractionRoutingNode(attractions);
         RoutingNode<RiderGroup> restaurantsRoutingNode = new RestaurantRoutingNode(restaurants);
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
                 restaurantsRoutingNode, exitCenter);
+
+        ProbabilityManager.getInstance().changeProbabilities(List.of(
+                Pair.of(attractionRoutingNode.getName(), 0.7),
+                Pair.of(restaurantsRoutingNode.getName(), 0.2)));
 
         for (Attraction attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
@@ -52,7 +59,7 @@ public class NetworkBuilder {
         entranceCenter.setNextRoutingNode(networkRoutingNode);
     }
 
-    public CenterInterface<RiderGroup> getCenterByName(String name) {
+    public Center<RiderGroup> getCenterByName(String name) {
         if (!centerMap.containsKey(name)) {
             throw new RuntimeException("Center " + name + " does not exist");
         }

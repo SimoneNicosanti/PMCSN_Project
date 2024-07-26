@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
@@ -15,7 +15,7 @@ import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
-public abstract class Center implements CenterInterface<RiderGroup> {
+public abstract class AbstractCenter implements Center<RiderGroup> {
 
     protected final String name;
     protected List<RiderGroup> currentServingJobs;
@@ -24,7 +24,7 @@ public abstract class Center implements CenterInterface<RiderGroup> {
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
-    public Center(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
+    public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
         this.name = name;
         this.currentServingJobs = new ArrayList<>();
         this.queueManager = queueManager;
@@ -58,7 +58,7 @@ public abstract class Center implements CenterInterface<RiderGroup> {
         this.terminateService(endedJob);
 
         // Scheduling arrival to new center
-        CenterInterface<RiderGroup> center = nextRoutingNode.route(endedJob);
+        Center<RiderGroup> center = nextRoutingNode.route(endedJob);
         Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 ClockHandler.getInstance().getClock());
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);

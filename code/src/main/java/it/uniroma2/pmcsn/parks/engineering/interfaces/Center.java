@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.engineering.interfaces;
 
 import java.util.List;
 
-public interface CenterInterface<T> {
+public interface Center<T> {
 
     public void arrival(T job);
 

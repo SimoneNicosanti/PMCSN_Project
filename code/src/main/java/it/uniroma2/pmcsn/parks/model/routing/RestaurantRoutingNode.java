@@ -7,7 +7,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RestRouterProbabilities;
-import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.Restaurant;
 
 public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
@@ -19,7 +19,7 @@ public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
     }
 
     @Override
-    public Center route(RiderGroup riderGroup) {
+    public AbstractCenter route(RiderGroup riderGroup) {
 
         double routingProb = RandomHandler.getInstance().getRandom(Config.RESTAURANT_ROUTING_NODE);
 

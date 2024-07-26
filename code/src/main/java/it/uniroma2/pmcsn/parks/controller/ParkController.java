@@ -3,7 +3,7 @@ package it.uniroma2.pmcsn.parks.controller;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
@@ -24,10 +24,8 @@ public class ParkController implements Controller<RiderGroup> {
     @Override
     public void startSimulation() {
 
-        RiderStatisticsWriter.resetStatistics("");
-
+        RiderStatisticsWriter.resetStatistics("General");
         this.init_simulation();
-
         this.scheduleArrivalEvent();
 
         // TODO Set termination condition
@@ -35,12 +33,12 @@ public class ParkController implements Controller<RiderGroup> {
         while (processedEventNumber < 500) {
             Event<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             if (nextEvent == null) {
-                continue;
+                break;
             }
             ClockHandler.getInstance().setClock(nextEvent.getEventTime());
 
             RiderGroup job = nextEvent.getJob();
-            CenterInterface<RiderGroup> center = nextEvent.getEventCenter();
+            Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 case ARRIVAL:
                     center.arrival(job);
@@ -63,7 +61,7 @@ public class ParkController implements Controller<RiderGroup> {
     }
 
     private void scheduleArrivalEvent() {
-        CenterInterface<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Config.ENTRANCE);
+        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Config.ENTRANCE);
         Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
     }

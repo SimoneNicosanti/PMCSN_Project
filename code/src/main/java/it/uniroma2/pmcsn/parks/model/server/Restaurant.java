@@ -55,14 +55,15 @@ public class Restaurant extends StatsCenter {
      */
     @Override
     public void doEndService(RiderGroup endedJob) {
-        if (currentServingJobs.isEmpty()) {
-            throw new RuntimeException("Cannot end service because there are no riders to serve");
-        }
+        // if (currentServingJobs.isEmpty()) {
+        // throw new RuntimeException("Cannot end service because there are no riders to
+        // serve");
+        // }
 
-        // Looking for the target group...
-        if (!this.currentServingJobs.remove(endedJob)) {
-            throw new RuntimeException("Group not found in the current serving jobs");
-        }
+        // // Looking for the target group...
+        // if (!this.currentServingJobs.remove(endedJob)) {
+        // throw new RuntimeException("Group not found in the current serving jobs");
+        // }
 
         return;
     }
