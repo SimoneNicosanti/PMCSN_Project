@@ -3,21 +3,22 @@ package it.uniroma2.pmcsn.parks.engineering;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.model.RoutinNodeType;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
+import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
 
 public class Parameters {
 
-    private Map<RoutinNodeType, Double> routingProbabilities;
+    private Map<RoutingNodeType, Double> routingProbabilities;
 
-    public Parameters() {
-        this.routingProbabilities = new HashMap<>();
+    public Parameters(Map<RoutingNodeType, Double> routingProbabilities) {
+        this.routingProbabilities = routingProbabilities;
     }
 
-    public void setRoutingProbability(RoutinNodeType nodeType, Double probability) {
+    public void setRoutingProbability(RoutingNodeType nodeType, Double probability) {
         this.routingProbabilities.put(nodeType, probability);
     }
 
-    public Double getRoutingProbability(RoutinNodeType nodeType) {
+    public Double getRoutingProbability(RoutingNodeType nodeType) {
         return this.routingProbabilities.get(nodeType);
     }
 

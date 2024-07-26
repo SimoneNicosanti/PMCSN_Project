@@ -18,7 +18,7 @@ public abstract class StatsQueue<T> implements Queue<T> {
     private Map<T, Double> entranceTimeMap;
     protected QueueStats queueStats;
 
-    protected StatsQueue(String priorityName, Queue<T> queue, QueuePriority prio) {
+    protected StatsQueue(Queue<T> queue, QueuePriority prio) {
         this.queue = queue;
         this.entranceTimeMap = new HashMap<>();
         this.queueStats = new QueueStats(prio);

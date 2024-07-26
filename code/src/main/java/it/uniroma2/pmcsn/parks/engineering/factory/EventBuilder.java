@@ -1,6 +1,6 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -16,10 +16,10 @@ public class EventBuilder {
 
     public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
-        double interarrivalTime = RandomHandler.getInstance().getExponential(Config.ARRIVAL_STREAM,
+        double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 1);
 
-        int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Config.GROUP_SIZE_STREAM, 1, 10))
+        int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
                 .intValue();
         GroupPriority priority = computeGroupPriority();
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
@@ -35,8 +35,8 @@ public class EventBuilder {
     }
 
     private static GroupPriority computeGroupPriority() {
-        double groupPriorityProb = RandomHandler.getInstance().getRandom(Config.PRIORITY_STREAM);
-        if (groupPriorityProb < Config.PRIORITY_PASS_PROB) {
+        double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM);
+        if (groupPriorityProb < Constants.PRIORITY_PASS_PROB) {
             return GroupPriority.PRIORITY;
         } else {
             return GroupPriority.NORMAL;

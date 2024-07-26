@@ -14,7 +14,9 @@ public class ClockHandler {
 
     private ClockHandler() {
         this.clock = 0.0;
-        this.intervals = new ArrayList<>();
+
+        // Set to only one interval -> to use intervals use "setIntervals"
+        this.intervals = List.of(new Interval(0.0, Double.MAX_VALUE));
     }
 
     public static ClockHandler getInstance() {

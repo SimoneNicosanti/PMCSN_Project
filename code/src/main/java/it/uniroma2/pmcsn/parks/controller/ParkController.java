@@ -1,6 +1,6 @@
 package it.uniroma2.pmcsn.parks.controller;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
@@ -71,7 +71,7 @@ public class ParkController implements Controller<RiderGroup> {
             // Save stats for the ended interval time
             writeCenterStats(interval);
 
-            if (Config.INTERVAL_STATS)
+            if (Constants.INTERVAL_STATS)
                 // Reset stats for the next interval time
                 resetCenterStats();
 
@@ -107,7 +107,7 @@ public class ParkController implements Controller<RiderGroup> {
     }
 
     private void scheduleArrivalEvent() {
-        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Config.ENTRANCE);
+        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
         Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
     }

@@ -12,7 +12,7 @@ import org.apache.commons.csv.CSVFormat.Builder;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.FileUtils;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -23,7 +23,7 @@ import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 public class RiderStatisticsWriter {
 
     public static void resetStatistics(String statsCase) {
-        Path statisticsDirectory = Path.of(".", Config.DATA_PATH, statsCase);
+        Path statisticsDirectory = Path.of(".", Constants.DATA_PATH, statsCase);
 
         try {
             if (Files.exists(statisticsDirectory)) {
@@ -46,7 +46,7 @@ public class RiderStatisticsWriter {
         Double totalRidingTime = riderGroup.getGroupStats().getServiceTime();
         Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
 
-        Path filePath = Path.of(".", Config.DATA_PATH, statsFolder, fileName);
+        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName);
         String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "NumberRides" };
 
         // Writing the header
@@ -106,7 +106,7 @@ public class RiderStatisticsWriter {
             }
         }
 
-        Path filePath = Path.of(".", Config.DATA_PATH, statsFolder, fileName);
+        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName);
         String[] header = { "Center name", "Served Jobs", "Average Service Time", "Average Queue Time",
                 "Avg Queue Time Normal", "Avg Queue Time Prio" };
 
@@ -129,7 +129,8 @@ public class RiderStatisticsWriter {
                 CSVPrinter csvPrinter = new CSVPrinter(writer,
                         Builder.create(CSVFormat.DEFAULT).build())) {
 
-            csvPrinter.printRecord(name, servedJobs, avgServiceTime, avgQueueTime, avgQueueTimeNormal, avgQueueTimePrio);
+            csvPrinter.printRecord(name, servedJobs, avgServiceTime, avgQueueTime, avgQueueTimeNormal,
+                    avgQueueTimePrio);
 
         } catch (IOException e) {
             e.printStackTrace();

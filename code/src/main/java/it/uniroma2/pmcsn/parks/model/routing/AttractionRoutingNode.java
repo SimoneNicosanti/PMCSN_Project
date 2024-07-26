@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.model.routing;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -19,7 +19,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
     @Override
     public Attraction route(RiderGroup riderGroup) {
-        double routingProb = RandomHandler.getInstance().getRandom(Config.ATTRACTION_ROUTING_NODE);
+        double routingProb = RandomHandler.getInstance().getRandom(Constants.ATTRACTION_ROUTING_NODE);
 
         // Computing normalized probability array for each attraction
         AttractionRouterProbabilities probabilities = new AttractionRouterProbabilities(attractionList);
@@ -32,7 +32,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
     @Override
     public String getName() {
-        return Config.ATTRACTION_ROUTING_NODE;
+        return Constants.ATTRACTION_ROUTING_NODE;
     }
 
 }

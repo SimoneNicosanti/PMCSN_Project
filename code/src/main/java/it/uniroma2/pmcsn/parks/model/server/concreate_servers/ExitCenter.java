@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -22,7 +22,7 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public void arrival(RiderGroup job) {
         // TODO change filename for the different configuration
-        String filename = Config.JOB_STATS_FILENAME;
+        String filename = Constants.JOB_STATS_FILENAME;
         RiderStatisticsWriter.writeStatistics("General", filename, job);
         // EventLogger.logExit(ClockHandler.getInstance().getClock());
     }

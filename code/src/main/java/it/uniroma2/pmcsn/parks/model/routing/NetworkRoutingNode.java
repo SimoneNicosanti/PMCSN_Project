@@ -1,6 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.routing;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigManager;
@@ -26,7 +26,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
         double attractionProb = ConfigManager.getInstance().getProbability(attractionNode.getName());
         double restaurantProb = ConfigManager.getInstance().getProbability(restaurantNode.getName());
 
-        double routingProb = RandomHandler.getInstance().getRandom(Config.NETWORK_ROUTING_NODE);
+        double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE);
 
         if (routingProb <= attractionProb) {
             // Go to attractions
@@ -42,7 +42,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
 
     @Override
     public String getName() {
-        return Config.NETWORK_ROUTING_NODE;
+        return Constants.NETWORK_ROUTING_NODE;
     }
 
 }

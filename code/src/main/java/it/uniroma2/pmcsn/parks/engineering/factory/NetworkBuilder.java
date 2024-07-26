@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -25,10 +25,10 @@ public class NetworkBuilder {
 
     public void buildNetwork() {
         // Just for testing, delete once the system is live
-        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile("RestaurantsData.csv") ; // TestingUtils.createTestingRestaurants();
-        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile("AttractionsData.csv") ; // TestingUtils.createTestingAttractions();
+        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile("RestaurantsData.csv"); // TestingUtils.createTestingRestaurants();
+        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile("AttractionsData.csv"); // TestingUtils.createTestingAttractions();
 
-        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0) ; //TestingUtils.createTestingEntrance();
+        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0); // TestingUtils.createTestingEntrance();
         Center<RiderGroup> exitCenter = TestingUtils.createTestingExit();
 
         // Create the routing nodes
@@ -48,8 +48,8 @@ public class NetworkBuilder {
             this.centerMap.put(restaurant.getName(), restaurant);
         }
 
-        this.centerMap.put(Config.ENTRANCE, entranceCenter);
-        this.centerMap.put(Config.EXIT, exitCenter);
+        this.centerMap.put(Constants.ENTRANCE, entranceCenter);
+        this.centerMap.put(Constants.EXIT, exitCenter);
 
         entranceCenter.setNextRoutingNode(networkRoutingNode);
     }
