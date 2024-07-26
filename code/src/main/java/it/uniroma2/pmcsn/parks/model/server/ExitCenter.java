@@ -5,9 +5,7 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
 /**
@@ -26,7 +24,7 @@ public class ExitCenter implements Center<RiderGroup> {
         // TODO change filename for the different configuration
         String filename = Config.JOB_STATS_FILENAME;
         RiderStatisticsWriter.writeStatistics("General", filename, job);
-        EventLogger.logExit(ClockHandler.getInstance().getClock());
+        // EventLogger.logExit(ClockHandler.getInstance().getClock());
     }
 
     @Override

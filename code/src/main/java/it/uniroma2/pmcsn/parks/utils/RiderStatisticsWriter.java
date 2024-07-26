@@ -1,17 +1,15 @@
 package it.uniroma2.pmcsn.parks.utils;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.nio.file.Path;
 import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVFormat.Builder;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.SystemUtils;
 
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -23,7 +21,6 @@ public class RiderStatisticsWriter {
         Path statisticsDirectory = Path.of(".", Config.DATA_PATH, statsCase);
 
         try {
-            System.out.println(Files.exists(statisticsDirectory));
             if (Files.exists(statisticsDirectory)) {
                 FileUtils.deleteDirectory(statisticsDirectory.toFile());
             }
@@ -37,7 +34,7 @@ public class RiderStatisticsWriter {
 
     public static void writeStatistics(String statsFolder, String fileName, RiderGroup riderGroup) {
 
-        Integer groupId = riderGroup.getGroupId();
+        Long groupId = riderGroup.getGroupId();
         Integer groupSize = riderGroup.getGroupSize();
         String priority = riderGroup.getPriority().name();
         Double totalQueueTime = riderGroup.getGroupStats().getQueueTime();
@@ -60,7 +57,7 @@ public class RiderStatisticsWriter {
             }
         }
 
-        // Creating the file
+        // Writing the file
         try (
                 Writer writer = new FileWriter(filePath.toFile(), true);
                 CSVPrinter csvPrinter = new CSVPrinter(writer,

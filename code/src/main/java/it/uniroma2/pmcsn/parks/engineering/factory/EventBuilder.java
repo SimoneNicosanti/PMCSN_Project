@@ -12,7 +12,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class EventBuilder {
 
-    private static int riderGroupId = 0;
+    private static Long riderGroupId = 0L;
 
     public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
@@ -29,10 +29,6 @@ public class EventBuilder {
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
-
-        if (riderGroup.getGroupId() == 0) {
-            System.out.println(riderGroup.getPriority().toString());
-        }
 
         return arrivalEvent;
 

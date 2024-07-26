@@ -1,170 +1,86 @@
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
 Center Name >>> Stupid_Restaurant
-Group Id >>> 8
-Event Time >>> 15.488515650693326
-Simulation Clock >>> 15.488515650693326
+Group Id >>> 2
+Event Time >>> 32.393362062522236
+Simulation Clock >>> 32.393362062522236
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
-Group Id >>> 8
-Event Time >>> 36.24229541626283
-Simulation Clock >>> 15.488515650693326
+Group Id >>> 2
+Event Time >>> 84.27781147644599
+Simulation Clock >>> 32.393362062522236
 
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
 Center Name >>> Stupid_Restaurant
-Group Id >>> 23
-Event Time >>> 31.53259729951964
-Simulation Clock >>> 31.53259729951964
+Group Id >>> 13
+Event Time >>> 47.456256044364046
+Simulation Clock >>> 47.456256044364046
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
-Group Id >>> 23
-Event Time >>> 95.79025681314293
-Simulation Clock >>> 31.53259729951964
+Group Id >>> 13
+Event Time >>> 111.71391555798735
+Simulation Clock >>> 47.456256044364046
 
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
 Center Name >>> Stupid_Restaurant
-Group Id >>> 21
-Event Time >>> 37.06176466223712
-Simulation Clock >>> 37.06176466223712
+Group Id >>> 5
+Event Time >>> 72.4354853858483
+Simulation Clock >>> 72.4354853858483
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
-Group Id >>> 21
-Event Time >>> 118.54414677231611
-Simulation Clock >>> 37.06176466223712
+Group Id >>> 5
+Event Time >>> 121.3249146518957
+Simulation Clock >>> 72.4354853858483
 
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
 Center Name >>> Stupid_Restaurant
-Group Id >>> 33
-Event Time >>> 42.00630704501176
-Simulation Clock >>> 42.00630704501176
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 33
-Event Time >>> 110.85977554362427
-Simulation Clock >>> 42.00630704501176
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 3
-Event Time >>> 52.01716214820456
-Simulation Clock >>> 52.01716214820456
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 3
-Event Time >>> 183.57295519681165
-Simulation Clock >>> 52.01716214820456
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 11
-Event Time >>> 52.01716214820456
-Simulation Clock >>> 52.01716214820456
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 11
-Event Time >>> 96.86028680460387
-Simulation Clock >>> 52.01716214820456
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 47
-Event Time >>> 58.31003861595801
-Simulation Clock >>> 58.31003861595801
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 47
-Event Time >>> 136.39789992948351
-Simulation Clock >>> 58.31003861595801
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 24
-Event Time >>> 62.46694518722763
-Simulation Clock >>> 62.46694518722763
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 24
-Event Time >>> 94.1283312634309
-Simulation Clock >>> 62.46694518722763
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 60
-Event Time >>> 74.41640380865933
-Simulation Clock >>> 74.41640380865933
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 60
-Event Time >>> 194.8691836430289
-Simulation Clock >>> 74.41640380865933
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 61
-Event Time >>> 74.6677024618676
-Simulation Clock >>> 74.6677024618676
-
-Simulation Type >> Schedule 
-Event Type >> END_PROCESS
-Center Name >>> Stupid_Restaurant
-Group Id >>> 61
-Event Time >>> 86.4605230010966
-Simulation Clock >>> 74.6677024618676
-
-Simulation Type >> Schedule 
-Event Type >> ARRIVAL
-Center Name >>> Stupid_Restaurant
-Group Id >>> 32
+Group Id >>> 36
 Event Time >>> 85.32358322919399
 Simulation Clock >>> 85.32358322919399
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
-Group Id >>> 32
-Event Time >>> 130.284579721476
+Group Id >>> 36
+Event Time >>> 102.53695035384712
 Simulation Clock >>> 85.32358322919399
 
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
 Center Name >>> Stupid_Restaurant
-Group Id >>> 49
-Event Time >>> 87.78084992938561
-Simulation Clock >>> 87.78084992938561
+Group Id >>> 81
+Event Time >>> 95.9174374006852
+Simulation Clock >>> 95.9174374006852
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
-Group Id >>> 49
-Event Time >>> 141.97710913843187
-Simulation Clock >>> 87.78084992938561
+Group Id >>> 81
+Event Time >>> 112.36191153176108
+Simulation Clock >>> 95.9174374006852
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 67
+Event Time >>> 97.61760744579803
+Simulation Clock >>> 97.61760744579803
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 67
+Event Time >>> 108.82838860989786
+Simulation Clock >>> 97.61760744579803
 
 Simulation Type >> Schedule 
 Event Type >> ARRIVAL
@@ -177,6 +93,2127 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Stupid_Restaurant
 Group Id >>> 82
-Event Time >>> 243.1011716968944
+Event Time >>> 240.77448244504373
 Simulation Clock >>> 100.21633208069778
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 61
+Event Time >>> 102.61066076775424
+Simulation Clock >>> 102.61066076775424
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 61
+Event Time >>> 118.44135380585587
+Simulation Clock >>> 102.61066076775424
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 88
+Event Time >>> 105.21591446734968
+Simulation Clock >>> 105.21591446734968
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 88
+Event Time >>> 158.75048328262505
+Simulation Clock >>> 105.21591446734968
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 16
+Event Time >>> 114.95829244591101
+Simulation Clock >>> 114.95829244591101
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 16
+Event Time >>> 185.71521568128503
+Simulation Clock >>> 114.95829244591101
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 141
+Event Time >>> 149.69849395613642
+Simulation Clock >>> 149.69849395613642
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 141
+Event Time >>> 160.93874307920692
+Simulation Clock >>> 149.69849395613642
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 128
+Event Time >>> 158.01219423074693
+Simulation Clock >>> 158.01219423074693
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 128
+Event Time >>> 320.6009718578857
+Simulation Clock >>> 158.01219423074693
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 153
+Event Time >>> 168.51911427414473
+Simulation Clock >>> 168.51911427414473
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 153
+Event Time >>> 295.52786059965285
+Simulation Clock >>> 168.51911427414473
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 53
+Event Time >>> 172.29386743014243
+Simulation Clock >>> 172.29386743014243
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 53
+Event Time >>> 246.79004155630565
+Simulation Clock >>> 172.29386743014243
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 135
+Event Time >>> 172.29386743014243
+Simulation Clock >>> 172.29386743014243
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 135
+Event Time >>> 227.11511145426513
+Simulation Clock >>> 172.29386743014243
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 163
+Event Time >>> 177.35636505460047
+Simulation Clock >>> 177.35636505460047
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 163
+Event Time >>> 207.86448042559496
+Simulation Clock >>> 177.35636505460047
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 140
+Event Time >>> 177.35636505460047
+Simulation Clock >>> 177.35636505460047
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 140
+Event Time >>> 326.3046581542219
+Simulation Clock >>> 177.35636505460047
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 174
+Event Time >>> 187.6306792180696
+Simulation Clock >>> 187.6306792180696
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 174
+Event Time >>> 310.686891044953
+Simulation Clock >>> 187.6306792180696
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 178
+Event Time >>> 191.44793766791446
+Simulation Clock >>> 191.44793766791446
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 178
+Event Time >>> 270.44862234693494
+Simulation Clock >>> 191.44793766791446
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 173
+Event Time >>> 192.12873900250787
+Simulation Clock >>> 192.12873900250787
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 173
+Event Time >>> 284.1788800017888
+Simulation Clock >>> 192.12873900250787
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 166
+Event Time >>> 202.53901834141266
+Simulation Clock >>> 202.53901834141266
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 166
+Event Time >>> 244.4239593725841
+Simulation Clock >>> 202.53901834141266
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 171
+Event Time >>> 202.53901834141266
+Simulation Clock >>> 202.53901834141266
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 171
+Event Time >>> 270.52753401833786
+Simulation Clock >>> 202.53901834141266
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 195
+Event Time >>> 208.49340950996543
+Simulation Clock >>> 208.49340950996543
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 195
+Event Time >>> 318.9537707943837
+Simulation Clock >>> 208.49340950996543
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 200
+Event Time >>> 218.12910516850923
+Simulation Clock >>> 218.12910516850923
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 200
+Event Time >>> 326.27844539489377
+Simulation Clock >>> 218.12910516850923
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 175
+Event Time >>> 223.11723375913408
+Simulation Clock >>> 223.11723375913408
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 175
+Event Time >>> 288.00727142934875
+Simulation Clock >>> 223.11723375913408
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 88
+Event Time >>> 228.07243181075398
+Simulation Clock >>> 228.07243181075398
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 88
+Event Time >>> 273.67913495693165
+Simulation Clock >>> 228.07243181075398
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 53
+Event Time >>> 246.79004155630565
+Simulation Clock >>> 246.79004155630565
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 53
+Event Time >>> 298.249502984279
+Simulation Clock >>> 246.79004155630565
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 230
+Event Time >>> 264.03194907244705
+Simulation Clock >>> 264.03194907244705
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 230
+Event Time >>> 363.6945387731825
+Simulation Clock >>> 264.03194907244705
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 217
+Event Time >>> 274.50904802983905
+Simulation Clock >>> 274.50904802983905
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 217
+Event Time >>> 337.3764922306842
+Simulation Clock >>> 274.50904802983905
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 144
+Event Time >>> 274.50904802983905
+Simulation Clock >>> 274.50904802983905
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 144
+Event Time >>> 289.3888518293415
+Simulation Clock >>> 274.50904802983905
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 262
+Event Time >>> 279.339093006894
+Simulation Clock >>> 279.339093006894
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 262
+Event Time >>> 318.3667103566619
+Simulation Clock >>> 279.339093006894
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 215
+Event Time >>> 284.4401804264901
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 215
+Event Time >>> 301.81254397492364
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 271
+Event Time >>> 284.4401804264901
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 271
+Event Time >>> 307.1618733009225
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 97
+Event Time >>> 284.4401804264901
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 97
+Event Time >>> 439.78714733170534
+Simulation Clock >>> 284.4401804264901
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 164
+Event Time >>> 289.0310117486622
+Simulation Clock >>> 289.0310117486622
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 164
+Event Time >>> 331.570817366097
+Simulation Clock >>> 289.0310117486622
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 284
+Event Time >>> 289.5231690468076
+Simulation Clock >>> 289.5231690468076
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 284
+Event Time >>> 348.48012824268824
+Simulation Clock >>> 289.5231690468076
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 292
+Event Time >>> 298.6836940076744
+Simulation Clock >>> 298.6836940076744
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 292
+Event Time >>> 435.68994562268375
+Simulation Clock >>> 298.6836940076744
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 273
+Event Time >>> 299.2550727167968
+Simulation Clock >>> 299.2550727167968
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 273
+Event Time >>> 410.83385380541483
+Simulation Clock >>> 299.2550727167968
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 283
+Event Time >>> 299.2550727167968
+Simulation Clock >>> 299.2550727167968
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 283
+Event Time >>> 478.26796573558124
+Simulation Clock >>> 299.2550727167968
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 295
+Event Time >>> 303.5665585670964
+Simulation Clock >>> 303.5665585670964
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 295
+Event Time >>> 429.2189227827481
+Simulation Clock >>> 303.5665585670964
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 153
+Event Time >>> 314.0979635295062
+Simulation Clock >>> 314.0979635295062
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 153
+Event Time >>> 399.37101725255513
+Simulation Clock >>> 314.0979635295062
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 31
+Event Time >>> 318.8791774390248
+Simulation Clock >>> 318.8791774390248
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 31
+Event Time >>> 369.72027692424007
+Simulation Clock >>> 318.8791774390248
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 309
+Event Time >>> 318.9567183870761
+Simulation Clock >>> 318.9567183870761
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 309
+Event Time >>> 339.4322189392812
+Simulation Clock >>> 318.9567183870761
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 291
+Event Time >>> 323.8558038084176
+Simulation Clock >>> 323.8558038084176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 291
+Event Time >>> 471.84800353202274
+Simulation Clock >>> 323.8558038084176
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 307
+Event Time >>> 339.17818589429146
+Simulation Clock >>> 339.17818589429146
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 307
+Event Time >>> 446.82675799072894
+Simulation Clock >>> 339.17818589429146
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 329
+Event Time >>> 343.908549166326
+Simulation Clock >>> 343.908549166326
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 329
+Event Time >>> 376.0203827331778
+Simulation Clock >>> 343.908549166326
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 214
+Event Time >>> 348.97397261582825
+Simulation Clock >>> 348.97397261582825
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 214
+Event Time >>> 429.82225396248475
+Simulation Clock >>> 348.97397261582825
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 164
+Event Time >>> 348.97397261582825
+Simulation Clock >>> 348.97397261582825
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 164
+Event Time >>> 404.24480428703214
+Simulation Clock >>> 348.97397261582825
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 159
+Event Time >>> 359.1148551191352
+Simulation Clock >>> 359.1148551191352
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 159
+Event Time >>> 439.6408562561301
+Simulation Clock >>> 359.1148551191352
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 345
+Event Time >>> 363.8652767866304
+Simulation Clock >>> 363.8652767866304
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 345
+Event Time >>> 462.7065142212082
+Simulation Clock >>> 363.8652767866304
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 337
+Event Time >>> 369.49191996995773
+Simulation Clock >>> 369.49191996995773
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 337
+Event Time >>> 474.8641244736412
+Simulation Clock >>> 369.49191996995773
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 353
+Event Time >>> 379.96587001536176
+Simulation Clock >>> 379.96587001536176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 353
+Event Time >>> 414.973126003095
+Simulation Clock >>> 379.96587001536176
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 351
+Event Time >>> 389.32320369800567
+Simulation Clock >>> 389.32320369800567
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 351
+Event Time >>> 509.87858499656227
+Simulation Clock >>> 399.37101725255513
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 361
+Event Time >>> 413.22752562437427
+Simulation Clock >>> 413.22752562437427
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 361
+Event Time >>> 448.6288111085286
+Simulation Clock >>> 413.22752562437427
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 377
+Event Time >>> 423.06147039759844
+Simulation Clock >>> 423.06147039759844
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 377
+Event Time >>> 496.99694455210783
+Simulation Clock >>> 423.06147039759844
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 354
+Event Time >>> 428.3192071134394
+Simulation Clock >>> 428.3192071134394
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 354
+Event Time >>> 457.95566327407624
+Simulation Clock >>> 428.3192071134394
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 419
+Event Time >>> 433.8493314164782
+Simulation Clock >>> 433.8493314164782
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 419
+Event Time >>> 465.91232656719285
+Simulation Clock >>> 433.8493314164782
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 171
+Event Time >>> 438.66731282034164
+Simulation Clock >>> 438.66731282034164
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 171
+Event Time >>> 495.78587301583167
+Simulation Clock >>> 438.66731282034164
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 353
+Event Time >>> 443.9387953530792
+Simulation Clock >>> 443.9387953530792
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 353
+Event Time >>> 481.4531927281387
+Simulation Clock >>> 443.9387953530792
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 442
+Event Time >>> 459.58892227746975
+Simulation Clock >>> 459.58892227746975
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 442
+Event Time >>> 593.6988691039938
+Simulation Clock >>> 459.58892227746975
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 426
+Event Time >>> 463.55297062647065
+Simulation Clock >>> 463.55297062647065
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 426
+Event Time >>> 541.7614818924937
+Simulation Clock >>> 463.55297062647065
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 437
+Event Time >>> 468.52675500774933
+Simulation Clock >>> 468.52675500774933
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 437
+Event Time >>> 500.0504161096958
+Simulation Clock >>> 468.52675500774933
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 448
+Event Time >>> 482.2507922299522
+Simulation Clock >>> 482.2507922299522
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 448
+Event Time >>> 547.1108616393655
+Simulation Clock >>> 482.2507922299522
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 483
+Event Time >>> 499.22033684254757
+Simulation Clock >>> 499.22033684254757
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 483
+Event Time >>> 589.8360295263299
+Simulation Clock >>> 499.22033684254757
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 437
+Event Time >>> 516.0600016783816
+Simulation Clock >>> 516.0600016783816
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 437
+Event Time >>> 571.1107711057308
+Simulation Clock >>> 516.0600016783816
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 502
+Event Time >>> 516.2982251045788
+Simulation Clock >>> 516.2982251045788
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 502
+Event Time >>> 592.4499377280742
+Simulation Clock >>> 516.2982251045788
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 512
+Event Time >>> 529.5648672574052
+Simulation Clock >>> 529.5648672574052
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 512
+Event Time >>> 612.7489257574791
+Simulation Clock >>> 529.5648672574052
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 324
+Event Time >>> 541.5063582375287
+Simulation Clock >>> 541.5063582375287
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 324
+Event Time >>> 600.3502867705967
+Simulation Clock >>> 541.5063582375287
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 478
+Event Time >>> 541.5063582375287
+Simulation Clock >>> 541.5063582375287
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 478
+Event Time >>> 652.0547976781015
+Simulation Clock >>> 541.5063582375287
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 511
+Event Time >>> 546.5001284007992
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 511
+Event Time >>> 557.1201677160509
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 364
+Event Time >>> 546.5001284007992
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 364
+Event Time >>> 566.4179149132848
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 518
+Event Time >>> 546.5001284007992
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 518
+Event Time >>> 626.809337749577
+Simulation Clock >>> 546.5001284007992
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 532
+Event Time >>> 551.7766888471031
+Simulation Clock >>> 551.7766888471031
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 532
+Event Time >>> 627.6211637037724
+Simulation Clock >>> 551.7766888471031
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 192
+Event Time >>> 565.6288547510028
+Simulation Clock >>> 565.6288547510028
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 192
+Event Time >>> 628.9472878109962
+Simulation Clock >>> 565.6288547510028
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 506
+Event Time >>> 567.2531215731846
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 506
+Event Time >>> 604.8860171497812
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 510
+Event Time >>> 567.2531215731846
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 510
+Event Time >>> 717.2626331659869
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 511
+Event Time >>> 567.2531215731846
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 511
+Event Time >>> 585.8948835935498
+Simulation Clock >>> 567.2531215731846
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 547
+Event Time >>> 567.4493505122883
+Simulation Clock >>> 567.4493505122883
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 547
+Event Time >>> 715.8997159599373
+Simulation Clock >>> 567.4493505122883
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 455
+Event Time >>> 572.5131038418644
+Simulation Clock >>> 572.5131038418644
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 455
+Event Time >>> 664.2401194841866
+Simulation Clock >>> 572.5131038418644
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 200
+Event Time >>> 572.641025972207
+Simulation Clock >>> 572.641025972207
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 200
+Event Time >>> 744.7991317703463
+Simulation Clock >>> 572.641025972207
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 399
+Event Time >>> 584.3682657966883
+Simulation Clock >>> 584.3682657966883
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 399
+Event Time >>> 594.8043749057417
+Simulation Clock >>> 584.3682657966883
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 556
+Event Time >>> 601.7745115623768
+Simulation Clock >>> 601.7745115623768
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 556
+Event Time >>> 670.3113302737139
+Simulation Clock >>> 601.7745115623768
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 582
+Event Time >>> 606.5292721440298
+Simulation Clock >>> 606.5292721440298
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 582
+Event Time >>> 647.0466154455968
+Simulation Clock >>> 606.5292721440298
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 575
+Event Time >>> 611.5773091154146
+Simulation Clock >>> 611.5773091154146
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 575
+Event Time >>> 637.9165640843722
+Simulation Clock >>> 611.5773091154146
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 565
+Event Time >>> 621.1710089798029
+Simulation Clock >>> 621.1710089798029
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 565
+Event Time >>> 709.8774351945585
+Simulation Clock >>> 621.1710089798029
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 512
+Event Time >>> 621.1710089798029
+Simulation Clock >>> 621.1710089798029
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 512
+Event Time >>> 702.095868334506
+Simulation Clock >>> 621.1710089798029
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 242
+Event Time >>> 625.8561087129511
+Simulation Clock >>> 625.8561087129511
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 242
+Event Time >>> 653.8180790049652
+Simulation Clock >>> 625.8561087129511
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 580
+Event Time >>> 652.588618978488
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 580
+Event Time >>> 765.5264993152317
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 595
+Event Time >>> 652.588618978488
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 595
+Event Time >>> 666.0774382579579
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 606
+Event Time >>> 652.588618978488
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 606
+Event Time >>> 690.1794975645822
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 625
+Event Time >>> 652.588618978488
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 625
+Event Time >>> 725.8391923738903
+Simulation Clock >>> 652.588618978488
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 111
+Event Time >>> 662.6975639380115
+Simulation Clock >>> 662.6975639380115
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 111
+Event Time >>> 803.8686289859402
+Simulation Clock >>> 662.6975639380115
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 653
+Event Time >>> 671.5639180297297
+Simulation Clock >>> 671.5639180297297
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 653
+Event Time >>> 711.0575608839982
+Simulation Clock >>> 671.5639180297297
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 629
+Event Time >>> 673.5336681050949
+Simulation Clock >>> 673.5336681050949
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 629
+Event Time >>> 800.5582504906575
+Simulation Clock >>> 673.5336681050949
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 657
+Event Time >>> 674.8293628884754
+Simulation Clock >>> 674.8293628884754
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 657
+Event Time >>> 716.6375296353675
+Simulation Clock >>> 674.8293628884754
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 658
+Event Time >>> 676.8300443258429
+Simulation Clock >>> 676.8300443258429
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 658
+Event Time >>> 771.3683825914753
+Simulation Clock >>> 676.8300443258429
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 664
+Event Time >>> 686.1912065511019
+Simulation Clock >>> 686.1912065511019
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 664
+Event Time >>> 741.8169956307428
+Simulation Clock >>> 686.1912065511019
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 621
+Event Time >>> 689.3094434572505
+Simulation Clock >>> 689.3094434572505
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 621
+Event Time >>> 714.2953087954837
+Simulation Clock >>> 689.3094434572505
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 652
+Event Time >>> 689.3094434572505
+Simulation Clock >>> 689.3094434572505
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 674
+Event Time >>> 697.6844636178654
+Simulation Clock >>> 697.6844636178654
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 649
+Event Time >>> 699.4766461539981
+Simulation Clock >>> 699.4766461539981
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 652
+Event Time >>> 849.2717066890973
+Simulation Clock >>> 702.095868334506
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 674
+Event Time >>> 779.8261858776411
+Simulation Clock >>> 702.095868334506
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 704.268144301085
+Simulation Clock >>> 704.268144301085
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 654
+Event Time >>> 704.268144301085
+Simulation Clock >>> 704.268144301085
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 649
+Event Time >>> 729.9564975335138
+Simulation Clock >>> 709.8774351945585
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 819.1319263231701
+Simulation Clock >>> 709.8774351945585
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 654
+Event Time >>> 800.6214082411173
+Simulation Clock >>> 715.8997159599373
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 410
+Event Time >>> 725.0747105207718
+Simulation Clock >>> 725.0747105207718
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 410
+Event Time >>> 765.4787629386852
+Simulation Clock >>> 725.0747105207718
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 710
+Event Time >>> 727.7434991925776
+Simulation Clock >>> 727.7434991925776
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 710
+Event Time >>> 871.7755956707492
+Simulation Clock >>> 727.7434991925776
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 718
+Event Time >>> 728.2630279378502
+Simulation Clock >>> 728.2630279378502
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 718
+Event Time >>> 782.706060546424
+Simulation Clock >>> 728.2630279378502
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 703
+Event Time >>> 746.016091046218
+Simulation Clock >>> 746.016091046218
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 703
+Event Time >>> 828.7278384898528
+Simulation Clock >>> 746.016091046218
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 724
+Event Time >>> 750.8125366498384
+Simulation Clock >>> 750.8125366498384
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 724
+Event Time >>> 845.3255586900942
+Simulation Clock >>> 750.8125366498384
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 695
+Event Time >>> 756.0382690134712
+Simulation Clock >>> 756.0382690134712
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 695
+Event Time >>> 834.1251742033015
+Simulation Clock >>> 756.0382690134712
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 745
+Event Time >>> 756.8987717655605
+Simulation Clock >>> 756.8987717655605
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 745
+Event Time >>> 781.2322445316979
+Simulation Clock >>> 756.8987717655605
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 719
+Event Time >>> 761.3651939302131
+Simulation Clock >>> 761.3651939302131
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 719
+Event Time >>> 828.670445599261
+Simulation Clock >>> 765.4787629386852
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 747
+Event Time >>> 766.3578499769671
+Simulation Clock >>> 766.3578499769671
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 747
+Event Time >>> 924.9284129592332
+Simulation Clock >>> 766.3578499769671
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 739
+Event Time >>> 766.3578499769671
+Simulation Clock >>> 766.3578499769671
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 761
+Event Time >>> 770.3502511670962
+Simulation Clock >>> 770.3502511670962
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 739
+Event Time >>> 800.1785419174522
+Simulation Clock >>> 771.3683825914753
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 761
+Event Time >>> 859.3704431724749
+Simulation Clock >>> 771.3683825914753
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 767
+Event Time >>> 775.4441741191725
+Simulation Clock >>> 775.4441741191725
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 767
+Event Time >>> 814.4306962922096
+Simulation Clock >>> 775.4441741191725
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 705
+Event Time >>> 775.9443081317286
+Simulation Clock >>> 775.9443081317286
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 769
+Event Time >>> 776.9126660479188
+Simulation Clock >>> 776.9126660479188
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 705
+Event Time >>> 896.4676885480965
+Simulation Clock >>> 781.2322445316979
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 769
+Event Time >>> 837.7651183349093
+Simulation Clock >>> 782.706060546424
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 775
+Event Time >>> 795.6009768672368
+Simulation Clock >>> 795.6009768672368
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 775
+Event Time >>> 874.9295944508847
+Simulation Clock >>> 800.5582504906575
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 111
+Event Time >>> 803.8686289859402
+Simulation Clock >>> 803.8686289859402
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 111
+Event Time >>> 936.9433132654801
+Simulation Clock >>> 803.8686289859402
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 819.1319263231701
+Simulation Clock >>> 819.1319263231701
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 931.1884981048318
+Simulation Clock >>> 819.1319263231701
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 744
+Event Time >>> 820.5294889433522
+Simulation Clock >>> 820.5294889433522
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 744
+Event Time >>> 848.1216464728293
+Simulation Clock >>> 820.5294889433522
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 461
+Event Time >>> 834.7075244259665
+Simulation Clock >>> 834.7075244259665
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 461
+Event Time >>> 897.8158405937404
+Simulation Clock >>> 834.7075244259665
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 814
+Event Time >>> 834.7075244259665
+Simulation Clock >>> 834.7075244259665
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 814
+Event Time >>> 987.002126341508
+Simulation Clock >>> 834.7075244259665
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 791
+Event Time >>> 839.9932104931722
+Simulation Clock >>> 839.9932104931722
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 791
+Event Time >>> 949.0857128026904
+Simulation Clock >>> 839.9932104931722
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 724
+Event Time >>> 845.3255586900942
+Simulation Clock >>> 845.3255586900942
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 724
+Event Time >>> 908.4597957537397
+Simulation Clock >>> 845.3255586900942
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 819
+Event Time >>> 845.3453605798825
+Simulation Clock >>> 845.3453605798825
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 819
+Event Time >>> 953.5622096835534
+Simulation Clock >>> 845.3453605798825
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 838
+Event Time >>> 850.9334442819601
+Simulation Clock >>> 850.9334442819601
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 838
+Event Time >>> 940.592789496988
+Simulation Clock >>> 850.9334442819601
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 825
+Event Time >>> 854.6730992436824
+Simulation Clock >>> 854.6730992436824
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 825
+Event Time >>> 1027.9282735402435
+Simulation Clock >>> 854.6730992436824
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 821
+Event Time >>> 864.6007861719544
+Simulation Clock >>> 864.6007861719544
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 821
+Event Time >>> 893.6048904625795
+Simulation Clock >>> 864.6007861719544
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 823
+Event Time >>> 869.630951082216
+Simulation Clock >>> 869.630951082216
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 823
+Event Time >>> 888.1900574650177
+Simulation Clock >>> 869.630951082216
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 710
+Event Time >>> 871.7755956707492
+Simulation Clock >>> 871.7755956707492
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 710
+Event Time >>> 1021.3934336639994
+Simulation Clock >>> 871.7755956707492
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 836
+Event Time >>> 874.7213343197187
+Simulation Clock >>> 874.7213343197187
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 836
+Event Time >>> 925.6072583790976
+Simulation Clock >>> 874.7213343197187
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 842
+Event Time >>> 874.7213343197187
+Simulation Clock >>> 874.7213343197187
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 842
+Event Time >>> 932.3300449140122
+Simulation Clock >>> 874.9295944508847
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 870
+Event Time >>> 894.357632549031
+Simulation Clock >>> 894.357632549031
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 853
+Event Time >>> 895.2355197970062
+Simulation Clock >>> 895.2355197970062
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 775
+Event Time >>> 895.2355197970062
+Simulation Clock >>> 895.2355197970062
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 870
+Event Time >>> 973.611994178285
+Simulation Clock >>> 896.4676885480965
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 853
+Event Time >>> 997.1483303931377
+Simulation Clock >>> 897.8158405937404
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 775
+Event Time >>> 963.5592450649364
+Simulation Clock >>> 897.8158405937404
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 861
+Event Time >>> 905.3024361049374
+Simulation Clock >>> 905.3024361049374
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 869
+Event Time >>> 905.3024361049374
+Simulation Clock >>> 905.3024361049374
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 583
+Event Time >>> 913.1758378291565
+Simulation Clock >>> 913.1758378291565
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 812
+Event Time >>> 914.8437725684881
+Simulation Clock >>> 914.8437725684881
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 874
+Event Time >>> 914.8437725684881
+Simulation Clock >>> 914.8437725684881
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 892
+Event Time >>> 915.2263055777805
+Simulation Clock >>> 915.2263055777805
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 865
+Event Time >>> 924.591605319738
+Simulation Clock >>> 924.591605319738
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 891
+Event Time >>> 924.591605319738
+Simulation Clock >>> 924.591605319738
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 861
+Event Time >>> 1059.6521784343145
+Simulation Clock >>> 924.9284129592332
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 869
+Event Time >>> 1033.0590340619324
+Simulation Clock >>> 925.6072583790976
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 373
+Event Time >>> 929.462033749827
+Simulation Clock >>> 929.462033749827
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 583
+Event Time >>> 962.9374928993891
+Simulation Clock >>> 931.1884981048318
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 812
+Event Time >>> 1039.5132291452633
+Simulation Clock >>> 932.3300449140122
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 854
+Event Time >>> 934.9127825757155
+Simulation Clock >>> 934.9127825757155
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 874
+Event Time >>> 959.0513192036506
+Simulation Clock >>> 936.9433132654801
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 892
+Event Time >>> 954.7206339791126
+Simulation Clock >>> 936.9433132654801
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 906
+Event Time >>> 940.0093570394092
+Simulation Clock >>> 940.0093570394092
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 865
+Event Time >>> 1073.9299637520803
+Simulation Clock >>> 940.592789496988
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 555
+Event Time >>> 941.8850789170112
+Simulation Clock >>> 941.8850789170112
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 823
+Event Time >>> 944.755293997643
+Simulation Clock >>> 944.755293997643
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 913
+Event Time >>> 944.755293997643
+Simulation Clock >>> 944.755293997643
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 929
+Event Time >>> 946.4959800125865
+Simulation Clock >>> 946.4959800125865
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 891
+Event Time >>> 1047.82418036039
+Simulation Clock >>> 949.0857128026904
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 949.8782049012341
+Simulation Clock >>> 949.8782049012341
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 525
+Event Time >>> 949.8782049012341
+Simulation Clock >>> 949.8782049012341
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 373
+Event Time >>> 1100.8632524653708
+Simulation Clock >>> 953.5622096835534
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 854
+Event Time >>> 964.5217786948838
+Simulation Clock >>> 953.5622096835534
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 906
+Event Time >>> 992.2737015434027
+Simulation Clock >>> 953.5622096835534
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 896
+Event Time >>> 954.910432149901
+Simulation Clock >>> 954.910432149901
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 555
+Event Time >>> 992.6866693824079
+Simulation Clock >>> 959.0513192036506
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 146
+Event Time >>> 959.5519525504985
+Simulation Clock >>> 959.5519525504985
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 933
+Event Time >>> 960.6854475406394
+Simulation Clock >>> 960.6854475406394
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 823
+Event Time >>> 976.9336524985499
+Simulation Clock >>> 962.9374928993891
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 913
+Event Time >>> 1038.039289438471
+Simulation Clock >>> 963.5592450649364
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 929
+Event Time >>> 980.1147337875939
+Simulation Clock >>> 963.5592450649364
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 590
+Event Time >>> 969.0015126295002
+Simulation Clock >>> 969.0015126295002
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 939
+Event Time >>> 969.0015126295002
+Simulation Clock >>> 969.0015126295002
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 218
+Event Time >>> 1093.5887825929165
+Simulation Clock >>> 973.611994178285
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 935
+Event Time >>> 974.0977832790061
+Simulation Clock >>> 974.0977832790061
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 525
+Event Time >>> 1003.4515067227502
+Simulation Clock >>> 976.9336524985499
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 896
+Event Time >>> 1033.6846390861556
+Simulation Clock >>> 987.002126341508
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 146
+Event Time >>> 999.895300563663
+Simulation Clock >>> 987.002126341508
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Stupid_Restaurant
+Group Id >>> 545
+Event Time >>> 989.0140514751569
+Simulation Clock >>> 989.0140514751569
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 933
+Event Time >>> 1107.163845081711
+Simulation Clock >>> 992.2737015434027
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Stupid_Restaurant
+Group Id >>> 590
+Event Time >>> 1125.2840306041298
+Simulation Clock >>> 997.1483303931377
 

@@ -50,8 +50,8 @@ public class TestingUtils {
 
     public static void initTestingProbabilities() {
         ProbabilityManager.getInstance().changeProbabilities(List.of(
-                Pair.of(Config.ATTRACTION_ROUTING_NODE, 0.7),
-                Pair.of(Config.RESTAURANT_ROUTING_NODE, 0.2),
+                Pair.of(Config.ATTRACTION_ROUTING_NODE, 0.8),
+                Pair.of(Config.RESTAURANT_ROUTING_NODE, 0.1),
                 Pair.of("Stupid_Restaurant", 0.4),
                 Pair.of("Smart_Restaurant", 0.6)));
     }

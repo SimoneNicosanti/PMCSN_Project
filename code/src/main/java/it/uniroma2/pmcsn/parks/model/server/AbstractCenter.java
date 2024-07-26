@@ -39,13 +39,13 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected void commonArrivalManagement(RiderGroup job) {
         int jobSize = job.getGroupSize();
 
+        // Check before adding the job in the queue, otherwise the queue is never empty
+        boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
+        this.queueManager.addToQueues(job);
+
         // If job arrives and can be served immediately, we schedule the new job
-        if (this.isQueueEmptyAndCanServe(jobSize)) {
-            this.queueManager.addToQueues(job);
+        if (mustServe) {
             this.startService();
-        } else {
-            // If job cannot be served immediately, we add it to queue
-            this.queueManager.addToQueues(job);
         }
     }
 

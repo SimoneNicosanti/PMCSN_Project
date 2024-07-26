@@ -75,6 +75,7 @@ public class Restaurant extends StatsCenter {
 
     @Override
     protected Double getNewServiceTime(RiderGroup group) {
+        // TODO Choose distribution
         return group.getGroupSize() * RandomHandler.getInstance().getUniform(this.name, 10, 20);
     }
 
@@ -86,6 +87,6 @@ public class Restaurant extends StatsCenter {
     protected void terminateService(RiderGroup endedJob) {
         this.currentServingJobs.remove(endedJob);
 
-        this.doStartService();
+        this.startService();
     }
 }

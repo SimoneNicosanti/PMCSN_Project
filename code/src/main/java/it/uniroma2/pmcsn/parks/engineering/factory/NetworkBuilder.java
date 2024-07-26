@@ -4,12 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import it.uniroma2.pmcsn.parks.engineering.Config;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
@@ -40,9 +37,7 @@ public class NetworkBuilder {
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
                 restaurantsRoutingNode, exitCenter);
 
-        ProbabilityManager.getInstance().changeProbabilities(List.of(
-                Pair.of(attractionRoutingNode.getName(), 0.7),
-                Pair.of(restaurantsRoutingNode.getName(), 0.2)));
+        TestingUtils.initTestingProbabilities();
 
         for (Attraction attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);

@@ -18,7 +18,8 @@ public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
     public List<Double> compute(RiderGroup job) {
         ProbabilityManager manager = ProbabilityManager.getInstance();
 
-        // TODO different routing for restaurant? Based on queue occupation?
+        // TODO different routing for restaurant? Based on queue occupation or
+        // popularity?
         for (Restaurant restaurant : restaurants) {
             Double restProb = restaurant.getPopularity();
             this.probabilities.add(restProb);

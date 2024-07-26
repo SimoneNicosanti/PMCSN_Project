@@ -54,6 +54,9 @@ public abstract class StatsQueue<T> implements Queue<T> {
 
         this.retrieveStats(item, entranceTime, waitingTime);
 
+        // Item is not in the map anymore
+        entranceTimeMap.remove(item);
+
         return item;
     }
 

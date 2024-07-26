@@ -21,7 +21,7 @@ import it.uniroma2.pmcsn.parks.utils.EventLogger;
 public abstract class StatsCenter extends AbstractCenter {
 
     private CenterStats stats;
-    private Map<RiderGroup, Double> startServingTimeMap;
+    private Map<Long, Double> startServingTimeMap;
     private List<StatsQueue<RiderGroup>> queues;
 
     public StatsCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
@@ -76,7 +76,7 @@ public abstract class StatsCenter extends AbstractCenter {
 
         // Collect data
         for (RiderGroup group : servingGroups) {
-            startServingTimeMap.put(group, ClockHandler.getInstance().getClock());
+            startServingTimeMap.put(group.getGroupId(), ClockHandler.getInstance().getClock());
         }
 
         return servingGroups;
@@ -84,9 +84,8 @@ public abstract class StatsCenter extends AbstractCenter {
 
     @Override
     public void endService(RiderGroup endedJob) {
-        double servingTime = ClockHandler.getInstance().getClock() - startServingTimeMap.get(endedJob);
 
-        this.collectEndServiceStats(endedJob, servingTime);
+        this.collectEndServiceStats(endedJob);
         this.commonEndManagement(endedJob);
         this.doEndService(endedJob);
 
@@ -94,18 +93,27 @@ public abstract class StatsCenter extends AbstractCenter {
     }
 
     // Method useful for collecting new stats
-    protected void collectEndServiceStats(RiderGroup endedJob, double serviceTime) {
+    protected void collectEndServiceStats(RiderGroup endedJob) {
+        double serviceTime = ClockHandler.getInstance().getClock() - startServingTimeMap.get(endedJob.getGroupId());
+
         if (this instanceof Attraction) {
             endedJob.getGroupStats().incrementRidesInfo(this.getName(), serviceTime);
         }
 
         this.stats.addServingData(serviceTime, endedJob.getGroupSize());
+
+        // Job is not in the map anymore
+        startServingTimeMap.remove(endedJob.getGroupId());
     }
 
     // Method useful for collecting new stats
     protected void collectArrivalStats(RiderGroup job) {
     }
 
+    /**
+     * Take jobs from the queue, start a new service and schedule the events for the
+     * jobs in service
+     */
     protected List<RiderGroup> doStartService() {
         List<RiderGroup> jobsToServe = this.getJobsToServe();
 
