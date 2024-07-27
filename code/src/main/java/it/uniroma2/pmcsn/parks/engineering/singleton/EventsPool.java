@@ -7,14 +7,15 @@ import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public class EventsPool<T> {
 
+    @SuppressWarnings("rawtypes")
     private static EventsPool instance = null;
 
     private Map<EventsPoolId, List<Event<T>>> eventMap;
 
+    @SuppressWarnings("unchecked")
     public static <T> EventsPool<T> getInstance() {
         if (instance == null) {
             instance = new EventsPool<>();

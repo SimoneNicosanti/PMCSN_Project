@@ -41,7 +41,7 @@ public class EventLogger {
             e.printStackTrace();
         }
 
-        System.out.println(logString);
+        // System.out.println(logString);
     }
 
     public static void prepareLog() {

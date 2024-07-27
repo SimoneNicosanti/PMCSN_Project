@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.engineering.factory;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
@@ -17,7 +18,7 @@ public class EventBuilder {
     public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         // TODO Manage distributions
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
-                1);
+                ConfigHandler.getInstance().getCurrentArrivalRate());
 
         int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
                 .intValue();

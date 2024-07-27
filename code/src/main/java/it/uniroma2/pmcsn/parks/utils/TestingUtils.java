@@ -3,11 +3,13 @@ package it.uniroma2.pmcsn.parks.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.CenterFactory;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ProbabilityManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
+import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
@@ -48,12 +50,18 @@ public class TestingUtils {
         return new ExitCenter(Constants.EXIT);
     }
 
-    public static void initTestingProbabilities() {
-        ProbabilityManager.getInstance().changeProbabilities(List.of(
-                Pair.of(Constants.ATTRACTION_ROUTING_NODE, 0.8),
-                Pair.of(Constants.RESTAURANT_ROUTING_NODE, 0.1),
-                Pair.of("Stupid_Restaurant", 0.4),
-                Pair.of("Smart_Restaurant", 0.6)));
-    }
+    // public static void initTestingProbabilities() {
+    // Interval interval = ClockHandler.getInstance().getCurrentInterval();
+    // List<Triple<String, Interval, Double>> list = List.of(
+    // Triple.of(Constants.ATTRACTION_ROUTING_NODE, interval, 0.8),
+    // Triple.of(Constants.RESTAURANT_ROUTING_NODE, interval, 0.1),
+    // Triple.of("Stupid_Restaurant", interval, 0.4),
+    // Triple.of("Smart_Restaurant", interval, 0.6));
+
+    // for (Triple<String, Interval, Double> triple : list) {
+    // ConfigHandler.getInstance().changeProbability(triple.getLeft(),
+    // triple.getMiddle(), triple.getRight());
+    // }
+    // }
 
 }

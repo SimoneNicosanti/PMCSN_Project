@@ -7,7 +7,6 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 
 public class Attraction extends StatsCenter {
 

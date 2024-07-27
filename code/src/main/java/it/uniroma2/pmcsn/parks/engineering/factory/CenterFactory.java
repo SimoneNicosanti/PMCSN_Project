@@ -82,6 +82,7 @@ public class CenterFactory {
 
         try (
                 Reader reader = new FileReader(filePath.toString());
+                @SuppressWarnings("deprecation")
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader())) {
             for (CSVRecord record : csvParser) {
                 recordsList.add(record);

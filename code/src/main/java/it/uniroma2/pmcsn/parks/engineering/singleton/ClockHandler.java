@@ -1,6 +1,5 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.model.Interval;
@@ -47,6 +46,11 @@ public class ClockHandler {
 
         // Interval not found
         throw new RuntimeException("Interval not found for time " + time);
+    }
+
+    public Interval getCurrentInterval() {
+        Double time = getClock();
+        return getInterval(time);
     }
 
 }

@@ -8,13 +8,14 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.EntranceQueue;
 import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class EntranceQueueManager implements QueueManager<RiderGroup> {
 
     private Queue<RiderGroup> queue;
 
     public EntranceQueueManager() {
-        this.queue = new EntranceQueue(new FifoQueue());
+        this.queue = new EntranceQueue(new FifoQueue(), QueuePriority.NORMAL);
     }
 
     @Override

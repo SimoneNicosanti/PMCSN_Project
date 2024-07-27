@@ -32,6 +32,7 @@ public class ParkController implements Controller<RiderGroup> {
         this.init_simulation();
 
         clockHandler = ClockHandler.getInstance();
+        currentInterval = clockHandler.getCurrentInterval();
 
         this.scheduleArrivalEvent();
 
@@ -43,6 +44,7 @@ public class ParkController implements Controller<RiderGroup> {
             }
 
             clockHandler.setClock(nextEvent.getEventTime());
+            // Check if the current interval changed
             this.checkInterval();
 
             RiderGroup job = nextEvent.getJob();
@@ -68,12 +70,17 @@ public class ParkController implements Controller<RiderGroup> {
         Interval interval = clockHandler.getInterval(clockHandler.getClock());
 
         if (!interval.equals(this.currentInterval)) {
-            // Save stats for the ended interval time
-            writeCenterStats(interval);
 
-            if (Constants.INTERVAL_STATS)
+            System.out.println("CURRENT INTERVAL CHANGED");
+            System.out.println(interval.getStart() + " - " + interval.getEnd());
+            System.out.println("");
+
+            if (Constants.INTERVAL_STATS) {
+                // Save stats for the ended interval time
+                writeCenterStats(interval);
                 // Reset stats for the next interval time
                 resetCenterStats();
+            }
 
             // Change the parameters based on the interval
             changeParameters(interval);
@@ -107,6 +114,11 @@ public class ParkController implements Controller<RiderGroup> {
     }
 
     private void scheduleArrivalEvent() {
+        Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
+        // If arrivalRate == 0, stop the arrival
+        if (arrivalRate == 0) {
+            return;
+        }
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
         Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);

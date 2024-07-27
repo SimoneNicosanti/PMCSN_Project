@@ -24,13 +24,16 @@ public class ParametersParser {
         // Read the config.json file
         JsonNode rootNode;
         List<Pair<Interval, Parameters>> returnList = new ArrayList<>();
+
         try {
             rootNode = getRootNode(configFileName);
             JsonNode jsonIntervals = rootNode.path("timeIntervals");
             Double openingTime = null;
+            Double lastEnd = 0.0;
             for (JsonNode jsonInterval : jsonIntervals) {
                 String startStr = jsonInterval.path("start").asText();
                 String endStr = jsonInterval.path("end").asText();
+                Double arrivalRate = jsonInterval.path("arrivalRate").asDouble();
 
                 JsonNode routingProbs = jsonInterval.path("routingProbability");
                 Map<RoutingNodeType, Double> probabilityMap = parseRoutingProbs(routingProbs);
@@ -43,16 +46,35 @@ public class ParametersParser {
 
                 Double end = parseTime(endStr);
                 end = convertToClock(end, openingTime);
+                lastEnd = end;
 
                 Interval interval = new Interval(start, end);
-                Parameters intervalParams = new Parameters(probabilityMap);
+                Parameters intervalParams = new Parameters(probabilityMap, arrivalRate);
                 returnList.add(Pair.of(interval, intervalParams));
             }
+
+            // Add the last interval created for exiting all the jobs from the
+            // system
+            returnList.add(getFakeInterval(lastEnd));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         return returnList;
+    }
+
+    // Return a fake interval created for exiting all the jobs from the
+    // system
+    private static Pair<Interval, Parameters> getFakeInterval(Double lastEnd) {
+        Interval interval = new Interval(lastEnd, Double.MAX_VALUE);
+        Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
+        probabilityMap.put(RoutingNodeType.ATTRACTION, 0.0);
+        probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);
+        probabilityMap.put(RoutingNodeType.EXIT, 1.0);
+
+        Parameters parameters = new Parameters(probabilityMap, lastEnd);
+
+        return Pair.of(interval, parameters);
     }
 
     private static double convertToClock(Double time, Double openingTime) {
@@ -66,7 +88,7 @@ public class ParametersParser {
         return mapper.readTree(configFile);
     }
 
-    private static Map<String, Distribution> parseCentersDistribution(String configFileName) {
+    public static Map<String, Distribution> parseCentersDistribution(String configFileName) {
         String entranceKey = "entranceDistribution";
         String attractionKey = "attractionsDistribution";
         String restKey = "restaurantsDistribution";
@@ -85,21 +107,21 @@ public class ParametersParser {
             centersDistribution.put(attractionKey, getDistribution(attractionDist.asText()));
             centersDistribution.put(restKey, getDistribution(restDist.asText()));
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
+            throw new RuntimeException();
         }
 
         return centersDistribution;
     }
 
     private static Distribution getDistribution(String distName) {
-        if (distName == "Uniform") {
+        if (distName.equals("Uniform")) {
             return Distribution.UNIFORM;
         }
-        if (distName == "Exponential") {
+        if (distName.equals("Exponential")) {
             return Distribution.EXPONENTIAL;
         }
-        throw new RuntimeException();
+        throw new RuntimeException("Unkown distribution: " + distName);
         // Add other distributions as needed
     }
 
@@ -118,6 +140,10 @@ public class ParametersParser {
         Double attractionsProb = Double.parseDouble(routingNode.path("attractions").asText());
         Double restaurantsProb = Double.parseDouble(routingNode.path("restaurants").asText());
         Double exitProbs = Double.parseDouble(routingNode.path("exit").asText());
+
+        if (attractionsProb + restaurantsProb + exitProbs != 1.0) {
+            throw new RuntimeException("Routing probabilities summed are different from 1");
+        }
 
         return Map.of(
                 RoutingNodeType.ATTRACTION, attractionsProb,

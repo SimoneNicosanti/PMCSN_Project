@@ -3,8 +3,10 @@ package it.uniroma2.pmcsn.parks.model.routing;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
@@ -20,11 +22,11 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
         this.exitCenter = exitCenter;
     }
 
-    // TODO: I would not implement this with a uniform probability, since
-    // attractions are usually most likely to be visited
     public Center<RiderGroup> route(RiderGroup job) {
-        double attractionProb = ConfigManager.getInstance().getProbability(attractionNode.getName());
-        double restaurantProb = ConfigManager.getInstance().getProbability(restaurantNode.getName());
+        double attractionProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.ATTRACTION,
+                ClockHandler.getInstance().getCurrentInterval());
+        double restaurantProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.RESTAURANT,
+                ClockHandler.getInstance().getCurrentInterval());
 
         double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE);
 

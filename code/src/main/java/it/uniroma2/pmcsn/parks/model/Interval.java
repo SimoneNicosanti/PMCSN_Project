@@ -16,7 +16,8 @@ public class Interval {
     }
 
     public boolean contains(Double time) {
-        return time >= this.start && time < this.end;
+        // start <= time < end
+        return this.start <= time && time < this.end;
     }
 
     public double getStart() {

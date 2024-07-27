@@ -19,4 +19,6 @@ public class Constants {
 
     // Indicates whether to collect statistics for each interval or not
     public static final boolean INTERVAL_STATS = true;
+    public static final boolean USE_LOG = true;
+
 }

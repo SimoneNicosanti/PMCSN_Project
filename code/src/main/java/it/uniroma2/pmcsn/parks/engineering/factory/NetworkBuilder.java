@@ -37,7 +37,7 @@ public class NetworkBuilder {
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
                 restaurantsRoutingNode, exitCenter);
 
-        TestingUtils.initTestingProbabilities();
+        // TestingUtils.initTestingProbabilities();
 
         for (Attraction attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
