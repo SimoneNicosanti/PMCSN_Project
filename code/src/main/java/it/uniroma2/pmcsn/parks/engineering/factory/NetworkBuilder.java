@@ -12,8 +12,8 @@ import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
 import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
-import it.uniroma2.pmcsn.parks.utils.TestingUtils;
 
 public class NetworkBuilder {
 
@@ -29,15 +29,13 @@ public class NetworkBuilder {
         List<Attraction> attractions = CenterFactory.buildAttractionsFromFile("AttractionsData.csv"); // TestingUtils.createTestingAttractions();
 
         Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0); // TestingUtils.createTestingEntrance();
-        Center<RiderGroup> exitCenter = TestingUtils.createTestingExit();
+        Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);
 
         // Create the routing nodes
         RoutingNode<RiderGroup> attractionRoutingNode = new AttractionRoutingNode(attractions);
         RoutingNode<RiderGroup> restaurantsRoutingNode = new RestaurantRoutingNode(restaurants);
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
                 restaurantsRoutingNode, exitCenter);
-
-        // TestingUtils.initTestingProbabilities();
 
         for (Attraction attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
@@ -49,7 +47,6 @@ public class NetworkBuilder {
         }
 
         this.centerMap.put(Constants.ENTRANCE, entranceCenter);
-        this.centerMap.put(Constants.EXIT, exitCenter);
 
         entranceCenter.setNextRoutingNode(networkRoutingNode);
     }

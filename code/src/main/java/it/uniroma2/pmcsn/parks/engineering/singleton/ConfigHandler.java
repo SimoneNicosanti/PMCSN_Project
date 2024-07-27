@@ -1,5 +1,10 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
@@ -7,11 +12,6 @@ import it.uniroma2.pmcsn.parks.engineering.factory.ParametersParser;
 import it.uniroma2.pmcsn.parks.model.Distribution;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ConfigHandler {
 
@@ -22,6 +22,7 @@ public class ConfigHandler {
     private Double openingTime;
     private List<Interval> intervals;
     private Map<Interval, Parameters> parametersMap;
+
     private Parameters currentParameters;
 
     private Map<String, Distribution> centersDistribution;
@@ -39,19 +40,16 @@ public class ConfigHandler {
 
         checkOrder(pairList);
 
-        List<Interval> intervals = new ArrayList<>();
         Interval previousInterval = null;
         for (Pair<Interval, Parameters> pair : pairList) {
-            intervals.add(pair.getLeft());
             if (pair.getLeft().getStart() >= pair.getLeft().getEnd())
                 throw new RuntimeException("The input is not an interval");
             if (previousInterval != null && previousInterval.getEnd() != pair.getLeft().getStart())
                 throw new RuntimeException("Intervals are not a partition for the whole time");
-            intervals.add(pair.getLeft());
-            parametersMap.put(pair.getLeft(), pair.getRight());
+            this.intervals.add(pair.getLeft());
+            this.parametersMap.put(pair.getLeft(), pair.getRight());
+            previousInterval = pair.getLeft();
         }
-
-        ClockHandler.getInstance().setIntervals(intervals);
 
         this.currentParameters = parametersMap.get(intervals.get(0));
     }
@@ -88,7 +86,24 @@ public class ConfigHandler {
         return this.intervals.get(this.intervals.size() - 1).getEnd() + this.openingTime;
     }
 
-    public double getProbability(RoutingNodeType type, Interval interval) {
+    public double getProbability(RoutingNodeType type) {
         return currentParameters.getRoutingProbability(type);
     }
+
+    public Interval getInterval(Double time) {
+        for (Interval interval : intervals) {
+            if (interval.contains(time)) {
+                return interval;
+            }
+        }
+
+        // Interval not found
+        throw new RuntimeException("Interval not found for time " + time);
+    }
+
+    public Interval getCurrentInterval() {
+        Double currentClock = ClockHandler.getInstance().getClock();
+        return getInterval(currentClock);
+    }
+
 }

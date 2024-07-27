@@ -72,7 +72,7 @@ public class ParametersParser {
         probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);
         probabilityMap.put(RoutingNodeType.EXIT, 1.0);
 
-        Parameters parameters = new Parameters(probabilityMap, lastEnd);
+        Parameters parameters = new Parameters(probabilityMap, 0.0);
 
         return Pair.of(interval, parameters);
     }

@@ -17,6 +17,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
@@ -50,33 +51,17 @@ public class RiderStatisticsWriter {
         String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "NumberRides" };
 
         // Writing the header
-        if (!filePath.toFile().exists()) {
-            filePath.toFile();
-            try (
-                    Writer writer = new FileWriter(filePath.toFile(), true);
-                    CSVPrinter csvPrinter = new CSVPrinter(writer,
-                            Builder.create(CSVFormat.DEFAULT).setHeader(header).build())) {
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        writeHeader(filePath, header);
 
         // Writing the file
-        try (
-                Writer writer = new FileWriter(filePath.toFile(), true);
-                CSVPrinter csvPrinter = new CSVPrinter(writer,
-                        Builder.create(CSVFormat.DEFAULT).build())) {
-
-            csvPrinter.printRecord(groupId, groupSize, priority, totalQueueTime, totalRidingTime,
-                    ClockHandler.getInstance().getClock(), totalRiding);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        List<Object> record = List.of(groupId, groupSize, priority, totalQueueTime, totalRidingTime,
+                ClockHandler.getInstance().getClock(), totalRiding);
+        writeRecord(filePath, record);
     }
 
     public static void writeCenterStatistics(String statsFolder, String fileName, Center<RiderGroup> center) {
+        if (center instanceof ExitCenter)
+            return;
 
         String name = center.getName();
         CenterStats stats = ((StatsCenter) center).getCenterStats();
@@ -106,31 +91,44 @@ public class RiderStatisticsWriter {
             }
         }
 
-        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName);
+        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName + ".csv");
         String[] header = { "Center name", "Served Jobs", "Average Service Time", "Average Queue Time",
                 "Avg Queue Time Normal", "Avg Queue Time Prio" };
 
         // Writing the header
-        if (!filePath.toFile().exists()) {
-            filePath.toFile();
-            try (
-                    Writer writer = new FileWriter(filePath.toFile(), true);
-                    CSVPrinter csvPrinter = new CSVPrinter(writer,
-                            Builder.create(CSVFormat.DEFAULT).setHeader(header).build())) {
+        writeHeader(filePath, header);
 
+        // Writing the file
+        List<Object> record = List.of(name, servedJobs, avgServiceTime, avgQueueTime, avgQueueTimeNormal,
+                avgQueueTimePrio);
+        writeRecord(filePath, record);
+    }
+
+    private static void writeHeader(Path filePath, String[] header) {
+
+        if (!filePath.toFile().exists()) {
+            try {
+                Files.createDirectories(filePath.getParent());
+                filePath.toFile().createNewFile();
+                try (
+                        Writer writer = new FileWriter(filePath.toFile(), true);
+                        CSVPrinter csvPrinter = new CSVPrinter(writer,
+                                Builder.create(CSVFormat.DEFAULT).setHeader(header).build())) {
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
 
-        // Writing the file
+    
+    private static void writeRecord(Path filePath, List<Object> record) {
         try (
                 Writer writer = new FileWriter(filePath.toFile(), true);
                 CSVPrinter csvPrinter = new CSVPrinter(writer,
                         Builder.create(CSVFormat.DEFAULT).build())) {
 
-            csvPrinter.printRecord(name, servedJobs, avgServiceTime, avgQueueTime, avgQueueTimeNormal,
-                    avgQueueTimePrio);
+            csvPrinter.printRecord(record);
 
         } catch (IOException e) {
             e.printStackTrace();

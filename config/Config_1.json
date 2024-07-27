@@ -14,8 +14,8 @@
             "start": "12:00",
             "end": "14:00",
             "routingProbability": {
-                "attractions": 0.60,
-                "restaurants": 0.35,
+                "attractions": 0.50,
+                "restaurants": 0.45,
                 "exit": 0.05
             },
             "arrivalRate": 1
