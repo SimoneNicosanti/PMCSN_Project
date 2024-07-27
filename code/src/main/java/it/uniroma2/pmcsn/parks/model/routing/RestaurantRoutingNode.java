@@ -8,7 +8,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RestRouterProbabilities;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
 

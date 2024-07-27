@@ -11,9 +11,9 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Entrance;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Entrance;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class CenterFactory {
 

@@ -11,9 +11,9 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class NetworkBuilder {
 

@@ -14,7 +14,7 @@ import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.StatsQueue;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
@@ -99,16 +99,20 @@ public abstract class StatsCenter extends AbstractCenter {
 
     // Method useful for collecting new stats
     protected void collectEndServiceStats(RiderGroup endedJob) {
-        double serviceTime = ClockHandler.getInstance().getClock() - startServingTimeMap.get(endedJob.getGroupId());
+        // Job is not in the map anymore
+        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
+
+        double serviceTime = ClockHandler.getInstance().getClock() - startServingTime;
 
         if (this instanceof Attraction) {
             endedJob.getGroupStats().incrementRidesInfo(this.getName(), serviceTime);
         }
 
+        if (this instanceof Attraction && this.startServingTimeMap.isEmpty())
+            this.stats.addCompletedService();
+
         this.stats.addServingData(serviceTime, endedJob.getGroupSize());
 
-        // Job is not in the map anymore
-        startServingTimeMap.remove(endedJob.getGroupId());
     }
 
     // Method useful for collecting new stats

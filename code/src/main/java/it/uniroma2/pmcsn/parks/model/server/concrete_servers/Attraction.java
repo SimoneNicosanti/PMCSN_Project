@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
+package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
 import java.util.List;
 

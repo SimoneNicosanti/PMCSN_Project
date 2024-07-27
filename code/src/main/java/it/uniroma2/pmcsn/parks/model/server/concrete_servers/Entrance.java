@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.model.server.concreate_servers;
+package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
 import java.util.List;
 
@@ -46,11 +46,11 @@ public class Entrance extends StatsCenter {
 
     @Override
     public void doArrival(RiderGroup job) {
-
         Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
-        EventLogger.logEvent("Generated", newArrivalEvent);
-
+        if (newArrivalEvent != null) {
+            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
+            EventLogger.logEvent("Generated", newArrivalEvent);
+        }
     }
 
     @Override

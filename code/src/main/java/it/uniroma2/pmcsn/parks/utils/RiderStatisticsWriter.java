@@ -17,7 +17,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
@@ -67,7 +67,7 @@ public class RiderStatisticsWriter {
         CenterStats stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTime = stats.getAvgServiceTime();
         double avgQueueTime = stats.getQueueTime();
-        long servedJobs = stats.getServedJobs();
+        long servedJobs = stats.getNumberOfServedPeople();
 
         List<QueueStats> queueStats = stats.getQueueStats();
         double avgQueueTimeNormal = 0.0;
@@ -121,7 +121,6 @@ public class RiderStatisticsWriter {
         }
     }
 
-    
     private static void writeRecord(Path filePath, List<Object> record) {
         try (
                 Writer writer = new FileWriter(filePath.toFile(), true);

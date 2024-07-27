@@ -12,7 +12,7 @@ import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
 
@@ -117,17 +117,13 @@ public class ParkController implements Controller<RiderGroup> {
     private void init_simulation() {
         // Reset statistics
         RiderStatisticsWriter.resetStatistics("General");
+        RiderStatisticsWriter.resetStatistics("Center");
         // Prepare the logger and set the system clock to 0
         EventLogger.prepareLog();
         ClockHandler.getInstance().setClock(0);
     }
 
     private void scheduleArrivalEvent() {
-        Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
-        // If arrivalRate == 0, stop the arrival
-        if (arrivalRate == 0.0) {
-            return;
-        }
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
         Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);

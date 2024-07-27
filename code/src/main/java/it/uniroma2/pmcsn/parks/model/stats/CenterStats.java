@@ -4,11 +4,13 @@ import java.util.List;
 
 public class CenterStats extends GeneralStats {
     // Number of jobs serverd by the center
-    private long servedJobs;
+    private long numberOfServedPeople;
+    private long numberOfServedJobs;
+    private long numberOfCompletedServices;
     private List<QueueStats> queueStatsList;
 
     public CenterStats() {
-        this.servedJobs = 0L;
+        this.numberOfServedPeople = 0L;
     }
 
     public void setQueueStats(List<QueueStats> queueStats) {
@@ -19,16 +21,21 @@ public class CenterStats extends GeneralStats {
         return this.queueStatsList;
     }
 
-    public long getServedJobs() {
-        return this.servedJobs;
+    public long getNumberOfServedPeople() {
+        return this.numberOfServedPeople;
+    }
+
+    public void addCompletedService() {
+        numberOfCompletedServices++;
     }
 
     public void addServingData(double serviceTime, int servedJobs) {
         this.serviceTime += serviceTime;
-        this.servedJobs += servedJobs;
+        this.numberOfServedJobs++;
+        this.numberOfServedPeople += servedJobs;
     }
 
     public double getAvgServiceTime() {
-        return this.serviceTime / this.servedJobs;
+        return this.serviceTime / this.numberOfServedPeople;
     }
 }

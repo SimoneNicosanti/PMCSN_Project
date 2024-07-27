@@ -16,9 +16,14 @@ public class EventBuilder {
     private static Long riderGroupId = 0L;
 
     public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
+        Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
+        // If arrivalRate == 0, stop the arrival
+        if (arrivalRate == 0.0) {
+            return null;
+        }
         // TODO Manage distributions
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
-                ConfigHandler.getInstance().getCurrentArrivalRate());
+                arrivalRate);
 
         int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
                 .intValue();

@@ -7,7 +7,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
-import it.uniroma2.pmcsn.parks.model.server.concreate_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
