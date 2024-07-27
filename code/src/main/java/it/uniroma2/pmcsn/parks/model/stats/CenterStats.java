@@ -7,6 +7,11 @@ public class CenterStats extends GeneralStats {
     private long numberOfServedPeople;
     private long numberOfServedJobs;
     private long numberOfCompletedServices;
+
+    public long getNumberOfCompletedServices() {
+        return numberOfCompletedServices;
+    }
+
     private List<QueueStats> queueStatsList;
 
     public CenterStats() {
@@ -33,6 +38,15 @@ public class CenterStats extends GeneralStats {
         this.serviceTime += serviceTime;
         this.numberOfServedJobs++;
         this.numberOfServedPeople += servedJobs;
+    }
+
+    public void addServedGroup(int jobSize) {
+        this.numberOfServedJobs++;
+        this.numberOfServedPeople += jobSize;
+    }
+
+    public void addServiceTime(double serviceTime) {
+        this.serviceTime += serviceTime;
     }
 
     public double getAvgServiceTime() {

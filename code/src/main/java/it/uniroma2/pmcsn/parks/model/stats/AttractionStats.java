@@ -8,7 +8,7 @@ public class AttractionStats extends CenterStats {
 
     @Override
     public double getAvgServiceTime() {
-        return this.serviceTime / 1;
+        return this.serviceTime / this.getNumberOfCompletedServices();
     }
 
 }

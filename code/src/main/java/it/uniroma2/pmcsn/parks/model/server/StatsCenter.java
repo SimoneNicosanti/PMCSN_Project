@@ -15,6 +15,7 @@ import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.StatsQueue;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.stats.AttractionStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
@@ -27,7 +28,15 @@ public abstract class StatsCenter extends AbstractCenter {
 
     public StatsCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
         super(name, queueManager, slotNumber);
-        this.stats = new CenterStats();
+
+        // TODO Not good doing this
+        // Other way may be pass the CenterStats in the constructor
+        // But in that way we would lose transparency in Center about statistics
+        if (this instanceof Attraction) {
+            this.stats = new AttractionStats();
+        } else {
+            this.stats = new CenterStats();
+        }
         this.startServingTimeMap = new HashMap<>();
         this.queues = new ArrayList<>();
 
@@ -108,10 +117,16 @@ public abstract class StatsCenter extends AbstractCenter {
             endedJob.getGroupStats().incrementRidesInfo(this.getName(), serviceTime);
         }
 
-        if (this instanceof Attraction && this.startServingTimeMap.isEmpty())
+        if (this instanceof Attraction && this.startServingTimeMap.isEmpty()) {
             this.stats.addCompletedService();
+            this.stats.addServiceTime(serviceTime);
+        }
+        if (!(this instanceof Attraction)) {
+            this.stats.addCompletedService();
+            this.stats.addServiceTime(serviceTime);
+        }
 
-        this.stats.addServingData(serviceTime, endedJob.getGroupSize());
+        this.stats.addServedGroup(endedJob.getGroupSize());
 
     }
 
