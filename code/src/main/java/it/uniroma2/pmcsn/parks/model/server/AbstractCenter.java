@@ -7,7 +7,6 @@ import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.Event;
@@ -83,10 +82,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     @Override
     public void setNextRoutingNode(RoutingNode<RiderGroup> nextRoutingNode) {
         this.nextRoutingNode = nextRoutingNode;
-    }
-
-    public List<Queue<RiderGroup>> getQueues() {
-        return queueManager.getQueues();
     }
 
     /**

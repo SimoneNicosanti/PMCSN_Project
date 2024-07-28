@@ -51,7 +51,6 @@ public class Attraction extends StatsCenter {
 
     @Override
     protected List<RiderGroup> getJobsToServe() {
-
         return queueManager.extractFromQueues(this.slotNumber);
     }
 
@@ -80,7 +79,6 @@ public class Attraction extends StatsCenter {
         endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
 
         if (this.startServingTimeMap.isEmpty()) {
-            this.stats.addCompletedService();
             this.stats.addServiceTime(jobServiceTime);
         }
 

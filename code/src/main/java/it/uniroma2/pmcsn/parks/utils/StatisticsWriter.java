@@ -64,27 +64,30 @@ public class StatisticsWriter {
             return;
 
         String name = center.getName();
+        StatsCenter statsCenter = (StatsCenter) center;
         CenterStats stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTime = stats.getAvgServiceTime();
-        double avgQueueTime = stats.getAvgQueueTime(); // TODO Fix this
+        // double avgQueueTime = stats.getAvgQueueTime();
         long servedJobs = stats.getNumberOfServedPeople();
 
-        List<QueueStats> queueStats = stats.getQueueStats();
+        List<QueueStats> perPrioQueueStats = statsCenter.getQueueStats();
+        QueueStats generalQueueStats = statsCenter.getGeneralQueueStats();
         double avgQueueTimeNormal = 0.0;
         double avgQueueTimePrio = 0.0;
+        double avgQueueTime = generalQueueStats.getAvgWaitingTimePerGroups();
 
-        for (QueueStats queue : queueStats) {
+        for (QueueStats queue : perPrioQueueStats) {
             switch (queue.getPriority()) {
                 case NORMAL:
                     if (avgQueueTimeNormal != 0.0)
                         throw new RuntimeException(name + " has more than one normal queue");
-                    avgQueueTimeNormal = queue.getAvgWaitingTime();
+                    avgQueueTimeNormal = queue.getAvgWaitingTimePerGroups();
                     break;
 
                 case PRIORITY:
                     if (avgQueueTimePrio != 0.0)
                         throw new RuntimeException(name + " has more than one priority queue");
-                    avgQueueTimePrio = queue.getAvgWaitingTime();
+                    avgQueueTimePrio = queue.getAvgWaitingTimePerGroups();
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");

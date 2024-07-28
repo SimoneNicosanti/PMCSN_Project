@@ -96,7 +96,6 @@ public class Restaurant extends StatsCenter {
 
         double jobServiceTime = this.getServiceTime(endedJob);
 
-        this.stats.addCompletedService();
         this.stats.addServiceTime(jobServiceTime);
 
         this.stats.addServedGroup(endedJob.getGroupSize());

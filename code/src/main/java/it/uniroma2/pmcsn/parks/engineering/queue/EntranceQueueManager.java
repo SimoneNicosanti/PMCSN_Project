@@ -4,49 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.queue.EntranceQueue;
 import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
-public class EntranceQueueManager implements QueueManager<RiderGroup> {
+public class EntranceQueueManager extends StatsQueueManager {
 
     private Queue<RiderGroup> queue;
 
     public EntranceQueueManager() {
-        this.queue = new EntranceQueue(new FifoQueue(), QueuePriority.NORMAL);
-    }
-
-    @Override
-    public List<Queue<RiderGroup>> getQueues() {
-        return List.of(queue);
-    }
-
-    @Override
-    public void addToQueues(RiderGroup group) {
-        queue.enqueue(group);
-    }
-
-    /**
-     * @Params slotNumber: it represents the number of group that must be dequeued.
-     * 
-     * @Return: a list with a number of groups equal to slotNumber
-     */
-    @Override
-    public List<RiderGroup> extractFromQueues(Integer slotNumber) {
-
-        List<RiderGroup> list = new ArrayList<>();
-
-        for (int i = 0; i < slotNumber; i++) {
-            RiderGroup group = queue.dequeue();
-            if (group == null) {
-                break;
-            }
-            list.add(group);
-        }
-
-        return list;
+        this.queue = new FifoQueue();
+        this.queueStatsMap.put(QueuePriority.NORMAL, new QueueStats(QueuePriority.NORMAL));
     }
 
     @Override
@@ -58,8 +27,27 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         return queue.queueLength();
     }
 
-    public Queue<RiderGroup> getQueue() {
-        return queue;
+    @Override
+    public void addToQueues(RiderGroup item) {
+        this.commonStatsCollectionOnAdd(item);
+        queue.enqueue(item);
+    }
+
+    @Override
+    public List<RiderGroup> extractFromQueues(Integer slotNumber) {
+        List<RiderGroup> extractedGroups = new ArrayList<>();
+
+        for (int i = 0; i < slotNumber; i++) {
+            RiderGroup group = doDequeue(this.queue, QueuePriority.NORMAL);
+            if (group == null) {
+                break;
+            }
+            extractedGroups.add(group);
+        }
+
+        this.commonStatsCollectionOnExtract(extractedGroups);
+
+        return extractedGroups;
     }
 
 }

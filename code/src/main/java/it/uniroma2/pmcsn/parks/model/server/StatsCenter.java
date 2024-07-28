@@ -1,19 +1,16 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.engineering.queue.StatsQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.queue.StatsQueue;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.stats.AttractionStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
@@ -24,10 +21,8 @@ public abstract class StatsCenter extends AbstractCenter {
 
     protected CenterStats stats;
     protected Map<Long, Double> startServingTimeMap;
-    protected Map<Long, Double> queueEntranceTimeMap;
-    private List<StatsQueue<RiderGroup>> queues;
 
-    public StatsCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
+    public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber) {
         super(name, queueManager, slotNumber);
 
         // TODO Not good doing this
@@ -39,18 +34,6 @@ public abstract class StatsCenter extends AbstractCenter {
             this.stats = new CenterStats();
         }
         this.startServingTimeMap = new HashMap<>();
-        this.queueEntranceTimeMap = new HashMap<>();
-        this.queues = new ArrayList<>();
-
-        List<Queue<RiderGroup>> centerQueues = this.queueManager.getQueues();
-
-        for (Queue<RiderGroup> queue : centerQueues) {
-            if (!(queue instanceof StatsQueue<RiderGroup>))
-                throw new RuntimeException("Expected a center with all stats queues");
-
-            this.queues.add((StatsQueue<RiderGroup>) queue);
-        }
-
     }
 
     protected abstract void doArrival(RiderGroup job);
@@ -69,28 +52,25 @@ public abstract class StatsCenter extends AbstractCenter {
         } else {
             this.stats = new CenterStats();
         }
+        StatsQueueManager statsQueueManager = (StatsQueueManager) this.queueManager; // Perdoname Emanuele por mi vida
+                                                                                     // loca <3
+        statsQueueManager.resetQueueStats();
     }
 
     public CenterStats getCenterStats() {
-        stats.setQueueStats(getQueueStats());
-
         return stats;
     }
 
-    private List<QueueStats> getQueueStats() {
-        List<QueueStats> queueStats = new ArrayList<>();
+    public List<QueueStats> getQueueStats() {
+        return queueManager.getAllQueueStats();
+    }
 
-        for (StatsQueue<RiderGroup> queue : this.queues) {
-            queueStats.add(queue.getQueueStats());
-        }
-
-        return queueStats;
+    public QueueStats getGeneralQueueStats() {
+        return queueManager.getGeneralQueueStats();
     }
 
     @Override
     public void arrival(RiderGroup job) {
-
-        this.queueEntranceTimeMap.put(job.getGroupId(), ClockHandler.getInstance().getClock());
 
         this.collectArrivalStats(job);
         this.commonArrivalManagement(job);
@@ -99,16 +79,11 @@ public abstract class StatsCenter extends AbstractCenter {
 
     @Override
     public List<RiderGroup> startService() {
-
         // Start service
         List<RiderGroup> servingGroups = this.doStartService();
 
         // Collect data
         for (RiderGroup group : servingGroups) {
-            Double queueEntranceTime = this.queueEntranceTimeMap.remove(group.getGroupId());
-            Double enquedTime = ClockHandler.getInstance().getClock() - queueEntranceTime;
-            this.stats.addQueueTime(enquedTime);
-
             startServingTimeMap.put(group.getGroupId(), ClockHandler.getInstance().getClock());
         }
 

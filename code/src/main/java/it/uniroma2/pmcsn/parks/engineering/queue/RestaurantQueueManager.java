@@ -4,33 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.model.queue.RestaurantQueue;
+import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
-public class RestaurantQueueManager implements QueueManager<RiderGroup> {
+public class RestaurantQueueManager extends StatsQueueManager {
 
     private Queue<RiderGroup> normalQueue;
 
     public RestaurantQueueManager() {
-        this.normalQueue = new RestaurantQueue(new FifoQueue(), QueuePriority.NORMAL);
-    }
+        this.normalQueue = new FifoQueue();
+        this.queueStatsMap.put(QueuePriority.NORMAL, new QueueStats(QueuePriority.NORMAL));
 
-    @Override
-    public List<Queue<RiderGroup>> getQueues() {
-        return List.of(normalQueue);
-    }
-
-    @Override
-    public void addToQueues(RiderGroup item) {
-        normalQueue.enqueue(item);
     }
 
     @Override
     public boolean areQueuesEmpty() {
         return normalQueue.getNextSize() == 0;
+    }
+
+    @Override
+    public void addToQueues(RiderGroup item) {
+        this.commonStatsCollectionOnAdd(item);
+        normalQueue.enqueue(item);
     }
 
     @Override
@@ -41,18 +38,19 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
         while (true) {
             int nextGroupSize = normalQueue.getNextSize();
             if (nextGroupSize > 0 && nextGroupSize <= freeSlots) {
-                extractedGroups.add(normalQueue.dequeue());
+                RiderGroup group = doDequeue(this.normalQueue, QueuePriority.NORMAL);
+                extractedGroups.add(group);
+
                 freeSlots -= nextGroupSize;
+
             } else {
                 break;
             }
         }
 
-        return extractedGroups;
-    }
+        this.commonStatsCollectionOnExtract(extractedGroups);
 
-    public Queue<RiderGroup> getQueue() {
-        return normalQueue;
+        return extractedGroups;
     }
 
 }
