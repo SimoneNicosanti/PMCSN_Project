@@ -21,7 +21,7 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
-public class RiderStatisticsWriter {
+public class StatisticsWriter {
 
     public static void resetStatistics(String statsCase) {
         Path statisticsDirectory = Path.of(".", Constants.DATA_PATH, statsCase);
@@ -66,7 +66,7 @@ public class RiderStatisticsWriter {
         String name = center.getName();
         CenterStats stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTime = stats.getAvgServiceTime();
-        double avgQueueTime = stats.getQueueTime();
+        double avgQueueTime = stats.getAvgQueueTime(); // TODO Fix this
         long servedJobs = stats.getNumberOfServedPeople();
 
         List<QueueStats> queueStats = stats.getQueueStats();

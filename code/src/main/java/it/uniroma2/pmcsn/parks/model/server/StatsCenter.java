@@ -22,8 +22,9 @@ import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public abstract class StatsCenter extends AbstractCenter {
 
-    private CenterStats stats;
-    private Map<Long, Double> startServingTimeMap;
+    protected CenterStats stats;
+    protected Map<Long, Double> startServingTimeMap;
+    protected Map<Long, Double> queueEntranceTimeMap;
     private List<StatsQueue<RiderGroup>> queues;
 
     public StatsCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
@@ -38,6 +39,7 @@ public abstract class StatsCenter extends AbstractCenter {
             this.stats = new CenterStats();
         }
         this.startServingTimeMap = new HashMap<>();
+        this.queueEntranceTimeMap = new HashMap<>();
         this.queues = new ArrayList<>();
 
         List<Queue<RiderGroup>> centerQueues = this.queueManager.getQueues();
@@ -55,8 +57,18 @@ public abstract class StatsCenter extends AbstractCenter {
 
     protected abstract void doEndService(RiderGroup endedJob);
 
+    protected double getServiceTime(RiderGroup endedJob) {
+        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
+
+        return ClockHandler.getInstance().getClock() - startServingTime;
+    }
+
     public void resetCenterStats() {
-        this.stats = new CenterStats();
+        if (this instanceof Attraction) {
+            this.stats = new AttractionStats();
+        } else {
+            this.stats = new CenterStats();
+        }
     }
 
     public CenterStats getCenterStats() {
@@ -77,6 +89,9 @@ public abstract class StatsCenter extends AbstractCenter {
 
     @Override
     public void arrival(RiderGroup job) {
+
+        this.queueEntranceTimeMap.put(job.getGroupId(), ClockHandler.getInstance().getClock());
+
         this.collectArrivalStats(job);
         this.commonArrivalManagement(job);
         this.doArrival(job);
@@ -90,6 +105,10 @@ public abstract class StatsCenter extends AbstractCenter {
 
         // Collect data
         for (RiderGroup group : servingGroups) {
+            Double queueEntranceTime = this.queueEntranceTimeMap.remove(group.getGroupId());
+            Double enquedTime = ClockHandler.getInstance().getClock() - queueEntranceTime;
+            this.stats.addQueueTime(enquedTime);
+
             startServingTimeMap.put(group.getGroupId(), ClockHandler.getInstance().getClock());
         }
 
@@ -106,29 +125,7 @@ public abstract class StatsCenter extends AbstractCenter {
         return;
     }
 
-    // Method useful for collecting new stats
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-        // Job is not in the map anymore
-        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
-
-        double serviceTime = ClockHandler.getInstance().getClock() - startServingTime;
-
-        if (this instanceof Attraction) {
-            endedJob.getGroupStats().incrementRidesInfo(this.getName(), serviceTime);
-        }
-
-        if (this instanceof Attraction && this.startServingTimeMap.isEmpty()) {
-            this.stats.addCompletedService();
-            this.stats.addServiceTime(serviceTime);
-        }
-        if (!(this instanceof Attraction)) {
-            this.stats.addCompletedService();
-            this.stats.addServiceTime(serviceTime);
-        }
-
-        this.stats.addServedGroup(endedJob.getGroupSize());
-
-    }
+    protected abstract void collectEndServiceStats(RiderGroup endedJob);
 
     // Method useful for collecting new stats
     protected void collectArrivalStats(RiderGroup job) {

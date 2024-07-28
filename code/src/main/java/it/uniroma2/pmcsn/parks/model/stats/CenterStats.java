@@ -52,4 +52,12 @@ public class CenterStats extends GeneralStats {
     public double getAvgServiceTime() {
         return this.serviceTime / this.numberOfServedPeople;
     }
+
+    public double getAvgQueueTime() {
+        return this.queueTime / this.numberOfServedJobs;
+    }
+
+    public void addQueueTime(Double addQueueTime) {
+        this.queueTime += addQueueTime;
+    }
 }

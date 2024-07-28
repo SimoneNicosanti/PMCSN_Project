@@ -106,4 +106,8 @@ public class ConfigHandler {
         return getInterval(currentClock);
     }
 
+    public List<Interval> getAllIntervals() {
+        return this.intervals;
+    }
+
 }

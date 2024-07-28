@@ -6,7 +6,7 @@ import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
 
 /**
  * Fake center for exiting jobs
@@ -23,7 +23,7 @@ public class ExitCenter implements Center<RiderGroup> {
     public void arrival(RiderGroup job) {
         // TODO change filename for the different configuration
         String filename = Constants.JOB_STATS_FILENAME;
-        RiderStatisticsWriter.writeStatistics("General", filename, job);
+        StatisticsWriter.writeStatistics("General", filename, job);
         // EventLogger.logExit(ClockHandler.getInstance().getClock());
     }
 

@@ -73,4 +73,18 @@ public class Attraction extends StatsCenter {
     public void doEndService(RiderGroup endedJob) {
     }
 
+    @Override
+    protected void collectEndServiceStats(RiderGroup endedJob) {
+        double jobServiceTime = this.getServiceTime(endedJob);
+
+        endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
+
+        if (this.startServingTimeMap.isEmpty()) {
+            this.stats.addCompletedService();
+            this.stats.addServiceTime(jobServiceTime);
+        }
+
+        this.stats.addServedGroup(endedJob.getGroupSize());
+    }
+
 }

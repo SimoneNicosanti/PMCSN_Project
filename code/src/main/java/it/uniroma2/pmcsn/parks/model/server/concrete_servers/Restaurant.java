@@ -90,4 +90,15 @@ public class Restaurant extends StatsCenter {
 
         this.startService();
     }
+
+    @Override
+    protected void collectEndServiceStats(RiderGroup endedJob) {
+
+        double jobServiceTime = this.getServiceTime(endedJob);
+
+        this.stats.addCompletedService();
+        this.stats.addServiceTime(jobServiceTime);
+
+        this.stats.addServedGroup(endedJob.getGroupSize());
+    }
 }

@@ -14,7 +14,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.RiderStatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
 
 public class ParkController implements Controller<RiderGroup> {
 
@@ -101,7 +101,7 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void writeCenterStats(Interval interval) {
         for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-            RiderStatisticsWriter.writeCenterStatistics("Center", interval.getStart() + "-" + interval.getEnd(),
+            StatisticsWriter.writeCenterStatistics("Center", interval.getStart() + "-" + interval.getEnd(),
                     center);
         }
     }
@@ -116,8 +116,8 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void init_simulation() {
         // Reset statistics
-        RiderStatisticsWriter.resetStatistics("General");
-        RiderStatisticsWriter.resetStatistics("Center");
+        StatisticsWriter.resetStatistics("General");
+        StatisticsWriter.resetStatistics("Center");
         // Prepare the logger and set the system clock to 0
         EventLogger.prepareLog();
         ClockHandler.getInstance().setClock(0);
