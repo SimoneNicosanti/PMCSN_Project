@@ -66,7 +66,10 @@ public class StatisticsWriter {
         String name = center.getName();
         StatsCenter statsCenter = (StatsCenter) center;
         CenterStats stats = ((StatsCenter) center).getCenterStats();
-        double avgServiceTime = stats.getAvgServiceTime();
+        double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
+        double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();
+        double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
+
         // double avgQueueTime = stats.getAvgQueueTime();
         long peopleServed = stats.getNumberOfServedPerson();
         long groupsServed = stats.getNumberOfServedGroup();
@@ -110,11 +113,13 @@ public class StatisticsWriter {
 
         Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName + ".csv");
         String[] header = {
-                "Center name", "Avg Service Time",
+                "Center name", "Avg Service Time - Services",
                 "Groups Served", "Normal Group Served", "Priority Group Served",
-                "Avg Queue Time - Group", "Avg Queue Time Normal - Group", "Avg Queue Time Prio - Group",
+                "Avg Service Time - Groups",
+                "Avg Queue Time - Groups", "Avg Queue Time Normal - Groups", "Avg Queue Time Prio - Groups",
                 "People Served", "Normal People Served", "Priority People Served",
-                "Avg Queue Time - Person", "Avg Queue Time Normal - Person", "Avg Queue Time Prio - Person"
+                "Avg Service Time - People",
+                "Avg Queue Time - People", "Avg Queue Time Normal - People", "Avg Queue Time Prio - People"
         };
 
         // Writing the header
@@ -122,10 +127,12 @@ public class StatisticsWriter {
 
         // Writing the file
         List<Object> record = List.of(
-                name, avgServiceTime,
+                name, avgServiceTimePerCompletedService,
                 groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
+                avgServiceTimePerGroup,
                 avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio,
                 peopleServed, numberOfNormalRider, numberOfPriorityRider,
+                avgServiceTimePerPerson,
                 avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio);
         writeRecord(filePath, record);
     }

@@ -34,6 +34,9 @@ public class ParkController implements Controller<RiderGroup> {
         this.currentInterval = configHandler.getCurrentInterval();
     }
 
+    // TODO All restaurants have the same mean in the results csv, but not in the
+    // configuration file
+
     @Override
     public void startSimulation() {
 

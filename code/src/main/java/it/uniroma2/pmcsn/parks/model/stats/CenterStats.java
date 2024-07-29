@@ -2,14 +2,17 @@ package it.uniroma2.pmcsn.parks.model.stats;
 
 public class CenterStats {
     // The total service time of a center
-    protected double serviceTime;
+    protected double perPersonServiceTime;
+    protected double perGroupServiceTime;
+    protected double perCompletedServiceServiceTime;
+
     // Number of jobs serverd by the center
     private long numberOfServedPerson;
     private long numberOfServedGroup;
     private long numberOfCompletedServices;
 
     public CenterStats() {
-        this.serviceTime = 0;
+        this.perPersonServiceTime = 0;
         this.numberOfServedPerson = 0L;
     }
 
@@ -21,18 +24,19 @@ public class CenterStats {
         return numberOfCompletedServices;
     }
 
-    public double getServiceTime() {
-        return this.serviceTime;
+    public double getPerPersonServiceTime() {
+        return this.perPersonServiceTime;
     }
 
     public long getNumberOfServedGroup() {
         return this.numberOfServedGroup;
     }
 
-    public void addServingData(double serviceTime, int servedJobs) {
-        this.serviceTime += serviceTime;
+    public void addServingData(double serviceTime, int personServed) {
+        this.perGroupServiceTime += serviceTime;
+        this.perPersonServiceTime += serviceTime * personServed;
         this.numberOfServedGroup++;
-        this.numberOfServedPerson += servedJobs;
+        this.numberOfServedPerson += personServed;
     }
 
     public void addServedGroup(int jobSize) {
@@ -42,10 +46,18 @@ public class CenterStats {
 
     public void addServiceTime(double serviceTime) {
         numberOfCompletedServices++;
-        this.serviceTime += serviceTime;
+        this.perPersonServiceTime += serviceTime;
     }
 
-    public double getAvgServiceTime() {
-        return this.serviceTime / this.numberOfServedPerson;
+    public double getAvgServiceTimePerPerson() {
+        return this.perPersonServiceTime / this.numberOfServedPerson;
+    }
+
+    public double getAvgServiceTimePerGroup() {
+        return this.perGroupServiceTime / this.numberOfServedGroup;
+    }
+
+    public double getAvgServiceTimePerCompletedService() {
+        return this.perCompletedServiceServiceTime / this.numberOfCompletedServices;
     }
 }

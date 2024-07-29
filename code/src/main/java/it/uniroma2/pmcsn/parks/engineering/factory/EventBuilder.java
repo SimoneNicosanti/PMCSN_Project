@@ -26,7 +26,7 @@ public class EventBuilder {
                 arrivalRate);
 
         int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
-                .intValue(); // Change to 1 constant value to verify
+                .intValue(); // TODO Change to 1 constant value to verify
         GroupPriority priority = computeGroupPriority();
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);

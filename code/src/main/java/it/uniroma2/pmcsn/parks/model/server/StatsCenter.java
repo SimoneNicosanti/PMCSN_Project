@@ -11,8 +11,6 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
-import it.uniroma2.pmcsn.parks.model.stats.AttractionStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
@@ -28,11 +26,8 @@ public abstract class StatsCenter extends AbstractCenter {
         // TODO Not good doing this
         // Other way may be pass the CenterStats in the constructor
         // But in that way we would lose transparency in Center about statistics
-        if (this instanceof Attraction) {
-            this.stats = new AttractionStats();
-        } else {
-            this.stats = new CenterStats();
-        }
+        this.stats = new CenterStats();
+
         this.startServingTimeMap = new HashMap<>();
     }
 
@@ -47,11 +42,8 @@ public abstract class StatsCenter extends AbstractCenter {
     }
 
     public void resetCenterStats() {
-        if (this instanceof Attraction) {
-            this.stats = new AttractionStats();
-        } else {
-            this.stats = new CenterStats();
-        }
+        this.stats = new CenterStats();
+
         StatsQueueManager statsQueueManager = (StatsQueueManager) this.queueManager; // Perdoname Emanuele por mi vida
                                                                                      // loca <3
         statsQueueManager.resetQueueStats();
