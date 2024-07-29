@@ -12,7 +12,7 @@ public class Attraction extends StatsCenter {
 
     private double currentServiceTime;
     private double popularity;
-    private double avgDuration;
+    protected double avgDuration;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
         super(name, new AttractionQueueManager(), numberOfSeats);
@@ -33,18 +33,12 @@ public class Attraction extends StatsCenter {
         return this.avgDuration;
     }
 
-    @Override // Override to do verify
-    protected void terminateService(RiderGroup endedJob) {
-
-        this.currentServingJobs.remove(endedJob);
-
-        if (currentServingJobs.isEmpty()) {
-            this.currentServiceTime = 0.0;
-            this.startService();
-        }
+    @Override
+    public void arrival(RiderGroup job) {
+        this.manageArrival(job);
     }
 
-    @Override // Override to do verify
+    @Override
     public boolean canServe(Integer jobSize) {
         return this.currentServingJobs.isEmpty();
     }
@@ -64,11 +58,15 @@ public class Attraction extends StatsCenter {
     }
 
     @Override
-    public void doArrival(RiderGroup job) {
-    }
+    public void endService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
 
-    @Override
-    public void doEndService(RiderGroup endedJob) {
+        if (currentServingJobs.isEmpty()) {
+            this.currentServiceTime = 0.0;
+            this.startService();
+        }
+
+        this.manageEndService(endedJob);
     }
 
     @Override // Override to do verify

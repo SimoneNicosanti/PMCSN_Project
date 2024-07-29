@@ -31,10 +31,6 @@ public abstract class StatsCenter extends AbstractCenter {
         this.startServingTimeMap = new HashMap<>();
     }
 
-    protected abstract void doArrival(RiderGroup job);
-
-    protected abstract void doEndService(RiderGroup endedJob);
-
     protected double getServiceTime(RiderGroup endedJob) {
         Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
 
@@ -61,12 +57,9 @@ public abstract class StatsCenter extends AbstractCenter {
         return queueManager.getGeneralQueueStats();
     }
 
-    @Override
-    public void arrival(RiderGroup job) {
-
+    protected void manageArrival(RiderGroup job) {
         this.collectArrivalStats(job);
         this.commonArrivalManagement(job);
-        this.doArrival(job);
     }
 
     @Override
@@ -82,14 +75,9 @@ public abstract class StatsCenter extends AbstractCenter {
         return servingGroups;
     }
 
-    @Override
-    public void endService(RiderGroup endedJob) {
-
-        this.collectEndServiceStats(endedJob);
+    protected void manageEndService(RiderGroup endedJob) {
         this.commonEndManagement(endedJob);
-        this.doEndService(endedJob);
-
-        return;
+        this.collectEndServiceStats(endedJob);
     }
 
     protected abstract void collectEndServiceStats(RiderGroup endedJob);

@@ -33,28 +33,16 @@ public class Entrance extends StatsCenter {
     }
 
     @Override
-    protected void terminateService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
-
-        this.startService();
-    }
-
-    @Override
     protected Double getNewServiceTime(RiderGroup job) {
         return job.getGroupSize() * RandomHandler.getInstance().getExponential(this.name, avgServiceTime);
     }
 
     @Override
-    public void doArrival(RiderGroup job) {
-        Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
-        if (newArrivalEvent != null) {
-            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
-            EventLogger.logEvent("Generated", newArrivalEvent);
-        }
-    }
+    public void endService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
+        this.startService();
 
-    @Override
-    public void doEndService(RiderGroup endedJob) {
+        this.manageEndService(endedJob);
     }
 
     @Override
@@ -66,4 +54,16 @@ public class Entrance extends StatsCenter {
 
         this.stats.addServedGroup(endedJob.getGroupSize());
     }
+
+    @Override
+    public void arrival(RiderGroup job) {
+        this.manageArrival(job);
+
+        Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
+        if (newArrivalEvent != null) {
+            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
+            EventLogger.logEvent("Generated", newArrivalEvent);
+        }
+    }
+
 }

@@ -254,7 +254,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 18
-Event Time >>> 5.944683538223171
+Event Time >>> 5.944683538223172
 Simulation Clock >>> 1.2184717709972084
 
 Simulation Type >> Generated
@@ -814,7 +814,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 58
-Event Time >>> 5.218951696710524
+Event Time >>> 5.218951696710523
 Simulation Clock >>> 3.5176415613374044
 
 Simulation Type >> Generated
@@ -1192,8 +1192,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 80
-Event Time >>> 9.872722508456352
-Simulation Clock >>> 5.218951696710524
+Event Time >>> 9.87272250845635
+Simulation Clock >>> 5.218951696710523
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -1381,8 +1381,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 90
-Event Time >>> 6.288150013189361
-Simulation Clock >>> 5.944683538223171
+Event Time >>> 6.2881500131893615
+Simulation Clock >>> 5.944683538223172
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -1437,8 +1437,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 94
-Event Time >>> 6.655546483259976
-Simulation Clock >>> 6.288150013189361
+Event Time >>> 6.655546483259977
+Simulation Clock >>> 6.2881500131893615
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -1535,8 +1535,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 97
-Event Time >>> 7.792962757160679
-Simulation Clock >>> 6.655546483259976
+Event Time >>> 7.79296275716068
+Simulation Clock >>> 6.655546483259977
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -1808,8 +1808,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 110
-Event Time >>> 10.382022919714023
-Simulation Clock >>> 7.792962757160679
+Event Time >>> 10.382022919714025
+Simulation Clock >>> 7.79296275716068
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -1899,7 +1899,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 114
-Event Time >>> 15.335116431250906
+Event Time >>> 15.335116431250905
 Simulation Clock >>> 8.14401771613143
 
 Simulation Type >> Schedule 
@@ -2207,8 +2207,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 129
-Event Time >>> 12.304177690555838
-Simulation Clock >>> 9.872722508456352
+Event Time >>> 12.304177690555836
+Simulation Clock >>> 9.87272250845635
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -2354,8 +2354,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 136
-Event Time >>> 12.33276356604742
-Simulation Clock >>> 10.382022919714023
+Event Time >>> 12.332763566047422
+Simulation Clock >>> 10.382022919714025
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -2760,8 +2760,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 160
-Event Time >>> 12.702891205925924
-Simulation Clock >>> 12.304177690555838
+Event Time >>> 12.702891205925923
+Simulation Clock >>> 12.304177690555836
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -2781,8 +2781,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 161
-Event Time >>> 14.739199402122985
-Simulation Clock >>> 12.33276356604742
+Event Time >>> 14.739199402122987
+Simulation Clock >>> 12.332763566047422
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -2893,8 +2893,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 167
-Event Time >>> 14.601330415084593
-Simulation Clock >>> 12.702891205925924
+Event Time >>> 14.601330415084592
+Simulation Clock >>> 12.702891205925923
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -3327,8 +3327,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 186
-Event Time >>> 14.724218111843033
-Simulation Clock >>> 14.601330415084593
+Event Time >>> 14.724218111843031
+Simulation Clock >>> 14.601330415084592
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -3383,8 +3383,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 190
-Event Time >>> 15.07410200138435
-Simulation Clock >>> 14.724218111843033
+Event Time >>> 15.074102001384349
+Simulation Clock >>> 14.724218111843031
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -3397,8 +3397,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 192
-Event Time >>> 15.350309651991116
-Simulation Clock >>> 14.739199402122985
+Event Time >>> 15.350309651991118
+Simulation Clock >>> 14.739199402122987
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -3467,8 +3467,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 198
-Event Time >>> 15.229965295027732
-Simulation Clock >>> 15.07410200138435
+Event Time >>> 15.22996529502773
+Simulation Clock >>> 15.074102001384349
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -3495,8 +3495,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 201
-Event Time >>> 20.08182830523291
-Simulation Clock >>> 15.229965295027732
+Event Time >>> 20.081828305232907
+Simulation Clock >>> 15.22996529502773
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -3510,14 +3510,14 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 202
 Event Time >>> 17.223877713664336
-Simulation Clock >>> 15.335116431250906
+Simulation Clock >>> 15.335116431250905
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 203
 Event Time >>> 16.45563709911843
-Simulation Clock >>> 15.350309651991116
+Simulation Clock >>> 15.350309651991118
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -4650,8 +4650,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 270
-Event Time >>> 20.323244759956903
-Simulation Clock >>> 20.08182830523291
+Event Time >>> 20.3232447599569
+Simulation Clock >>> 20.081828305232907
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -4734,8 +4734,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 275
-Event Time >>> 21.838306165657798
-Simulation Clock >>> 20.323244759956903
+Event Time >>> 21.838306165657794
+Simulation Clock >>> 20.3232447599569
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -4790,7 +4790,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 279
-Event Time >>> 28.49934667262223
+Event Time >>> 28.499346672622227
 Simulation Clock >>> 20.612142982691726
 
 Simulation Type >> Schedule 
@@ -5077,8 +5077,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 299
-Event Time >>> 21.935350489680733
-Simulation Clock >>> 21.838306165657798
+Event Time >>> 21.93535048968073
+Simulation Clock >>> 21.838306165657794
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -5091,8 +5091,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 300
-Event Time >>> 22.482756594770215
-Simulation Clock >>> 21.935350489680733
+Event Time >>> 22.482756594770212
+Simulation Clock >>> 21.93535048968073
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -5175,8 +5175,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 308
-Event Time >>> 24.342476459580066
-Simulation Clock >>> 22.482756594770215
+Event Time >>> 24.342476459580062
+Simulation Clock >>> 22.482756594770212
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -5728,8 +5728,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 339
-Event Time >>> 25.63407085618705
-Simulation Clock >>> 24.342476459580066
+Event Time >>> 25.634070856187044
+Simulation Clock >>> 24.342476459580062
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -5966,8 +5966,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 352
-Event Time >>> 33.38799848427874
-Simulation Clock >>> 25.63407085618705
+Event Time >>> 33.38799848427873
+Simulation Clock >>> 25.634070856187044
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -6582,8 +6582,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 387
-Event Time >>> 28.64109672298234
-Simulation Clock >>> 28.49934667262223
+Event Time >>> 28.641096722982336
+Simulation Clock >>> 28.499346672622227
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -6603,8 +6603,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 389
-Event Time >>> 29.475309176859536
-Simulation Clock >>> 28.64109672298234
+Event Time >>> 29.475309176859533
+Simulation Clock >>> 28.641096722982336
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -6827,15 +6827,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 399
-Event Time >>> 29.533486499737315
-Simulation Clock >>> 29.475309176859536
+Event Time >>> 29.53348649973731
+Simulation Clock >>> 29.475309176859533
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 400
-Event Time >>> 29.770901499796743
-Simulation Clock >>> 29.533486499737315
+Event Time >>> 29.77090149979674
+Simulation Clock >>> 29.53348649973731
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -6870,7 +6870,7 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 402
 Event Time >>> 35.04203847591806
-Simulation Clock >>> 29.770901499796743
+Simulation Clock >>> 29.77090149979674
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -7534,8 +7534,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 427
-Event Time >>> 33.445018643488865
-Simulation Clock >>> 33.38799848427874
+Event Time >>> 33.44501864348886
+Simulation Clock >>> 33.38799848427873
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -7555,8 +7555,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 428
-Event Time >>> 33.571669113521075
-Simulation Clock >>> 33.445018643488865
+Event Time >>> 33.57166911352107
+Simulation Clock >>> 33.44501864348886
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -7597,8 +7597,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 429
-Event Time >>> 33.82432140156898
-Simulation Clock >>> 33.571669113521075
+Event Time >>> 33.82432140156897
+Simulation Clock >>> 33.57166911352107
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -7632,8 +7632,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 431
-Event Time >>> 36.86644019246797
-Simulation Clock >>> 33.82432140156898
+Event Time >>> 36.86644019246796
+Simulation Clock >>> 33.82432140156897
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -8388,8 +8388,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 465
-Event Time >>> 42.55363708960126
-Simulation Clock >>> 36.86644019246797
+Event Time >>> 42.55363708960125
+Simulation Clock >>> 36.86644019246796
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -9641,8 +9641,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 534
-Event Time >>> 45.68775457434754
-Simulation Clock >>> 42.55363708960126
+Event Time >>> 45.68775457434753
+Simulation Clock >>> 42.55363708960125
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -10250,8 +10250,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 572
-Event Time >>> 49.1995232020229
-Simulation Clock >>> 45.68775457434754
+Event Time >>> 49.199523202022895
+Simulation Clock >>> 45.68775457434753
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -11076,8 +11076,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 617
-Event Time >>> 50.325629611810314
-Simulation Clock >>> 49.1995232020229
+Event Time >>> 50.32562961181031
+Simulation Clock >>> 49.199523202022895
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -11363,8 +11363,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 630
-Event Time >>> 52.444385614863705
-Simulation Clock >>> 50.325629611810314
+Event Time >>> 52.44438561486369
+Simulation Clock >>> 50.32562961181031
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -11811,8 +11811,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 662
-Event Time >>> 52.62878767302079
-Simulation Clock >>> 52.444385614863705
+Event Time >>> 52.628787673020774
+Simulation Clock >>> 52.44438561486369
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -11867,8 +11867,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 665
-Event Time >>> 60.2916541317795
-Simulation Clock >>> 52.62878767302079
+Event Time >>> 60.29165413177949
+Simulation Clock >>> 52.628787673020774
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -12413,7 +12413,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 700
-Event Time >>> 60.05146546796868
+Event Time >>> 60.051465467968676
 Simulation Clock >>> 55.23494532684185
 
 Simulation Type >> Generated
@@ -13365,8 +13365,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 746
-Event Time >>> 60.18023067843864
-Simulation Clock >>> 60.05146546796868
+Event Time >>> 60.18023067843863
+Simulation Clock >>> 60.051465467968676
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13386,8 +13386,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 748
-Event Time >>> 61.22497966901695
-Simulation Clock >>> 60.18023067843864
+Event Time >>> 61.224979669016946
+Simulation Clock >>> 60.18023067843863
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13428,8 +13428,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 749
-Event Time >>> 60.451093233456874
-Simulation Clock >>> 60.2916541317795
+Event Time >>> 60.45109323345686
+Simulation Clock >>> 60.29165413177949
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13463,8 +13463,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 752
-Event Time >>> 61.81111964693307
-Simulation Clock >>> 60.451093233456874
+Event Time >>> 61.81111964693306
+Simulation Clock >>> 60.45109323345686
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13575,8 +13575,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 757
-Event Time >>> 62.53899886934742
-Simulation Clock >>> 61.22497966901695
+Event Time >>> 62.53899886934741
+Simulation Clock >>> 61.224979669016946
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13687,8 +13687,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 763
-Event Time >>> 67.51239143870694
-Simulation Clock >>> 61.81111964693307
+Event Time >>> 67.51239143870693
+Simulation Clock >>> 61.81111964693306
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -13799,7 +13799,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 771
-Event Time >>> 70.31243408933094
+Event Time >>> 70.31243408933092
 Simulation Clock >>> 62.277620532043926
 
 Simulation Type >> Generated
@@ -13849,7 +13849,7 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 773
 Event Time >>> 65.46446973015605
-Simulation Clock >>> 62.53899886934742
+Simulation Clock >>> 62.53899886934741
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -14919,8 +14919,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 833
-Event Time >>> 68.42410105562685
-Simulation Clock >>> 67.51239143870694
+Event Time >>> 68.42410105562683
+Simulation Clock >>> 67.51239143870693
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -15108,8 +15108,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 846
-Event Time >>> 73.15433377881024
-Simulation Clock >>> 68.42410105562685
+Event Time >>> 73.15433377881023
+Simulation Clock >>> 68.42410105562683
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -15591,8 +15591,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 871
-Event Time >>> 81.60339770244697
-Simulation Clock >>> 70.31243408933094
+Event Time >>> 81.60339770244696
+Simulation Clock >>> 70.31243408933092
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -16165,8 +16165,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 905
-Event Time >>> 73.25286804042646
-Simulation Clock >>> 73.15433377881024
+Event Time >>> 73.25286804042645
+Simulation Clock >>> 73.15433377881023
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -16179,8 +16179,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 907
-Event Time >>> 76.79225646762175
-Simulation Clock >>> 73.25286804042646
+Event Time >>> 76.79225646762174
+Simulation Clock >>> 73.25286804042645
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -16879,8 +16879,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 943
-Event Time >>> 77.3321430272607
-Simulation Clock >>> 76.79225646762175
+Event Time >>> 77.33214302726068
+Simulation Clock >>> 76.79225646762174
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -17012,8 +17012,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 951
-Event Time >>> 79.84534766876261
-Simulation Clock >>> 77.3321430272607
+Event Time >>> 79.8453476687626
+Simulation Clock >>> 77.33214302726068
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -17509,8 +17509,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 981
-Event Time >>> 83.14438236017003
-Simulation Clock >>> 79.84534766876261
+Event Time >>> 83.14438236017001
+Simulation Clock >>> 79.8453476687626
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -17901,8 +17901,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 999
-Event Time >>> 81.67408409415711
-Simulation Clock >>> 81.60339770244697
+Event Time >>> 81.6740840941571
+Simulation Clock >>> 81.60339770244696
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -17915,8 +17915,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1000
-Event Time >>> 81.86311706787801
-Simulation Clock >>> 81.67408409415711
+Event Time >>> 81.863117067878
+Simulation Clock >>> 81.6740840941571
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -17943,8 +17943,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1001
-Event Time >>> 82.92582141516242
-Simulation Clock >>> 81.86311706787801
+Event Time >>> 82.9258214151624
+Simulation Clock >>> 81.863117067878
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -18230,8 +18230,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1015
-Event Time >>> 90.7507883597463
-Simulation Clock >>> 82.92582141516242
+Event Time >>> 90.75078835974628
+Simulation Clock >>> 82.9258214151624
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -18293,8 +18293,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1021
-Event Time >>> 86.95932466706601
-Simulation Clock >>> 83.14438236017003
+Event Time >>> 86.959324667066
+Simulation Clock >>> 83.14438236017001
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -19162,7 +19162,7 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1069
 Event Time >>> 94.45099342557216
-Simulation Clock >>> 86.95932466706601
+Simulation Clock >>> 86.959324667066
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -19924,8 +19924,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1104
-Event Time >>> 90.82719891188117
-Simulation Clock >>> 90.7507883597463
+Event Time >>> 90.82719891188115
+Simulation Clock >>> 90.75078835974628
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -19938,8 +19938,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1105
-Event Time >>> 91.27793917150167
-Simulation Clock >>> 90.82719891188117
+Event Time >>> 91.27793917150166
+Simulation Clock >>> 90.82719891188115
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -20015,8 +20015,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1106
-Event Time >>> 99.18539033156384
-Simulation Clock >>> 91.27793917150167
+Event Time >>> 99.18539033156382
+Simulation Clock >>> 91.27793917150166
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -21555,7 +21555,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1175
-Event Time >>> 107.60514189704043
+Event Time >>> 107.60514189704041
 Simulation Clock >>> 98.46633662191894
 
 Simulation Type >> Generated
@@ -21688,8 +21688,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1182
-Event Time >>> 100.74237835983789
-Simulation Clock >>> 99.18539033156384
+Event Time >>> 100.74237835983787
+Simulation Clock >>> 99.18539033156382
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -22059,15 +22059,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1197
-Event Time >>> 100.76873581526219
-Simulation Clock >>> 100.74237835983789
+Event Time >>> 100.76873581526218
+Simulation Clock >>> 100.74237835983787
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1198
-Event Time >>> 103.14617481889857
-Simulation Clock >>> 100.76873581526219
+Event Time >>> 103.14617481889856
+Simulation Clock >>> 100.76873581526218
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -22542,8 +22542,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1224
-Event Time >>> 103.5196911386385
-Simulation Clock >>> 103.14617481889857
+Event Time >>> 103.51969113863849
+Simulation Clock >>> 103.14617481889856
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -22668,8 +22668,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1231
-Event Time >>> 105.0449375448865
-Simulation Clock >>> 103.5196911386385
+Event Time >>> 105.04493754488648
+Simulation Clock >>> 103.51969113863849
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -22962,8 +22962,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1244
-Event Time >>> 108.31905085221297
-Simulation Clock >>> 105.0449375448865
+Event Time >>> 108.31905085221295
+Simulation Clock >>> 105.04493754488648
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -23620,8 +23620,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1281
-Event Time >>> 109.54278911054948
-Simulation Clock >>> 107.60514189704043
+Event Time >>> 109.54278911054946
+Simulation Clock >>> 107.60514189704041
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -23788,8 +23788,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1292
-Event Time >>> 108.62840557362762
-Simulation Clock >>> 108.31905085221297
+Event Time >>> 108.6284055736276
+Simulation Clock >>> 108.31905085221295
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -23865,8 +23865,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1297
-Event Time >>> 109.53744037968194
-Simulation Clock >>> 108.62840557362762
+Event Time >>> 109.53744037968193
+Simulation Clock >>> 108.6284055736276
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -24054,15 +24054,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1305
-Event Time >>> 110.71699803871641
-Simulation Clock >>> 109.53744037968194
+Event Time >>> 110.7169980387164
+Simulation Clock >>> 109.53744037968193
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1306
-Event Time >>> 115.69997548178311
-Simulation Clock >>> 109.54278911054948
+Event Time >>> 115.6999754817831
+Simulation Clock >>> 109.54278911054946
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -24404,8 +24404,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1322
-Event Time >>> 113.57145941160748
-Simulation Clock >>> 110.71699803871641
+Event Time >>> 113.57145941160746
+Simulation Clock >>> 110.7169980387164
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -25090,8 +25090,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1358
-Event Time >>> 115.31632069427626
-Simulation Clock >>> 113.57145941160748
+Event Time >>> 115.31632069427624
+Simulation Clock >>> 113.57145941160746
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -25496,8 +25496,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1376
-Event Time >>> 117.0398316486863
-Simulation Clock >>> 115.31632069427626
+Event Time >>> 117.03983164868629
+Simulation Clock >>> 115.31632069427624
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -25608,8 +25608,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1382
-Event Time >>> 116.19792842206755
-Simulation Clock >>> 115.69997548178311
+Event Time >>> 116.19792842206753
+Simulation Clock >>> 115.6999754817831
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -25713,8 +25713,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1390
-Event Time >>> 117.01322491262624
-Simulation Clock >>> 116.19792842206755
+Event Time >>> 117.01322491262623
+Simulation Clock >>> 116.19792842206753
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -25923,15 +25923,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1405
-Event Time >>> 117.67378475675189
-Simulation Clock >>> 117.01322491262624
+Event Time >>> 117.67378475675187
+Simulation Clock >>> 117.01322491262623
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1406
-Event Time >>> 125.38832153373968
-Simulation Clock >>> 117.0398316486863
+Event Time >>> 125.38832153373967
+Simulation Clock >>> 117.03983164868629
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -26119,8 +26119,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1414
-Event Time >>> 117.76433914385456
-Simulation Clock >>> 117.67378475675189
+Event Time >>> 117.76433914385454
+Simulation Clock >>> 117.67378475675187
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -26148,7 +26148,7 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1418
 Event Time >>> 125.61635356035072
-Simulation Clock >>> 117.76433914385456
+Simulation Clock >>> 117.76433914385454
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -27757,8 +27757,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1508
-Event Time >>> 126.89137356726037
-Simulation Clock >>> 125.38832153373968
+Event Time >>> 126.89137356726036
+Simulation Clock >>> 125.38832153373967
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -28114,8 +28114,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1530
-Event Time >>> 135.5812049789451
-Simulation Clock >>> 126.89137356726037
+Event Time >>> 135.58120497894507
+Simulation Clock >>> 126.89137356726036
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -30081,8 +30081,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1618
-Event Time >>> 139.07716869310931
-Simulation Clock >>> 135.5812049789451
+Event Time >>> 139.0771686931093
+Simulation Clock >>> 135.58120497894507
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -31005,8 +31005,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1680
-Event Time >>> 139.28002014556853
-Simulation Clock >>> 139.07716869310931
+Event Time >>> 139.2800201455685
+Simulation Clock >>> 139.0771686931093
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -31047,8 +31047,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1685
-Event Time >>> 142.18004061814742
-Simulation Clock >>> 139.28002014556853
+Event Time >>> 142.1800406181474
+Simulation Clock >>> 139.2800201455685
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -31621,8 +31621,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1721
-Event Time >>> 142.83314814378272
-Simulation Clock >>> 142.18004061814742
+Event Time >>> 142.8331481437827
+Simulation Clock >>> 142.1800406181474
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -31782,8 +31782,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1729
-Event Time >>> 143.17162263191227
-Simulation Clock >>> 142.83314814378272
+Event Time >>> 143.17162263191224
+Simulation Clock >>> 142.8331481437827
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -31859,8 +31859,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1733
-Event Time >>> 155.32593748167966
-Simulation Clock >>> 143.17162263191227
+Event Time >>> 155.32593748167963
+Simulation Clock >>> 143.17162263191224
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -34631,8 +34631,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1864
-Event Time >>> 155.71828252301674
-Simulation Clock >>> 155.32593748167966
+Event Time >>> 155.7182825230167
+Simulation Clock >>> 155.32593748167963
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -34673,8 +34673,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1868
-Event Time >>> 161.11786582357325
-Simulation Clock >>> 155.71828252301674
+Event Time >>> 161.11786582357323
+Simulation Clock >>> 155.7182825230167
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -35758,8 +35758,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1927
-Event Time >>> 164.21175069475302
-Simulation Clock >>> 161.11786582357325
+Event Time >>> 164.211750694753
+Simulation Clock >>> 161.11786582357323
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -36325,8 +36325,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1961
-Event Time >>> 165.11338084017922
-Simulation Clock >>> 164.21175069475302
+Event Time >>> 165.1133808401792
+Simulation Clock >>> 164.211750694753
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -36556,8 +36556,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 1975
-Event Time >>> 172.50929601900683
-Simulation Clock >>> 165.11338084017922
+Event Time >>> 172.5092960190068
+Simulation Clock >>> 165.1133808401792
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -38327,8 +38327,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2077
-Event Time >>> 176.37805724634404
-Simulation Clock >>> 172.50929601900683
+Event Time >>> 176.378057246344
+Simulation Clock >>> 172.5092960190068
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -39097,8 +39097,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2127
-Event Time >>> 176.59039851968834
-Simulation Clock >>> 176.37805724634404
+Event Time >>> 176.5903985196883
+Simulation Clock >>> 176.378057246344
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -39118,8 +39118,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2129
-Event Time >>> 185.02635505514792
-Simulation Clock >>> 176.59039851968834
+Event Time >>> 185.0263550551479
+Simulation Clock >>> 176.5903985196883
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -40560,8 +40560,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2234
-Event Time >>> 190.41902002107562
-Simulation Clock >>> 185.02635505514792
+Event Time >>> 190.4190200210756
+Simulation Clock >>> 185.0263550551479
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -41288,8 +41288,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2302
-Event Time >>> 190.93502241005874
-Simulation Clock >>> 190.41902002107562
+Event Time >>> 190.9350224100587
+Simulation Clock >>> 190.4190200210756
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -41337,8 +41337,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2308
-Event Time >>> 191.02835966916544
-Simulation Clock >>> 190.93502241005874
+Event Time >>> 191.0283596691654
+Simulation Clock >>> 190.9350224100587
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -41386,8 +41386,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2313
-Event Time >>> 193.05381587933746
-Simulation Clock >>> 191.02835966916544
+Event Time >>> 193.05381587933744
+Simulation Clock >>> 191.0283596691654
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -41645,8 +41645,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2338
-Event Time >>> 193.95958157527102
-Simulation Clock >>> 193.05381587933746
+Event Time >>> 193.959581575271
+Simulation Clock >>> 193.05381587933744
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -41813,8 +41813,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2351
-Event Time >>> 194.6072290564922
-Simulation Clock >>> 193.95958157527102
+Event Time >>> 194.60722905649217
+Simulation Clock >>> 193.959581575271
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -41883,8 +41883,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2358
-Event Time >>> 196.2582376069041
-Simulation Clock >>> 194.6072290564922
+Event Time >>> 196.25823760690406
+Simulation Clock >>> 194.60722905649217
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -42121,8 +42121,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2381
-Event Time >>> 199.26013009035418
-Simulation Clock >>> 196.2582376069041
+Event Time >>> 199.26013009035415
+Simulation Clock >>> 196.25823760690406
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -42513,8 +42513,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2415
-Event Time >>> 199.44274250158998
-Simulation Clock >>> 199.26013009035418
+Event Time >>> 199.44274250158995
+Simulation Clock >>> 199.26013009035415
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -42542,7 +42542,7 @@ Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 2418
 Event Time >>> 211.09716851111
-Simulation Clock >>> 199.44274250158998
+Simulation Clock >>> 199.44274250158995
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -54616,7 +54616,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3523
-Event Time >>> 297.6647035316995
+Event Time >>> 297.66470353169944
 Simulation Clock >>> 292.56223693472083
 
 Simulation Type >> Schedule 
@@ -55260,8 +55260,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3576
-Event Time >>> 298.71921703807544
-Simulation Clock >>> 297.6647035316995
+Event Time >>> 298.7192170380754
+Simulation Clock >>> 297.66470353169944
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -55421,8 +55421,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3589
-Event Time >>> 299.9294081387212
-Simulation Clock >>> 298.71921703807544
+Event Time >>> 299.92940813872116
+Simulation Clock >>> 298.7192170380754
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -55596,8 +55596,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3606
-Event Time >>> 303.2487575653317
-Simulation Clock >>> 299.9294081387212
+Event Time >>> 303.24875756533163
+Simulation Clock >>> 299.92940813872116
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -55939,8 +55939,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3640
-Event Time >>> 310.122775554608
-Simulation Clock >>> 303.2487575653317
+Event Time >>> 310.1227755546079
+Simulation Clock >>> 303.24875756533163
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -56555,8 +56555,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3704
-Event Time >>> 314.3586459608481
-Simulation Clock >>> 310.122775554608
+Event Time >>> 314.35864596084804
+Simulation Clock >>> 310.1227755546079
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -56940,8 +56940,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3746
-Event Time >>> 316.1255888628131
-Simulation Clock >>> 314.3586459608481
+Event Time >>> 316.12558886281306
+Simulation Clock >>> 314.35864596084804
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -57143,8 +57143,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3767
-Event Time >>> 319.35654775258786
-Simulation Clock >>> 316.1255888628131
+Event Time >>> 319.3565477525878
+Simulation Clock >>> 316.12558886281306
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -57451,8 +57451,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3799
-Event Time >>> 319.47978504440596
-Simulation Clock >>> 319.35654775258786
+Event Time >>> 319.4797850444059
+Simulation Clock >>> 319.3565477525878
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -57465,8 +57465,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3801
-Event Time >>> 323.2777117915554
-Simulation Clock >>> 319.47978504440596
+Event Time >>> 323.27771179155536
+Simulation Clock >>> 319.4797850444059
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -57815,8 +57815,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3839
-Event Time >>> 323.7305435888378
-Simulation Clock >>> 323.2777117915554
+Event Time >>> 323.73054358883775
+Simulation Clock >>> 323.27771179155536
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -57857,15 +57857,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3845
-Event Time >>> 323.8856570014553
-Simulation Clock >>> 323.7305435888378
+Event Time >>> 323.88565700145523
+Simulation Clock >>> 323.73054358883775
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3846
-Event Time >>> 324.01844324447876
-Simulation Clock >>> 323.8856570014553
+Event Time >>> 324.0184432444787
+Simulation Clock >>> 323.88565700145523
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -57885,8 +57885,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3848
-Event Time >>> 326.73041101816995
-Simulation Clock >>> 324.01844324447876
+Event Time >>> 326.7304110181699
+Simulation Clock >>> 324.0184432444787
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -58305,8 +58305,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3894
-Event Time >>> 326.85517280736127
-Simulation Clock >>> 326.73041101816995
+Event Time >>> 326.8551728073612
+Simulation Clock >>> 326.7304110181699
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -58319,8 +58319,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3896
-Event Time >>> 328.0801612965814
-Simulation Clock >>> 326.85517280736127
+Event Time >>> 328.08016129658137
+Simulation Clock >>> 326.8551728073612
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -58452,8 +58452,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3911
-Event Time >>> 333.83425890596845
-Simulation Clock >>> 328.0801612965814
+Event Time >>> 333.8342589059684
+Simulation Clock >>> 328.08016129658137
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -59075,8 +59075,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3976
-Event Time >>> 335.05464829768937
-Simulation Clock >>> 333.83425890596845
+Event Time >>> 335.0546482976893
+Simulation Clock >>> 333.8342589059684
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -59250,15 +59250,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3997
-Event Time >>> 335.12002716866
-Simulation Clock >>> 335.05464829768937
+Event Time >>> 335.12002716865993
+Simulation Clock >>> 335.0546482976893
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 3998
-Event Time >>> 338.0042226449919
-Simulation Clock >>> 335.12002716866
+Event Time >>> 338.00422264499184
+Simulation Clock >>> 335.12002716865993
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -59516,8 +59516,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4029
-Event Time >>> 338.2998728376552
-Simulation Clock >>> 338.0042226449919
+Event Time >>> 338.29987283765513
+Simulation Clock >>> 338.00422264499184
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -59558,8 +59558,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4033
-Event Time >>> 343.036716573047
-Simulation Clock >>> 338.2998728376552
+Event Time >>> 343.03671657304693
+Simulation Clock >>> 338.29987283765513
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -59992,15 +59992,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4078
-Event Time >>> 343.1836310160364
-Simulation Clock >>> 343.036716573047
+Event Time >>> 343.1836310160363
+Simulation Clock >>> 343.03671657304693
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4079
-Event Time >>> 345.94819361026384
-Simulation Clock >>> 343.1836310160364
+Event Time >>> 345.9481936102638
+Simulation Clock >>> 343.1836310160363
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -60230,8 +60230,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4103
-Event Time >>> 346.7904077239961
-Simulation Clock >>> 345.94819361026384
+Event Time >>> 346.79040772399605
+Simulation Clock >>> 345.9481936102638
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -60335,8 +60335,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4115
-Event Time >>> 355.9262810745351
-Simulation Clock >>> 346.7904077239961
+Event Time >>> 355.92628107453504
+Simulation Clock >>> 346.79040772399605
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -61455,8 +61455,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4246
-Event Time >>> 360.0807326190551
-Simulation Clock >>> 355.9262810745351
+Event Time >>> 360.080732619055
+Simulation Clock >>> 355.92628107453504
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -61987,15 +61987,15 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4305
-Event Time >>> 360.09593848869855
-Simulation Clock >>> 360.0807326190551
+Event Time >>> 360.0959384886985
+Simulation Clock >>> 360.080732619055
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4306
-Event Time >>> 369.6116435101242
-Simulation Clock >>> 360.09593848869855
+Event Time >>> 369.61164351012417
+Simulation Clock >>> 360.0959384886985
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -63156,8 +63156,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4431
-Event Time >>> 370.78347154361455
-Simulation Clock >>> 369.6116435101242
+Event Time >>> 370.7834715436145
+Simulation Clock >>> 369.61164351012417
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -63310,8 +63310,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4449
-Event Time >>> 371.2706565046337
-Simulation Clock >>> 370.78347154361455
+Event Time >>> 371.2706565046336
+Simulation Clock >>> 370.7834715436145
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -63338,8 +63338,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4453
-Event Time >>> 371.53091501297894
-Simulation Clock >>> 371.2706565046337
+Event Time >>> 371.5309150129789
+Simulation Clock >>> 371.2706565046336
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -63380,8 +63380,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4456
-Event Time >>> 371.69441747413794
-Simulation Clock >>> 371.53091501297894
+Event Time >>> 371.6944174741379
+Simulation Clock >>> 371.5309150129789
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -63401,8 +63401,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4457
-Event Time >>> 375.7123429083495
-Simulation Clock >>> 371.69441747413794
+Event Time >>> 375.71234290834946
+Simulation Clock >>> 371.6944174741379
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -63842,8 +63842,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4512
-Event Time >>> 376.82609180107823
-Simulation Clock >>> 375.7123429083495
+Event Time >>> 376.8260918010782
+Simulation Clock >>> 375.71234290834946
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -63996,8 +63996,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4530
-Event Time >>> 384.18866931217207
-Simulation Clock >>> 376.82609180107823
+Event Time >>> 384.188669312172
+Simulation Clock >>> 376.8260918010782
 
 Simulation Type >> Generated
 Event Type >> ARRIVAL
@@ -64101,7 +64101,7 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4541
-Event Time >>> 400.26142504551825
+Event Time >>> 400.2614250455183
 Simulation Clock >>> 378.0948819638748
 
 Simulation Type >> Generated
@@ -64528,8 +64528,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4584
-Event Time >>> 385.3228213988289
-Simulation Clock >>> 384.18866931217207
+Event Time >>> 385.32282139882886
+Simulation Clock >>> 384.188669312172
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -64689,8 +64689,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4600
-Event Time >>> 387.6926655304921
-Simulation Clock >>> 385.3228213988289
+Event Time >>> 387.69266553049204
+Simulation Clock >>> 385.32282139882886
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS
@@ -64976,8 +64976,8 @@ Simulation Type >> Schedule
 Event Type >> END_PROCESS
 Center Name >>> Entrance
 Group Id >>> 4634
-Event Time >>> 389.11382378325095
-Simulation Clock >>> 387.6926655304921
+Event Time >>> 389.1138237832509
+Simulation Clock >>> 387.69266553049204
 
 Simulation Type >> Schedule 
 Event Type >> END_PROCESS

@@ -51,22 +51,12 @@ public class Restaurant extends StatsCenter {
         return slotNumber - this.getBusySlots();
     }
 
-    /**
-     * End service for targeted groups.
-     */
     @Override
-    public void doEndService(RiderGroup endedJob) {
-        // if (currentServingJobs.isEmpty()) {
-        // throw new RuntimeException("Cannot end service because there are no riders to
-        // serve");
-        // }
+    public void endService(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
+        this.startService();
 
-        // // Looking for the target group...
-        // if (!this.currentServingJobs.remove(endedJob)) {
-        // throw new RuntimeException("Group not found in the current serving jobs");
-        // }
-
-        return;
+        this.manageEndService(endedJob);
     }
 
     @Override
@@ -81,14 +71,8 @@ public class Restaurant extends StatsCenter {
     }
 
     @Override
-    public void doArrival(RiderGroup job) {
-    }
-
-    @Override
-    protected void terminateService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
-
-        this.startService();
+    public void arrival(RiderGroup job) {
+        this.manageArrival(job);
     }
 
     @Override
@@ -100,4 +84,5 @@ public class Restaurant extends StatsCenter {
 
         this.stats.addServedGroup(endedJob.getGroupSize());
     }
+
 }

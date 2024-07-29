@@ -53,8 +53,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * next center that is returned by the network routing node.
      */
     protected void commonEndManagement(RiderGroup endedJob) {
-        // Removing this job from service
-        this.terminateService(endedJob);
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
@@ -74,6 +72,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         return this.queueManager.areQueuesEmpty() && this.canServe(jobSize);
     }
 
+    /**
+     * Check if the center is able to serve a job with size "jobSize"
+     */
+    public abstract boolean canServe(Integer jobSize);
+
     @Override
     public String getName() {
         return name;
@@ -90,11 +93,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     public abstract List<RiderGroup> startService();
 
     /**
-     * Terminate the service for the job and start the next service if possible
-     */
-    protected abstract void terminateService(RiderGroup endedJob);
-
-    /**
      * Return the jobs to serve. If no jobs are available, an empty list is
      * returned.
      */
@@ -104,10 +102,5 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * Return the new service time for the job
      */
     protected abstract Double getNewServiceTime(RiderGroup job);
-
-    /**
-     * Check if the center is able to serve a job with size "jobSize"
-     */
-    protected abstract boolean canServe(Integer jobSize);
 
 }
