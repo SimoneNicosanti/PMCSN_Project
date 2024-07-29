@@ -33,7 +33,7 @@ public class Attraction extends StatsCenter {
         return this.avgDuration;
     }
 
-    @Override
+    @Override // Override to do verify
     protected void terminateService(RiderGroup endedJob) {
 
         this.currentServingJobs.remove(endedJob);
@@ -44,7 +44,7 @@ public class Attraction extends StatsCenter {
         }
     }
 
-    @Override
+    @Override // Override to do verify
     public boolean canServe(Integer jobSize) {
         return this.currentServingJobs.isEmpty();
     }
@@ -54,7 +54,7 @@ public class Attraction extends StatsCenter {
         return queueManager.extractFromQueues(this.slotNumber);
     }
 
-    @Override
+    @Override // Override to do verify
     protected Double getNewServiceTime(RiderGroup group) {
         if (this.currentServiceTime == 0.0) {
             this.currentServiceTime = RandomHandler.getInstance().getUniform(name, avgDuration - 0.5,
@@ -65,14 +65,13 @@ public class Attraction extends StatsCenter {
 
     @Override
     public void doArrival(RiderGroup job) {
-
     }
 
     @Override
     public void doEndService(RiderGroup endedJob) {
     }
 
-    @Override
+    @Override // Override to do verify
     protected void collectEndServiceStats(RiderGroup endedJob) {
         double jobServiceTime = this.getServiceTime(endedJob);
 

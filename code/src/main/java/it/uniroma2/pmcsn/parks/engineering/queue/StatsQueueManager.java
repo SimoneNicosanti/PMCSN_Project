@@ -14,14 +14,17 @@ import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
 
+    // The entrance time of each job
     protected Map<RiderGroup, Double> entranceTimeMap;
+    // Statistics for each separated queue
     protected Map<QueuePriority, QueueStats> queueStatsMap;
-    protected QueueStats generalStats;
+    // Aggregated statistics for all queues of the center
+    protected QueueStats aggregatedStats;
 
     protected StatsQueueManager() {
         this.entranceTimeMap = new HashMap<>();
         this.queueStatsMap = new HashMap<>();
-        this.generalStats = new QueueStats(null);
+        this.aggregatedStats = new QueueStats(null);
     }
 
     protected void commonStatsCollectionOnAdd(RiderGroup item) {
@@ -33,7 +36,7 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
             double entranceTime = this.entranceTimeMap.remove(group);
             double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
 
-            generalStats.updateStats(waitingTime, group.getGroupSize());
+            aggregatedStats.updateStats(waitingTime, group.getGroupSize());
         }
     }
 
@@ -61,7 +64,7 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
             queueStatsMap.put(priority, new QueueStats(priority));
         }
 
-        generalStats = new QueueStats(null);
+        aggregatedStats = new QueueStats(null);
     }
 
     public List<QueueStats> getAllQueueStats() {
@@ -73,6 +76,6 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
     }
 
     public QueueStats getGeneralQueueStats() {
-        return this.generalStats;
+        return this.aggregatedStats;
     }
 }

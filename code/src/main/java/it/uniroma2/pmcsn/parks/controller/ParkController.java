@@ -50,7 +50,6 @@ public class ParkController implements Controller<RiderGroup> {
             clockHandler.setClock(nextEvent.getEventTime());
 
             // Check if the current interval changed
-
             Interval interval = configHandler.getInterval(clockHandler.getClock());
             if (isIntervalChanged(interval)) {
                 changeInterval(interval);
@@ -67,7 +66,6 @@ public class ParkController implements Controller<RiderGroup> {
                     center.endService(job);
                     break;
             }
-
         }
 
         if (Constants.INTERVAL_STATS) {
@@ -77,6 +75,7 @@ public class ParkController implements Controller<RiderGroup> {
             writeCenterStats(null);
         }
 
+        EventLogger.logRandomStreams("RandomStreams");
     }
 
     private boolean isIntervalChanged(Interval interval) {

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.factory.ParametersParser;
 import it.uniroma2.pmcsn.parks.model.Distribution;
@@ -17,8 +18,6 @@ public class ConfigHandler {
 
     private static ConfigHandler instance = null;
 
-    private String configFileName;
-
     private Double openingTime;
     private List<Interval> intervals;
     private Map<Interval, Parameters> parametersMap;
@@ -28,15 +27,14 @@ public class ConfigHandler {
     private Map<String, Distribution> centersDistribution;
 
     private ConfigHandler() {
-        this.configFileName = "config/Config_1.json";
         this.openingTime = null;
         this.intervals = new ArrayList<>();
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
-        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFileName);
+        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(Constants.CONFIG_FILENAME);
 
-        centersDistribution = ParametersParser.parseCentersDistribution(configFileName);
+        centersDistribution = ParametersParser.parseCentersDistribution(Constants.CONFIG_FILENAME);
 
         checkOrder(pairList);
 
