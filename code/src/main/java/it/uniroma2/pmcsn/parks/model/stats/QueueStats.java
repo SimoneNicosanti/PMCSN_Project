@@ -1,23 +1,48 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+
 // Implement this for queue custom attributes
 public class QueueStats {
 
-    private double totalWaitingTime;
-    private long numberOfItems;
+    private QueuePriority priority;
+    private double perGroupWaitingTime;
+    private double perPersonWaitingTime;
+    private long numberOfGroup;
+    private long numberOfPerson;
 
-    public QueueStats() {
-        this.totalWaitingTime = 0;
-        this.numberOfItems = 0;
+    public QueueStats(QueuePriority priority) {
+        this.priority = priority;
+        this.perGroupWaitingTime = 0;
+        this.numberOfGroup = 0;
+        this.numberOfPerson = 0;
     }
 
-    public void updateStats(double waitingTime) {
-        this.totalWaitingTime += waitingTime;
-        this.numberOfItems++;
+    public QueuePriority getPriority() {
+        return priority;
     }
 
-    public double getAvgWaitingTime() {
-        return totalWaitingTime / numberOfItems;
+    public void updateStats(double waitingTime, int groupSize) {
+        this.perGroupWaitingTime += waitingTime;
+        this.perPersonWaitingTime += waitingTime * groupSize;
+        this.numberOfGroup++;
+        this.numberOfPerson += groupSize;
+    }
+
+    public long getNumberOfPerson() {
+        return numberOfPerson;
+    }
+
+    public long getNumberOfGroup() {
+        return numberOfGroup;
+    }
+
+    public double getAvgWaitingTimePerGroups() {
+        return perGroupWaitingTime / numberOfGroup;
+    }
+
+    public double getAvgWaitingTimePerPerson() {
+        return perPersonWaitingTime / numberOfPerson;
     }
 
 }

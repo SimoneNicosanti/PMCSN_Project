@@ -1,0 +1,6384 @@
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 88
+Event Time >>> 7.9328965570443515
+Simulation Clock >>> 7.9328965570443515
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 88
+Event Time >>> 79.59313800054997
+Simulation Clock >>> 7.9328965570443515
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 54
+Event Time >>> 8.511006613909496
+Simulation Clock >>> 8.511006613909496
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 54
+Event Time >>> 97.90440593882644
+Simulation Clock >>> 8.511006613909496
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 14
+Event Time >>> 11.89233137451564
+Simulation Clock >>> 11.89233137451564
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 14
+Event Time >>> 23.648093987780374
+Simulation Clock >>> 11.89233137451564
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 81
+Event Time >>> 12.623373284658586
+Simulation Clock >>> 12.623373284658586
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 81
+Event Time >>> 25.040478186598733
+Simulation Clock >>> 12.623373284658586
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 90
+Event Time >>> 12.653146976925632
+Simulation Clock >>> 12.653146976925632
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 90
+Event Time >>> 28.723868529665822
+Simulation Clock >>> 12.653146976925632
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 83
+Event Time >>> 17.654441736573368
+Simulation Clock >>> 17.654441736573368
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 83
+Event Time >>> 96.85473102287403
+Simulation Clock >>> 17.654441736573368
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 219
+Event Time >>> 18.36012347694046
+Simulation Clock >>> 18.36012347694046
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 219
+Event Time >>> 172.68840151667538
+Simulation Clock >>> 18.36012347694046
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 331
+Event Time >>> 23.92809490035851
+Simulation Clock >>> 23.92809490035851
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 331
+Event Time >>> 59.00540891168146
+Simulation Clock >>> 23.92809490035851
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 279
+Event Time >>> 28.49934667262223
+Simulation Clock >>> 28.49934667262223
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 279
+Event Time >>> 139.57326838244376
+Simulation Clock >>> 28.49934667262223
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 18
+Event Time >>> 31.344202205491694
+Simulation Clock >>> 31.344202205491694
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 18
+Event Time >>> 104.19410540198389
+Simulation Clock >>> 31.344202205491694
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 320
+Event Time >>> 36.96528032190167
+Simulation Clock >>> 36.96528032190167
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 320
+Event Time >>> 123.48107713346175
+Simulation Clock >>> 36.96528032190167
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 452
+Event Time >>> 37.26210747595978
+Simulation Clock >>> 37.26210747595978
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 452
+Event Time >>> 149.29929523108495
+Simulation Clock >>> 37.26210747595978
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 462
+Event Time >>> 39.59174489555756
+Simulation Clock >>> 39.59174489555756
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 462
+Event Time >>> 94.75054276369332
+Simulation Clock >>> 39.59174489555756
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 467
+Event Time >>> 40.755229681609656
+Simulation Clock >>> 40.755229681609656
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 467
+Event Time >>> 81.08712246272381
+Simulation Clock >>> 40.755229681609656
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 523
+Event Time >>> 42.12332374031442
+Simulation Clock >>> 42.12332374031442
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 523
+Event Time >>> 110.11738567600467
+Simulation Clock >>> 42.12332374031442
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 334
+Event Time >>> 42.18774504015363
+Simulation Clock >>> 42.18774504015363
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 334
+Event Time >>> 170.09692182654152
+Simulation Clock >>> 42.18774504015363
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 175
+Event Time >>> 47.005126618073554
+Simulation Clock >>> 47.005126618073554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 175
+Event Time >>> 114.05702356786205
+Simulation Clock >>> 47.005126618073554
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 250
+Event Time >>> 47.005126618073554
+Simulation Clock >>> 47.005126618073554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 250
+Event Time >>> 71.85219191449208
+Simulation Clock >>> 47.005126618073554
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 343
+Event Time >>> 49.74272994032135
+Simulation Clock >>> 49.74272994032135
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 343
+Event Time >>> 82.43165335916403
+Simulation Clock >>> 49.74272994032135
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 652
+Event Time >>> 54.56775388338768
+Simulation Clock >>> 54.56775388338768
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 652
+Event Time >>> 176.1683331822344
+Simulation Clock >>> 54.56775388338768
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 386
+Event Time >>> 55.358088036097435
+Simulation Clock >>> 55.358088036097435
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 386
+Event Time >>> 198.96994103941856
+Simulation Clock >>> 55.358088036097435
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 596
+Event Time >>> 56.02951001561465
+Simulation Clock >>> 56.02951001561465
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 596
+Event Time >>> 135.87721208754573
+Simulation Clock >>> 56.02951001561465
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 493
+Event Time >>> 56.53434907962351
+Simulation Clock >>> 56.53434907962351
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 493
+Event Time >>> 119.27572042753766
+Simulation Clock >>> 56.53434907962351
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 504
+Event Time >>> 58.15619954123794
+Simulation Clock >>> 58.15619954123794
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 353
+Event Time >>> 62.62291962928243
+Simulation Clock >>> 62.62291962928243
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 764
+Event Time >>> 62.684033394892715
+Simulation Clock >>> 62.684033394892715
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 749
+Event Time >>> 66.25177803859418
+Simulation Clock >>> 66.25177803859418
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 692
+Event Time >>> 67.79634884734345
+Simulation Clock >>> 67.79634884734345
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 36
+Event Time >>> 68.87971362316081
+Simulation Clock >>> 68.87971362316081
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 504
+Event Time >>> 123.40444328770126
+Simulation Clock >>> 71.85219191449208
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 747
+Event Time >>> 73.49897871840575
+Simulation Clock >>> 73.49897871840575
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 917
+Event Time >>> 74.50057387247998
+Simulation Clock >>> 74.50057387247998
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 590
+Event Time >>> 76.47746507588533
+Simulation Clock >>> 76.47746507588533
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 353
+Event Time >>> 118.31917418069882
+Simulation Clock >>> 79.59313800054997
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 882
+Event Time >>> 82.10768230252168
+Simulation Clock >>> 82.10768230252168
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 764
+Event Time >>> 186.24737461108003
+Simulation Clock >>> 82.43165335916403
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1001
+Event Time >>> 82.92582141516242
+Simulation Clock >>> 82.92582141516242
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1050
+Event Time >>> 86.22445571474125
+Simulation Clock >>> 86.22445571474125
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1117
+Event Time >>> 92.4019442614507
+Simulation Clock >>> 92.4019442614507
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 975
+Event Time >>> 93.5192468279002
+Simulation Clock >>> 93.5192468279002
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 906
+Event Time >>> 93.76811622001487
+Simulation Clock >>> 93.76811622001487
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 749
+Event Time >>> 113.13347865479955
+Simulation Clock >>> 94.75054276369332
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1154
+Event Time >>> 96.54606198192594
+Simulation Clock >>> 96.54606198192594
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 692
+Event Time >>> 160.34672896682858
+Simulation Clock >>> 96.85473102287403
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 36
+Event Time >>> 111.30128154880686
+Simulation Clock >>> 96.85473102287403
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 887
+Event Time >>> 97.01380524923616
+Simulation Clock >>> 97.01380524923616
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 414
+Event Time >>> 99.66893478955437
+Simulation Clock >>> 99.66893478955437
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 747
+Event Time >>> 279.1580411343429
+Simulation Clock >>> 104.19410540198389
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1075
+Event Time >>> 104.79063135966085
+Simulation Clock >>> 104.79063135966085
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1231
+Event Time >>> 105.0449375448865
+Simulation Clock >>> 105.0449375448865
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 250
+Event Time >>> 105.80963867264195
+Simulation Clock >>> 105.80963867264195
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1283
+Event Time >>> 110.75664426781944
+Simulation Clock >>> 110.75664426781944
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1252
+Event Time >>> 112.64673391653531
+Simulation Clock >>> 112.64673391653531
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 917
+Event Time >>> 248.57705164606807
+Simulation Clock >>> 113.13347865479955
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 484
+Event Time >>> 114.54086204420143
+Simulation Clock >>> 114.54086204420143
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1012
+Event Time >>> 117.31567390046592
+Simulation Clock >>> 117.31567390046592
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 217
+Event Time >>> 117.81657889541056
+Simulation Clock >>> 117.81657889541056
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 590
+Event Time >>> 274.5613016347199
+Simulation Clock >>> 118.31917418069882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1417
+Event Time >>> 120.94930614225594
+Simulation Clock >>> 120.94930614225594
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1371
+Event Time >>> 121.35774587486816
+Simulation Clock >>> 121.35774587486816
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 882
+Event Time >>> 262.68220181611224
+Simulation Clock >>> 123.48107713346175
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1394
+Event Time >>> 125.1110579245221
+Simulation Clock >>> 125.1110579245221
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1549
+Event Time >>> 130.96037755866237
+Simulation Clock >>> 130.96037755866237
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1289
+Event Time >>> 132.55392392088422
+Simulation Clock >>> 132.55392392088422
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1510
+Event Time >>> 134.32765557141997
+Simulation Clock >>> 134.32765557141997
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1001
+Event Time >>> 223.37140998864854
+Simulation Clock >>> 135.87721208754573
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1050
+Event Time >>> 168.84796574097274
+Simulation Clock >>> 135.87721208754573
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1445
+Event Time >>> 136.3927311239176
+Simulation Clock >>> 136.3927311239176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1117
+Event Time >>> 186.44767524492357
+Simulation Clock >>> 139.57326838244376
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 208
+Event Time >>> 140.73601139155937
+Simulation Clock >>> 140.73601139155937
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1312
+Event Time >>> 142.68019976275306
+Simulation Clock >>> 142.68019976275306
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 378
+Event Time >>> 146.4229519704358
+Simulation Clock >>> 146.4229519704358
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1705
+Event Time >>> 148.1153341852577
+Simulation Clock >>> 148.1153341852577
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1124
+Event Time >>> 149.02921742553102
+Simulation Clock >>> 149.02921742553102
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 975
+Event Time >>> 282.78027152184416
+Simulation Clock >>> 149.29929523108495
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 906
+Event Time >>> 184.90074661666563
+Simulation Clock >>> 149.29929523108495
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1154
+Event Time >>> 168.12921191356574
+Simulation Clock >>> 149.29929523108495
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 646
+Event Time >>> 150.6660588263631
+Simulation Clock >>> 150.6660588263631
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 890
+Event Time >>> 153.51079326485754
+Simulation Clock >>> 153.51079326485754
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1658
+Event Time >>> 156.54089840144005
+Simulation Clock >>> 156.54089840144005
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1870
+Event Time >>> 157.86066437418674
+Simulation Clock >>> 157.86066437418674
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1834
+Event Time >>> 159.09040214442115
+Simulation Clock >>> 159.09040214442115
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1512
+Event Time >>> 159.82113148389695
+Simulation Clock >>> 159.82113148389695
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1933
+Event Time >>> 162.0490170304777
+Simulation Clock >>> 162.0490170304777
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1839
+Event Time >>> 165.94219368315382
+Simulation Clock >>> 165.94219368315382
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 887
+Event Time >>> 300.4864721269656
+Simulation Clock >>> 168.12921191356574
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1101
+Event Time >>> 169.67423353004708
+Simulation Clock >>> 169.67423353004708
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 414
+Event Time >>> 253.8881797024158
+Simulation Clock >>> 170.09692182654152
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 820
+Event Time >>> 171.2524593638405
+Simulation Clock >>> 171.2524593638405
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1075
+Event Time >>> 330.74446890706884
+Simulation Clock >>> 172.68840151667538
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2071
+Event Time >>> 172.96110182302874
+Simulation Clock >>> 172.96110182302874
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 576
+Event Time >>> 174.85818330574023
+Simulation Clock >>> 174.85818330574023
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 783
+Event Time >>> 175.30013133877767
+Simulation Clock >>> 175.30013133877767
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1231
+Event Time >>> 235.91455615312344
+Simulation Clock >>> 176.1683331822344
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 250
+Event Time >>> 201.13284707499142
+Simulation Clock >>> 176.1683331822344
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1283
+Event Time >>> 242.31868500374935
+Simulation Clock >>> 176.1683331822344
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2121
+Event Time >>> 176.58104923476697
+Simulation Clock >>> 176.58104923476697
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2073
+Event Time >>> 177.4538869062093
+Simulation Clock >>> 177.4538869062093
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1794
+Event Time >>> 180.07399669155882
+Simulation Clock >>> 180.07399669155882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1595
+Event Time >>> 180.07399669155882
+Simulation Clock >>> 180.07399669155882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 522
+Event Time >>> 180.07399669155882
+Simulation Clock >>> 180.07399669155882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1953
+Event Time >>> 180.07399669155882
+Simulation Clock >>> 180.07399669155882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 985
+Event Time >>> 180.07399669155882
+Simulation Clock >>> 180.07399669155882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2172
+Event Time >>> 181.08815212007718
+Simulation Clock >>> 181.08815212007718
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 248
+Event Time >>> 181.88077314303268
+Simulation Clock >>> 181.88077314303268
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2194
+Event Time >>> 182.84026247826966
+Simulation Clock >>> 182.84026247826966
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2204
+Event Time >>> 183.9292037576042
+Simulation Clock >>> 183.9292037576042
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2161
+Event Time >>> 184.95040281462028
+Simulation Clock >>> 184.95040281462028
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2074
+Event Time >>> 185.53644524878703
+Simulation Clock >>> 185.53644524878703
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1541
+Event Time >>> 185.53644524878703
+Simulation Clock >>> 185.53644524878703
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1846
+Event Time >>> 185.5911458769332
+Simulation Clock >>> 185.5911458769332
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1915
+Event Time >>> 185.8749172698844
+Simulation Clock >>> 185.8749172698844
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1771
+Event Time >>> 185.8749172698844
+Simulation Clock >>> 185.8749172698844
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 493
+Event Time >>> 185.97419998934927
+Simulation Clock >>> 185.97419998934927
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1252
+Event Time >>> 260.4856136834542
+Simulation Clock >>> 186.24737461108003
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 484
+Event Time >>> 218.82973534651433
+Simulation Clock >>> 186.24737461108003
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1457
+Event Time >>> 187.58549275518908
+Simulation Clock >>> 187.58549275518908
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2268
+Event Time >>> 189.39491743639664
+Simulation Clock >>> 189.39491743639664
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 496
+Event Time >>> 189.67975032025052
+Simulation Clock >>> 189.67975032025052
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 353
+Event Time >>> 192.11215362472777
+Simulation Clock >>> 192.11215362472777
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1224
+Event Time >>> 192.47186498246487
+Simulation Clock >>> 192.47186498246487
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2275
+Event Time >>> 193.83690828859392
+Simulation Clock >>> 193.83690828859392
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1609
+Event Time >>> 194.15885493412608
+Simulation Clock >>> 194.15885493412608
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 159
+Event Time >>> 194.16970132251595
+Simulation Clock >>> 194.16970132251595
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 757
+Event Time >>> 194.16970132251595
+Simulation Clock >>> 194.16970132251595
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2359
+Event Time >>> 195.0461199790468
+Simulation Clock >>> 195.0461199790468
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2254
+Event Time >>> 195.0501151997662
+Simulation Clock >>> 195.0501151997662
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2384
+Event Time >>> 196.56887722177103
+Simulation Clock >>> 196.56887722177103
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1986
+Event Time >>> 196.92828808138407
+Simulation Clock >>> 196.92828808138407
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2368
+Event Time >>> 197.15847567505878
+Simulation Clock >>> 197.15847567505878
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2396
+Event Time >>> 197.29130540282054
+Simulation Clock >>> 197.29130540282054
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2389
+Event Time >>> 197.3545788741948
+Simulation Clock >>> 197.3545788741948
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1065
+Event Time >>> 197.38724565929397
+Simulation Clock >>> 197.38724565929397
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 36
+Event Time >>> 197.7482382684494
+Simulation Clock >>> 197.7482382684494
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2176
+Event Time >>> 197.7482382684494
+Simulation Clock >>> 197.7482382684494
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2385
+Event Time >>> 198.92009884586926
+Simulation Clock >>> 198.92009884586926
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1012
+Event Time >>> 268.3751214831512
+Simulation Clock >>> 198.96994103941856
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 217
+Event Time >>> 280.1909405537399
+Simulation Clock >>> 198.96994103941856
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2125
+Event Time >>> 200.14185525601593
+Simulation Clock >>> 200.14185525601593
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1241
+Event Time >>> 201.68621483106233
+Simulation Clock >>> 201.68621483106233
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2379
+Event Time >>> 202.59072330317835
+Simulation Clock >>> 202.59072330317835
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 422
+Event Time >>> 202.59072330317835
+Simulation Clock >>> 202.59072330317835
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2383
+Event Time >>> 202.65892776838635
+Simulation Clock >>> 202.65892776838635
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 72
+Event Time >>> 203.46726189553854
+Simulation Clock >>> 203.46726189553854
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1529
+Event Time >>> 204.80605951906722
+Simulation Clock >>> 204.80605951906722
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1382
+Event Time >>> 205.3901112263209
+Simulation Clock >>> 205.3901112263209
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1406
+Event Time >>> 208.68217236709847
+Simulation Clock >>> 208.68217236709847
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2515
+Event Time >>> 208.9923874911265
+Simulation Clock >>> 208.9923874911265
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2475
+Event Time >>> 209.2400309907819
+Simulation Clock >>> 209.2400309907819
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2479
+Event Time >>> 209.29895256900318
+Simulation Clock >>> 209.29895256900318
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2269
+Event Time >>> 210.10806887534574
+Simulation Clock >>> 210.10806887534574
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2210
+Event Time >>> 210.1308127662222
+Simulation Clock >>> 210.1308127662222
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2549
+Event Time >>> 210.61735863209475
+Simulation Clock >>> 210.61735863209475
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2548
+Event Time >>> 211.53146676567357
+Simulation Clock >>> 211.53146676567357
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2407
+Event Time >>> 211.81170494565228
+Simulation Clock >>> 211.81170494565228
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2454
+Event Time >>> 211.81170494565228
+Simulation Clock >>> 211.81170494565228
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2543
+Event Time >>> 212.8951000350586
+Simulation Clock >>> 212.8951000350586
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1147
+Event Time >>> 213.8515063952127
+Simulation Clock >>> 213.8515063952127
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1879
+Event Time >>> 218.60791172361417
+Simulation Clock >>> 218.60791172361417
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2578
+Event Time >>> 218.60791172361417
+Simulation Clock >>> 218.60791172361417
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2507
+Event Time >>> 218.70329393946497
+Simulation Clock >>> 218.70329393946497
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2650
+Event Time >>> 220.2495624486462
+Simulation Clock >>> 220.2495624486462
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2619
+Event Time >>> 220.4466434950508
+Simulation Clock >>> 220.4466434950508
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2633
+Event Time >>> 220.53688079461344
+Simulation Clock >>> 220.53688079461344
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2361
+Event Time >>> 221.13379938226055
+Simulation Clock >>> 221.13379938226055
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2588
+Event Time >>> 221.30243940361765
+Simulation Clock >>> 221.30243940361765
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 867
+Event Time >>> 221.30243940361765
+Simulation Clock >>> 221.30243940361765
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2636
+Event Time >>> 222.26661763895038
+Simulation Clock >>> 222.26661763895038
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2537
+Event Time >>> 222.78587899372937
+Simulation Clock >>> 222.78587899372937
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2655
+Event Time >>> 222.90559598017794
+Simulation Clock >>> 222.90559598017794
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1417
+Event Time >>> 306.0124769545941
+Simulation Clock >>> 223.37140998864854
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1929
+Event Time >>> 224.328200940185
+Simulation Clock >>> 224.328200940185
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2708
+Event Time >>> 224.37352326771438
+Simulation Clock >>> 224.37352326771438
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2715
+Event Time >>> 225.2867605328711
+Simulation Clock >>> 225.2867605328711
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 569
+Event Time >>> 226.53904412026517
+Simulation Clock >>> 226.53904412026517
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 469
+Event Time >>> 226.62452812810892
+Simulation Clock >>> 226.62452812810892
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2736
+Event Time >>> 226.73979185643424
+Simulation Clock >>> 226.73979185643424
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2734
+Event Time >>> 228.18918549527476
+Simulation Clock >>> 228.18918549527476
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 407
+Event Time >>> 229.14552534520632
+Simulation Clock >>> 229.14552534520632
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2554
+Event Time >>> 229.2453342325895
+Simulation Clock >>> 229.2453342325895
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2611
+Event Time >>> 229.2646599058733
+Simulation Clock >>> 229.2646599058733
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2740
+Event Time >>> 231.35619960476143
+Simulation Clock >>> 231.35619960476143
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2752
+Event Time >>> 231.75460076310324
+Simulation Clock >>> 231.75460076310324
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2761
+Event Time >>> 232.44294104734732
+Simulation Clock >>> 232.44294104734732
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2096
+Event Time >>> 232.73609072068498
+Simulation Clock >>> 232.73609072068498
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2113
+Event Time >>> 232.73609072068498
+Simulation Clock >>> 232.73609072068498
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2794
+Event Time >>> 232.7509967767083
+Simulation Clock >>> 232.7509967767083
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2818
+Event Time >>> 235.3267741128949
+Simulation Clock >>> 235.3267741128949
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2689
+Event Time >>> 235.63455748985947
+Simulation Clock >>> 235.63455748985947
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2585
+Event Time >>> 235.63455748985947
+Simulation Clock >>> 235.63455748985947
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2817
+Event Time >>> 235.87390099484614
+Simulation Clock >>> 235.87390099484614
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1371
+Event Time >>> 314.0153215043764
+Simulation Clock >>> 235.91455615312344
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2826
+Event Time >>> 238.27122481152284
+Simulation Clock >>> 238.27122481152284
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1838
+Event Time >>> 238.35393641057186
+Simulation Clock >>> 238.35393641057186
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1052
+Event Time >>> 238.49898586653936
+Simulation Clock >>> 238.49898586653936
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2860
+Event Time >>> 239.31418077311616
+Simulation Clock >>> 239.31418077311616
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2864
+Event Time >>> 240.7028771283556
+Simulation Clock >>> 240.7028771283556
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 321
+Event Time >>> 241.70521204255513
+Simulation Clock >>> 241.70521204255513
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2882
+Event Time >>> 241.7569563496859
+Simulation Clock >>> 241.7569563496859
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2907
+Event Time >>> 242.29187640311062
+Simulation Clock >>> 242.29187640311062
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1394
+Event Time >>> 277.4805151464308
+Simulation Clock >>> 242.31868500374935
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2928
+Event Time >>> 243.37939760756086
+Simulation Clock >>> 243.37939760756086
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2628
+Event Time >>> 244.66226643589206
+Simulation Clock >>> 244.66226643589206
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2849
+Event Time >>> 244.66226643589206
+Simulation Clock >>> 244.66226643589206
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1284
+Event Time >>> 244.78303754993735
+Simulation Clock >>> 244.78303754993735
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 151
+Event Time >>> 244.81602205717726
+Simulation Clock >>> 244.81602205717726
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 360
+Event Time >>> 244.81602205717726
+Simulation Clock >>> 244.81602205717726
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2951
+Event Time >>> 246.17170326235936
+Simulation Clock >>> 246.17170326235936
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2859
+Event Time >>> 246.34456020552923
+Simulation Clock >>> 246.34456020552923
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2659
+Event Time >>> 246.34456020552923
+Simulation Clock >>> 246.34456020552923
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2975
+Event Time >>> 247.86670770500322
+Simulation Clock >>> 247.86670770500322
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 292
+Event Time >>> 248.28132193687313
+Simulation Clock >>> 248.28132193687313
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1549
+Event Time >>> 341.98268639454074
+Simulation Clock >>> 248.57705164606807
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1289
+Event Time >>> 290.27452340800323
+Simulation Clock >>> 248.57705164606807
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 638
+Event Time >>> 248.67502244082755
+Simulation Clock >>> 248.67502244082755
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2987
+Event Time >>> 249.47316708345116
+Simulation Clock >>> 249.47316708345116
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2980
+Event Time >>> 249.89986264962369
+Simulation Clock >>> 249.89986264962369
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2994
+Event Time >>> 250.81589721780176
+Simulation Clock >>> 250.81589721780176
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1221
+Event Time >>> 250.96696371372994
+Simulation Clock >>> 250.96696371372994
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2983
+Event Time >>> 251.40183319014514
+Simulation Clock >>> 251.40183319014514
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1887
+Event Time >>> 253.10713078763445
+Simulation Clock >>> 253.10713078763445
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2808
+Event Time >>> 253.4658285302671
+Simulation Clock >>> 253.4658285302671
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 222
+Event Time >>> 253.4658285302671
+Simulation Clock >>> 253.4658285302671
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3045
+Event Time >>> 253.73078457885964
+Simulation Clock >>> 253.73078457885964
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2871
+Event Time >>> 253.73886575842
+Simulation Clock >>> 253.73886575842
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 619
+Event Time >>> 253.97804113279983
+Simulation Clock >>> 253.97804113279983
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3064
+Event Time >>> 255.17798682088215
+Simulation Clock >>> 255.17798682088215
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 974
+Event Time >>> 255.98017637804867
+Simulation Clock >>> 255.98017637804867
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3075
+Event Time >>> 256.8664444286084
+Simulation Clock >>> 256.8664444286084
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3055
+Event Time >>> 257.0108165540458
+Simulation Clock >>> 257.0108165540458
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 399
+Event Time >>> 257.70488681500325
+Simulation Clock >>> 257.70488681500325
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3084
+Event Time >>> 258.0282485299649
+Simulation Clock >>> 258.0282485299649
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3092
+Event Time >>> 258.2948771558023
+Simulation Clock >>> 258.2948771558023
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3074
+Event Time >>> 258.90450510284023
+Simulation Clock >>> 258.90450510284023
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3029
+Event Time >>> 259.2816603998014
+Simulation Clock >>> 259.2816603998014
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3116
+Event Time >>> 259.76590151812735
+Simulation Clock >>> 259.76590151812735
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 268
+Event Time >>> 259.97431433744714
+Simulation Clock >>> 259.97431433744714
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1510
+Event Time >>> 406.4638747975422
+Simulation Clock >>> 260.4856136834542
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2020
+Event Time >>> 261.5102502269277
+Simulation Clock >>> 261.5102502269277
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 526
+Event Time >>> 261.68614446160717
+Simulation Clock >>> 261.68614446160717
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1976
+Event Time >>> 262.2632714517614
+Simulation Clock >>> 262.2632714517614
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1445
+Event Time >>> 393.0308579425726
+Simulation Clock >>> 262.68220181611224
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 208
+Event Time >>> 332.67214200027604
+Simulation Clock >>> 262.68220181611224
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3169
+Event Time >>> 263.4625745595037
+Simulation Clock >>> 263.4625745595037
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1269
+Event Time >>> 263.67157134524405
+Simulation Clock >>> 263.67157134524405
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 605
+Event Time >>> 264.03923959986986
+Simulation Clock >>> 264.03923959986986
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1426
+Event Time >>> 264.4100275344157
+Simulation Clock >>> 264.4100275344157
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2857
+Event Time >>> 265.1339613325841
+Simulation Clock >>> 265.1339613325841
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3067
+Event Time >>> 265.1339613325841
+Simulation Clock >>> 265.1339613325841
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3066
+Event Time >>> 265.1339613325841
+Simulation Clock >>> 265.1339613325841
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3175
+Event Time >>> 265.6765183249477
+Simulation Clock >>> 265.6765183249477
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2915
+Event Time >>> 265.80327359121696
+Simulation Clock >>> 265.80327359121696
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3133
+Event Time >>> 266.06026554292725
+Simulation Clock >>> 266.06026554292725
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3185
+Event Time >>> 266.2690842388399
+Simulation Clock >>> 266.2690842388399
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3190
+Event Time >>> 266.83298129178297
+Simulation Clock >>> 266.83298129178297
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3224
+Event Time >>> 267.4169338108203
+Simulation Clock >>> 267.4169338108203
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3073
+Event Time >>> 267.7148626903967
+Simulation Clock >>> 267.7148626903967
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 828
+Event Time >>> 267.9142054451951
+Simulation Clock >>> 267.9142054451951
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3223
+Event Time >>> 267.9639577310153
+Simulation Clock >>> 267.9639577310153
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1312
+Event Time >>> 312.77775125553984
+Simulation Clock >>> 268.3751214831512
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2908
+Event Time >>> 268.59986592998507
+Simulation Clock >>> 268.59986592998507
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2758
+Event Time >>> 270.2770495880665
+Simulation Clock >>> 270.2770495880665
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3247
+Event Time >>> 270.3124280129716
+Simulation Clock >>> 270.3124280129716
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3261
+Event Time >>> 270.73597238944586
+Simulation Clock >>> 270.73597238944586
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3258
+Event Time >>> 271.2110867224337
+Simulation Clock >>> 271.2110867224337
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3263
+Event Time >>> 272.2786135797875
+Simulation Clock >>> 272.2786135797875
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3003
+Event Time >>> 273.60971061097786
+Simulation Clock >>> 273.60971061097786
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 723
+Event Time >>> 273.60971061097786
+Simulation Clock >>> 273.60971061097786
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 378
+Event Time >>> 393.5739160949221
+Simulation Clock >>> 274.5613016347199
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3277
+Event Time >>> 274.5701989895944
+Simulation Clock >>> 274.5701989895944
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 77
+Event Time >>> 274.6275730514121
+Simulation Clock >>> 274.6275730514121
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1599
+Event Time >>> 276.61665142494905
+Simulation Clock >>> 276.61665142494905
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3290
+Event Time >>> 277.0639322462122
+Simulation Clock >>> 277.0639322462122
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1705
+Event Time >>> 375.3931235677977
+Simulation Clock >>> 277.4805151464308
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3280
+Event Time >>> 277.5731805090757
+Simulation Clock >>> 277.5731805090757
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1124
+Event Time >>> 358.6791489381501
+Simulation Clock >>> 279.1580411343429
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 646
+Event Time >>> 321.42123951854927
+Simulation Clock >>> 279.1580411343429
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3221
+Event Time >>> 279.9300105938709
+Simulation Clock >>> 279.9300105938709
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3327
+Event Time >>> 280.2348941559352
+Simulation Clock >>> 280.2348941559352
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3191
+Event Time >>> 281.2768487042339
+Simulation Clock >>> 281.2768487042339
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3383
+Event Time >>> 282.0178445789882
+Simulation Clock >>> 282.0178445789882
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3266
+Event Time >>> 282.5091021699197
+Simulation Clock >>> 282.5091021699197
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 890
+Event Time >>> 376.4786795730976
+Simulation Clock >>> 282.78027152184416
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1658
+Event Time >>> 326.2259122932358
+Simulation Clock >>> 282.78027152184416
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1870
+Event Time >>> 342.1478393159471
+Simulation Clock >>> 282.78027152184416
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3022
+Event Time >>> 283.00289810075435
+Simulation Clock >>> 283.00289810075435
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1685
+Event Time >>> 283.00289810075435
+Simulation Clock >>> 283.00289810075435
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1252
+Event Time >>> 284.13117605649717
+Simulation Clock >>> 284.13117605649717
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3310
+Event Time >>> 286.1699704260786
+Simulation Clock >>> 286.1699704260786
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1596
+Event Time >>> 286.1699704260786
+Simulation Clock >>> 286.1699704260786
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3414
+Event Time >>> 287.45616570609883
+Simulation Clock >>> 287.45616570609883
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3176
+Event Time >>> 288.8514632256265
+Simulation Clock >>> 288.8514632256265
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3484
+Event Time >>> 289.325225489907
+Simulation Clock >>> 289.325225489907
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3486
+Event Time >>> 289.77447471274684
+Simulation Clock >>> 289.77447471274684
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3448
+Event Time >>> 290.0883443279303
+Simulation Clock >>> 290.0883443279303
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 371
+Event Time >>> 290.3519641117347
+Simulation Clock >>> 290.3519641117347
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3475
+Event Time >>> 291.6602052025012
+Simulation Clock >>> 291.6602052025012
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3517
+Event Time >>> 292.56223693472083
+Simulation Clock >>> 292.56223693472083
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3012
+Event Time >>> 293.0454705257085
+Simulation Clock >>> 293.0454705257085
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3495
+Event Time >>> 293.28198140274793
+Simulation Clock >>> 293.28198140274793
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3488
+Event Time >>> 293.9564816115853
+Simulation Clock >>> 293.9564816115853
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3510
+Event Time >>> 294.6731820238251
+Simulation Clock >>> 294.6731820238251
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3528
+Event Time >>> 295.45155304881933
+Simulation Clock >>> 295.45155304881933
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3551
+Event Time >>> 295.5511170849839
+Simulation Clock >>> 295.5511170849839
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3472
+Event Time >>> 297.5764683576543
+Simulation Clock >>> 297.5764683576543
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3245
+Event Time >>> 297.7030484845902
+Simulation Clock >>> 297.7030484845902
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3544
+Event Time >>> 297.826923100903
+Simulation Clock >>> 297.826923100903
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1970
+Event Time >>> 298.22508770586103
+Simulation Clock >>> 298.22508770586103
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1092
+Event Time >>> 298.6493781688299
+Simulation Clock >>> 298.6493781688299
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3485
+Event Time >>> 298.8715891443431
+Simulation Clock >>> 298.8715891443431
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1834
+Event Time >>> 378.2839558439627
+Simulation Clock >>> 300.4864721269656
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1512
+Event Time >>> 327.9319731822759
+Simulation Clock >>> 300.4864721269656
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3607
+Event Time >>> 301.296499709225
+Simulation Clock >>> 301.296499709225
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3593
+Event Time >>> 301.29980052264216
+Simulation Clock >>> 301.29980052264216
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3091
+Event Time >>> 301.48439853101115
+Simulation Clock >>> 301.48439853101115
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3404
+Event Time >>> 305.8235729911175
+Simulation Clock >>> 305.8235729911175
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1933
+Event Time >>> 410.794235219946
+Simulation Clock >>> 312.77775125553984
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1839
+Event Time >>> 360.67689987243267
+Simulation Clock >>> 312.77775125553984
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1101
+Event Time >>> 393.6210935710542
+Simulation Clock >>> 314.0153215043764
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3464
+Event Time >>> 316.1958270008823
+Simulation Clock >>> 316.1958270008823
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 820
+Event Time >>> 356.53295482093824
+Simulation Clock >>> 321.42123951854927
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2071
+Event Time >>> 359.8274805975995
+Simulation Clock >>> 321.42123951854927
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3576
+Event Time >>> 321.45821792360573
+Simulation Clock >>> 321.45821792360573
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3771
+Event Time >>> 322.0324983714001
+Simulation Clock >>> 322.0324983714001
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1521
+Event Time >>> 323.0206941214846
+Simulation Clock >>> 323.0206941214846
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1680
+Event Time >>> 327.35352366249515
+Simulation Clock >>> 327.35352366249515
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 576
+Event Time >>> 397.089790266226
+Simulation Clock >>> 327.9319731822759
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 783
+Event Time >>> 424.5283120023825
+Simulation Clock >>> 330.74446890706884
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3947
+Event Time >>> 330.7664057415099
+Simulation Clock >>> 330.7664057415099
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 175
+Event Time >>> 331.70459723506383
+Simulation Clock >>> 331.70459723506383
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2121
+Event Time >>> 392.6250222375056
+Simulation Clock >>> 332.67214200027604
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3913
+Event Time >>> 334.38287476401274
+Simulation Clock >>> 334.38287476401274
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2073
+Event Time >>> 412.9465490124897
+Simulation Clock >>> 341.98268639454074
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4215
+Event Time >>> 355.05325339115615
+Simulation Clock >>> 355.05325339115615
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1794
+Event Time >>> 501.451601342301
+Simulation Clock >>> 356.53295482093824
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3867
+Event Time >>> 357.77099682043877
+Simulation Clock >>> 357.77099682043877
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4270
+Event Time >>> 358.41412411459766
+Simulation Clock >>> 358.41412411459766
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1971
+Event Time >>> 358.43566626445994
+Simulation Clock >>> 358.43566626445994
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1595
+Event Time >>> 411.1174745837563
+Simulation Clock >>> 358.6791489381501
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 522
+Event Time >>> 371.28345870219084
+Simulation Clock >>> 358.6791489381501
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1953
+Event Time >>> 383.9523889629669
+Simulation Clock >>> 358.6791489381501
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4111
+Event Time >>> 362.60764228256573
+Simulation Clock >>> 362.60764228256573
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4468
+Event Time >>> 373.5034284853141
+Simulation Clock >>> 373.5034284853141
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4486
+Event Time >>> 373.9307714995125
+Simulation Clock >>> 373.9307714995125
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2232
+Event Time >>> 374.05034317915687
+Simulation Clock >>> 374.05034317915687
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 985
+Event Time >>> 461.38545633269536
+Simulation Clock >>> 375.3931235677977
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2172
+Event Time >>> 397.077379103365
+Simulation Clock >>> 375.3931235677977
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 248
+Event Time >>> 385.7426022523262
+Simulation Clock >>> 375.3931235677977
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2194
+Event Time >>> 435.5354221970381
+Simulation Clock >>> 376.4786795730976
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2204
+Event Time >>> 439.8506799560183
+Simulation Clock >>> 376.4786795730976
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2161
+Event Time >>> 490.046633396962
+Simulation Clock >>> 378.2839558439627
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 456
+Event Time >>> 383.5131224992446
+Simulation Clock >>> 383.5131224992446
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1688
+Event Time >>> 384.3496559237273
+Simulation Clock >>> 384.3496559237273
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4434
+Event Time >>> 385.796597800578
+Simulation Clock >>> 385.796597800578
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2074
+Event Time >>> 528.8331830673329
+Simulation Clock >>> 392.6250222375056
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1541
+Event Time >>> 441.1059531379308
+Simulation Clock >>> 393.0308579425726
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1846
+Event Time >>> 484.7241350143772
+Simulation Clock >>> 393.5739160949221
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1915
+Event Time >>> 468.28204679599855
+Simulation Clock >>> 393.6210935710542
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1771
+Event Time >>> 453.0576542164913
+Simulation Clock >>> 393.6210935710542
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4534
+Event Time >>> 396.4464299157178
+Simulation Clock >>> 396.4464299157178
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 493
+Event Time >>> 453.3692669642461
+Simulation Clock >>> 397.077379103365
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4541
+Event Time >>> 400.26142504551825
+Simulation Clock >>> 400.26142504551825
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1457
+Event Time >>> 505.04227368581087
+Simulation Clock >>> 406.4638747975422
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2268
+Event Time >>> 563.654188955031
+Simulation Clock >>> 406.4638747975422
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4700
+Event Time >>> 408.37136433419454
+Simulation Clock >>> 408.37136433419454
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4355
+Event Time >>> 408.4497178754095
+Simulation Clock >>> 408.4497178754095
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 496
+Event Time >>> 427.5010722382956
+Simulation Clock >>> 410.794235219946
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 353
+Event Time >>> 457.98337348023847
+Simulation Clock >>> 410.794235219946
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1224
+Event Time >>> 448.72287693686246
+Simulation Clock >>> 410.794235219946
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2275
+Event Time >>> 511.5104264002597
+Simulation Clock >>> 411.1174745837563
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1609
+Event Time >>> 429.14699698970736
+Simulation Clock >>> 411.1174745837563
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 159
+Event Time >>> 478.326837330932
+Simulation Clock >>> 412.9465490124897
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4454
+Event Time >>> 415.0436137490548
+Simulation Clock >>> 415.0436137490548
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4738
+Event Time >>> 418.83701974341096
+Simulation Clock >>> 418.83701974341096
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4475
+Event Time >>> 421.1212177447307
+Simulation Clock >>> 421.1212177447307
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4198
+Event Time >>> 421.7716210492649
+Simulation Clock >>> 421.7716210492649
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 757
+Event Time >>> 496.42573153137045
+Simulation Clock >>> 424.5283120023825
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4714
+Event Time >>> 425.19541797818283
+Simulation Clock >>> 425.19541797818283
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4764
+Event Time >>> 427.18331622619496
+Simulation Clock >>> 427.18331622619496
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2359
+Event Time >>> 507.9411227280839
+Simulation Clock >>> 435.5354221970381
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1160
+Event Time >>> 436.5869987821052
+Simulation Clock >>> 436.5869987821052
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2254
+Event Time >>> 535.4210140662273
+Simulation Clock >>> 439.8506799560183
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2384
+Event Time >>> 459.1169856053298
+Simulation Clock >>> 439.8506799560183
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 0
+Event Time >>> 443.6453333274101
+Simulation Clock >>> 443.6453333274101
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4504
+Event Time >>> 444.2957270908315
+Simulation Clock >>> 444.2957270908315
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4779
+Event Time >>> 446.2335532062078
+Simulation Clock >>> 446.2335532062078
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4783
+Event Time >>> 450.5283280401877
+Simulation Clock >>> 450.5283280401877
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1986
+Event Time >>> 577.6176354222528
+Simulation Clock >>> 453.0576542164913
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2368
+Event Time >>> 484.98686140081037
+Simulation Clock >>> 453.3692669642461
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1123
+Event Time >>> 453.85271768639257
+Simulation Clock >>> 453.85271768639257
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2396
+Event Time >>> 493.2507384102588
+Simulation Clock >>> 457.98337348023847
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2389
+Event Time >>> 569.7893358757185
+Simulation Clock >>> 461.38545633269536
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 413
+Event Time >>> 463.26762313713425
+Simulation Clock >>> 463.26762313713425
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1065
+Event Time >>> 574.2844078840595
+Simulation Clock >>> 468.28204679599855
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 36
+Event Time >>> 484.94406042762085
+Simulation Clock >>> 468.28204679599855
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4768
+Event Time >>> 471.9529772708139
+Simulation Clock >>> 471.9529772708139
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4919
+Event Time >>> 475.6750913220203
+Simulation Clock >>> 475.6750913220203
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4447
+Event Time >>> 476.12796023912045
+Simulation Clock >>> 476.12796023912045
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2176
+Event Time >>> 514.5068734529951
+Simulation Clock >>> 478.326837330932
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2385
+Event Time >>> 654.2950793513517
+Simulation Clock >>> 484.7241350143772
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2125
+Event Time >>> 561.7433501170591
+Simulation Clock >>> 490.046633396962
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1241
+Event Time >>> 533.3743108812507
+Simulation Clock >>> 490.046633396962
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2379
+Event Time >>> 523.5931961289482
+Simulation Clock >>> 490.046633396962
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2135
+Event Time >>> 491.4479086864392
+Simulation Clock >>> 491.4479086864392
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4433
+Event Time >>> 491.46881851891516
+Simulation Clock >>> 491.46881851891516
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 853
+Event Time >>> 493.04461430110933
+Simulation Clock >>> 493.04461430110933
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 422
+Event Time >>> 548.6850029427164
+Simulation Clock >>> 496.42573153137045
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4353
+Event Time >>> 498.94665416647985
+Simulation Clock >>> 498.94665416647985
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2383
+Event Time >>> 560.5644726916771
+Simulation Clock >>> 501.451601342301
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 72
+Event Time >>> 571.3819259293082
+Simulation Clock >>> 501.451601342301
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1529
+Event Time >>> 610.1130873915229
+Simulation Clock >>> 505.04227368581087
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1382
+Event Time >>> 553.8292953610464
+Simulation Clock >>> 507.9411227280839
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4938
+Event Time >>> 509.02878488937154
+Simulation Clock >>> 509.02878488937154
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 155
+Event Time >>> 510.5582602014931
+Simulation Clock >>> 510.5582602014931
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1406
+Event Time >>> 664.4680493041049
+Simulation Clock >>> 511.5104264002597
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5035
+Event Time >>> 511.7945776876874
+Simulation Clock >>> 511.7945776876874
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4169
+Event Time >>> 514.053935185555
+Simulation Clock >>> 514.053935185555
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4093
+Event Time >>> 515.8320886156926
+Simulation Clock >>> 515.8320886156926
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5001
+Event Time >>> 516.0249875446597
+Simulation Clock >>> 516.0249875446597
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 621
+Event Time >>> 516.0249875446597
+Simulation Clock >>> 516.0249875446597
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5057
+Event Time >>> 517.3807706501367
+Simulation Clock >>> 517.3807706501367
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4853
+Event Time >>> 518.3649199504406
+Simulation Clock >>> 518.3649199504406
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4667
+Event Time >>> 519.3116585865099
+Simulation Clock >>> 519.3116585865099
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1199
+Event Time >>> 522.8111263432963
+Simulation Clock >>> 522.8111263432963
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2515
+Event Time >>> 622.1571914104452
+Simulation Clock >>> 523.5931961289482
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2475
+Event Time >>> 594.9261695812368
+Simulation Clock >>> 528.8331830673329
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5104
+Event Time >>> 532.8091338615881
+Simulation Clock >>> 532.8091338615881
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4166
+Event Time >>> 532.86250406763
+Simulation Clock >>> 532.86250406763
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5031
+Event Time >>> 533.2893600999705
+Simulation Clock >>> 533.2893600999705
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2479
+Event Time >>> 601.5643266956063
+Simulation Clock >>> 533.3743108812507
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2269
+Event Time >>> 595.7250637761806
+Simulation Clock >>> 535.4210140662273
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 585
+Event Time >>> 537.6325317988701
+Simulation Clock >>> 537.6325317988701
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4670
+Event Time >>> 540.0720112780699
+Simulation Clock >>> 540.0720112780699
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2210
+Event Time >>> 682.8740275745532
+Simulation Clock >>> 553.8292953610464
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1771
+Event Time >>> 554.2258242056389
+Simulation Clock >>> 554.2258242056389
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5192
+Event Time >>> 555.6396230016671
+Simulation Clock >>> 555.6396230016671
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2549
+Event Time >>> 600.1316422385565
+Simulation Clock >>> 560.5644726916771
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2548
+Event Time >>> 642.2669423695872
+Simulation Clock >>> 561.7433501170591
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2407
+Event Time >>> 642.25554044183
+Simulation Clock >>> 563.654188955031
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2454
+Event Time >>> 576.8217128099868
+Simulation Clock >>> 563.654188955031
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2543
+Event Time >>> 622.2861966706176
+Simulation Clock >>> 563.654188955031
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2153
+Event Time >>> 569.415135269003
+Simulation Clock >>> 569.415135269003
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1147
+Event Time >>> 699.6263603948626
+Simulation Clock >>> 569.7893358757185
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4996
+Event Time >>> 570.8724051253652
+Simulation Clock >>> 570.8724051253652
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1879
+Event Time >>> 732.4408468047793
+Simulation Clock >>> 574.2844078840595
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5244
+Event Time >>> 577.5972947314805
+Simulation Clock >>> 577.5972947314805
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2578
+Event Time >>> 643.9860476795965
+Simulation Clock >>> 577.6176354222528
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2507
+Event Time >>> 619.3944799655537
+Simulation Clock >>> 577.6176354222528
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2650
+Event Time >>> 617.6805851030053
+Simulation Clock >>> 577.6176354222528
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1647
+Event Time >>> 579.2806828559782
+Simulation Clock >>> 579.2806828559782
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5130
+Event Time >>> 580.4397700014136
+Simulation Clock >>> 580.4397700014136
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1055
+Event Time >>> 589.6110811161958
+Simulation Clock >>> 589.6110811161958
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5077
+Event Time >>> 592.1228311783184
+Simulation Clock >>> 592.1228311783184
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4830
+Event Time >>> 594.3621023686457
+Simulation Clock >>> 594.3621023686457
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2619
+Event Time >>> 692.2142487951876
+Simulation Clock >>> 594.9261695812368
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5293
+Event Time >>> 596.7495884708059
+Simulation Clock >>> 596.7495884708059
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2263
+Event Time >>> 596.7495884708059
+Simulation Clock >>> 596.7495884708059
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5312
+Event Time >>> 598.1858492589473
+Simulation Clock >>> 598.1858492589473
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2633
+Event Time >>> 750.6272910652598
+Simulation Clock >>> 600.1316422385565
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1897
+Event Time >>> 600.1941399794209
+Simulation Clock >>> 600.1941399794209
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 337
+Event Time >>> 601.6967140765273
+Simulation Clock >>> 601.6967140765273
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5022
+Event Time >>> 602.3187719041133
+Simulation Clock >>> 602.3187719041133
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4940
+Event Time >>> 603.821450746864
+Simulation Clock >>> 603.821450746864
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5090
+Event Time >>> 604.1371327072465
+Simulation Clock >>> 604.1371327072465
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3097
+Event Time >>> 604.3609369675806
+Simulation Clock >>> 604.3609369675806
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5279
+Event Time >>> 608.4640576239883
+Simulation Clock >>> 608.4640576239883
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1101
+Event Time >>> 609.9778722726996
+Simulation Clock >>> 609.9778722726996
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2361
+Event Time >>> 717.5106654090284
+Simulation Clock >>> 610.1130873915229
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2588
+Event Time >>> 621.0562521708354
+Simulation Clock >>> 610.1130873915229
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5319
+Event Time >>> 610.3752264371409
+Simulation Clock >>> 610.3752264371409
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1577
+Event Time >>> 610.8706977087658
+Simulation Clock >>> 610.8706977087658
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4418
+Event Time >>> 612.4567136707424
+Simulation Clock >>> 612.4567136707424
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2234
+Event Time >>> 613.0401228596538
+Simulation Clock >>> 613.0401228596538
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2168
+Event Time >>> 613.1668304419363
+Simulation Clock >>> 613.1668304419363
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4514
+Event Time >>> 614.4523030132929
+Simulation Clock >>> 614.4523030132929
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2315
+Event Time >>> 615.956746535719
+Simulation Clock >>> 615.956746535719
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 47
+Event Time >>> 616.3099063450215
+Simulation Clock >>> 616.3099063450215
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 867
+Event Time >>> 759.4509775226688
+Simulation Clock >>> 619.3944799655537
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2277
+Event Time >>> 620.0431718255038
+Simulation Clock >>> 620.0431718255038
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2636
+Event Time >>> 661.2538444833974
+Simulation Clock >>> 621.0562521708354
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4746
+Event Time >>> 621.9398201727283
+Simulation Clock >>> 621.9398201727283
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 543
+Event Time >>> 621.9398201727283
+Simulation Clock >>> 621.9398201727283
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2537
+Event Time >>> 672.795217656612
+Simulation Clock >>> 622.1571914104452
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4640
+Event Time >>> 622.6209928682532
+Simulation Clock >>> 622.6209928682532
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3352
+Event Time >>> 622.6209928682532
+Simulation Clock >>> 622.6209928682532
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1857
+Event Time >>> 623.8783350254683
+Simulation Clock >>> 623.8783350254683
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3431
+Event Time >>> 625.222492362
+Simulation Clock >>> 625.222492362
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5262
+Event Time >>> 625.2710632528881
+Simulation Clock >>> 625.2710632528881
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3634
+Event Time >>> 628.0401768002636
+Simulation Clock >>> 628.0401768002636
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4927
+Event Time >>> 628.204555013069
+Simulation Clock >>> 628.204555013069
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3489
+Event Time >>> 628.204555013069
+Simulation Clock >>> 628.204555013069
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5231
+Event Time >>> 628.5016500593802
+Simulation Clock >>> 628.5016500593802
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 134
+Event Time >>> 630.4388178807304
+Simulation Clock >>> 630.4388178807304
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1949
+Event Time >>> 631.7902626565522
+Simulation Clock >>> 631.7902626565522
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4422
+Event Time >>> 633.7984116354855
+Simulation Clock >>> 633.7984116354855
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 121
+Event Time >>> 634.0069721622787
+Simulation Clock >>> 634.0069721622787
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 632
+Event Time >>> 634.3549445538827
+Simulation Clock >>> 634.3549445538827
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2102
+Event Time >>> 635.699840561012
+Simulation Clock >>> 635.699840561012
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1163
+Event Time >>> 639.6576097706031
+Simulation Clock >>> 639.6576097706031
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 758
+Event Time >>> 640.5091795027554
+Simulation Clock >>> 640.5091795027554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2655
+Event Time >>> 744.5029335182533
+Simulation Clock >>> 642.25554044183
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1929
+Event Time >>> 763.4966664020329
+Simulation Clock >>> 642.2669423695872
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2708
+Event Time >>> 655.1253381103768
+Simulation Clock >>> 642.2669423695872
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 607
+Event Time >>> 643.408442206189
+Simulation Clock >>> 643.408442206189
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4358
+Event Time >>> 648.336257904403
+Simulation Clock >>> 648.336257904403
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4387
+Event Time >>> 649.3660522746259
+Simulation Clock >>> 649.3660522746259
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2715
+Event Time >>> 795.2615085685889
+Simulation Clock >>> 654.2950793513517
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 569
+Event Time >>> 765.6300833695616
+Simulation Clock >>> 655.1253381103768
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 184
+Event Time >>> 659.5867824173171
+Simulation Clock >>> 659.5867824173171
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3905
+Event Time >>> 660.1947599296328
+Simulation Clock >>> 660.1947599296328
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4051
+Event Time >>> 660.2624920897849
+Simulation Clock >>> 660.2624920897849
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3960
+Event Time >>> 663.5323122181044
+Simulation Clock >>> 663.5323122181044
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 469
+Event Time >>> 747.2066546472541
+Simulation Clock >>> 664.4680493041049
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2736
+Event Time >>> 691.6733404929881
+Simulation Clock >>> 664.4680493041049
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2734
+Event Time >>> 704.3845171802395
+Simulation Clock >>> 664.4680493041049
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4252
+Event Time >>> 664.8690294337687
+Simulation Clock >>> 664.8690294337687
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4052
+Event Time >>> 666.5188290264906
+Simulation Clock >>> 666.5188290264906
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5113
+Event Time >>> 667.8206972789609
+Simulation Clock >>> 667.8206972789609
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1059
+Event Time >>> 669.917608450154
+Simulation Clock >>> 669.917608450154
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 407
+Event Time >>> 730.6160665526967
+Simulation Clock >>> 672.795217656612
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4279
+Event Time >>> 675.0643772257221
+Simulation Clock >>> 675.0643772257221
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1414
+Event Time >>> 675.543105531055
+Simulation Clock >>> 675.543105531055
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3574
+Event Time >>> 677.9007230339482
+Simulation Clock >>> 677.9007230339482
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1229
+Event Time >>> 682.1181576280728
+Simulation Clock >>> 682.1181576280728
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2554
+Event Time >>> 733.0710904814541
+Simulation Clock >>> 682.8740275745532
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2611
+Event Time >>> 787.7211856027606
+Simulation Clock >>> 682.8740275745532
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3319
+Event Time >>> 686.3541001533783
+Simulation Clock >>> 686.3541001533783
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1397
+Event Time >>> 688.5674837367246
+Simulation Clock >>> 688.5674837367246
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1393
+Event Time >>> 688.5674837367246
+Simulation Clock >>> 688.5674837367246
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2740
+Event Time >>> 782.2402916570637
+Simulation Clock >>> 692.2142487951876
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2619
+Event Time >>> 692.2142487951876
+Simulation Clock >>> 692.2142487951876
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4744
+Event Time >>> 693.4258573399406
+Simulation Clock >>> 693.4258573399406
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1492
+Event Time >>> 694.9880744703313
+Simulation Clock >>> 694.9880744703313
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 790
+Event Time >>> 695.5064661136764
+Simulation Clock >>> 695.5064661136764
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4751
+Event Time >>> 696.8354051848003
+Simulation Clock >>> 696.8354051848003
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3514
+Event Time >>> 698.820198013494
+Simulation Clock >>> 698.820198013494
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2752
+Event Time >>> 833.4720582475736
+Simulation Clock >>> 699.6263603948626
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5060
+Event Time >>> 705.9349516413233
+Simulation Clock >>> 705.9349516413233
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1592
+Event Time >>> 707.6826599956198
+Simulation Clock >>> 707.6826599956198
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5127
+Event Time >>> 709.3264272237681
+Simulation Clock >>> 709.3264272237681
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2465
+Event Time >>> 711.1331043588784
+Simulation Clock >>> 711.1331043588784
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3797
+Event Time >>> 711.2490605795891
+Simulation Clock >>> 711.2490605795891
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1698
+Event Time >>> 713.6612675987258
+Simulation Clock >>> 713.6612675987258
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3824
+Event Time >>> 715.3343834907814
+Simulation Clock >>> 715.3343834907814
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5
+Event Time >>> 715.3343834907814
+Simulation Clock >>> 715.3343834907814
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2761
+Event Time >>> 881.4018446511491
+Simulation Clock >>> 717.5106654090284
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1858
+Event Time >>> 720.0288771284202
+Simulation Clock >>> 720.0288771284202
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 507
+Event Time >>> 720.5509375502618
+Simulation Clock >>> 720.5509375502618
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1643
+Event Time >>> 720.5599390862218
+Simulation Clock >>> 720.5599390862218
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 602
+Event Time >>> 720.5599390862218
+Simulation Clock >>> 720.5599390862218
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4110
+Event Time >>> 723.4012997987127
+Simulation Clock >>> 723.4012997987127
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2404
+Event Time >>> 726.3600026659376
+Simulation Clock >>> 726.3600026659376
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 485
+Event Time >>> 726.3600026659376
+Simulation Clock >>> 726.3600026659376
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2474
+Event Time >>> 727.5517871329828
+Simulation Clock >>> 727.5517871329828
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1094
+Event Time >>> 728.6449832772748
+Simulation Clock >>> 728.6449832772748
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2894
+Event Time >>> 728.6449832772748
+Simulation Clock >>> 728.6449832772748
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2096
+Event Time >>> 775.5552649558219
+Simulation Clock >>> 730.6160665526967
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4501
+Event Time >>> 730.9426362622634
+Simulation Clock >>> 730.9426362622634
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2113
+Event Time >>> 807.498493378793
+Simulation Clock >>> 732.4408468047793
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2794
+Event Time >>> 825.3235292261018
+Simulation Clock >>> 733.0710904814541
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2818
+Event Time >>> 752.7549208421889
+Simulation Clock >>> 733.0710904814541
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2925
+Event Time >>> 734.0465790131515
+Simulation Clock >>> 734.0465790131515
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1299
+Event Time >>> 735.726540518974
+Simulation Clock >>> 735.726540518974
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4721
+Event Time >>> 736.1204163263673
+Simulation Clock >>> 736.1204163263673
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1879
+Event Time >>> 738.6904690135133
+Simulation Clock >>> 738.6904690135133
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2179
+Event Time >>> 738.919456553086
+Simulation Clock >>> 738.919456553086
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3121
+Event Time >>> 741.8208854756583
+Simulation Clock >>> 741.8208854756583
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2689
+Event Time >>> 780.8536195730933
+Simulation Clock >>> 744.5029335182533
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 644
+Event Time >>> 747.0163223005336
+Simulation Clock >>> 747.0163223005336
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2585
+Event Time >>> 831.0895907951726
+Simulation Clock >>> 747.2066546472541
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2817
+Event Time >>> 791.43985300604
+Simulation Clock >>> 747.2066546472541
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1360
+Event Time >>> 749.9006633810262
+Simulation Clock >>> 749.9006633810262
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2826
+Event Time >>> 801.3452680203598
+Simulation Clock >>> 750.6272910652598
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4846
+Event Time >>> 751.1082207331845
+Simulation Clock >>> 751.1082207331845
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2253
+Event Time >>> 751.1082207331845
+Simulation Clock >>> 751.1082207331845
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4861
+Event Time >>> 751.1082207331845
+Simulation Clock >>> 751.1082207331845
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 433
+Event Time >>> 752.0132806373523
+Simulation Clock >>> 752.0132806373523
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 755
+Event Time >>> 753.0776906891516
+Simulation Clock >>> 753.0776906891516
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1911
+Event Time >>> 754.2607973056364
+Simulation Clock >>> 754.2607973056364
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1628
+Event Time >>> 758.2453848994919
+Simulation Clock >>> 758.2453848994919
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4268
+Event Time >>> 759.2240206555017
+Simulation Clock >>> 759.2240206555017
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1838
+Event Time >>> 912.6925765354133
+Simulation Clock >>> 759.4509775226688
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2602
+Event Time >>> 759.9136238395204
+Simulation Clock >>> 759.9136238395204
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2873
+Event Time >>> 761.4074879726219
+Simulation Clock >>> 761.4074879726219
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5212
+Event Time >>> 763.0092958436762
+Simulation Clock >>> 763.0092958436762
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1052
+Event Time >>> 859.3758536115083
+Simulation Clock >>> 763.4966664020329
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2860
+Event Time >>> 801.5785959311569
+Simulation Clock >>> 763.4966664020329
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2688
+Event Time >>> 764.5308874612712
+Simulation Clock >>> 764.5308874612712
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2235
+Event Time >>> 764.7585927407698
+Simulation Clock >>> 764.7585927407698
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 557
+Event Time >>> 765.5542032909726
+Simulation Clock >>> 765.5542032909726
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2864
+Event Time >>> 820.3305839364001
+Simulation Clock >>> 765.6300833695616
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 321
+Event Time >>> 785.2026557422163
+Simulation Clock >>> 765.6300833695616
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2882
+Event Time >>> 836.1940850334122
+Simulation Clock >>> 765.6300833695616
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2463
+Event Time >>> 766.6508162442738
+Simulation Clock >>> 766.6508162442738
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3860
+Event Time >>> 768.2228074531072
+Simulation Clock >>> 768.2228074531072
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5343
+Event Time >>> 768.3412080556046
+Simulation Clock >>> 768.3412080556046
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 3707
+Event Time >>> 769.5602331441344
+Simulation Clock >>> 769.5602331441344
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 5340
+Event Time >>> 770.4503366852439
+Simulation Clock >>> 770.4503366852439
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 910
+Event Time >>> 771.4143178481104
+Simulation Clock >>> 771.4143178481104
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 4201
+Event Time >>> 772.5850007223387
+Simulation Clock >>> 772.5850007223387
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 7
+Event Time >>> 772.7858095207091
+Simulation Clock >>> 772.7858095207091
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 1502
+Event Time >>> 772.9191094061616
+Simulation Clock >>> 772.9191094061616
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 2001
+Event Time >>> 774.8125950502184
+Simulation Clock >>> 774.8125950502184
+
+Simulation Type >> Schedule 
+Event Type >> ARRIVAL
+Center Name >>> Restaurant_2
+Group Id >>> 469
+Event Time >>> 778.8828184545331
+Simulation Clock >>> 778.8828184545331
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2907
+Event Time >>> 874.509014239761
+Simulation Clock >>> 780.8536195730933
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2928
+Event Time >>> 853.8850554320682
+Simulation Clock >>> 782.2402916570637
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2628
+Event Time >>> 840.6928847907451
+Simulation Clock >>> 785.2026557422163
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2849
+Event Time >>> 829.029026523423
+Simulation Clock >>> 787.7211856027606
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1284
+Event Time >>> 893.0180155986793
+Simulation Clock >>> 791.43985300604
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 151
+Event Time >>> 920.5750319571838
+Simulation Clock >>> 801.3452680203598
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 360
+Event Time >>> 813.5602674019127
+Simulation Clock >>> 801.3452680203598
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2951
+Event Time >>> 889.3796689051554
+Simulation Clock >>> 807.498493378793
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2859
+Event Time >>> 835.116225662488
+Simulation Clock >>> 813.5602674019127
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2659
+Event Time >>> 922.1377160304775
+Simulation Clock >>> 825.3235292261018
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2975
+Event Time >>> 909.3315535256228
+Simulation Clock >>> 825.3235292261018
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 292
+Event Time >>> 913.2351302810898
+Simulation Clock >>> 831.0895907951726
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 638
+Event Time >>> 928.9744517798863
+Simulation Clock >>> 833.4720582475736
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2987
+Event Time >>> 846.1450912916292
+Simulation Clock >>> 833.4720582475736
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2980
+Event Time >>> 935.0065736982791
+Simulation Clock >>> 835.116225662488
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2994
+Event Time >>> 870.3881064372921
+Simulation Clock >>> 836.1940850334122
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1221
+Event Time >>> 951.7642557853181
+Simulation Clock >>> 846.1450912916292
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2983
+Event Time >>> 905.2296928611047
+Simulation Clock >>> 853.8850554320682
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1887
+Event Time >>> 873.6241878666934
+Simulation Clock >>> 859.3758536115083
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2808
+Event Time >>> 882.0615176947049
+Simulation Clock >>> 859.3758536115083
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 222
+Event Time >>> 938.7577735800937
+Simulation Clock >>> 859.3758536115083
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3045
+Event Time >>> 952.6619205189118
+Simulation Clock >>> 874.509014239761
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2871
+Event Time >>> 949.0638454132904
+Simulation Clock >>> 881.4018446511491
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 619
+Event Time >>> 978.646570125607
+Simulation Clock >>> 882.0615176947049
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3064
+Event Time >>> 913.6461419247751
+Simulation Clock >>> 889.3796689051554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 974
+Event Time >>> 943.2179290295176
+Simulation Clock >>> 889.3796689051554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3075
+Event Time >>> 906.0432846770337
+Simulation Clock >>> 889.3796689051554
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3055
+Event Time >>> 1028.7964859713572
+Simulation Clock >>> 893.0180155986793
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 399
+Event Time >>> 911.9527812472114
+Simulation Clock >>> 893.0180155986793
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3084
+Event Time >>> 979.8398955712188
+Simulation Clock >>> 909.3315535256228
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3092
+Event Time >>> 955.6939319395805
+Simulation Clock >>> 909.3315535256228
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3074
+Event Time >>> 977.1838034062087
+Simulation Clock >>> 912.6925765354133
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3029
+Event Time >>> 997.2535505247342
+Simulation Clock >>> 913.2351302810898
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3116
+Event Time >>> 925.429060440503
+Simulation Clock >>> 913.2351302810898
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 268
+Event Time >>> 926.4378553167883
+Simulation Clock >>> 913.2351302810898
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2020
+Event Time >>> 1089.2368157737849
+Simulation Clock >>> 920.5750319571838
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 526
+Event Time >>> 1011.1120381512059
+Simulation Clock >>> 920.5750319571838
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1976
+Event Time >>> 971.5985093400714
+Simulation Clock >>> 922.1377160304775
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3169
+Event Time >>> 932.6261778827786
+Simulation Clock >>> 922.1377160304775
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1269
+Event Time >>> 977.7639333136119
+Simulation Clock >>> 922.1377160304775
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 605
+Event Time >>> 1043.9997162679656
+Simulation Clock >>> 928.9744517798863
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1426
+Event Time >>> 1101.3676406623551
+Simulation Clock >>> 938.7577735800937
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2857
+Event Time >>> 1100.9695590496747
+Simulation Clock >>> 949.0638454132904
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3067
+Event Time >>> 989.4153163644451
+Simulation Clock >>> 949.0638454132904
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3066
+Event Time >>> 1043.472822150946
+Simulation Clock >>> 951.7642557853181
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3175
+Event Time >>> 1042.7913175321967
+Simulation Clock >>> 952.6619205189118
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2915
+Event Time >>> 1024.5925145605452
+Simulation Clock >>> 955.6939319395805
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3133
+Event Time >>> 1064.1471965761125
+Simulation Clock >>> 977.1838034062087
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3185
+Event Time >>> 1124.8422376076794
+Simulation Clock >>> 978.646570125607
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3190
+Event Time >>> 1015.6682458301299
+Simulation Clock >>> 978.646570125607
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3224
+Event Time >>> 1002.045184252516
+Simulation Clock >>> 979.8398955712188
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3073
+Event Time >>> 1131.1200234084843
+Simulation Clock >>> 989.4153163644451
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 828
+Event Time >>> 1012.5772975045872
+Simulation Clock >>> 997.2535505247342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3223
+Event Time >>> 1022.4344794950399
+Simulation Clock >>> 997.2535505247342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2908
+Event Time >>> 1011.5647133375145
+Simulation Clock >>> 997.2535505247342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2758
+Event Time >>> 1011.3936862377211
+Simulation Clock >>> 997.2535505247342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3247
+Event Time >>> 1057.5181890208733
+Simulation Clock >>> 1002.045184252516
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3261
+Event Time >>> 1030.2497626071818
+Simulation Clock >>> 1011.1120381512059
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3258
+Event Time >>> 1132.2577983591766
+Simulation Clock >>> 1012.5772975045872
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3263
+Event Time >>> 1201.3226241193258
+Simulation Clock >>> 1024.5925145605452
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3003
+Event Time >>> 1040.9207650718631
+Simulation Clock >>> 1028.7964859713572
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 723
+Event Time >>> 1129.5324491821636
+Simulation Clock >>> 1040.9207650718631
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3277
+Event Time >>> 1149.9019715040913
+Simulation Clock >>> 1043.472822150946
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 77
+Event Time >>> 1178.6383168663524
+Simulation Clock >>> 1043.9997162679656
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1599
+Event Time >>> 1144.921488157614
+Simulation Clock >>> 1057.5181890208733
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3290
+Event Time >>> 1085.476519322755
+Simulation Clock >>> 1064.1471965761125
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3280
+Event Time >>> 1133.4929545324244
+Simulation Clock >>> 1064.1471965761125
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3221
+Event Time >>> 1196.13558673332
+Simulation Clock >>> 1089.2368157737849
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3327
+Event Time >>> 1229.971378051652
+Simulation Clock >>> 1100.9695590496747
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3191
+Event Time >>> 1191.54459079519
+Simulation Clock >>> 1100.9695590496747
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3383
+Event Time >>> 1198.7250284320232
+Simulation Clock >>> 1101.3676406623551
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3266
+Event Time >>> 1207.5256762397037
+Simulation Clock >>> 1101.3676406623551
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3022
+Event Time >>> 1143.9314633055178
+Simulation Clock >>> 1124.8422376076794
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1685
+Event Time >>> 1220.9241997349561
+Simulation Clock >>> 1124.8422376076794
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1252
+Event Time >>> 1237.3252692501435
+Simulation Clock >>> 1129.5324491821636
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3310
+Event Time >>> 1214.4493103671941
+Simulation Clock >>> 1131.1200234084843
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1596
+Event Time >>> 1276.2721768770493
+Simulation Clock >>> 1132.2577983591766
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3414
+Event Time >>> 1176.5323369489458
+Simulation Clock >>> 1132.2577983591766
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3176
+Event Time >>> 1240.6041746484043
+Simulation Clock >>> 1143.9314633055178
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3484
+Event Time >>> 1222.3145665692607
+Simulation Clock >>> 1144.921488157614
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3486
+Event Time >>> 1219.5774074446751
+Simulation Clock >>> 1149.9019715040913
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3448
+Event Time >>> 1262.5960341006014
+Simulation Clock >>> 1178.6383168663524
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 371
+Event Time >>> 1274.5132052332585
+Simulation Clock >>> 1191.54459079519
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3475
+Event Time >>> 1269.6262417334044
+Simulation Clock >>> 1196.13558673332
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3517
+Event Time >>> 1210.7035049122098
+Simulation Clock >>> 1196.13558673332
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3012
+Event Time >>> 1252.660268009659
+Simulation Clock >>> 1198.7250284320232
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3495
+Event Time >>> 1345.1715802878848
+Simulation Clock >>> 1201.3226241193258
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3488
+Event Time >>> 1350.4888887460666
+Simulation Clock >>> 1207.5256762397037
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3510
+Event Time >>> 1260.1929419134603
+Simulation Clock >>> 1214.4493103671941
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3528
+Event Time >>> 1245.2876801831949
+Simulation Clock >>> 1214.4493103671941
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3551
+Event Time >>> 1234.0991064245236
+Simulation Clock >>> 1214.4493103671941
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3472
+Event Time >>> 1358.673549870054
+Simulation Clock >>> 1220.9241997349561
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3245
+Event Time >>> 1310.2082299569568
+Simulation Clock >>> 1222.3145665692607
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3544
+Event Time >>> 1365.618592095373
+Simulation Clock >>> 1229.971378051652
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1970
+Event Time >>> 1257.591122184679
+Simulation Clock >>> 1229.971378051652
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1092
+Event Time >>> 1351.666927987813
+Simulation Clock >>> 1237.3252692501435
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3485
+Event Time >>> 1350.5572329871065
+Simulation Clock >>> 1240.6041746484043
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3607
+Event Time >>> 1310.337097367418
+Simulation Clock >>> 1245.2876801831949
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3593
+Event Time >>> 1297.9246418931996
+Simulation Clock >>> 1257.591122184679
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3091
+Event Time >>> 1289.8578669102094
+Simulation Clock >>> 1260.1929419134603
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3404
+Event Time >>> 1351.5823292777307
+Simulation Clock >>> 1262.5960341006014
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3464
+Event Time >>> 1274.0869331416593
+Simulation Clock >>> 1262.5960341006014
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3576
+Event Time >>> 1331.3464777401846
+Simulation Clock >>> 1262.5960341006014
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3771
+Event Time >>> 1393.0092894504717
+Simulation Clock >>> 1274.5132052332585
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1521
+Event Time >>> 1430.7534259722142
+Simulation Clock >>> 1276.2721768770493
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1680
+Event Time >>> 1311.0638677774084
+Simulation Clock >>> 1276.2721768770493
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3947
+Event Time >>> 1489.3425836678234
+Simulation Clock >>> 1310.2082299569568
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 175
+Event Time >>> 1395.9793284271655
+Simulation Clock >>> 1310.2082299569568
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3913
+Event Time >>> 1401.7746764916599
+Simulation Clock >>> 1311.0638677774084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4215
+Event Time >>> 1504.2999566214532
+Simulation Clock >>> 1345.1715802878848
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3867
+Event Time >>> 1496.3428864272885
+Simulation Clock >>> 1350.4888887460666
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4270
+Event Time >>> 1429.7431421965005
+Simulation Clock >>> 1350.4888887460666
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1971
+Event Time >>> 1371.5230416920517
+Simulation Clock >>> 1350.4888887460666
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4111
+Event Time >>> 1370.355660811875
+Simulation Clock >>> 1350.5572329871065
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4468
+Event Time >>> 1410.2858211787725
+Simulation Clock >>> 1350.5572329871065
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4486
+Event Time >>> 1363.4507662899937
+Simulation Clock >>> 1350.5572329871065
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2232
+Event Time >>> 1378.0493603159812
+Simulation Clock >>> 1350.5572329871065
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 456
+Event Time >>> 1400.2997674366438
+Simulation Clock >>> 1351.5823292777307
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1688
+Event Time >>> 1470.5816657911691
+Simulation Clock >>> 1351.666927987813
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4434
+Event Time >>> 1509.751557608662
+Simulation Clock >>> 1358.673549870054
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4534
+Event Time >>> 1421.929325041971
+Simulation Clock >>> 1358.673549870054
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4541
+Event Time >>> 1469.784408390411
+Simulation Clock >>> 1365.618592095373
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4700
+Event Time >>> 1493.7160069065603
+Simulation Clock >>> 1393.0092894504717
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4355
+Event Time >>> 1451.7332412375654
+Simulation Clock >>> 1393.0092894504717
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4454
+Event Time >>> 1498.1820721018883
+Simulation Clock >>> 1395.9793284271655
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4738
+Event Time >>> 1513.2546184015505
+Simulation Clock >>> 1401.7746764916599
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4475
+Event Time >>> 1498.5617535076765
+Simulation Clock >>> 1410.2858211787725
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4198
+Event Time >>> 1561.037314985142
+Simulation Clock >>> 1429.7431421965005
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4714
+Event Time >>> 1582.766475317684
+Simulation Clock >>> 1430.7534259722142
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4764
+Event Time >>> 1575.9000770048601
+Simulation Clock >>> 1451.7332412375654
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1160
+Event Time >>> 1520.0684039965486
+Simulation Clock >>> 1469.784408390411
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 0
+Event Time >>> 1584.3361081317491
+Simulation Clock >>> 1470.5816657911691
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4504
+Event Time >>> 1484.9654118109124
+Simulation Clock >>> 1470.5816657911691
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4779
+Event Time >>> 1596.1672978305944
+Simulation Clock >>> 1489.3425836678234
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4783
+Event Time >>> 1539.860817746837
+Simulation Clock >>> 1489.3425836678234
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1123
+Event Time >>> 1596.4897700634167
+Simulation Clock >>> 1493.7160069065603
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 413
+Event Time >>> 1564.5571161675907
+Simulation Clock >>> 1496.3428864272885
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4768
+Event Time >>> 1511.1901854484204
+Simulation Clock >>> 1496.3428864272885
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4919
+Event Time >>> 1582.0083664680776
+Simulation Clock >>> 1498.1820721018883
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4447
+Event Time >>> 1597.6171038369635
+Simulation Clock >>> 1498.5617535076765
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2135
+Event Time >>> 1638.7209499748894
+Simulation Clock >>> 1504.2999566214532
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4433
+Event Time >>> 1523.771227086499
+Simulation Clock >>> 1504.2999566214532
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 853
+Event Time >>> 1615.9312669715432
+Simulation Clock >>> 1509.751557608662
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4353
+Event Time >>> 1603.96065584912
+Simulation Clock >>> 1509.751557608662
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4938
+Event Time >>> 1600.6357835490214
+Simulation Clock >>> 1513.2546184015505
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 155
+Event Time >>> 1595.898560552522
+Simulation Clock >>> 1523.771227086499
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5035
+Event Time >>> 1663.4363571697925
+Simulation Clock >>> 1561.037314985142
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4169
+Event Time >>> 1676.0361394953993
+Simulation Clock >>> 1561.037314985142
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4093
+Event Time >>> 1593.976427708453
+Simulation Clock >>> 1564.5571161675907
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5001
+Event Time >>> 1643.7318940884957
+Simulation Clock >>> 1564.5571161675907
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 621
+Event Time >>> 1598.7525870058362
+Simulation Clock >>> 1575.9000770048601
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5057
+Event Time >>> 1626.1654626765026
+Simulation Clock >>> 1575.9000770048601
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4853
+Event Time >>> 1592.7106622870492
+Simulation Clock >>> 1575.9000770048601
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4667
+Event Time >>> 1623.2948361200629
+Simulation Clock >>> 1582.0083664680776
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1199
+Event Time >>> 1661.1196172729483
+Simulation Clock >>> 1582.766475317684
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5104
+Event Time >>> 1639.1100236976824
+Simulation Clock >>> 1582.766475317684
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4166
+Event Time >>> 1622.4784007701248
+Simulation Clock >>> 1582.766475317684
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5031
+Event Time >>> 1653.0431376852086
+Simulation Clock >>> 1584.3361081317491
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 585
+Event Time >>> 1669.7342373308315
+Simulation Clock >>> 1592.7106622870492
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4670
+Event Time >>> 1652.137233577444
+Simulation Clock >>> 1595.898560552522
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1771
+Event Time >>> 1654.3586494362628
+Simulation Clock >>> 1596.1672978305944
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5192
+Event Time >>> 1724.2009369042603
+Simulation Clock >>> 1596.4897700634167
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2153
+Event Time >>> 1759.275842293471
+Simulation Clock >>> 1597.6171038369635
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4996
+Event Time >>> 1687.065939270446
+Simulation Clock >>> 1598.7525870058362
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5244
+Event Time >>> 1703.9938145217247
+Simulation Clock >>> 1600.6357835490214
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1647
+Event Time >>> 1628.3929653818593
+Simulation Clock >>> 1603.96065584912
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5130
+Event Time >>> 1759.9918138502967
+Simulation Clock >>> 1615.9312669715432
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1055
+Event Time >>> 1665.437682685439
+Simulation Clock >>> 1622.4784007701248
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5077
+Event Time >>> 1723.3876336416079
+Simulation Clock >>> 1628.3929653818593
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4830
+Event Time >>> 1782.6955358112468
+Simulation Clock >>> 1639.1100236976824
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5293
+Event Time >>> 1695.400886918782
+Simulation Clock >>> 1643.7318940884957
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2263
+Event Time >>> 1680.70834946264
+Simulation Clock >>> 1643.7318940884957
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5312
+Event Time >>> 1728.3306468677292
+Simulation Clock >>> 1652.137233577444
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1897
+Event Time >>> 1753.062171866392
+Simulation Clock >>> 1654.3586494362628
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 337
+Event Time >>> 1775.1393794965438
+Simulation Clock >>> 1661.1196172729483
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5022
+Event Time >>> 1719.4033829899429
+Simulation Clock >>> 1663.4363571697925
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4940
+Event Time >>> 1761.8927294139044
+Simulation Clock >>> 1665.437682685439
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5090
+Event Time >>> 1699.2912259343298
+Simulation Clock >>> 1665.437682685439
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3097
+Event Time >>> 1718.506571735481
+Simulation Clock >>> 1669.7342373308315
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5279
+Event Time >>> 1798.1125446372155
+Simulation Clock >>> 1687.065939270446
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1101
+Event Time >>> 1769.192659806727
+Simulation Clock >>> 1695.400886918782
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5319
+Event Time >>> 1712.5123992515228
+Simulation Clock >>> 1695.400886918782
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1577
+Event Time >>> 1862.4883244266005
+Simulation Clock >>> 1703.9938145217247
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4418
+Event Time >>> 1760.695256096346
+Simulation Clock >>> 1712.5123992515228
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2234
+Event Time >>> 1887.435903034553
+Simulation Clock >>> 1723.3876336416079
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2168
+Event Time >>> 1834.433707435807
+Simulation Clock >>> 1724.2009369042603
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4514
+Event Time >>> 1814.3969751576788
+Simulation Clock >>> 1728.3306468677292
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2315
+Event Time >>> 1833.8618349801945
+Simulation Clock >>> 1753.062171866392
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 47
+Event Time >>> 1843.0576475944545
+Simulation Clock >>> 1759.275842293471
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2277
+Event Time >>> 1824.4947893134665
+Simulation Clock >>> 1759.275842293471
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4746
+Event Time >>> 1903.5229188208018
+Simulation Clock >>> 1759.9918138502967
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 543
+Event Time >>> 1827.3406102623421
+Simulation Clock >>> 1760.695256096346
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4640
+Event Time >>> 1800.8382028133578
+Simulation Clock >>> 1761.8927294139044
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3352
+Event Time >>> 1793.190372762152
+Simulation Clock >>> 1761.8927294139044
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1857
+Event Time >>> 1869.0898812126698
+Simulation Clock >>> 1769.192659806727
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3431
+Event Time >>> 1792.1071632470293
+Simulation Clock >>> 1775.1393794965438
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5262
+Event Time >>> 1889.7003129936083
+Simulation Clock >>> 1782.6955358112468
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3634
+Event Time >>> 1853.584074572725
+Simulation Clock >>> 1782.6955358112468
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4927
+Event Time >>> 1870.8980110124107
+Simulation Clock >>> 1798.1125446372155
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3489
+Event Time >>> 1809.3204441449132
+Simulation Clock >>> 1798.1125446372155
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5231
+Event Time >>> 1916.458155317704
+Simulation Clock >>> 1800.8382028133578
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 134
+Event Time >>> 1889.0983107529946
+Simulation Clock >>> 1814.3969751576788
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1949
+Event Time >>> 1899.6101270276079
+Simulation Clock >>> 1814.3969751576788
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4422
+Event Time >>> 1931.0160889422502
+Simulation Clock >>> 1827.3406102623421
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 121
+Event Time >>> 1935.4735807854934
+Simulation Clock >>> 1833.8618349801945
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 632
+Event Time >>> 1948.1548858211063
+Simulation Clock >>> 1834.433707435807
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2102
+Event Time >>> 1850.2673468991393
+Simulation Clock >>> 1834.433707435807
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1163
+Event Time >>> 1990.7621575262117
+Simulation Clock >>> 1850.2673468991393
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 758
+Event Time >>> 1918.0301987578096
+Simulation Clock >>> 1853.584074572725
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 607
+Event Time >>> 1901.918593531695
+Simulation Clock >>> 1862.4883244266005
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4358
+Event Time >>> 2042.429755311371
+Simulation Clock >>> 1869.0898812126698
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4387
+Event Time >>> 1983.606423287459
+Simulation Clock >>> 1870.8980110124107
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 184
+Event Time >>> 1995.204831884515
+Simulation Clock >>> 1887.435903034553
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3905
+Event Time >>> 2020.3945056385242
+Simulation Clock >>> 1887.435903034553
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4051
+Event Time >>> 2011.4655510922992
+Simulation Clock >>> 1889.7003129936083
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3960
+Event Time >>> 1922.9697336291547
+Simulation Clock >>> 1889.7003129936083
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4252
+Event Time >>> 1947.8136254824672
+Simulation Clock >>> 1899.6101270276079
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4052
+Event Time >>> 1953.7084510495251
+Simulation Clock >>> 1901.918593531695
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5113
+Event Time >>> 2080.3049565328683
+Simulation Clock >>> 1903.5229188208018
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1059
+Event Time >>> 2013.7725979175084
+Simulation Clock >>> 1918.0301987578096
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4279
+Event Time >>> 1937.0690696274978
+Simulation Clock >>> 1918.0301987578096
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1414
+Event Time >>> 2023.0305932464128
+Simulation Clock >>> 1931.0160889422502
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3574
+Event Time >>> 2019.633724716033
+Simulation Clock >>> 1935.4735807854934
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1229
+Event Time >>> 2049.7812518603923
+Simulation Clock >>> 1935.4735807854934
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3319
+Event Time >>> 2122.4854726700405
+Simulation Clock >>> 1948.1548858211063
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1397
+Event Time >>> 1960.5724174783334
+Simulation Clock >>> 1948.1548858211063
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1393
+Event Time >>> 2133.6420573702176
+Simulation Clock >>> 1983.606423287459
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2619
+Event Time >>> 2097.490696754059
+Simulation Clock >>> 1990.7621575262117
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4744
+Event Time >>> 2066.306869136302
+Simulation Clock >>> 1990.7621575262117
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1492
+Event Time >>> 2068.6724952217437
+Simulation Clock >>> 1995.204831884515
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 790
+Event Time >>> 2080.5578927300467
+Simulation Clock >>> 2011.4655510922992
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4751
+Event Time >>> 2030.8694170440663
+Simulation Clock >>> 2011.4655510922992
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3514
+Event Time >>> 2139.8928176772074
+Simulation Clock >>> 2013.7725979175084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5060
+Event Time >>> 2032.5646001878754
+Simulation Clock >>> 2013.7725979175084
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1592
+Event Time >>> 2132.0832820280752
+Simulation Clock >>> 2019.633724716033
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5127
+Event Time >>> 2035.0638929812444
+Simulation Clock >>> 2019.633724716033
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2465
+Event Time >>> 2177.6131458231216
+Simulation Clock >>> 2020.3945056385242
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3797
+Event Time >>> 2181.633487785707
+Simulation Clock >>> 2023.0305932464128
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1698
+Event Time >>> 2040.844182832271
+Simulation Clock >>> 2023.0305932464128
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3824
+Event Time >>> 2119.975778678132
+Simulation Clock >>> 2040.844182832271
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5
+Event Time >>> 2073.3770619848547
+Simulation Clock >>> 2042.429755311371
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1858
+Event Time >>> 2104.830481522815
+Simulation Clock >>> 2042.429755311371
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 507
+Event Time >>> 2126.1452139464795
+Simulation Clock >>> 2049.7812518603923
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1643
+Event Time >>> 2094.5951093695944
+Simulation Clock >>> 2049.7812518603923
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 602
+Event Time >>> 2180.5331053016303
+Simulation Clock >>> 2068.6724952217437
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4110
+Event Time >>> 2243.814122742598
+Simulation Clock >>> 2080.3049565328683
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2404
+Event Time >>> 2129.8743860071663
+Simulation Clock >>> 2080.5578927300467
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 485
+Event Time >>> 2176.116617536485
+Simulation Clock >>> 2080.5578927300467
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2474
+Event Time >>> 2188.777880986573
+Simulation Clock >>> 2097.490696754059
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1094
+Event Time >>> 2124.253578948896
+Simulation Clock >>> 2097.490696754059
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2894
+Event Time >>> 2135.91690850132
+Simulation Clock >>> 2104.830481522815
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4501
+Event Time >>> 2154.2055006751725
+Simulation Clock >>> 2104.830481522815
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2925
+Event Time >>> 2217.1339830481966
+Simulation Clock >>> 2122.4854726700405
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1299
+Event Time >>> 2170.5941233246454
+Simulation Clock >>> 2122.4854726700405
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4721
+Event Time >>> 2235.2258828793565
+Simulation Clock >>> 2129.8743860071663
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1879
+Event Time >>> 2291.9519892052435
+Simulation Clock >>> 2132.0832820280752
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2179
+Event Time >>> 2201.359456961666
+Simulation Clock >>> 2133.6420573702176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3121
+Event Time >>> 2183.5888164758526
+Simulation Clock >>> 2133.6420573702176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 644
+Event Time >>> 2143.644986742932
+Simulation Clock >>> 2133.6420573702176
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1360
+Event Time >>> 2196.91156914526
+Simulation Clock >>> 2139.8928176772074
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4846
+Event Time >>> 2192.0449320397342
+Simulation Clock >>> 2139.8928176772074
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2253
+Event Time >>> 2238.917894203355
+Simulation Clock >>> 2154.2055006751725
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4861
+Event Time >>> 2238.4542161985346
+Simulation Clock >>> 2176.116617536485
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 433
+Event Time >>> 2225.229125427913
+Simulation Clock >>> 2176.116617536485
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 755
+Event Time >>> 2260.727191021716
+Simulation Clock >>> 2177.6131458231216
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1911
+Event Time >>> 2236.458614628687
+Simulation Clock >>> 2177.6131458231216
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1628
+Event Time >>> 2190.8213836365385
+Simulation Clock >>> 2177.6131458231216
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4268
+Event Time >>> 2314.1605283606523
+Simulation Clock >>> 2180.5331053016303
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2602
+Event Time >>> 2208.1531504613968
+Simulation Clock >>> 2181.633487785707
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2873
+Event Time >>> 2321.4553984652425
+Simulation Clock >>> 2183.5888164758526
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5212
+Event Time >>> 2287.5441086811584
+Simulation Clock >>> 2188.777880986573
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2688
+Event Time >>> 2286.621977356811
+Simulation Clock >>> 2192.0449320397342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2235
+Event Time >>> 2239.177632403436
+Simulation Clock >>> 2192.0449320397342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 557
+Event Time >>> 2202.904684118675
+Simulation Clock >>> 2192.0449320397342
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2463
+Event Time >>> 2301.192880000533
+Simulation Clock >>> 2201.359456961666
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3860
+Event Time >>> 2241.2076535115893
+Simulation Clock >>> 2208.1531504613968
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5343
+Event Time >>> 2360.9119452931404
+Simulation Clock >>> 2217.1339830481966
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 3707
+Event Time >>> 2344.737527137293
+Simulation Clock >>> 2235.2258828793565
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 5340
+Event Time >>> 2312.9458661132962
+Simulation Clock >>> 2235.2258828793565
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 910
+Event Time >>> 2376.4032585969935
+Simulation Clock >>> 2238.4542161985346
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 4201
+Event Time >>> 2311.068304874212
+Simulation Clock >>> 2238.917894203355
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 7
+Event Time >>> 2340.4454466690427
+Simulation Clock >>> 2243.814122742598
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 1502
+Event Time >>> 2362.694101114792
+Simulation Clock >>> 2260.727191021716
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 2001
+Event Time >>> 2355.909256730445
+Simulation Clock >>> 2286.621977356811
+
+Simulation Type >> Schedule 
+Event Type >> END_PROCESS
+Center Name >>> Restaurant_2
+Group Id >>> 469
+Event Time >>> 2380.311811261014
+Simulation Clock >>> 2287.5441086811584
+

@@ -3,7 +3,7 @@ package it.uniroma2.pmcsn.parks.model.routing.probabilities;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public class AttractionRouterProbabilities extends RouterProbabilities<RiderGroup> {
 

@@ -6,9 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Center;
-import it.uniroma2.pmcsn.parks.model.server.Restaurant;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class CentersManager<T> {
 

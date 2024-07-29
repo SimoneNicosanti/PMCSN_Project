@@ -2,13 +2,14 @@ package it.uniroma2.pmcsn.parks.model.routing;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.Config;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
-import it.uniroma2.pmcsn.parks.model.server.Attraction;
-import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.verification.AttractionRouterProbabilitiesVerify;
+import it.uniroma2.pmcsn.parks.model.routing.probabilities.RouterProbabilities;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
@@ -19,11 +20,17 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
     }
 
     @Override
-    public Center<RiderGroup> route(RiderGroup riderGroup) {
-        double routingProb = RandomHandler.getInstance().getRandom(Config.ATTRACTION_ROUTING_NODE);
+    public Attraction route(RiderGroup riderGroup) {
+        double routingProb = RandomHandler.getInstance().getRandom(Constants.ATTRACTION_ROUTING_NODE);
 
         // Computing normalized probability array for each attraction
-        AttractionRouterProbabilities probabilities = new AttractionRouterProbabilities(attractionList);
+        RouterProbabilities<RiderGroup> probabilities = null;
+        if (Constants.VERIFICATION_MODE) {
+            probabilities = new AttractionRouterProbabilitiesVerify(attractionList);
+        } else {
+            probabilities = new AttractionRouterProbabilities(attractionList);
+        }
+
         probabilities.compute(riderGroup);
         // Select route index based on probability
         int routeIdx = probabilities.getRouteIdxFromRand(routingProb);
@@ -33,7 +40,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
     @Override
     public String getName() {
-        return Config.ATTRACTION_ROUTING_NODE;
+        return Constants.ATTRACTION_ROUTING_NODE;
     }
 
 }

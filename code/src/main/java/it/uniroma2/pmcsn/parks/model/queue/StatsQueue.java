@@ -18,10 +18,10 @@ public abstract class StatsQueue<T> implements Queue<T> {
     private Map<T, Double> entranceTimeMap;
     protected QueueStats queueStats;
 
-    protected StatsQueue(Queue<T> queue) {
+    protected StatsQueue(Queue<T> queue, QueuePriority prio) {
         this.queue = queue;
         this.entranceTimeMap = new HashMap<>();
-        this.queueStats = new QueueStats();
+        this.queueStats = new QueueStats(prio);
     }
 
     public QueueStats getQueueStats() {
@@ -53,6 +53,9 @@ public abstract class StatsQueue<T> implements Queue<T> {
         Double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
 
         this.retrieveStats(item, entranceTime, waitingTime);
+
+        // Item is not in the map anymore
+        entranceTimeMap.remove(item);
 
         return item;
     }

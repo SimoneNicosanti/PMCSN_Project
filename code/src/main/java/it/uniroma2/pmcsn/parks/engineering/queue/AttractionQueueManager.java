@@ -4,37 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.queue.AttractionQueue;
 import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
-public class AttractionQueueManager implements QueueManager<RiderGroup> {
+public class AttractionQueueManager extends StatsQueueManager {
 
     private Queue<RiderGroup> priorityQueue;
     private Queue<RiderGroup> normalQueue;
 
     public AttractionQueueManager() {
-        this.priorityQueue = new AttractionQueue(new FifoQueue());
-        this.normalQueue = new AttractionQueue(new FifoQueue());
-    }
+        this.priorityQueue = new FifoQueue();
+        this.normalQueue = new FifoQueue();
 
-    @Override
-    public List<Queue<RiderGroup>> getQueues() {
-        return List.of(priorityQueue, normalQueue);
-    }
-
-    @Override
-    public void addToQueues(RiderGroup group) {
-        switch (group.getPriority()) {
-            case PRIORITY:
-                priorityQueue.enqueue(group);
-                break;
-            case NORMAL:
-                normalQueue.enqueue(group);
-                break;
-        }
+        this.queueStatsMap.put(QueuePriority.NORMAL, new QueueStats(QueuePriority.NORMAL));
+        this.queueStatsMap.put(QueuePriority.PRIORITY, new QueueStats(QueuePriority.PRIORITY));
     }
 
     @Override
@@ -44,7 +31,7 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
         while (true) {
             if (priorityQueue.getNextSize() <= freeSlots && priorityQueue.getNextSize() != 0) {
                 // Get job from priority queue
-                RiderGroup riderGroup = priorityQueue.dequeue();
+                RiderGroup riderGroup = doDequeue(priorityQueue, QueuePriority.PRIORITY);
                 if (riderGroup == null) {
                     // No one in the queue to serve --> Go to next queue
                     continue;
@@ -53,7 +40,7 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 extractedList.add(riderGroup);
             } else if (normalQueue.getNextSize() <= freeSlots && normalQueue.getNextSize() != 0) {
                 // Get job from normal queue
-                RiderGroup riderGroup = normalQueue.dequeue();
+                RiderGroup riderGroup = doDequeue(normalQueue, QueuePriority.NORMAL);
                 if (riderGroup == null) {
                     // No one in the queue to serve
                     break;
@@ -65,7 +52,18 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 break;
             }
         }
+
+        this.incrementAttractionQueueTimes(extractedList);
+        this.commonStatsCollectionOnExtract(extractedList);
         return extractedList;
+    }
+
+    private void incrementAttractionQueueTimes(List<RiderGroup> riderGroups) {
+        for (RiderGroup group : riderGroups) {
+            Double entranceTime = this.entranceTimeMap.get(group);
+            Double exitTime = ClockHandler.getInstance().getClock();
+            group.getGroupStats().incrementQueueTime(exitTime - entranceTime);
+        }
     }
 
     @Override
@@ -84,6 +82,20 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 break;
         }
         return queueLength;
+    }
+
+    @Override
+    public void addToQueues(RiderGroup item) {
+        this.commonStatsCollectionOnAdd(item);
+
+        switch (item.getPriority()) {
+            case PRIORITY:
+                priorityQueue.enqueue(item);
+                break;
+            case NORMAL:
+                normalQueue.enqueue(item);
+                break;
+        }
     }
 
 }

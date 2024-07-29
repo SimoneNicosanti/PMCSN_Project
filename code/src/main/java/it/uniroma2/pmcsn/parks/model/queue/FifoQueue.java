@@ -43,5 +43,4 @@ public class FifoQueue implements Queue<RiderGroup> {
         }
         return sum;
     }
-
 }

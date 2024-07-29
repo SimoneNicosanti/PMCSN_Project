@@ -6,20 +6,46 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class EventLogger {
 
-    public static void logEvent(String processingType, Event event) {
+    public static void logRandomStreams(String streamFileName) {
+        Map<String, Integer> streamMap = RandomHandler.getInstance().getStreamMap();
+        Path randomStreamsPath = Path.of("Out", "Log", streamFileName + ".log");
+
+        try {
+            randomStreamsPath.toFile().createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileOutputStream streamLogWriter = new FileOutputStream(randomStreamsPath.toFile(), true)) {
+            for (String streamName : streamMap.keySet()) {
+                String logString = "Stream Name >>> " + streamName + "\n" +
+                        "Stream Index >>> " + streamMap.get(streamName) + "\n\n";
+                streamLogWriter.write(logString.getBytes());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void logEvent(String processingType, Event<RiderGroup> event) {
 
         Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName() + ".log");
         Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");
 
         String logString = "Simulation Type >> " + processingType + "\n" +
                 "Event Type >> " + event.getEventType().name() + "\n" +
-                "Center >>> " + event.getEventCenter().getName() + "\n" +
+                "Center Name >>> " + event.getEventCenter().getName() + "\n" +
+                "Group Id >>> " + event.getJob().getGroupId() + "\n" +
                 "Event Time >>> " + event.getEventTime() + "\n" +
                 "Simulation Clock >>> " + ClockHandler.getInstance().getClock() + "\n\n";
 
@@ -39,7 +65,7 @@ public class EventLogger {
             e.printStackTrace();
         }
 
-        System.out.println(logString);
+        // System.out.println(logString);
     }
 
     public static void prepareLog() {

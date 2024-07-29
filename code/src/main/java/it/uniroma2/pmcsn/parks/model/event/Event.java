@@ -1,6 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
-import it.uniroma2.pmcsn.parks.model.server.Center;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 
 public class Event<T> implements Comparable<Event<T>> {
 

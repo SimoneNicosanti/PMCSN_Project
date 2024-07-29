@@ -5,14 +5,14 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class EntranceQueue extends StatsQueue<RiderGroup> {
 
-    public EntranceQueue(Queue<RiderGroup> queue) {
-        super(queue);
+    public EntranceQueue(Queue<RiderGroup> queue, QueuePriority prio) {
+        super(queue, prio);
     }
 
     @Override
     protected void retrieveStats(RiderGroup group, double entranceTime, double waitingTime) {
 
-        queueStats.updateStats(waitingTime);
+        queueStats.updateStats(waitingTime, group.getGroupSize());
     }
 
 }

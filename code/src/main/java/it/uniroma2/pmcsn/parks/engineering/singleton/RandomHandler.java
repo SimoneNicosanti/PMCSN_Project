@@ -80,4 +80,8 @@ public class RandomHandler {
         return distributionGenerator.exponential(m);
     }
 
+    public Map<String, Integer> getStreamMap() {
+        return this.assignedStreams;
+    }
+
 }

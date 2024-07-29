@@ -2,27 +2,27 @@ package it.uniroma2.pmcsn.parks.engineering.singleton;
 
 public class ClockHandler {
 
-    private double clock ;
+    private Double clock;
 
-    private static ClockHandler instance = null ;
+    private static ClockHandler instance = null;
 
     private ClockHandler() {
-        this.clock = 0.0 ;
+        this.clock = 0.0;
     }
 
     public static ClockHandler getInstance() {
         if (instance == null) {
-            instance = new ClockHandler() ;
+            instance = new ClockHandler();
         }
-        return instance ;
+        return instance;
     }
 
     public double getClock() {
-        return this.clock ;
+        return this.clock;
     }
 
     public void setClock(double newClockValue) {
-        this.clock = newClockValue ;
+        this.clock = newClockValue;
     }
 
 }

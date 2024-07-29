@@ -1,92 +1,134 @@
 package it.uniroma2.pmcsn.parks.model.server;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.engineering.interfaces.CenterInterface;
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
+import it.uniroma2.pmcsn.parks.engineering.queue.StatsQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.job.ServingGroup;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.stats.AttractionStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
+import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
+import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
-public class StatsCenter implements CenterInterface<RiderGroup> {
+public abstract class StatsCenter extends AbstractCenter {
 
     protected CenterStats stats;
-    private CenterInterface<RiderGroup> center;
+    protected Map<Long, Double> startServingTimeMap;
 
-    public StatsCenter(Center<RiderGroup> center) {
-        this.center = center;
-        this.stats = new CenterStats();
+    public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber) {
+        super(name, queueManager, slotNumber);
+
+        // TODO Not good doing this
+        // Other way may be pass the CenterStats in the constructor
+        // But in that way we would lose transparency in Center about statistics
+        if (this instanceof Attraction) {
+            this.stats = new AttractionStats();
+        } else {
+            this.stats = new CenterStats();
+        }
+        this.startServingTimeMap = new HashMap<>();
+    }
+
+    protected abstract void doArrival(RiderGroup job);
+
+    protected abstract void doEndService(RiderGroup endedJob);
+
+    protected double getServiceTime(RiderGroup endedJob) {
+        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
+
+        return ClockHandler.getInstance().getClock() - startServingTime;
+    }
+
+    public void resetCenterStats() {
+        if (this instanceof Attraction) {
+            this.stats = new AttractionStats();
+        } else {
+            this.stats = new CenterStats();
+        }
+        StatsQueueManager statsQueueManager = (StatsQueueManager) this.queueManager; // Perdoname Emanuele por mi vida
+                                                                                     // loca <3
+        statsQueueManager.resetQueueStats();
     }
 
     public CenterStats getCenterStats() {
         return stats;
     }
 
-    @Override
-    public boolean canServe(Integer jobSize) {
-        return this.center.canServe(jobSize);
+    public List<QueueStats> getQueueStats() {
+        return queueManager.getAllQueueStats();
     }
 
-    @Override
-    public String getName() {
-        return this.center.getName();
+    public QueueStats getGeneralQueueStats() {
+        return queueManager.getGeneralQueueStats();
     }
 
-    @Override
-    public boolean isQueueEmptyAndCanServe(Integer jobSlots) {
-        return this.center.isQueueEmptyAndCanServe(jobSlots);
-    }
-
-    /*
-     * Add a job to the center queue.
-     * 
-     * @param job : job to enqueue with this call
-     */
     @Override
     public void arrival(RiderGroup job) {
-        this.collectArrivalStats(job);
 
-        this.center.arrival(job);
+        this.collectArrivalStats(job);
+        this.commonArrivalManagement(job);
+        this.doArrival(job);
     }
 
-    /*
-     * @return List<T> : List of jobs starting service with this call (may be one or
-     * more)
-     */
     @Override
-    public List<ServingGroup<RiderGroup>> startService() {
-        List<ServingGroup<RiderGroup>> servingGroups = this.center.startService();
+    public List<RiderGroup> startService() {
+        // Start service
+        List<RiderGroup> servingGroups = this.doStartService();
 
-        this.collectStartServiceStats(servingGroups);
+        // Collect data
+        for (RiderGroup group : servingGroups) {
+            startServingTimeMap.put(group.getGroupId(), ClockHandler.getInstance().getClock());
+        }
 
         return servingGroups;
     }
 
-    /*
-     * @param endedJobs : job ending service with this call
-     */
     @Override
     public void endService(RiderGroup endedJob) {
 
-        this.center.endService(endedJob);
-
         this.collectEndServiceStats(endedJob);
+        this.commonEndManagement(endedJob);
+        this.doEndService(endedJob);
 
         return;
     }
 
-    // Method useful for collecting new stats
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-    }
-
-    protected void collectStartServiceStats(List<ServingGroup<RiderGroup>> servingGroups) {
-
-        for (ServingGroup<RiderGroup> group : servingGroups) {
-            this.stats.addServingData(group.getServiceTime(), group.getGroup().getGroupSize());
-        }
-    }
+    protected abstract void collectEndServiceStats(RiderGroup endedJob);
 
     // Method useful for collecting new stats
     protected void collectArrivalStats(RiderGroup job) {
+    }
+
+    /**
+     * Take jobs from the queue, start a new service and schedule the events for the
+     * jobs in service
+     */
+    protected List<RiderGroup> doStartService() {
+        List<RiderGroup> jobsToServe = this.getJobsToServe();
+
+        this.currentServingJobs.addAll(jobsToServe);
+
+        for (RiderGroup job : jobsToServe) {
+            double serviceTime = this.getNewServiceTime(job);
+
+            // Schedule an END_PROCESS event
+            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+                    EventType.END_PROCESS,
+                    job,
+                    ClockHandler.getInstance().getClock() + serviceTime);
+            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+
+            EventLogger.logEvent("Schedule ", newEvent);
+        }
+
+        return jobsToServe;
     }
 
 }
