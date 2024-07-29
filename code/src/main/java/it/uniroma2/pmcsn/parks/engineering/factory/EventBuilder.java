@@ -25,8 +25,7 @@ public class EventBuilder {
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 arrivalRate);
 
-        int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
-                .intValue(); // TODO Change to 1 constant value to verify
+        int groupSize = SimulationBuilder.buildJobSize();
         GroupPriority priority = computeGroupPriority();
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);

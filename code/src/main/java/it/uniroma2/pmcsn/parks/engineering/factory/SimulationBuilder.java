@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.engineering.factory;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RouterProbabilities;
@@ -11,6 +12,15 @@ import it.uniroma2.pmcsn.parks.verification.AttractionRouterProbabilitiesVerify;
 import it.uniroma2.pmcsn.parks.verification.AttractionVerify;
 
 public class SimulationBuilder {
+
+    public static int buildJobSize() {
+        if (Constants.VERIFICATION_MODE) {
+            return 1;
+        } else {
+            return Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
+                    .intValue();
+        }
+    }
 
     public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(List<Attraction> attractionList) {
 
