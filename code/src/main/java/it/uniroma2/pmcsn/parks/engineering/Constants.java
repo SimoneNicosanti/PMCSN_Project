@@ -18,7 +18,6 @@ public class Constants {
     public static final double PRIORITY_PASS_PROB = 0.25;
 
     // Indicates whether to collect statistics for each interval or not
-    public static final boolean INTERVAL_STATS = true;
-    public static final boolean USE_LOG = true;
+    public static final boolean INTERVAL_STATS = false;
 
 }

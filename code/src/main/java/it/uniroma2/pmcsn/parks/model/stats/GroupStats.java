@@ -3,13 +3,19 @@ package it.uniroma2.pmcsn.parks.model.stats;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GroupStats extends GeneralStats {
+public class GroupStats {
 
+    // The total service time of a center
+    protected double serviceTime;
+    // The total queue time of a center
+    protected double queueTime;
     private double systemEntranceTime;
     // Number of rides per attraction
     private Map<String, Integer> numberOfRidesPerAttraction;
 
     public GroupStats(double systemEntranceTime) {
+        this.serviceTime = 0;
+        this.queueTime = 0;
         this.systemEntranceTime = systemEntranceTime;
         this.numberOfRidesPerAttraction = new HashMap<String, Integer>();
     }
@@ -55,5 +61,13 @@ public class GroupStats extends GeneralStats {
         }
 
         return sum;
+    }
+
+    public double getServiceTime() {
+        return this.serviceTime;
+    }
+
+    public double getQueueTime() {
+        return this.queueTime;
     }
 }

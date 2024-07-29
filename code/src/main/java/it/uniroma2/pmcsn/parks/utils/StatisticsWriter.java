@@ -68,26 +68,40 @@ public class StatisticsWriter {
         CenterStats stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTime = stats.getAvgServiceTime();
         // double avgQueueTime = stats.getAvgQueueTime();
-        long servedJobs = stats.getNumberOfServedPeople();
+        long peopleServed = stats.getNumberOfServedPerson();
+        long groupsServed = stats.getNumberOfServedGroup();
 
         List<QueueStats> perPrioQueueStats = statsCenter.getQueueStats();
         QueueStats generalQueueStats = statsCenter.getGeneralQueueStats();
-        double avgQueueTimeNormal = 0.0;
-        double avgQueueTimePrio = 0.0;
-        double avgQueueTime = generalQueueStats.getAvgWaitingTimePerGroups();
+        double avgQueueTimePerPersonNormal = 0.0;
+        double avgQueueTimePerPersonPrio = 0.0;
+        long numberOfPriorityRider = 0;
+        long numberOfNormalRider = 0;
+        long numberOfPriorityGroup = 0;
+        long numberOfNormalGroup = 0;
+        double avgQueueTimePerPerson = generalQueueStats.getAvgWaitingTimePerPerson();
+        double avgQueueTimePerGroup = generalQueueStats.getAvgWaitingTimePerGroups();
+        double avgQueueTimePerGroupNormal = 0.0;
+        double avgQueueTimePerGroupPrio = 0.0;
 
         for (QueueStats queue : perPrioQueueStats) {
             switch (queue.getPriority()) {
                 case NORMAL:
-                    if (avgQueueTimeNormal != 0.0)
+                    if (avgQueueTimePerPersonNormal != 0.0)
                         throw new RuntimeException(name + " has more than one normal queue");
-                    avgQueueTimeNormal = queue.getAvgWaitingTimePerGroups();
+                    numberOfNormalRider = queue.getNumberOfPerson();
+                    numberOfNormalGroup = queue.getNumberOfGroup();
+                    avgQueueTimePerPersonNormal = queue.getAvgWaitingTimePerPerson();
+                    avgQueueTimePerGroupNormal = queue.getAvgWaitingTimePerGroups();
                     break;
 
                 case PRIORITY:
-                    if (avgQueueTimePrio != 0.0)
+                    if (avgQueueTimePerPersonPrio != 0.0)
                         throw new RuntimeException(name + " has more than one priority queue");
-                    avgQueueTimePrio = queue.getAvgWaitingTimePerGroups();
+                    numberOfPriorityRider = queue.getNumberOfPerson();
+                    numberOfPriorityGroup = queue.getNumberOfGroup();
+                    avgQueueTimePerPersonPrio = queue.getAvgWaitingTimePerPerson();
+                    avgQueueTimePerGroupPrio = queue.getAvgWaitingTimePerGroups();
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");
@@ -95,15 +109,24 @@ public class StatisticsWriter {
         }
 
         Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName + ".csv");
-        String[] header = { "Center name", "Served Jobs", "Average Service Time", "Average Queue Time",
-                "Avg Queue Time Normal", "Avg Queue Time Prio" };
+        String[] header = {
+                "Center name", "Avg Service Time",
+                "Groups Served", "Normal Group Served", "Priority Group Served",
+                "Avg Queue Time - Group", "Avg Queue Time Normal - Group", "Avg Queue Time Prio - Group",
+                "People Served", "Normal People Served", "Priority People Served",
+                "Avg Queue Time - Person", "Avg Queue Time Normal - Person", "Avg Queue Time Prio - Person"
+        };
 
         // Writing the header
         writeHeader(filePath, header);
 
         // Writing the file
-        List<Object> record = List.of(name, servedJobs, avgServiceTime, avgQueueTime, avgQueueTimeNormal,
-                avgQueueTimePrio);
+        List<Object> record = List.of(
+                name, avgServiceTime,
+                groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
+                avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio,
+                peopleServed, numberOfNormalRider, numberOfPriorityRider,
+                avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio);
         writeRecord(filePath, record);
     }
 

@@ -29,6 +29,14 @@ public class QueueStats {
         this.numberOfPerson += groupSize;
     }
 
+    public long getNumberOfPerson() {
+        return numberOfPerson;
+    }
+
+    public long getNumberOfGroup() {
+        return numberOfGroup;
+    }
+
     public double getAvgWaitingTimePerGroups() {
         return perGroupWaitingTime / numberOfGroup;
     }

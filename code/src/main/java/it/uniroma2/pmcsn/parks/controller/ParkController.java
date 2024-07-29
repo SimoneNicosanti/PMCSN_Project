@@ -15,6 +15,7 @@ import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import java.nio.file.Path;
 
 public class ParkController implements Controller<RiderGroup> {
 
@@ -69,8 +70,12 @@ public class ParkController implements Controller<RiderGroup> {
 
         }
 
-        // write end stats
-        writeCenterStats(currentInterval);
+        if (Constants.INTERVAL_STATS) {
+            // write end stats
+            writeCenterStats(currentInterval);
+        } else {
+            writeCenterStats(null);
+        }
 
     }
 
@@ -101,8 +106,15 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void writeCenterStats(Interval interval) {
         for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-            StatisticsWriter.writeCenterStatistics("Center", interval.getStart() + "-" + interval.getEnd(),
-                    center);
+
+            if (interval == null) {
+                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
+                        "TotalCenterStats", center);
+            } else {
+                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
+                        interval.getStart() + "-" + interval.getEnd(),
+                        center);
+            }
         }
     }
 
@@ -116,8 +128,13 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void init_simulation() {
         // Reset statistics
-        StatisticsWriter.resetStatistics("General");
-        StatisticsWriter.resetStatistics("Center");
+        StatisticsWriter.resetStatistics("Job");
+
+        if (Constants.INTERVAL_STATS) {
+            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Interval").toString());
+        } else {
+            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Total").toString());
+        }
         // Prepare the logger and set the system clock to 0
         EventLogger.prepareLog();
         ClockHandler.getInstance().setClock(0);

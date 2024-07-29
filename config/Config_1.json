@@ -8,17 +8,17 @@
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 1
+      "arrivalRate": 0.05
     },
     {
       "start": "12:00",
       "end": "14:00",
       "routingProbability": {
-        "attractions": 0.5,
-        "restaurants": 0.45,
+        "attractions": 0.7,
+        "restaurants": 0.25,
         "exit": 0.05
       },
-      "arrivalRate": 1
+      "arrivalRate": 0.15
     },
     {
       "start": "14:00",
@@ -28,7 +28,7 @@
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 1
+      "arrivalRate": 0.3
     },
     {
       "start": "19:00",
@@ -38,7 +38,7 @@
         "restaurants": 0.15,
         "exit": 0.15
       },
-      "arrivalRate": 1
+      "arrivalRate": 5
     }
   ],
   "entranceDistribution": "Exponential",

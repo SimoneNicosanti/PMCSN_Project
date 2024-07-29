@@ -1,32 +1,43 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
-public class CenterStats extends GeneralStats {
+public class CenterStats {
+    // The total service time of a center
+    protected double serviceTime;
     // Number of jobs serverd by the center
-    private long numberOfServedPeople;
-    private long numberOfServedJobs;
+    private long numberOfServedPerson;
+    private long numberOfServedGroup;
     private long numberOfCompletedServices;
+
+    public CenterStats() {
+        this.serviceTime = 0;
+        this.numberOfServedPerson = 0L;
+    }
+
+    public long getNumberOfServedPerson() {
+        return this.numberOfServedPerson;
+    }
 
     public long getNumberOfCompletedServices() {
         return numberOfCompletedServices;
     }
 
-    public CenterStats() {
-        this.numberOfServedPeople = 0L;
+    public double getServiceTime() {
+        return this.serviceTime;
     }
 
-    public long getNumberOfServedPeople() {
-        return this.numberOfServedPeople;
+    public long getNumberOfServedGroup() {
+        return this.numberOfServedGroup;
     }
 
     public void addServingData(double serviceTime, int servedJobs) {
         this.serviceTime += serviceTime;
-        this.numberOfServedJobs++;
-        this.numberOfServedPeople += servedJobs;
+        this.numberOfServedGroup++;
+        this.numberOfServedPerson += servedJobs;
     }
 
     public void addServedGroup(int jobSize) {
-        this.numberOfServedJobs++;
-        this.numberOfServedPeople += jobSize;
+        this.numberOfServedGroup++;
+        this.numberOfServedPerson += jobSize;
     }
 
     public void addServiceTime(double serviceTime) {
@@ -35,14 +46,6 @@ public class CenterStats extends GeneralStats {
     }
 
     public double getAvgServiceTime() {
-        return this.serviceTime / this.numberOfServedPeople;
-    }
-
-    public double getAvgQueueTime() {
-        return this.queueTime / this.numberOfServedJobs;
-    }
-
-    public void addQueueTime(Double addQueueTime) {
-        this.queueTime += addQueueTime;
+        return this.serviceTime / this.numberOfServedPerson;
     }
 }
