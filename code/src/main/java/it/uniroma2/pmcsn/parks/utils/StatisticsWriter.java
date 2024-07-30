@@ -18,7 +18,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
-import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
+import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 public class StatisticsWriter {
@@ -65,7 +65,7 @@ public class StatisticsWriter {
 
         String name = center.getName();
         StatsCenter statsCenter = (StatsCenter) center;
-        CenterStats stats = ((StatsCenter) center).getCenterStats();
+        CenterStatistics stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
         double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();
         double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();

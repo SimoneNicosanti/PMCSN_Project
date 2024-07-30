@@ -8,7 +8,7 @@
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 0.05
+      "arrivalRate": 0.10
     },
     {
       "start": "12:00",

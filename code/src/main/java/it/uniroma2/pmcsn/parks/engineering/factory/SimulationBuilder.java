@@ -13,7 +13,7 @@ import it.uniroma2.pmcsn.parks.verification.AttractionVerify;
 
 public class SimulationBuilder {
 
-    public static int buildJobSize() {
+    public static int getJobSize() {
         if (Constants.VERIFICATION_MODE) {
             return 1;
         } else {

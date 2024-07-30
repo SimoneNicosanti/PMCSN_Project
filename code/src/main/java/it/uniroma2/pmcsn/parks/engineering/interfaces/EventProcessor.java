@@ -2,11 +2,11 @@ package it.uniroma2.pmcsn.parks.engineering.interfaces;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 
 public interface EventProcessor<T> {
 
     // Returns new events generated from this processed event
-    public List<Event<T>> processEvent(Event<T> event);
+    public List<SystemEvent<T>> processEvent(SystemEvent<T> event);
 
 }

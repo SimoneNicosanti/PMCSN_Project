@@ -12,13 +12,11 @@ public class Attraction extends StatsCenter {
 
     private double currentServiceTime;
     private double popularity;
-    protected double avgDuration;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, new AttractionQueueManager(), numberOfSeats);
+        super(name, new AttractionQueueManager(), numberOfSeats, avgDuration);
         this.currentServiceTime = 0.0;
         this.popularity = popularity;
-        this.avgDuration = avgDuration;
     }
 
     public int getQueueLenght(GroupPriority priority) {
@@ -27,10 +25,6 @@ public class Attraction extends StatsCenter {
 
     public double getPopularity() {
         return this.popularity;
-    }
-
-    public double getAvgDuration() {
-        return this.avgDuration;
     }
 
     @Override
@@ -51,8 +45,8 @@ public class Attraction extends StatsCenter {
     @Override // Override to do verify
     protected Double getNewServiceTime(RiderGroup group) {
         if (this.currentServiceTime == 0.0) {
-            this.currentServiceTime = RandomHandler.getInstance().getUniform(name, avgDuration - 0.5,
-                    avgDuration + 0.5);
+            this.currentServiceTime = RandomHandler.getInstance().getUniform(name, this.avgServiceTime - 0.5,
+                    this.avgServiceTime + 0.5);
         }
         return this.currentServiceTime;
     }
@@ -61,17 +55,17 @@ public class Attraction extends StatsCenter {
     public void endService(RiderGroup endedJob) {
         this.currentServingJobs.remove(endedJob);
 
+        this.manageEndService(endedJob);
+
         if (currentServingJobs.isEmpty()) {
             this.currentServiceTime = 0.0;
             this.startService();
         }
-
-        this.manageEndService(endedJob);
     }
 
     @Override // Override to do verify
     protected void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.getServiceTime(endedJob);
+        double jobServiceTime = this.retrieveServiceTime(endedJob);
 
         endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
 
@@ -79,7 +73,7 @@ public class Attraction extends StatsCenter {
             this.stats.addServiceTime(jobServiceTime);
         }
 
-        this.stats.addServedGroup(endedJob.getGroupSize());
+        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
     }
 
 }

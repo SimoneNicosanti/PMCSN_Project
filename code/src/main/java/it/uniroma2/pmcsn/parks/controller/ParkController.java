@@ -9,7 +9,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
@@ -44,7 +44,8 @@ public class ParkController implements Controller<RiderGroup> {
         clockHandler = ClockHandler.getInstance();
 
         while (true) {
-            Event<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+
+            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             if (nextEvent == null) {
                 // When all the events finish, the simulation ends
                 break;
@@ -144,7 +145,7 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void scheduleArrivalEvent() {
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        Event<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
     }
 }

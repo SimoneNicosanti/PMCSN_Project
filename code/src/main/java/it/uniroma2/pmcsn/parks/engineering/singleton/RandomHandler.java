@@ -80,6 +80,12 @@ public class RandomHandler {
         return distributionGenerator.exponential(m);
     }
 
+    public double getErlang(String streamName, long k, double m) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        return distributionGenerator.erlang(k, m);
+    }
+
     public Map<String, Integer> getStreamMap() {
         return this.assignedStreams;
     }

@@ -9,13 +9,14 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public abstract class AbstractCenter implements Center<RiderGroup> {
 
+    protected double avgServiceTime;
     protected final String name;
     protected List<RiderGroup> currentServingJobs;
     protected QueueManager<RiderGroup> queueManager;
@@ -23,11 +24,17 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
-    public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
+    public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber,
+            Double avgServiceTime) {
         this.name = name;
         this.currentServingJobs = new ArrayList<>();
         this.queueManager = queueManager;
         this.slotNumber = slotNumber;
+        this.avgServiceTime = avgServiceTime;
+    }
+
+    public double getAvgDuration() {
+        return this.avgServiceTime;
     }
 
     /**
@@ -52,11 +59,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * End service for serving job and schedule the next arrival event based on the
      * next center that is returned by the network routing node.
      */
-    protected void commonEndManagement(RiderGroup endedJob) {
+    protected void scheduleNextEvent(RiderGroup endedJob) {
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
-        Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
+        SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 ClockHandler.getInstance().getClock());
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
 

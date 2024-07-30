@@ -10,7 +10,7 @@ import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class EventLogger {
@@ -37,7 +37,7 @@ public class EventLogger {
 
     }
 
-    public static void logEvent(String processingType, Event<RiderGroup> event) {
+    public static void logEvent(String processingType, SystemEvent<RiderGroup> event) {
 
         Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName() + ".log");
         Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");

@@ -25,13 +25,13 @@ public class AttractionVerify extends Attraction {
 
     @Override
     protected void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.getServiceTime(endedJob);
+        double jobServiceTime = this.retrieveServiceTime(endedJob);
 
         endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
 
         this.stats.addServiceTime(jobServiceTime);
 
-        this.stats.addServedGroup(endedJob.getGroupSize());
+        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
     }
 
     @Override
@@ -50,8 +50,8 @@ public class AttractionVerify extends Attraction {
 
     @Override
     protected Double getNewServiceTime(RiderGroup job) {
-        return RandomHandler.getInstance().getUniform(name, avgDuration - 0.5,
-                avgDuration + 0.5);
+        return RandomHandler.getInstance().getUniform(name, this.avgServiceTime - 0.5,
+                this.avgServiceTime + 0.5);
     }
 
     @Override

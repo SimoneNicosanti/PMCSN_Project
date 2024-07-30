@@ -1,69 +1,38 @@
 package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
-import java.util.List;
-
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.queue.EntranceQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.MultiServer;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 //** Jobs at entrance are served once per service execution, so when jobs arrive and they get enqueued, they are served one by one, and the time of service is weighted to the number of riders per group */
-public class Entrance extends StatsCenter {
-
-    private double avgServiceTime;
+public class Entrance extends MultiServer {
 
     public Entrance(String name, int slotNumber, double avgServiceTime) {
-        super(name, new EntranceQueueManager(), slotNumber);
-        this.avgServiceTime = avgServiceTime;
-    }
-
-    @Override
-    public boolean canServe(Integer jobSize) {
-        return slotNumber - currentServingJobs.size() >= 1;
-    }
-
-    @Override
-    protected List<RiderGroup> getJobsToServe() {
-        int freeSlots = slotNumber - currentServingJobs.size();
-        return queueManager.extractFromQueues(freeSlots);
-    }
-
-    @Override
-    protected Double getNewServiceTime(RiderGroup job) {
-        return job.getGroupSize() * RandomHandler.getInstance().getExponential(this.name, avgServiceTime);
-    }
-
-    @Override
-    public void endService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
-        this.startService();
-
-        this.manageEndService(endedJob);
-    }
-
-    @Override
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-
-        double jobServiceTime = this.getServiceTime(endedJob);
-
-        this.stats.addServiceTime(jobServiceTime);
-
-        this.stats.addServedGroup(endedJob.getGroupSize());
+        super(name, new EntranceQueueManager(), slotNumber, avgServiceTime);
     }
 
     @Override
     public void arrival(RiderGroup job) {
         this.manageArrival(job);
 
-        Event<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
+        SystemEvent<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
         if (newArrivalEvent != null) {
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
             EventLogger.logEvent("Generated", newArrivalEvent);
         }
     }
 
+    /*
+     * Modeling entrance service time as a k-Erlang
+     * In this case k is the number of people in the group
+     */
+    @Override
+    protected Double getNewServiceTime(RiderGroup job) {
+        return RandomHandler.getInstance().getErlang(this.name, job.getGroupSize(), 1 / this.avgServiceTime);
+    }
 }

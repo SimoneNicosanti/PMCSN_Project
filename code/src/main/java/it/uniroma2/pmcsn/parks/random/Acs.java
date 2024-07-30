@@ -27,6 +27,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
+@SuppressWarnings("unused")
 class Acs {
 
   static int K = 50; /* K is the maximum lag */

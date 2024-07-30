@@ -8,44 +8,44 @@ import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.queue.StatsQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.stats.CenterStats;
+import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public abstract class StatsCenter extends AbstractCenter {
 
-    protected CenterStats stats;
+    protected CenterStatistics stats;
     protected Map<Long, Double> startServingTimeMap;
 
-    public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber) {
-        super(name, queueManager, slotNumber);
+    public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber, Double avgServiceTime) {
+        super(name, queueManager, slotNumber, avgServiceTime);
 
         // TODO Not good doing this
         // Other way may be pass the CenterStats in the constructor
         // But in that way we would lose transparency in Center about statistics
-        this.stats = new CenterStats();
+        this.stats = new CenterStatistics();
 
         this.startServingTimeMap = new HashMap<>();
     }
 
-    protected double getServiceTime(RiderGroup endedJob) {
+    protected double retrieveServiceTime(RiderGroup endedJob) {
         Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
 
         return ClockHandler.getInstance().getClock() - startServingTime;
     }
 
     public void resetCenterStats() {
-        this.stats = new CenterStats();
+        this.stats = new CenterStatistics();
 
         StatsQueueManager statsQueueManager = (StatsQueueManager) this.queueManager; // Perdoname Emanuele por mi vida
                                                                                      // loca <3
         statsQueueManager.resetQueueStats();
     }
 
-    public CenterStats getCenterStats() {
+    public CenterStatistics getCenterStats() {
         return stats;
     }
 
@@ -76,8 +76,8 @@ public abstract class StatsCenter extends AbstractCenter {
     }
 
     protected void manageEndService(RiderGroup endedJob) {
-        this.commonEndManagement(endedJob);
         this.collectEndServiceStats(endedJob);
+        this.scheduleNextEvent(endedJob);
     }
 
     protected abstract void collectEndServiceStats(RiderGroup endedJob);
@@ -99,7 +99,7 @@ public abstract class StatsCenter extends AbstractCenter {
             double serviceTime = this.getNewServiceTime(job);
 
             // Schedule an END_PROCESS event
-            Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+            SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
                     EventType.END_PROCESS,
                     job,
                     ClockHandler.getInstance().getClock() + serviceTime);

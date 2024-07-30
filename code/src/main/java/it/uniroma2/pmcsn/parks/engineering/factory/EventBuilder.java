@@ -5,7 +5,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
@@ -15,7 +15,7 @@ public class EventBuilder {
 
     private static Long riderGroupId = 0L;
 
-    public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
+    public static SystemEvent<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
         // If arrivalRate == 0, stop the arrival
         if (arrivalRate == 0.0) {
@@ -25,12 +25,12 @@ public class EventBuilder {
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 arrivalRate);
 
-        int groupSize = SimulationBuilder.buildJobSize();
+        int groupSize = SimulationBuilder.getJobSize();
         GroupPriority priority = computeGroupPriority();
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
-        Event<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
+        SystemEvent<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
@@ -49,11 +49,11 @@ public class EventBuilder {
     }
 
     // Builds a new generic event
-    public static Event<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
+    public static SystemEvent<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
             RiderGroup job,
             double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
-        return new Event<>(poolId, center, eventTime, job);
+        return new SystemEvent<>(poolId, center, eventTime, job);
     }
 
 }
