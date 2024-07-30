@@ -18,10 +18,10 @@ public class AttractionRouterProbabilitiesVerify extends RouterProbabilities<Rid
     @Override
     public List<Double> compute(RiderGroup job) {
 
-        for (Attraction attraction : attractions) {
-            double attractionProb = attraction.getPopularity();
+        double attractionProb = 1;
+        for (int i = 0; i < attractions.size(); i++) {
             this.probabilities.add(attractionProb);
-            this.sumProbabilites += attractionProb;
+            this.sumProbabilities += attractionProb;
         }
 
         this.normalize();

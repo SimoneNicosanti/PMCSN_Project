@@ -1,9 +1,16 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.Interval;
+import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RouterProbabilities;
@@ -20,6 +27,20 @@ public class SimulationBuilder {
             return Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
                     .intValue();
         }
+    }
+
+    // Return a fake interval created for exiting all the jobs from the
+    // system
+    public static Pair<Interval, Parameters> getInifiniteInterval() {
+        Interval interval = new Interval(0.0, Double.MAX_VALUE);
+        Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
+        probabilityMap.put(RoutingNodeType.ATTRACTION, 9.0);
+        probabilityMap.put(RoutingNodeType.RESTAURANT, 0.05);
+        probabilityMap.put(RoutingNodeType.EXIT, 0.05);
+
+        Parameters parameters = new Parameters(probabilityMap, 0.5);
+
+        return Pair.of(interval, parameters);
     }
 
     public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(List<Attraction> attractionList) {

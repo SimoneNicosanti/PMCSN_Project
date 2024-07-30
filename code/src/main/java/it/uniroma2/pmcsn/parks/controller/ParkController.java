@@ -1,5 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller;
 
+import java.nio.file.Path;
+
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
@@ -15,7 +17,7 @@ import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
-import java.nio.file.Path;
+import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 
 public class ParkController implements Controller<RiderGroup> {
 
@@ -34,14 +36,14 @@ public class ParkController implements Controller<RiderGroup> {
         this.currentInterval = configHandler.getCurrentInterval();
     }
 
-    // TODO All restaurants have the same mean in the results csv, but not in the
-    // configuration file
-
     @Override
     public void startSimulation() {
 
         this.scheduleArrivalEvent();
         clockHandler = ClockHandler.getInstance();
+
+        int lastDividend = 0;
+        int divisor = 1440;
 
         while (true) {
 
@@ -52,6 +54,20 @@ public class ParkController implements Controller<RiderGroup> {
             }
 
             clockHandler.setClock(nextEvent.getEventTime());
+
+            // TODO: handle this in a better way, it was just to test the verification
+            // faster
+            if (Constants.VERIFICATION_MODE) {
+                int dividend = (int) nextEvent.getEventTime() / divisor;
+                if (dividend > lastDividend) {
+                    lastDividend = dividend;
+
+                    for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
+                        VerificationWriter.writeVerificationStatistics("Verification", "TotalStatsCenter_" + dividend,
+                                center);
+                    }
+                }
+            }
 
             // Check if the current interval changed
             Interval interval = configHandler.getInterval(clockHandler.getClock());
@@ -113,10 +129,22 @@ public class ParkController implements Controller<RiderGroup> {
             if (interval == null) {
                 StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
                         "TotalCenterStats", center);
+
+                // Check whether we are veryfing the model or not
+                if (Constants.VERIFICATION_MODE) {
+                    VerificationWriter.writeVerificationStatistics("Verification", "TotalStatsCenter", center);
+                }
+
             } else {
                 StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
                         interval.getStart() + "-" + interval.getEnd(),
                         center);
+
+                if (Constants.VERIFICATION_MODE) {
+                    VerificationWriter.writeVerificationStatistics("Verification",
+                            interval.getStart() + "-" + interval.getEnd(), center);
+                }
+
             }
         }
     }
@@ -137,6 +165,10 @@ public class ParkController implements Controller<RiderGroup> {
             StatisticsWriter.resetStatistics(Path.of(".", "Center", "Interval").toString());
         } else {
             StatisticsWriter.resetStatistics(Path.of(".", "Center", "Total").toString());
+        }
+
+        if (Constants.VERIFICATION_MODE) {
+            StatisticsWriter.resetStatistics("Verification");
         }
         // Prepare the logger and set the system clock to 0
         EventLogger.prepareLog();

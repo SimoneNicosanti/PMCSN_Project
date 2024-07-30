@@ -137,7 +137,7 @@ public class StatisticsWriter {
         writeRecord(filePath, record);
     }
 
-    private static void writeHeader(Path filePath, String[] header) {
+    public static void writeHeader(Path filePath, String[] header) {
 
         if (!filePath.toFile().exists()) {
             try {
@@ -154,7 +154,7 @@ public class StatisticsWriter {
         }
     }
 
-    private static void writeRecord(Path filePath, List<Object> record) {
+    public static void writeRecord(Path filePath, List<Object> record) {
         try (
                 Writer writer = new FileWriter(filePath.toFile(), true);
                 CSVPrinter csvPrinter = new CSVPrinter(writer,

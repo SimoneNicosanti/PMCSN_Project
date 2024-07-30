@@ -6,22 +6,22 @@ import java.util.List;
 public abstract class RouterProbabilities<T> {
 
     protected List<Double> probabilities;
-    protected Double sumProbabilites;
+    protected Double sumProbabilities;
 
     public RouterProbabilities() {
         this.probabilities = new ArrayList<>();
-        this.sumProbabilites = 0.0;
+        this.sumProbabilities = 0.0;
     }
 
     public abstract List<Double> compute(T job);
 
     protected void normalize() {
-        if (sumProbabilites == 0.0) {
+        if (sumProbabilities == 0.0) {
             throw new RuntimeException("Probabilities not set");
         }
 
         for (int idx = 0; idx < probabilities.size(); idx++) {
-            double normalized = probabilities.get(idx) / sumProbabilites;
+            double normalized = probabilities.get(idx) / sumProbabilities;
             probabilities.set(idx, normalized);
         }
 

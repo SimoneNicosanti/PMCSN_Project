@@ -16,7 +16,7 @@ public class Constants {
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "config/Config_1.json";
 
-    public static final double PRIORITY_PASS_PROB = 0.25;
+    public static final double PRIORITY_PASS_PROB = 0.1;
 
     // Indicates whether to collect statistics for each interval or not
     public static final boolean INTERVAL_STATS = true;

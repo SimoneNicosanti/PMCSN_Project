@@ -25,7 +25,7 @@ public class Restaurant extends MultiServer {
 
     @Override
     protected Double getNewServiceTime(RiderGroup job) {
-        return RandomHandler.getInstance().getErlang(this.name, job.getGroupSize(), 1 / this.avgServiceTime);
+        return RandomHandler.getInstance().getErlang(this.name, job.getGroupSize(), this.avgServiceTime);
     }
 
 }

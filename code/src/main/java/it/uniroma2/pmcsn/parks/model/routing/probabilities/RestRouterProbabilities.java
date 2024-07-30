@@ -16,12 +16,10 @@ public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
     @Override
     public List<Double> compute(RiderGroup job) {
 
-        // TODO different routing for restaurant? Based on queue occupation or
-        // popularity?
         for (Restaurant restaurant : restaurants) {
             Double restProb = restaurant.getPopularity();
             this.probabilities.add(restProb);
-            this.sumProbabilites += restProb;
+            this.sumProbabilities += restProb;
         }
 
         this.normalize();

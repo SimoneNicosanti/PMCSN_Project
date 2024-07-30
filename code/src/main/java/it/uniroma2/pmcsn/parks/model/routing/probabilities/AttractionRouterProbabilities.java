@@ -28,7 +28,7 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             // TODO: Add also time since the job is in the system ?
 
             this.probabilities.add(attractionProb);
-            this.sumProbabilites += attractionProb;
+            this.sumProbabilities += attractionProb;
         }
         this.normalize();
 

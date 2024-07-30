@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.model.Distribution;
 import it.uniroma2.pmcsn.parks.model.Interval;
@@ -24,6 +25,12 @@ public class ParametersParser {
         // Read the config.json file
         JsonNode rootNode;
         List<Pair<Interval, Parameters>> returnList = new ArrayList<>();
+        
+        // TODO: could handle this better for testing the verification
+        if (Constants.VERIFICATION_MODE) {
+            returnList.add(SimulationBuilder.getInifiniteInterval());
+            return returnList;
+        }
 
         try {
             rootNode = getRootNode(configFileName);
