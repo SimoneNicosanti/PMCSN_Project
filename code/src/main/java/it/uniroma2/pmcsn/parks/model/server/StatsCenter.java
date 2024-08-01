@@ -18,14 +18,16 @@ import it.uniroma2.pmcsn.parks.utils.EventLogger;
 public abstract class StatsCenter extends AbstractCenter {
 
     protected CenterStatistics stats;
+    protected long groupsInTheCenter;
+    protected long peopleInTheCenter;
     protected Map<Long, Double> startServingTimeMap;
 
     public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber, Double avgServiceTime) {
         super(name, queueManager, slotNumber, avgServiceTime);
 
-        // TODO Not good doing this
-        // Other way may be pass the CenterStats in the constructor
-        // But in that way we would lose transparency in Center about statistics
+        groupsInTheCenter = 0;
+        peopleInTheCenter = 0;
+
         this.stats = new CenterStatistics();
 
         this.startServingTimeMap = new HashMap<>();
@@ -43,6 +45,9 @@ public abstract class StatsCenter extends AbstractCenter {
         StatsQueueManager statsQueueManager = (StatsQueueManager) this.queueManager; // Perdoname Emanuele por mi vida
                                                                                      // loca <3
         statsQueueManager.resetQueueStats();
+
+        peopleInTheCenter = 0;
+        groupsInTheCenter = 0;
     }
 
     public CenterStatistics getCenterStats() {
@@ -58,7 +63,15 @@ public abstract class StatsCenter extends AbstractCenter {
     }
 
     protected void manageArrival(RiderGroup job) {
+
+        // update the areas and increment the number of people in the center for each
+        // arrival
+        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+        groupsInTheCenter++;
+        peopleInTheCenter += job.getGroupSize();
+
         this.collectArrivalStats(job);
+
         this.commonArrivalManagement(job);
     }
 
@@ -76,13 +89,18 @@ public abstract class StatsCenter extends AbstractCenter {
     }
 
     protected void manageEndService(RiderGroup endedJob) {
+
+        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+        groupsInTheCenter--;
+        peopleInTheCenter -= endedJob.getGroupSize();
+
         this.collectEndServiceStats(endedJob);
+
         this.scheduleNextEvent(endedJob);
     }
 
     protected abstract void collectEndServiceStats(RiderGroup endedJob);
 
-    // Method useful for collecting new stats
     protected void collectArrivalStats(RiderGroup job) {
     }
 

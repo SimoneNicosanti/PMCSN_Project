@@ -1,8 +1,8 @@
 {
   "timeIntervals": [
     {
-      "start": "09:00",
-      "end": "12:00",
+      "start": 0.0,
+      "end": 180.0,
       "routingProbability": {
         "attractions": 0.9,
         "restaurants": 0.05,
@@ -11,8 +11,8 @@
       "arrivalRate": 20
     },
     {
-      "start": "12:00",
-      "end": "14:00",
+      "start": 180.0,
+      "end": 300.0,
       "routingProbability": {
         "attractions": 0.7,
         "restaurants": 0.25,
@@ -21,8 +21,8 @@
       "arrivalRate": 10
     },
     {
-      "start": "14:00",
-      "end": "19:00",
+      "start": 300.0,
+      "end": 600.0,
       "routingProbability": {
         "attractions": 0.9,
         "restaurants": 0.05,
@@ -31,8 +31,8 @@
       "arrivalRate": 3
     },
     {
-      "start": "19:00",
-      "end": "22:00",
+      "start": 600.0,
+      "end": 780.0,
       "routingProbability": {
         "attractions": 0.7,
         "restaurants": 0.15,

@@ -34,11 +34,11 @@ public class SimulationBuilder {
     public static Pair<Interval, Parameters> getInifiniteInterval() {
         Interval interval = new Interval(0.0, Double.MAX_VALUE);
         Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
-        probabilityMap.put(RoutingNodeType.ATTRACTION, 9.0);
-        probabilityMap.put(RoutingNodeType.RESTAURANT, 0.05);
-        probabilityMap.put(RoutingNodeType.EXIT, 0.05);
+        probabilityMap.put(RoutingNodeType.ATTRACTION, 0.9);
+        probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);
+        probabilityMap.put(RoutingNodeType.EXIT, 0.1);
 
-        Parameters parameters = new Parameters(probabilityMap, 0.5);
+        Parameters parameters = new Parameters(probabilityMap, 7.0);
 
         return Pair.of(interval, parameters);
     }

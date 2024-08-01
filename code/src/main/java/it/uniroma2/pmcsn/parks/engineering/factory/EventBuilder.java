@@ -40,6 +40,9 @@ public class EventBuilder {
     }
 
     private static GroupPriority computeGroupPriority() {
+        if (Constants.VERIFICATION_MODE)
+            return GroupPriority.NORMAL;
+
         double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM);
         if (groupPriorityProb < Constants.PRIORITY_PASS_PROB) {
             return GroupPriority.PRIORITY;

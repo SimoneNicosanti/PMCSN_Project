@@ -71,4 +71,8 @@ public class EventsPool<T> {
         }
     }
 
+    public void resetPool() {
+        this.eventMap = new HashMap<>();
+    }
+
 }

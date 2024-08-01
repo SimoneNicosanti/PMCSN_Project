@@ -57,6 +57,7 @@ public class Attraction extends StatsCenter {
 
         this.manageEndService(endedJob);
 
+        // Attractions will start a new service when all the jobs have finished
         if (currentServingJobs.isEmpty()) {
             this.currentServiceTime = 0.0;
             this.startService();

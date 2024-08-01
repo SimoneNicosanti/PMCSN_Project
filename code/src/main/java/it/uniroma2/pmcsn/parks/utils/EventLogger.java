@@ -2,10 +2,7 @@ package it.uniroma2.pmcsn.parks.utils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -66,22 +63,6 @@ public class EventLogger {
         }
 
         // System.out.println(logString);
-    }
-
-    public static void prepareLog() {
-        Path logDirectoryPath = Path.of("Out", "Log");
-
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(logDirectoryPath)) {
-            for (Path file : stream) {
-                // Check if it's a file and not a directory
-                BasicFileAttributes attrs = Files.readAttributes(file, BasicFileAttributes.class);
-                if (attrs.isRegularFile()) {
-                    Files.delete(file);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void logExit(double clock) {

@@ -50,8 +50,7 @@ public class AttractionVerify extends Attraction {
 
     @Override
     protected Double getNewServiceTime(RiderGroup job) {
-        return RandomHandler.getInstance().getUniform(name, this.avgServiceTime - 0.5,
-                this.avgServiceTime + 0.5);
+        return RandomHandler.getInstance().getExponential(name, avgServiceTime);
     }
 
     @Override

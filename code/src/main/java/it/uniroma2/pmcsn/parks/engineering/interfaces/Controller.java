@@ -4,6 +4,6 @@ public interface Controller<T> {
     /*
      * Start the simulation
      */
-    public abstract void startSimulation();
+    public abstract void simulate();
 
 }

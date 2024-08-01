@@ -17,6 +17,7 @@ import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 
 public class ParkController implements Controller<RiderGroup> {
@@ -36,14 +37,15 @@ public class ParkController implements Controller<RiderGroup> {
         this.currentInterval = configHandler.getCurrentInterval();
     }
 
+    public NetworkBuilder getNetworkBuilder() {
+        return this.networkBuilder;
+    }
+
     @Override
-    public void startSimulation() {
+    public void simulate() {
 
         this.scheduleArrivalEvent();
         clockHandler = ClockHandler.getInstance();
-
-        int lastDividend = 0;
-        int divisor = 1440;
 
         while (true) {
 
@@ -54,20 +56,6 @@ public class ParkController implements Controller<RiderGroup> {
             }
 
             clockHandler.setClock(nextEvent.getEventTime());
-
-            // TODO: handle this in a better way, it was just to test the verification
-            // faster
-            if (Constants.VERIFICATION_MODE) {
-                int dividend = (int) nextEvent.getEventTime() / divisor;
-                if (dividend > lastDividend) {
-                    lastDividend = dividend;
-
-                    for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-                        VerificationWriter.writeVerificationStatistics("Verification", "TotalStatsCenter_" + dividend,
-                                center);
-                    }
-                }
-            }
 
             // Check if the current interval changed
             Interval interval = configHandler.getInterval(clockHandler.getClock());
@@ -131,19 +119,11 @@ public class ParkController implements Controller<RiderGroup> {
                         "TotalCenterStats", center);
 
                 // Check whether we are veryfing the model or not
-                if (Constants.VERIFICATION_MODE) {
-                    VerificationWriter.writeVerificationStatistics("Verification", "TotalStatsCenter", center);
-                }
 
             } else {
                 StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
                         interval.getStart() + "-" + interval.getEnd(),
                         center);
-
-                if (Constants.VERIFICATION_MODE) {
-                    VerificationWriter.writeVerificationStatistics("Verification",
-                            interval.getStart() + "-" + interval.getEnd(), center);
-                }
 
             }
         }
@@ -166,12 +146,8 @@ public class ParkController implements Controller<RiderGroup> {
         } else {
             StatisticsWriter.resetStatistics(Path.of(".", "Center", "Total").toString());
         }
-
-        if (Constants.VERIFICATION_MODE) {
-            StatisticsWriter.resetStatistics("Verification");
-        }
         // Prepare the logger and set the system clock to 0
-        EventLogger.prepareLog();
+        WriterHelper.clearDirectory(Constants.LOG_PATH);
         ClockHandler.getInstance().setClock(0);
     }
 

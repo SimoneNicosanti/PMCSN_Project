@@ -25,8 +25,22 @@ public class NetworkBuilder {
 
     public void buildNetwork() {
         // Just for testing, delete once the system is live
-        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile("RestaurantsData.csv"); // TestingUtils.createTestingRestaurants();
-        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile("AttractionsData.csv"); // TestingUtils.createTestingAttractions();
+        String restaurantsFileName;
+        if (Constants.VERIFICATION_MODE) {
+            restaurantsFileName = "RestaurantsDataVerify.csv";
+        } else {
+            restaurantsFileName = "RestaurantsData.csv";
+        }
+        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile(restaurantsFileName); // TestingUtils.createTestingRestaurants();
+
+        String attractionsFileName;
+        if (Constants.VERIFICATION_MODE) {
+            attractionsFileName = Constants.VERIFICATION_ATTRACTION_FILE;
+        } else {
+            attractionsFileName = Constants.ATTRACTION_FILE;
+        }
+
+        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile(attractionsFileName); // TestingUtils.createTestingAttractions();
 
         Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0); // TestingUtils.createTestingEntrance();
         Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);

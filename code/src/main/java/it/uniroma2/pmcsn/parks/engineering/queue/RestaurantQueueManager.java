@@ -16,7 +16,6 @@ public class RestaurantQueueManager extends StatsQueueManager {
     public RestaurantQueueManager() {
         this.queue = new FifoQueue();
         this.queueStatsMap.put(QueuePriority.NORMAL, new QueueStats(QueuePriority.NORMAL));
-
     }
 
     @Override

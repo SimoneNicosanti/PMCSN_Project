@@ -1,15 +1,10 @@
 package it.uniroma2.pmcsn.parks.utils;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVFormat.Builder;
-import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.FileUtils;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -51,12 +46,12 @@ public class StatisticsWriter {
         String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "NumberRides" };
 
         // Writing the header
-        writeHeader(filePath, header);
+        CsvWriter.writeHeader(filePath, header);
 
         // Writing the file
         List<Object> record = List.of(groupId, groupSize, priority, totalQueueTime, totalRidingTime,
                 ClockHandler.getInstance().getClock(), totalRiding);
-        writeRecord(filePath, record);
+        CsvWriter.writeRecord(filePath, record);
     }
 
     public static void writeCenterStatistics(String statsFolder, String fileName, Center<RiderGroup> center) {
@@ -69,6 +64,14 @@ public class StatisticsWriter {
         double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
         double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();
         double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
+
+        double group_N_s = stats.getAvgNumberOfGroupInTheSystem();
+        double people_N_s = stats.getAvgNumberOfPersonInTheSystem();
+        double group_N_q = stats.getAvgNumberOfGroupInTheQueue();
+        double people_N_q = stats.getAvgNumberOfPersonInTheQueue();
+
+        double groupsWaitByArea = stats.getAvgGroupWaitByArea();
+        double peopleWaitByArea = stats.getAvgPersonWaitByArea();
 
         // double avgQueueTime = stats.getAvgQueueTime();
         long peopleServed = stats.getNumberOfServedPerson();
@@ -115,56 +118,30 @@ public class StatisticsWriter {
         String[] header = {
                 "Center name", "Avg Service Time - Services",
                 "Groups Served", "Normal Group Served", "Priority Group Served",
+                "N_s - Group", "N_q - Group", "Avg Waiting Time By Area - Groups",
                 "Avg Service Time - Groups",
                 "Avg Queue Time - Groups", "Avg Queue Time Normal - Groups", "Avg Queue Time Prio - Groups",
                 "People Served", "Normal People Served", "Priority People Served",
+                "N_s - People", "N_q - People", "Avg Waiting Time By Area - People",
                 "Avg Service Time - People",
                 "Avg Queue Time - People", "Avg Queue Time Normal - People", "Avg Queue Time Prio - People"
         };
 
         // Writing the header
-        writeHeader(filePath, header);
+        CsvWriter.writeHeader(filePath, header);
 
         // Writing the file
         List<Object> record = List.of(
                 name, avgServiceTimePerCompletedService,
                 groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
+                group_N_s, group_N_q, groupsWaitByArea,
                 avgServiceTimePerGroup,
                 avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio,
                 peopleServed, numberOfNormalRider, numberOfPriorityRider,
+                people_N_s, people_N_q, peopleWaitByArea,
                 avgServiceTimePerPerson,
                 avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio);
-        writeRecord(filePath, record);
-    }
-
-    public static void writeHeader(Path filePath, String[] header) {
-
-        if (!filePath.toFile().exists()) {
-            try {
-                Files.createDirectories(filePath.getParent());
-                filePath.toFile().createNewFile();
-                try (
-                        Writer writer = new FileWriter(filePath.toFile(), true);
-                        CSVPrinter csvPrinter = new CSVPrinter(writer,
-                                Builder.create(CSVFormat.DEFAULT).setHeader(header).build())) {
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void writeRecord(Path filePath, List<Object> record) {
-        try (
-                Writer writer = new FileWriter(filePath.toFile(), true);
-                CSVPrinter csvPrinter = new CSVPrinter(writer,
-                        Builder.create(CSVFormat.DEFAULT).build())) {
-
-            csvPrinter.printRecord(record);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CsvWriter.writeRecord(filePath, record);
     }
 
 }

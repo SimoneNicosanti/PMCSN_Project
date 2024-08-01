@@ -1,5 +1,7 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+
 public class CenterStatistics {
     // The total service time of a center
     protected double perPersonServiceTime;
@@ -11,9 +13,56 @@ public class CenterStatistics {
     private long numberOfServedGroup;
     private long numberOfCompletedServices;
 
+    // Time-averaged stats
+    private double groupsArea;
+    private double peopleArea;
+
+    private double previousEventTime;
+
     public CenterStatistics() {
         this.perPersonServiceTime = 0;
+        this.perGroupServiceTime = 0;
+        this.perCompletedServiceServiceTime = 0;
+
         this.numberOfServedPerson = 0L;
+        this.numberOfServedGroup = 0L;
+        this.numberOfCompletedServices = 0L;
+
+        this.groupsArea = 0.0;
+        this.peopleArea = 0.0;
+
+        this.previousEventTime = ClockHandler.getInstance().getClock();
+
+    }
+
+    public double getAvgPersonWaitByArea() {
+        if (numberOfServedPerson == 0)
+            return 0;
+        return peopleArea / numberOfServedPerson;
+    }
+
+    public double getAvgGroupWaitByArea() {
+        if (numberOfServedPerson == 0)
+            return 0;
+        return groupsArea / numberOfServedGroup;
+    }
+
+    public double getAvgNumberOfPersonInTheSystem() {
+        return peopleArea / ClockHandler.getInstance().getClock();
+    }
+
+    public double getAvgNumberOfGroupInTheSystem() {
+        return groupsArea / ClockHandler.getInstance().getClock();
+    }
+
+    public double getAvgNumberOfPersonInTheQueue() {
+        double area = peopleArea - perPersonServiceTime;
+        return area / ClockHandler.getInstance().getClock();
+    }
+
+    public double getAvgNumberOfGroupInTheQueue() {
+        double area = groupsArea - perGroupServiceTime;
+        return area / ClockHandler.getInstance().getClock();
     }
 
     public long getNumberOfServedPerson() {
@@ -30,6 +79,14 @@ public class CenterStatistics {
 
     public long getNumberOfServedGroup() {
         return this.numberOfServedGroup;
+    }
+
+    public void updateAreas(long groups, long people) {
+        double currentEventTime = ClockHandler.getInstance().getClock();
+        groupsArea += (currentEventTime * previousEventTime) * groups;
+        peopleArea += (currentEventTime * previousEventTime) * people;
+
+        previousEventTime = currentEventTime;
     }
 
     public void endServiceUpdate(double serviceTime, int personServed) {

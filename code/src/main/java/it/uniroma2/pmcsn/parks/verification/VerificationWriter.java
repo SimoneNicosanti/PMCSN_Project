@@ -10,11 +10,21 @@ import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
+import it.uniroma2.pmcsn.parks.utils.CsvWriter;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.WriterHelper;
+import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
 
 public class VerificationWriter {
 
-    public static void writeVerificationStatistics(String statsFolder, String filename, Center<RiderGroup> center) {
+    public static void writeAllVerificationStatistics(String statFolder, String fileName,
+            List<Center<RiderGroup>> centerList) {
+        for (Center<RiderGroup> center : centerList) {
+            writeVerificationStatistics(statFolder, fileName, center);
+        }
+    }
+
+    private static void writeVerificationStatistics(String statsFolder, String filename, Center<RiderGroup> center) {
         if (center instanceof ExitCenter)
             return;
 
@@ -61,12 +71,12 @@ public class VerificationWriter {
                 numberOfPriorityJobs,
                 avgServiceTimePerCompletedService, avgSystemTime);
 
-        StatisticsWriter.writeRecord(filePath, record);
+        CsvWriter.writeRecord(filePath, record);
     }
 
     private static Path writeVerificationHeader(String statsFolder, String filename) {
 
-        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, filename + ".csv");
+        Path filePath = Path.of(statsFolder, filename + ".csv");
         String[] header = {
                 "Center name",
                 "Avg Queue Time", "Avg Queue Time - Normal", "Avg Queue Time - Prio",
@@ -75,9 +85,37 @@ public class VerificationWriter {
                 "Avg System Time",
         };
 
-        StatisticsWriter.writeHeader(filePath, header);
+        CsvWriter.writeHeader(filePath, header);
 
         return filePath;
+    }
+
+    public static void writeConfidenceIntervals(List<ConfidenceInterval> confidenceIntervals, String fileName) {
+        Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + ".csv");
+        String[] header = {
+                "Center Name",
+                "Metric Name",
+                "Mean Value",
+                "Interval",
+                "Lower Bound",
+                "Upper Bound"
+        };
+        CsvWriter.writeHeader(filePath, header);
+
+        for (ConfidenceInterval interval : confidenceIntervals) {
+            List<Object> record = List.of(
+                    interval.centerName(),
+                    interval.statsName(),
+                    interval.mean(),
+                    interval.interval(),
+                    interval.mean() - interval.interval(),
+                    interval.mean() + interval.interval());
+            CsvWriter.writeRecord(filePath, record);
+        }
+    }
+
+    public static void resetData() {
+        WriterHelper.clearDirectory(Constants.VERIFICATION_PATH);
     }
 
 }
