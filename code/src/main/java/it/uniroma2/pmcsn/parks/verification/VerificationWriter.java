@@ -11,7 +11,6 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.CsvWriter;
-import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
 

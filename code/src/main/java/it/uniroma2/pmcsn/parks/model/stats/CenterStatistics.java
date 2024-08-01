@@ -83,8 +83,12 @@ public class CenterStatistics {
 
     public void updateAreas(long groups, long people) {
         double currentEventTime = ClockHandler.getInstance().getClock();
-        groupsArea += (currentEventTime * previousEventTime) * groups;
-        peopleArea += (currentEventTime * previousEventTime) * people;
+
+        assert groups < 0 || people < 0;
+        assert currentEventTime - previousEventTime < 0;
+
+        groupsArea += (currentEventTime - previousEventTime) * groups;
+        peopleArea += (currentEventTime - previousEventTime) * people;
 
         previousEventTime = currentEventTime;
     }

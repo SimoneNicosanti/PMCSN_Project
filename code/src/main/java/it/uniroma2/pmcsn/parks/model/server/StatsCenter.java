@@ -46,8 +46,9 @@ public abstract class StatsCenter extends AbstractCenter {
                                                                                      // loca <3
         statsQueueManager.resetQueueStats();
 
-        peopleInTheCenter = 0;
-        groupsInTheCenter = 0;
+        // Cannot be resetted, otherwise we will have negative sum in the areas
+        // peopleInTheCenter = 0;
+        // groupsInTheCenter = 0;
     }
 
     public CenterStatistics getCenterStats() {

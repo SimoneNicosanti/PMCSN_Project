@@ -31,7 +31,7 @@ public class Constants {
     public static final long SEED = 4321;
 
     // Indicates whether to collect statistics for each interval or not
-    public static final boolean INTERVAL_STATS = true;
+    public static final boolean INTERVAL_STATS = false;
 
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";

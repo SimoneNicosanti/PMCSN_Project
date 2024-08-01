@@ -12,8 +12,6 @@ package it.uniroma2.pmcsn.parks.random.examples;
  * ------------------------------------------------------------------------- 
  */
 
-import java.io.*;
-import java.lang.Math;
 import java.text.*;
 
 import it.uniroma2.pmcsn.parks.random.Rngs;

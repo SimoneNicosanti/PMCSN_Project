@@ -118,6 +118,7 @@ public class ParametersParser {
 
     // Parse a time in the format HH:MM in a clock that starts from zero, based on
     // the first interval
+    @SuppressWarnings("unused")
     private static Double parseTime(String timeStr) {
         String[] parts = timeStr.split(":");
         int hours = Integer.parseInt(parts[0]);

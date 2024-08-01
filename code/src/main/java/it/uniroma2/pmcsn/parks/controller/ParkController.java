@@ -18,7 +18,6 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
-import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 
 public class ParkController implements Controller<RiderGroup> {
 
