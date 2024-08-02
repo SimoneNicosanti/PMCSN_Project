@@ -8,6 +8,7 @@ import java.util.Map;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.random.Estimate;
@@ -26,6 +27,14 @@ public class ConfidenceIntervalComputer {
                 statsValues.put(statsName, new ArrayList<>());
             }
             statsValues.get(statsName).add(statsValue);
+        }
+
+        public void addAllValues(String statsName, List<Double> statsValue) {
+            if (statsValues.get(statsName) == null) {
+                statsValues.put(statsName, new ArrayList<>());
+            }
+
+            statsValues.get(statsName).addAll(statsValue);
         }
 
         public Map<String, List<Double>> getValues() {
@@ -51,12 +60,18 @@ public class ConfidenceIntervalComputer {
             if (valuesMap.get(center.getName()) == null) {
                 valuesMap.put(center.getName(), new StatsValues());
             }
-            CenterStatistics centerStatistics = ((StatsCenter) center).getCenterStats();
-            QueueStats queueStats = ((StatsCenter) center).getGeneralQueueStats();
-            valuesMap.get(center.getName()).addStatsValue(
-                    "ServiceTime", centerStatistics.getAvgServiceTimePerGroup());
-            valuesMap.get(center.getName()).addStatsValue(
-                    "QueueTime", queueStats.getAvgWaitingTimePerGroups());
+
+            BatchStats serviceBatchStats = ((StatsCenter) center).getServiceBatchStats();
+            BatchStats queueBatchStats = ((StatsCenter) center).getQueueBatchStats();
+
+            valuesMap.get(center.getName()).addAllValues("ServiceTime", serviceBatchStats.getAverages());
+            valuesMap.get(center.getName()).addAllValues("QueueTime", queueBatchStats.getAverages());
+
+            // valuesMap.get(center.getName()).addStatsValue(
+            // "ServiceTime", centerStatistics.getAvgServiceTimePerGroup());
+            // valuesMap.get(center.getName()).addStatsValue(
+            // "QueueTime",
+            // centerStatistics.getAvgGroupQueueTimeByArea());
         }
     }
 
@@ -67,7 +82,7 @@ public class ConfidenceIntervalComputer {
             for (String statsName : values.getValues().keySet()) {
                 List<Double> valuesList = values.getValues().get(statsName);
                 Double mean = computeMean(valuesList);
-                Double interval = Estimate.computeConfidenceInterval(valuesList, 0.99);
+                Double interval = Estimate.computeConfidenceInterval(valuesList, 0.95);
                 returnList.add(new ConfidenceInterval(centerName, statsName, mean, interval));
             }
         }

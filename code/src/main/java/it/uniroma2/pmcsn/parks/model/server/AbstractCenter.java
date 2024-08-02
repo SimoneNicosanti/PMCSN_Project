@@ -37,6 +37,10 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         return this.avgServiceTime;
     }
 
+    public int getSlotNumber() {
+        return this.slotNumber;
+    }
+
     /**
      * Arrival of a new job in the center. If the center is able to serve the job,
      * it adds it to a queue and starts the service, otherwise it just adds
@@ -67,7 +71,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
                 ClockHandler.getInstance().getClock());
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
 
-        EventLogger.logEvent("Schedule ", newEvent);
+        // EventLogger.logEvent("Schedule ", newEvent);
     }
 
     /**

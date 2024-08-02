@@ -1,6 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
@@ -8,18 +9,24 @@ import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
+import it.uniroma2.pmcsn.parks.verification.TheoreticalValueComputer;
 import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
 
 public class VerifyController implements Controller<RiderGroup> {
 
+    private NetworkBuilder networkBuilder;
+
     public VerifyController() {
+        Constants.VERIFICATION_MODE = true;
+        this.networkBuilder = new NetworkBuilder();
+        this.networkBuilder.buildNetwork();
 
         // this.configHandler = ConfigHandler.getInstance();
 
@@ -33,47 +40,31 @@ public class VerifyController implements Controller<RiderGroup> {
 
         VerificationWriter.resetData();
 
-        Constants.VERIFICATION_MODE = true;
-        ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
-
         // Reset verification stats
+        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
+        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
 
-        for (int i = 0; i < Constants.VERIFY_SIMULATION_NUM; i++) {
-            System.out.println("Simulation " + i);
-            List<Center<RiderGroup>> centerList = simulateOnce();
-            computer.updateStatistics(centerList);
+        List<Center<RiderGroup>> centerList = batchSimulation();
 
-            VerificationWriter.writeAllVerificationStatistics(Constants.VERIFICATION_PATH, "CenterStats", centerList);
+        TheoreticalValueComputer theoryValueComputer = new TheoreticalValueComputer();
+        Map<String, Double> theoryMap = theoryValueComputer.computeTheoreticalQueueTimeMap(centerList);
+        VerificationWriter.writeTheoreticalQueueTimeValues(theoryMap);
 
-            ClockHandler.getInstance().setClock(0.0);
-            EventsPool.getInstance().resetPool(); // Removing not handled events
-
-        }
-
+        ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
+        computer.updateStatistics(centerList);
         List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals();
         VerificationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
 
         // Write confidence intervals for all statistics
     }
 
-    public List<Center<RiderGroup>> simulateOnce() {
+    public List<Center<RiderGroup>> batchSimulation() {
 
-        NetworkBuilder networkBuilder = new NetworkBuilder();
-        networkBuilder.buildNetwork();
-
-        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
-
-        Double endClock = ConfigHandler.getInstance().getCurrentInterval().getEnd();
-
-        while (true) {
+        while (!stopSimulation()) {
 
             SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             Double nextEventTime = nextEvent.getEventTime();
-            if (nextEventTime > endClock) {
-                break;
-            }
 
             ClockHandler.getInstance().setClock(nextEventTime);
             RiderGroup job = nextEvent.getJob();
@@ -89,9 +80,22 @@ public class VerifyController implements Controller<RiderGroup> {
             }
         }
 
+        System.out.println("Final Clock >>> " + ClockHandler.getInstance().getClock());
+
         EventLogger.logRandomStreams("RandomStreams");
 
         return networkBuilder.getAllCenters();
+    }
+
+    private boolean stopSimulation() {
+        for (Center<RiderGroup> center : this.networkBuilder.getAllCenters()) {
+            StatsCenter statCenter = (StatsCenter) center;
+
+            if (!statCenter.areBatchesCompleted()) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

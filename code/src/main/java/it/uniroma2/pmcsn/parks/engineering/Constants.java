@@ -26,6 +26,7 @@ public class Constants {
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "Config_1.json";
     public static final String ATTRACTION_FILE = "AttractionsData.csv";
+    public static final String ENTRANCE_FILE = "EntranceData.csv";
 
     public static final double PRIORITY_PASS_PROB = 0.1;
     public static final long SEED = 4321;
@@ -36,7 +37,10 @@ public class Constants {
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";
     public static final String VERIFICATION_RESTAURANT_FILE = "RestaurantsDataVerify.csv";
+    public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
     public static final String VERIFICATION_CONFIG_FILENAME = "ConfigVerify.json";
-    public static final int VERIFY_SIMULATION_NUM = 50;
+    public static final int VERIFY_SIMULATION_NUM = 75;
+    public static final int BATCH_SIZE = 1792; // DO NOT CHANGE THIS VALUE
+    public static final int BATCH_NUMBER = 64; // DO NOT CHANGE THIS VALUE
 
 }

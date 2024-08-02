@@ -42,7 +42,13 @@ public class NetworkBuilder {
 
         List<Attraction> attractions = CenterFactory.buildAttractionsFromFile(attractionsFileName); // TestingUtils.createTestingAttractions();
 
-        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile("EntranceData.csv").get(0); // TestingUtils.createTestingEntrance();
+        String entranceFile;
+        if (Constants.VERIFICATION_MODE) {
+            entranceFile = Constants.VERIFICATION_ENTRANCE_FILE;
+        } else {
+            entranceFile = Constants.ENTRANCE_FILE;
+        }
+        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile(entranceFile).get(0); // TestingUtils.createTestingEntrance();
         Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);
 
         // Create the routing nodes

@@ -1,7 +1,10 @@
 package it.uniroma2.pmcsn.parks.verification;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
@@ -33,7 +36,7 @@ public class VerificationWriter {
         CenterStatistics stats = ((StatsCenter) center).getCenterStats();
         QueueStats generalQueueStats = statsCenter.getGeneralQueueStats();
 
-        double avgQueueTime = generalQueueStats.getAvgWaitingTimePerGroups();
+        double avgQueueTime = stats.getAvgGroupWaitByArea() - stats.getAvgServiceTimePerGroup();
         double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
 
         double avgSystemTime = avgQueueTime + avgServiceTimePerCompletedService;
@@ -90,31 +93,54 @@ public class VerificationWriter {
     }
 
     public static void writeConfidenceIntervals(List<ConfidenceInterval> confidenceIntervals, String fileName) {
-        Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + ".csv");
-        String[] header = {
-                "Center Name",
-                "Metric Name",
-                "Mean Value",
-                "Interval",
-                "Lower Bound",
-                "Upper Bound"
-        };
-        CsvWriter.writeHeader(filePath, header);
-
-        for (ConfidenceInterval interval : confidenceIntervals) {
-            List<Object> record = List.of(
-                    interval.centerName(),
-                    interval.statsName(),
-                    interval.mean(),
-                    interval.interval(),
-                    interval.mean() - interval.interval(),
-                    interval.mean() + interval.interval());
-            CsvWriter.writeRecord(filePath, record);
+        List<String> metricsList = new ArrayList<>();
+        for (ConfidenceInterval confidenceInterval : confidenceIntervals) {
+            if (!metricsList.contains(confidenceInterval.statsName())) {
+                metricsList.add(confidenceInterval.statsName());
+            }
         }
+        for (String metric : metricsList) {
+            Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + "_" + metric + ".csv");
+            String[] header = {
+                    "Center Name",
+                    metric + " - Mean Value",
+                    "Interval",
+                    "Lower Bound",
+                    "Upper Bound"
+            };
+            CsvWriter.writeHeader(filePath, header);
+
+            for (ConfidenceInterval interval : confidenceIntervals) {
+                if (metric.equals(interval.statsName())) {
+                    List<Object> record = List.of(
+                            interval.centerName(),
+                            interval.mean(),
+                            interval.interval(),
+                            interval.mean() - interval.interval(),
+                            interval.mean() + interval.interval());
+                    CsvWriter.writeRecord(filePath, record);
+                }
+            }
+        }
+
     }
 
     public static void resetData() {
         WriterHelper.clearDirectory(Constants.VERIFICATION_PATH);
+    }
+
+    public static void writeTheoreticalQueueTimeValues(Map<String, Double> theoryMap) {
+        Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", "TheoreticalQueueTime" + ".csv");
+        String[] header = {
+                "Center Name",
+                "Theoretical Queue Time",
+        };
+        CsvWriter.writeHeader(filePath, header);
+
+        for (String centerName : theoryMap.keySet()) {
+            List<Object> record = List.of(centerName, theoryMap.get(centerName));
+            CsvWriter.writeRecord(filePath, record);
+        }
     }
 
 }

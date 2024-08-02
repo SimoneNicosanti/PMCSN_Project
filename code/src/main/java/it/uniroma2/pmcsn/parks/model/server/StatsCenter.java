@@ -11,9 +11,9 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
 
 public abstract class StatsCenter extends AbstractCenter {
 
@@ -21,6 +21,7 @@ public abstract class StatsCenter extends AbstractCenter {
     protected long groupsInTheCenter;
     protected long peopleInTheCenter;
     protected Map<Long, Double> startServingTimeMap;
+    protected BatchStats serviceBatchStats;
 
     public StatsCenter(String name, StatsQueueManager queueManager, Integer slotNumber, Double avgServiceTime) {
         super(name, queueManager, slotNumber, avgServiceTime);
@@ -31,6 +32,8 @@ public abstract class StatsCenter extends AbstractCenter {
         this.stats = new CenterStatistics();
 
         this.startServingTimeMap = new HashMap<>();
+
+        this.serviceBatchStats = new BatchStats();
     }
 
     protected double retrieveServiceTime(RiderGroup endedJob) {
@@ -46,9 +49,6 @@ public abstract class StatsCenter extends AbstractCenter {
                                                                                      // loca <3
         statsQueueManager.resetQueueStats();
 
-        // Cannot be resetted, otherwise we will have negative sum in the areas
-        // peopleInTheCenter = 0;
-        // groupsInTheCenter = 0;
     }
 
     public CenterStatistics getCenterStats() {
@@ -61,6 +61,18 @@ public abstract class StatsCenter extends AbstractCenter {
 
     public QueueStats getGeneralQueueStats() {
         return queueManager.getGeneralQueueStats();
+    }
+
+    public BatchStats getServiceBatchStats() {
+        return this.serviceBatchStats;
+    }
+
+    public BatchStats getQueueBatchStats() {
+        return ((StatsQueueManager) this.queueManager).getBatchStats();
+    }
+
+    public boolean areBatchesCompleted() {
+        return this.serviceBatchStats.isBatchCompleted() && ((StatsQueueManager) this.queueManager).isBatchCompleted();
     }
 
     protected void manageArrival(RiderGroup job) {
@@ -124,7 +136,7 @@ public abstract class StatsCenter extends AbstractCenter {
                     ClockHandler.getInstance().getClock() + serviceTime);
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
 
-            EventLogger.logEvent("Schedule ", newEvent);
+            // EventLogger.logEvent("Schedule ", newEvent);
         }
 
         return jobsToServe;

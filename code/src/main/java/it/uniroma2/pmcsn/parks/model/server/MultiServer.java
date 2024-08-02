@@ -40,6 +40,8 @@ public abstract class MultiServer extends StatsCenter {
         this.stats.addServiceTime(jobServiceTime);
 
         this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
+
+        this.serviceBatchStats.addTime(jobServiceTime);
     }
 
 }

@@ -32,6 +32,8 @@ public class AttractionVerify extends Attraction {
         this.stats.addServiceTime(jobServiceTime);
 
         this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
+
+        this.serviceBatchStats.addTime(jobServiceTime);
     }
 
     @Override

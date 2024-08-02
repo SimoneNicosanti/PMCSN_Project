@@ -75,6 +75,8 @@ public class Attraction extends StatsCenter {
         }
 
         this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
+
+        this.serviceBatchStats.addTime(jobServiceTime);
     }
 
 }

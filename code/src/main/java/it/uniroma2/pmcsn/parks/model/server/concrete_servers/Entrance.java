@@ -23,7 +23,7 @@ public class Entrance extends MultiServer {
         SystemEvent<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
         if (newArrivalEvent != null) {
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
-            EventLogger.logEvent("Generated", newArrivalEvent);
+            // EventLogger.logEvent("Generated", newArrivalEvent);
         }
     }
 

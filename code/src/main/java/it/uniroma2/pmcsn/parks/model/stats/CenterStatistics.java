@@ -35,6 +35,14 @@ public class CenterStatistics {
 
     }
 
+    public double getAvgGroupQueueTimeByArea() {
+        return getAvgGroupWaitByArea() - getAvgServiceTimePerGroup();
+    }
+
+    public double getAvgPersonQueueTimeByArea() {
+        return getAvgPersonWaitByArea() - getAvgServiceTimePerPerson();
+    }
+
     public double getAvgPersonWaitByArea() {
         if (numberOfServedPerson == 0)
             return 0;

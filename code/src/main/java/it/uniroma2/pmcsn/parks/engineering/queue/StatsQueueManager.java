@@ -10,6 +10,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
@@ -21,10 +22,14 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
     // Aggregated statistics for all queues of the center
     protected QueueStats aggregatedStats;
 
+    protected BatchStats queueBatchStats;
+
     protected StatsQueueManager() {
         this.entranceTimeMap = new HashMap<>();
         this.queueStatsMap = new HashMap<>();
         this.aggregatedStats = new QueueStats(null);
+
+        this.queueBatchStats = new BatchStats();
     }
 
     protected void commonStatsCollectionOnAdd(RiderGroup item) {
@@ -37,6 +42,7 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
             double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
 
             aggregatedStats.updateStats(waitingTime, group.getGroupSize());
+            queueBatchStats.addTime(waitingTime);
         }
     }
 
@@ -77,5 +83,13 @@ public abstract class StatsQueueManager implements QueueManager<RiderGroup> {
 
     public QueueStats getGeneralQueueStats() {
         return this.aggregatedStats;
+    }
+
+    public boolean isBatchCompleted() {
+        return this.queueBatchStats.isBatchCompleted();
+    }
+
+    public BatchStats getBatchStats() {
+        return this.queueBatchStats;
     }
 }

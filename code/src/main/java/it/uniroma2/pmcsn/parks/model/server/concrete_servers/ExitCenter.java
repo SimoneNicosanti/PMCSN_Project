@@ -23,7 +23,7 @@ public class ExitCenter implements Center<RiderGroup> {
     public void arrival(RiderGroup job) {
         // TODO change filename for the different configuration
         String filename = Constants.JOB_STATS_FILENAME;
-        StatisticsWriter.writeStatistics("Job", filename, job);
+        // StatisticsWriter.writeStatistics("Job", filename, job);
         // EventLogger.logExit(ClockHandler.getInstance().getClock());
     }
 
