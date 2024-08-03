@@ -9,7 +9,7 @@ import java.util.Set;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
@@ -34,14 +34,14 @@ public class VerificationWriter {
 
         StatsCenter statsCenter = (StatsCenter) center;
         CenterStatistics stats = ((StatsCenter) center).getCenterStats();
-        QueueStats generalQueueStats = statsCenter.getGeneralQueueStats();
+        QueueStats generalQueueStats = statsCenter.getCenterStats().getAggregatedQueueStats();
 
         double avgQueueTime = stats.getAvgGroupWaitByArea() - stats.getAvgServiceTimePerGroup();
         double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
 
         double avgSystemTime = avgQueueTime + avgServiceTimePerCompletedService;
 
-        List<QueueStats> perPrioQueueStats = statsCenter.getQueueStats();
+        List<QueueStats> perPrioQueueStats = stats.getQueueStats();
 
         double avgQueueTimePerGroupNormal = 0.0;
         double avgQueueTimePerGroupPrio = 0.0;

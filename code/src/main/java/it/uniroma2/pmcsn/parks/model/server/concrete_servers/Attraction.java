@@ -2,34 +2,39 @@ package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 
-public class Attraction extends StatsCenter {
+public class Attraction extends AbstractCenter {
 
     private double currentServiceTime;
-    private double popularity;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, new AttractionQueueManager(), numberOfSeats, avgDuration);
+        super(name, new AttractionQueueManager(), numberOfSeats, avgDuration, popularity);
         this.currentServiceTime = 0.0;
-        this.popularity = popularity;
     }
 
-    public int getQueueLenght(GroupPriority priority) {
+    public Integer getQueueLenght(GroupPriority priority) {
         return ((AttractionQueueManager) this.queueManager).queueLength(priority);
     }
 
-    public double getPopularity() {
+    @Override
+    public Double getPopularity() {
         return this.popularity;
     }
 
     @Override
-    public void arrival(RiderGroup job) {
-        this.manageArrival(job);
+    public QueuePriority arrival(RiderGroup job) {
+        return this.commonArrivalManagement(job);
     }
 
     @Override
@@ -53,30 +58,13 @@ public class Attraction extends StatsCenter {
 
     @Override
     public void endService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
-
-        this.manageEndService(endedJob);
+        this.commonEndManagement(endedJob);
 
         // Attractions will start a new service when all the jobs have finished
-        if (currentServingJobs.isEmpty()) {
+        if (this.currentServingJobs.isEmpty()) {
             this.currentServiceTime = 0.0;
-            this.startService();
+            // this.startService();
         }
-    }
-
-    @Override // Override to do verify
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.retrieveServiceTime(endedJob);
-
-        endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
-
-        if (this.startServingTimeMap.isEmpty()) {
-            this.stats.addServiceTime(jobServiceTime);
-        }
-
-        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
-
-        this.serviceBatchStats.addTime(jobServiceTime);
     }
 
 }

@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.model.routing;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -12,14 +13,14 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class RestaurantRoutingNode implements RoutingNode<RiderGroup> {
 
-    private List<Restaurant> restaurantList;
+    private List<Center<RiderGroup>> restaurantList;
 
-    public RestaurantRoutingNode(List<Restaurant> restaurantList) {
+    public RestaurantRoutingNode(List<Center<RiderGroup>> restaurantList) {
         this.restaurantList = restaurantList;
     }
 
     @Override
-    public AbstractCenter route(RiderGroup riderGroup) {
+    public Center<RiderGroup> route(RiderGroup riderGroup) {
 
         double routingProb = RandomHandler.getInstance().getRandom(Constants.RESTAURANT_ROUTING_NODE);
 

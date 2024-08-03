@@ -13,7 +13,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
@@ -65,12 +65,20 @@ public class ParkController implements Controller<RiderGroup> {
             RiderGroup job = nextEvent.getJob();
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
+                // TODO Re add START_PROCESS to have more transparency
                 case ARRIVAL:
+                    boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
                     center.arrival(job);
+                    if (mustServe) {
+                        center.startService();
+                    }
                     break;
 
                 case END_PROCESS:
                     center.endService(job);
+                    if (center.canServe(1)) {
+                        center.startService();
+                    }
                     break;
             }
         }
@@ -130,8 +138,9 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void resetCenterStats() {
         for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-            if (center instanceof ExitCenter)
+            if (center instanceof ExitCenter) {
                 continue;
+            }
             ((StatsCenter) center).resetCenterStats();
         }
     }

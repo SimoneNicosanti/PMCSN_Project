@@ -5,23 +5,17 @@ import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.MultiServer;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class Restaurant extends MultiServer {
 
-    private double popularity;
-
     public Restaurant(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, new RestaurantQueueManager(), numberOfSeats, avgDuration);
-        this.popularity = popularity;
-    }
-
-    public double getPopularity() {
-        return this.popularity;
+        super(name, new RestaurantQueueManager(), numberOfSeats, avgDuration, popularity);
     }
 
     @Override
-    public void arrival(RiderGroup job) {
-        this.manageArrival(job);
+    public QueuePriority arrival(RiderGroup job) {
+        return this.commonArrivalManagement(job);
     }
 
     @Override

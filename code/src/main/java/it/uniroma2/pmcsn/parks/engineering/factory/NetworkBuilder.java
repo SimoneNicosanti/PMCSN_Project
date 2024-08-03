@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,10 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
+import it.uniroma2.pmcsn.parks.model.server.ServerType;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
@@ -24,31 +28,10 @@ public class NetworkBuilder {
     }
 
     public void buildNetwork() {
-        // Just for testing, delete once the system is live
-        String restaurantsFileName;
-        if (Constants.VERIFICATION_MODE) {
-            restaurantsFileName = "RestaurantsDataVerify.csv";
-        } else {
-            restaurantsFileName = "RestaurantsData.csv";
-        }
-        List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile(restaurantsFileName); // TestingUtils.createTestingRestaurants();
 
-        String attractionsFileName;
-        if (Constants.VERIFICATION_MODE) {
-            attractionsFileName = Constants.VERIFICATION_ATTRACTION_FILE;
-        } else {
-            attractionsFileName = Constants.ATTRACTION_FILE;
-        }
-
-        List<Attraction> attractions = CenterFactory.buildAttractionsFromFile(attractionsFileName); // TestingUtils.createTestingAttractions();
-
-        String entranceFile;
-        if (Constants.VERIFICATION_MODE) {
-            entranceFile = Constants.VERIFICATION_ENTRANCE_FILE;
-        } else {
-            entranceFile = Constants.ENTRANCE_FILE;
-        }
-        Center<RiderGroup> entranceCenter = CenterFactory.buildEntranceFromFile(entranceFile).get(0); // TestingUtils.createTestingEntrance();
+        List<Center<RiderGroup>> restaurants = buildListOfCenters(ServerType.RESTAURANT);
+        List<Center<RiderGroup>> attractions = buildListOfCenters(ServerType.ATTRACTION);
+        List<Center<RiderGroup>> entrances = buildListOfCenters(ServerType.ENTRANCE);
         Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);
 
         // Create the routing nodes
@@ -57,18 +40,78 @@ public class NetworkBuilder {
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
                 restaurantsRoutingNode, exitCenter);
 
-        for (Attraction attraction : attractions) {
+        for (Center<RiderGroup> attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
             this.centerMap.put(attraction.getName(), attraction);
         }
-        for (Restaurant restaurant : restaurants) {
+        for (Center<RiderGroup> restaurant : restaurants) {
             restaurant.setNextRoutingNode(networkRoutingNode);
             this.centerMap.put(restaurant.getName(), restaurant);
         }
 
-        this.centerMap.put(Constants.ENTRANCE, entranceCenter);
+        Center<RiderGroup> entrance = entrances.get(0);
+        this.centerMap.put(Constants.ENTRANCE, entrance);
+        entrance.setNextRoutingNode(networkRoutingNode);
 
-        entranceCenter.setNextRoutingNode(networkRoutingNode);
+        EventBuilder.setStatsCenterMap(centerMap);
+    }
+
+    private List<Center<RiderGroup>> buildListOfCenters(ServerType serverType) {
+        String buildFileName = getBuildFileName(serverType);
+        List<Center<RiderGroup>> centers = new ArrayList<>();
+        switch (serverType) {
+            case ATTRACTION:
+                List<Attraction> attractions = CenterFactory.buildAttractionsFromFile(buildFileName);
+                centers.addAll(attractions);
+                break;
+
+            case RESTAURANT:
+                List<Restaurant> restaurants = CenterFactory.buildRestaurantsFromFile(buildFileName);
+                centers.addAll(restaurants);
+                break;
+
+            case ENTRANCE:
+                List<Entrance> entrances = CenterFactory.buildEntranceFromFile(buildFileName);
+                centers.addAll(entrances);
+                break;
+
+        }
+
+        List<Center<RiderGroup>> statsCenters = new ArrayList<>();
+        for (Center<RiderGroup> center : centers) {
+            statsCenters.add(new StatsCenter(center));
+        }
+
+        return statsCenters;
+
+    }
+
+    private String getBuildFileName(ServerType serverType) {
+        switch (serverType) {
+            case ENTRANCE:
+                if (Constants.VERIFICATION_MODE) {
+                    return Constants.VERIFICATION_ENTRANCE_FILE;
+                } else {
+                    return Constants.ENTRANCE_FILE;
+                }
+
+            case ATTRACTION:
+                if (Constants.VERIFICATION_MODE) {
+                    return Constants.VERIFICATION_ATTRACTION_FILE;
+                } else {
+                    return Constants.ATTRACTION_FILE;
+                }
+
+            case RESTAURANT:
+                if (Constants.VERIFICATION_MODE) {
+                    return Constants.VERIFICATION_RESTAURANT_FILE;
+                } else {
+                    return Constants.RESTAURANT_FILE;
+                }
+        }
+
+        return "";
+
     }
 
     public Center<RiderGroup> getCenterByName(String name) {

@@ -1,5 +1,7 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
+import java.util.List;
+
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 
 public class CenterStatistics {
@@ -19,6 +21,10 @@ public class CenterStatistics {
 
     private double previousEventTime;
 
+    // Queue stats
+    private List<QueueStats> queueStatsList;
+    private QueueStats aggregatedQueueStats;
+
     public CenterStatistics() {
         this.perPersonServiceTime = 0;
         this.perGroupServiceTime = 0;
@@ -33,6 +39,14 @@ public class CenterStatistics {
 
         this.previousEventTime = ClockHandler.getInstance().getClock();
 
+    }
+
+    public void setQueueStats(List<QueueStats> queueStatsList) {
+        this.queueStatsList = queueStatsList;
+    }
+
+    public List<QueueStats> getQueueStats() {
+        return this.queueStatsList;
     }
 
     public double getAvgGroupQueueTimeByArea() {
@@ -129,5 +143,13 @@ public class CenterStatistics {
         if (numberOfCompletedServices == 0)
             return 0;
         return this.perCompletedServiceServiceTime / this.numberOfCompletedServices;
+    }
+
+    public void setAggregatedQueueStats(QueueStats aggregatedQueueStats) {
+        this.aggregatedQueueStats = aggregatedQueueStats;
+    }
+
+    public QueueStats getAggregatedQueueStats() {
+        return this.aggregatedQueueStats;
     }
 }

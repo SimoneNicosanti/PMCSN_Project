@@ -11,7 +11,7 @@ import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
@@ -77,8 +77,8 @@ public class StatisticsWriter {
         long peopleServed = stats.getNumberOfServedPerson();
         long groupsServed = stats.getNumberOfServedGroup();
 
-        List<QueueStats> perPrioQueueStats = statsCenter.getQueueStats();
-        QueueStats generalQueueStats = statsCenter.getGeneralQueueStats();
+        List<QueueStats> perPrioQueueStats = stats.getQueueStats();
+        QueueStats generalQueueStats = stats.getAggregatedQueueStats();
         double avgQueueTimePerPersonNormal = 0.0;
         double avgQueueTimePerPersonPrio = 0.0;
         long numberOfPriorityRider = 0;

@@ -8,6 +8,8 @@ import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
+
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
@@ -38,15 +40,15 @@ public class TheoreticalValueComputer {
         int attractionNumber = 0;
         int restaurantNumber = 0;
         for (Center<RiderGroup> center : centerList) {
-            if (center instanceof Restaurant) {
+            if (((StatsCenter) center).getCenter() instanceof Restaurant) {
                 restaurantNumber++;
-            } else if (center instanceof Attraction) {
+            } else if (((StatsCenter) center).getCenter() instanceof Attraction) {
                 attractionNumber++;
             }
         }
 
         for (Center<RiderGroup> center : centerList) {
-            AbstractCenter absCenter = (AbstractCenter) center;
+            AbstractCenter absCenter = (AbstractCenter) ((StatsCenter) center).getCenter();
             Double centerQueueTime;
 
             if (absCenter instanceof Attraction) {
@@ -74,7 +76,7 @@ public class TheoreticalValueComputer {
         double e_s = e_s_i / m;
         double rho = centerLambda * e_s_i / m;
         if (rho >= 1) {
-            throw new RuntimeException("Center Utilization Greater Than 1!!");
+            throw new RuntimeException("Center Utilization Greater Than 1!! Rho Value = " + rho);
         }
 
         double p_0 = computeP_0(m, rho);

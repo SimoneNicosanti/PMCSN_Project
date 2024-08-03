@@ -5,8 +5,9 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 /**
  * Fake center for exiting jobs
@@ -20,11 +21,12 @@ public class ExitCenter implements Center<RiderGroup> {
     }
 
     @Override
-    public void arrival(RiderGroup job) {
+    public QueuePriority arrival(RiderGroup job) {
         // TODO change filename for the different configuration
         String filename = Constants.JOB_STATS_FILENAME;
         // StatisticsWriter.writeStatistics("Job", filename, job);
         // EventLogger.logExit(ClockHandler.getInstance().getClock());
+        return null;
     }
 
     @Override
@@ -48,6 +50,21 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public List<RiderGroup> startService() {
         return null;
+    }
+
+    @Override
+    public Integer getQueueLenght(GroupPriority prio) {
+        return 0;
+    }
+
+    @Override
+    public Double getPopularity() {
+        return 0.0;
+    }
+
+    @Override
+    public boolean canServe(Integer slots) {
+        return true;
     }
 
 }

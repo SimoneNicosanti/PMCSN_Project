@@ -12,7 +12,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public abstract class AbstractCenter implements Center<RiderGroup> {
 
@@ -21,16 +21,18 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected List<RiderGroup> currentServingJobs;
     protected QueueManager<RiderGroup> queueManager;
     protected final Integer slotNumber;
+    protected Double popularity;
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
     public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber,
-            Double avgServiceTime) {
+            Double avgServiceTime, Double popularity) {
         this.name = name;
         this.currentServingJobs = new ArrayList<>();
         this.queueManager = queueManager;
         this.slotNumber = slotNumber;
         this.avgServiceTime = avgServiceTime;
+        this.popularity = popularity;
     }
 
     public double getAvgDuration() {
@@ -46,24 +48,31 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * it adds it to a queue and starts the service, otherwise it just adds
      * the job to the queue.
      */
-    protected void commonArrivalManagement(RiderGroup job) {
+    protected QueuePriority commonArrivalManagement(RiderGroup job) {
         int jobSize = job.getGroupSize();
 
         // Check before adding the job in the queue, otherwise the queue is never empty
-        boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
-        this.queueManager.addToQueues(job);
+        // boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
+        QueuePriority jobPriority = this.queueManager.addToQueues(job);
 
         // If job arrives and can be served immediately, we schedule the new job
-        if (mustServe) {
-            this.startService();
-        }
+        // if (mustServe) {
+        // this.startService();
+        // }
+
+        return jobPriority;
+    }
+
+    protected void commonEndManagement(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
+        this.scheduleArrivalToNewCenter(endedJob);
     }
 
     /**
      * End service for serving job and schedule the next arrival event based on the
      * next center that is returned by the network routing node.
      */
-    protected void scheduleNextEvent(RiderGroup endedJob) {
+    protected void scheduleArrivalToNewCenter(RiderGroup endedJob) {
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
@@ -83,11 +92,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         return this.queueManager.areQueuesEmpty() && this.canServe(jobSize);
     }
 
-    /**
-     * Check if the center is able to serve a job with size "jobSize"
-     */
-    public abstract boolean canServe(Integer jobSize);
-
     @Override
     public String getName() {
         return name;
@@ -101,7 +105,26 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     /**
      * Start the service and schedule the correlated END_PROCESS events
      */
-    public abstract List<RiderGroup> startService();
+    public List<RiderGroup> startService() {
+        List<RiderGroup> jobsToServe = this.getJobsToServe();
+
+        this.currentServingJobs.addAll(jobsToServe);
+
+        for (RiderGroup job : jobsToServe) {
+            double serviceTime = this.getNewServiceTime(job);
+
+            // Schedule an END_PROCESS event
+            SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+                    EventType.END_PROCESS,
+                    job,
+                    ClockHandler.getInstance().getClock() + serviceTime);
+            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+
+            // EventLogger.logEvent("Schedule ", newEvent);
+        }
+
+        return jobsToServe;
+    }
 
     /**
      * Return the jobs to serve. If no jobs are available, an empty list is

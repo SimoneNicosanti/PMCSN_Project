@@ -2,14 +2,21 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.queue.StatsQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 //** A MultiServer is an object that can serve more than one group at a time */
-public abstract class MultiServer extends StatsCenter {
+public abstract class MultiServer extends AbstractCenter {
 
-    public MultiServer(String name, StatsQueueManager queueManager, int serverNumber, double avgServiceTime) {
-        super(name, queueManager, serverNumber, avgServiceTime);
+    public MultiServer(String name, QueueManager<RiderGroup> queueManager, int serverNumber, double avgServiceTime,
+            double popularity) {
+        super(name, queueManager, serverNumber, avgServiceTime, popularity);
     }
 
     @Override
@@ -25,23 +32,20 @@ public abstract class MultiServer extends StatsCenter {
 
     @Override
     public void endService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
+        this.commonEndManagement(endedJob);
 
-        this.manageEndService(endedJob);
-
-        this.startService();
+        // this.startService();
     }
 
     @Override
-    protected void collectEndServiceStats(RiderGroup endedJob) {
+    public Double getPopularity() {
+        return this.popularity;
+    }
 
-        double jobServiceTime = this.retrieveServiceTime(endedJob);
-
-        this.stats.addServiceTime(jobServiceTime);
-
-        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
-
-        this.serviceBatchStats.addTime(jobServiceTime);
+    @Override
+    public Integer getQueueLenght(GroupPriority prio) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getQueueLenght'");
     }
 
 }

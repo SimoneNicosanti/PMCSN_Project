@@ -2,8 +2,14 @@ package it.uniroma2.pmcsn.parks.verification;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 //*  With repsect to the "Attraction" center, the "VerificationAttraction" center behaves as a normal multiserver with two different priority queues. For consistency, during the verification phase jobs that arrive to the attraction are expected to have a single item. The implementation assumes the job size is always 1, in fact an exception is thrown otherwise when the job arrives to the attraction. */
@@ -15,33 +21,18 @@ public class AttractionVerify extends Attraction {
     }
 
     @Override
-    public void arrival(RiderGroup job) {
+    public QueuePriority arrival(RiderGroup job) {
         if (job.getGroupSize() != 1) {
             throw new RuntimeException("Verification takes place with a single rider per group");
         }
 
-        this.manageArrival(job);
-    }
-
-    @Override
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.retrieveServiceTime(endedJob);
-
-        endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
-
-        this.stats.addServiceTime(jobServiceTime);
-
-        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
-
-        this.serviceBatchStats.addTime(jobServiceTime);
+        return this.commonArrivalManagement(job);
     }
 
     @Override
     public void endService(RiderGroup endedJob) {
-        this.currentServingJobs.remove(endedJob);
-        this.startService();
-
-        this.manageEndService(endedJob);
+        this.commonEndManagement(endedJob);
+        // this.startService();
     }
 
     @Override

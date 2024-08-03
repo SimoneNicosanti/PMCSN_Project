@@ -27,6 +27,7 @@ public class Constants {
     public static final String CONFIG_FILENAME = "Config_1.json";
     public static final String ATTRACTION_FILE = "AttractionsData.csv";
     public static final String ENTRANCE_FILE = "EntranceData.csv";
+    public static final String RESTAURANT_FILE = "RestaurantsData.csv";
 
     public static final double PRIORITY_PASS_PROB = 0.1;
     public static final long SEED = 4321;

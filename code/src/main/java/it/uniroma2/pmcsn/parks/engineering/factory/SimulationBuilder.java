@@ -8,6 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
@@ -43,7 +44,8 @@ public class SimulationBuilder {
         return Pair.of(interval, parameters);
     }
 
-    public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(List<Attraction> attractionList) {
+    public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(
+            List<Center<RiderGroup>> attractionList) {
 
         if (Constants.VERIFICATION_MODE) {
             return new AttractionRouterProbabilitiesVerify(attractionList);

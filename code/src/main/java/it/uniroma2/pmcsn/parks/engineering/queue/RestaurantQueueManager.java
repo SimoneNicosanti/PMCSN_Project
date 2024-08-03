@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.FifoQueue;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
-public class RestaurantQueueManager extends StatsQueueManager {
+public class RestaurantQueueManager implements QueueManager<RiderGroup> {
 
     private Queue<RiderGroup> queue;
 
     public RestaurantQueueManager() {
         this.queue = new FifoQueue();
-        this.queueStatsMap.put(QueuePriority.NORMAL, new QueueStats(QueuePriority.NORMAL));
     }
 
     @Override
@@ -28,9 +28,9 @@ public class RestaurantQueueManager extends StatsQueueManager {
     }
 
     @Override
-    public void addToQueues(RiderGroup item) {
-        this.commonStatsCollectionOnAdd(item);
+    public QueuePriority addToQueues(RiderGroup item) {
         queue.enqueue(item);
+        return QueuePriority.NORMAL;
     }
 
     @Override
@@ -38,16 +38,19 @@ public class RestaurantQueueManager extends StatsQueueManager {
         List<RiderGroup> extractedGroups = new ArrayList<>();
 
         for (int i = 0; i < slotNumber; i++) {
-            RiderGroup group = doDequeue(this.queue, QueuePriority.NORMAL);
+            RiderGroup group = this.queue.dequeue();
             if (group == null) {
                 break;
             }
             extractedGroups.add(group);
         }
 
-        this.commonStatsCollectionOnExtract(extractedGroups);
-
         return extractedGroups;
+    }
+
+    @Override
+    public int queueLength(GroupPriority priority) {
+        return this.queue.queueLength();
     }
 
 }

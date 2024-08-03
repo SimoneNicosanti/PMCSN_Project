@@ -12,7 +12,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.verification.TheoreticalValueComputer;
@@ -71,11 +71,18 @@ public class VerifyController implements Controller<RiderGroup> {
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 case ARRIVAL:
+                    boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
                     center.arrival(job);
+                    if (mustServe) {
+                        center.startService();
+                    }
                     break;
 
                 case END_PROCESS:
                     center.endService(job);
+                    if (center.canServe(1)) {
+                        center.startService();
+                    }
                     break;
             }
         }

@@ -1,5 +1,8 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -10,10 +13,19 @@ import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class EventBuilder {
 
     private static Long riderGroupId = 0L;
+    private static Map<String, StatsCenter> statsCenterMap;
+
+    public static void setStatsCenterMap(Map<String, Center<RiderGroup>> map) {
+        statsCenterMap = new HashMap<>();
+        for (String centerName : map.keySet()) {
+            statsCenterMap.put(centerName, (StatsCenter) map.get(centerName));
+        }
+    }
 
     public static SystemEvent<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
@@ -30,7 +42,13 @@ public class EventBuilder {
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
-        SystemEvent<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
+        Center<RiderGroup> statsCenter = statsCenterMap.get(arrivalCenter.getName());
+
+        if (statsCenter == null) {
+            statsCenter = arrivalCenter;
+        }
+
+        SystemEvent<RiderGroup> arrivalEvent = buildEventFrom(statsCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
@@ -53,10 +71,14 @@ public class EventBuilder {
 
     // Builds a new generic event
     public static SystemEvent<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
-            RiderGroup job,
-            double eventTime) {
+            RiderGroup job, double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
-        return new SystemEvent<>(poolId, center, eventTime, job);
+        Center<RiderGroup> statsCenter = statsCenterMap.get(center.getName());
+
+        if (statsCenter == null) {
+            statsCenter = center;
+        }
+        return new SystemEvent<>(poolId, statsCenter, eventTime, job);
     }
 
 }
