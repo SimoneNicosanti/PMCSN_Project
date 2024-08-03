@@ -59,7 +59,7 @@ public class StatisticsWriter {
             return;
 
         String name = center.getName();
-        StatsCenter statsCenter = (StatsCenter) center;
+
         CenterStatistics stats = ((StatsCenter) center).getCenterStats();
         double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
         double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();

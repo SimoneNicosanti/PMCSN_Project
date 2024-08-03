@@ -2,12 +2,7 @@ package it.uniroma2.pmcsn.parks.verification;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;

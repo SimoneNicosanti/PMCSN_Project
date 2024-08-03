@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 
 public class RestRouterProbabilities extends RouterProbabilities<RiderGroup> {
 

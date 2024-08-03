@@ -49,7 +49,7 @@ public class StatsCenter implements Center<RiderGroup> {
     @Override
     public QueuePriority arrival(RiderGroup job) {
 
-        // Collect center stats
+        // Compute areas
         stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
         groupsInTheCenter++;
         peopleInTheCenter += job.getGroupSize();
@@ -57,7 +57,7 @@ public class StatsCenter implements Center<RiderGroup> {
         // Call arrival
         QueuePriority priority = this.center.arrival(job);
 
-        // Collect queues stats
+        // Save arrival time
         this.queueStatsManager.put(job, priority);
 
         return priority;
@@ -65,18 +65,22 @@ public class StatsCenter implements Center<RiderGroup> {
 
     @Override
     public List<RiderGroup> startService() {
+        // Call start service
         List<RiderGroup> startingJobs = this.center.startService();
 
+        // Collect stats of the started jobs
         Double currentClock = ClockHandler.getInstance().getClock();
         for (RiderGroup job : startingJobs) {
-            Double startQueueTime = this.queueStatsManager.getArrivalTime(job);
-            Double queueTime = currentClock - startQueueTime;
+            Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
+            Double queueTime = currentClock - arrivalTime;
 
+            // Update queue time
             queueStatsManager.remove(job);
             if (center instanceof Attraction) {
                 job.getGroupStats().incrementQueueTime(queueTime);
             }
 
+            // Save start serving time
             this.startServingTimeMap.put(job.getGroupId(), currentClock);
         }
         return startingJobs;
@@ -109,6 +113,7 @@ public class StatsCenter implements Center<RiderGroup> {
             this.stats.addServiceTime(jobServiceTime);
         }
 
+        // Increment statistics about services
         this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
 
         this.serviceBatchStats.addTime(jobServiceTime);

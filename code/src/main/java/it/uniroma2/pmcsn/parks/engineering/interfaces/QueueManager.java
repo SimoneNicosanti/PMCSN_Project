@@ -4,7 +4,6 @@ import java.util.List;
 
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 
 public interface QueueManager<T> {
 
@@ -14,6 +13,6 @@ public interface QueueManager<T> {
 
     public boolean areQueuesEmpty();
 
-    public int queueLength(GroupPriority priority) ;
+    public int queueLength(GroupPriority priority);
 
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RouterProbabilities;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 // To verify the correctness of the computational model we use fixed attraction probabilities
 public class AttractionRouterProbabilitiesVerify extends RouterProbabilities<RiderGroup> {

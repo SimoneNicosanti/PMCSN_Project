@@ -2,12 +2,7 @@ package it.uniroma2.pmcsn.parks.model.server;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 

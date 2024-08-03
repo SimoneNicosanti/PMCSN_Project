@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.math3.util.CombinatoricsUtils;
 
 public class TheoreticalValueComputer {
