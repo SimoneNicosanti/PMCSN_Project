@@ -28,7 +28,7 @@ import java.util.*;
 import java.text.*;
 
 @SuppressWarnings("unused")
-class Acs {
+public class Acs {
 
   static int K = 50; /* K is the maximum lag */
   static int SIZE = K + 1;
@@ -98,5 +98,28 @@ class Acs {
     System.out.println("  j (lag)   r[j] (autocorrelation)");
     for (j = 1; j < SIZE; j++)
       System.out.println("  " + j + "          " + g.format(cosum[j] / cosum[0]));
+  }
+
+  public static Double computeAutocorrelationByLag(List<Double> data, Integer lag) {
+    Double mean = 0.0;
+    for (Double elem : data) {
+      mean += elem;
+    }
+    mean = mean / data.size();
+
+    Double variance = 0.0;
+    for (Double elem : data) {
+      variance += Math.pow((elem - mean), 2);
+    }
+    variance = variance / data.size();
+
+    Double autoCov = 0.0;
+    for (int idx = 0; idx < data.size() - lag; idx++) {
+      autoCov += data.get(idx) * data.get(idx + lag);
+    }
+    autoCov = autoCov / (data.size() - lag);
+    autoCov = autoCov - Math.pow(mean, 2);
+
+    return autoCov / variance;
   }
 }

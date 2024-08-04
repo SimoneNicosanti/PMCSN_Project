@@ -14,6 +14,7 @@ import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.CsvWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.CumulativeAvg;
 
 public class VerificationWriter {
 
@@ -101,10 +102,13 @@ public class VerificationWriter {
             Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + "_" + metric + ".csv");
             String[] header = {
                     "Center Name",
-                    metric + " - Mean Value",
+                    "Mean Value",
+                    "Autocorrelation",
                     "Interval",
                     "Lower Bound",
-                    "Upper Bound"
+                    "Theory Value",
+                    "Upper Bound",
+                    "Theory Value Is Inside"
             };
             CsvWriter.writeHeader(filePath, header);
 
@@ -113,9 +117,13 @@ public class VerificationWriter {
                     List<Object> record = List.of(
                             interval.centerName(),
                             interval.mean(),
+                            interval.autocorrelation(),
                             interval.interval(),
                             interval.mean() - interval.interval(),
-                            interval.mean() + interval.interval());
+                            interval.theoryValue(),
+                            interval.mean() + interval.interval(),
+                            (interval.mean() - interval.interval() < interval.theoryValue())
+                                    && (interval.theoryValue() < interval.mean() + interval.interval()));
                     CsvWriter.writeRecord(filePath, record);
                 }
             }
@@ -127,7 +135,7 @@ public class VerificationWriter {
         WriterHelper.clearDirectory(Constants.VERIFICATION_PATH);
     }
 
-    public static void writeTheoreticalQueueTimeValues(Map<String, Double> theoryMap) {
+    public static void writeTheoreticalQueueTimeValues(Map<String, Map<String, Double>> theoryMap) {
         Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", "TheoreticalQueueTime" + ".csv");
         String[] header = {
                 "Center Name",
@@ -136,7 +144,22 @@ public class VerificationWriter {
         CsvWriter.writeHeader(filePath, header);
 
         for (String centerName : theoryMap.keySet()) {
-            List<Object> record = List.of(centerName, theoryMap.get(centerName));
+            List<Object> record = List.of(centerName, theoryMap.get(centerName).get("QueueTime"));
+            CsvWriter.writeRecord(filePath, record);
+        }
+    }
+
+    public static void writeCumulativeAvgs(List<CumulativeAvg> cumulativeAvgs) {
+        Path filePath = Path.of(Constants.VERIFICATION_PATH, "CumulativeAvgs.csv");
+        String[] header = { "CenterName", "TheoryValue", "StatsName" };
+        CsvWriter.writeHeader(filePath, header);
+
+        for (CumulativeAvg cumAvg : cumulativeAvgs) {
+            List<Object> record = new ArrayList<>();
+            record.add(cumAvg.centerName());
+            record.add(cumAvg.statsName());
+            record.add(cumAvg.theoryValue());
+            record.addAll(cumAvg.cumulativeAvg());
             CsvWriter.writeRecord(filePath, record);
         }
     }

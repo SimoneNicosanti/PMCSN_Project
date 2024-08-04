@@ -32,7 +32,34 @@ public class TheoreticalValueComputer {
         this.lambda_a = (this.lambda + this.lambda_r) / k_a;
     }
 
-    public Map<String, Double> computeTheoreticalQueueTimeMap(List<Center<RiderGroup>> centerList) {
+    public Map<String, Map<String, Double>> computeAllTheoreticalValues(List<Center<RiderGroup>> centerList) {
+        Map<String, Double> serviceTimeMap = computeTheoreticalServiceTimeMap(centerList);
+        Map<String, Double> queueTimeMap = computeTheoreticalQueueTimeMap(centerList);
+
+        Map<String, Map<String, Double>> returnMap = new HashMap<>();
+        for (Center<RiderGroup> center : centerList) {
+            returnMap.put(center.getName(), new HashMap<>());
+        }
+        for (String centerName : serviceTimeMap.keySet()) {
+            returnMap.get(centerName).put("ServiceTime", serviceTimeMap.get(centerName));
+        }
+        for (String centerName : queueTimeMap.keySet()) {
+            returnMap.get(centerName).put("QueueTime", queueTimeMap.get(centerName));
+        }
+
+        return returnMap;
+    }
+
+    private Map<String, Double> computeTheoreticalServiceTimeMap(List<Center<RiderGroup>> centerList) {
+        Map<String, Double> serviceTimeMap = new HashMap<>();
+        for (Center center : centerList) {
+            serviceTimeMap.put(center.getName(),
+                    ((AbstractCenter) ((StatsCenter) center).getCenter()).getAvgDuration());
+        }
+        return serviceTimeMap;
+    }
+
+    private Map<String, Double> computeTheoreticalQueueTimeMap(List<Center<RiderGroup>> centerList) {
 
         Map<String, Double> returnMap = new HashMap<>();
 

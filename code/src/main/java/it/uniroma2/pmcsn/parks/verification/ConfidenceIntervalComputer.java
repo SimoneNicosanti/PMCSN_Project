@@ -9,6 +9,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
+import it.uniroma2.pmcsn.parks.random.Acs;
 import it.uniroma2.pmcsn.parks.random.Estimate;
 
 public class ConfidenceIntervalComputer {
@@ -43,14 +44,56 @@ public class ConfidenceIntervalComputer {
     public record ConfidenceInterval(
             String centerName,
             String statsName,
+            Double theoryValue,
             Double mean,
+            Double autocorrelation,
             Double interval) {
+    }
+
+    public record CumulativeAvg(
+            String centerName,
+            String statsName,
+            Double theoryValue,
+            List<Double> cumulativeAvg) {
     }
 
     private Map<String, StatsValues> valuesMap;
 
     public ConfidenceIntervalComputer() {
         this.valuesMap = new HashMap<>();
+    }
+
+    public List<CumulativeAvg> computeCumulativeAvg(Map<String, Map<String, Double>> theoryValuesPerCenter) {
+        List<CumulativeAvg> returnList = new ArrayList<>();
+        for (String centerName : valuesMap.keySet()) {
+            StatsValues values = valuesMap.get(centerName);
+            for (String statsName : values.getValues().keySet()) {
+                List<Double> valuesList = values.getValues().get(statsName);
+
+                List<Double> cumulativeAvgs = new ArrayList<>();
+                for (int lastIdx = 0; lastIdx < valuesList.size(); lastIdx++) {
+                    Double cumulativeAvg = computeCumulativeAvgUntilIdx(valuesList, lastIdx);
+                    cumulativeAvgs.add(cumulativeAvg);
+                }
+                returnList.add(new CumulativeAvg(
+                        centerName,
+                        statsName,
+                        theoryValuesPerCenter.get(centerName).get(statsName),
+                        cumulativeAvgs));
+            }
+        }
+
+        return returnList;
+    }
+
+    private Double computeCumulativeAvgUntilIdx(List<Double> valuesList, int lastIdx) {
+        Double mean = 0.0;
+        for (int i = 0; i <= lastIdx; i++) {
+            mean += valuesList.get(i);
+        }
+        mean = mean / (lastIdx + 1);
+        return mean;
+
     }
 
     public void updateStatistics(List<Center<RiderGroup>> centerList) {
@@ -73,7 +116,7 @@ public class ConfidenceIntervalComputer {
         }
     }
 
-    public List<ConfidenceInterval> computeConfidenceIntervals() {
+    public List<ConfidenceInterval> computeConfidenceIntervals(Map<String, Map<String, Double>> theoryValues) {
         List<ConfidenceInterval> returnList = new ArrayList<>();
         for (String centerName : valuesMap.keySet()) {
             StatsValues values = valuesMap.get(centerName);
@@ -81,7 +124,14 @@ public class ConfidenceIntervalComputer {
                 List<Double> valuesList = values.getValues().get(statsName);
                 Double mean = computeMean(valuesList);
                 Double interval = Estimate.computeConfidenceInterval(valuesList, 0.95);
-                returnList.add(new ConfidenceInterval(centerName, statsName, mean, interval));
+                Double autocorrelation = Acs.computeAutocorrelationByLag(valuesList, 1);
+                returnList.add(new ConfidenceInterval(
+                        centerName,
+                        statsName,
+                        theoryValues.get(centerName).get(statsName),
+                        mean,
+                        autocorrelation,
+                        interval));
             }
         }
         return returnList;
