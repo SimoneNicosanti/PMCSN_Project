@@ -65,7 +65,9 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 queueLength = priorityQueue.queueLength();
                 break;
             case NORMAL:
-                queueLength = priorityQueue.queueLength() + normalQueue.queueLength();
+                // TODO uncomment
+                // queueLength = priorityQueue.queueLength() + normalQueue.queueLength();
+                queueLength = normalQueue.queueLength();
                 break;
         }
         return queueLength;
