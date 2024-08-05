@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.verification;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -92,41 +93,45 @@ public class VerificationWriter {
     }
 
     public static void writeConfidenceIntervals(List<ConfidenceInterval> confidenceIntervals, String fileName) {
-        List<String> metricsList = new ArrayList<>();
-        for (ConfidenceInterval confidenceInterval : confidenceIntervals) {
-            if (!metricsList.contains(confidenceInterval.statsName())) {
-                metricsList.add(confidenceInterval.statsName());
-            }
-        }
-        for (String metric : metricsList) {
-            Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + "_" + metric + ".csv");
-            String[] header = {
-                    "Center Name",
-                    "Mean Value",
-                    "Autocorrelation",
-                    "Interval",
-                    "Lower Bound",
-                    "Theory Value",
-                    "Upper Bound",
-                    "Theory Value Is Inside"
-            };
-            CsvWriter.writeHeader(filePath, header);
+        Path filePath = Path.of(".", Constants.DATA_PATH, "Verification", fileName + ".csv");
 
-            for (ConfidenceInterval interval : confidenceIntervals) {
-                if (metric.equals(interval.statsName())) {
-                    List<Object> record = List.of(
-                            interval.centerName(),
-                            interval.mean(),
-                            interval.autocorrelation(),
-                            interval.interval(),
-                            interval.mean() - interval.interval(),
-                            interval.theoryValue(),
-                            interval.mean() + interval.interval(),
-                            (interval.mean() - interval.interval() < interval.theoryValue())
-                                    && (interval.theoryValue() < interval.mean() + interval.interval()));
-                    CsvWriter.writeRecord(filePath, record);
+        String[] header = {
+                "Center Name",
+                "Metric Name",
+                "Mean Value",
+                "Autocorrelation",
+                "Interval",
+                "Lower Bound",
+                "Theory Value",
+                "Upper Bound",
+                "Theory Value Is Inside"
+        };
+        CsvWriter.writeHeader(filePath, header);
+
+        confidenceIntervals.sort(new Comparator<ConfidenceInterval>() {
+            @Override
+            public int compare(ConfidenceInterval arg0, ConfidenceInterval arg1) {
+                int centerComparison = arg0.centerName().compareTo(arg1.centerName());
+                if (centerComparison != 0) {
+                    return centerComparison;
                 }
+                return arg0.statsName().compareTo(arg1.statsName());
             }
+        });
+
+        for (ConfidenceInterval interval : confidenceIntervals) {
+            List<Object> record = List.of(
+                    interval.centerName(),
+                    interval.statsName(),
+                    interval.mean(),
+                    interval.autocorrelation(),
+                    interval.interval(),
+                    interval.mean() - interval.interval(),
+                    interval.theoryValue(),
+                    interval.mean() + interval.interval(),
+                    (interval.mean() - interval.interval() < interval.theoryValue())
+                            && (interval.theoryValue() < interval.mean() + interval.interval()));
+            CsvWriter.writeRecord(filePath, record);
         }
 
     }
@@ -143,7 +148,10 @@ public class VerificationWriter {
         };
         CsvWriter.writeHeader(filePath, header);
 
-        for (String centerName : theoryMap.keySet()) {
+        List<String> keys = new ArrayList<>(theoryMap.keySet());
+        keys.sort(String::compareTo);
+
+        for (String centerName : keys) {
             List<Object> record = List.of(centerName, theoryMap.get(centerName).get("QueueTime"));
             CsvWriter.writeRecord(filePath, record);
         }
@@ -151,7 +159,7 @@ public class VerificationWriter {
 
     public static void writeCumulativeAvgs(List<CumulativeAvg> cumulativeAvgs) {
         Path filePath = Path.of(Constants.VERIFICATION_PATH, "CumulativeAvgs.csv");
-        String[] header = { "CenterName", "TheoryValue", "StatsName" };
+        String[] header = { "CenterName", "StatsName", "TheoryValue" };
         CsvWriter.writeHeader(filePath, header);
 
         for (CumulativeAvg cumAvg : cumulativeAvgs) {

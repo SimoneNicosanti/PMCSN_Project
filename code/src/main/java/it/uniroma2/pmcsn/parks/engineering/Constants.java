@@ -23,17 +23,21 @@ public class Constants {
     public static final String ARRIVAL_STREAM = "ARRIVAL BUILDER - ARRIVAL";
     public static final String PRIORITY_STREAM = "ARRIVAL BUILDER - PRIORITY";
 
+    public static final String GROUP_DIRECTORY = "groups";
+    public static final String PEOPLE_DIRECTORY = "people";
+
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "Config_1.json";
-    public static final String ATTRACTION_FILE = "AttractionsData.csv";
+    public static final String ATTRACTION_FILE = "AttractionsData_1.csv"; // TODO
     public static final String ENTRANCE_FILE = "EntranceData.csv";
     public static final String RESTAURANT_FILE = "RestaurantsData.csv";
 
     public static final double PRIORITY_PASS_PROB = 0.1;
+    public static final double PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
     public static final long SEED = 4321;
 
     // Indicates whether to collect statistics for each interval or not
-    public static final boolean INTERVAL_STATS = true;
+    public static final boolean INTERVAL_STATS = false;
 
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";

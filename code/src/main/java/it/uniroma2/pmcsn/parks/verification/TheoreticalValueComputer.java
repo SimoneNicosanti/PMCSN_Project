@@ -52,7 +52,7 @@ public class TheoreticalValueComputer {
 
     private Map<String, Double> computeTheoreticalServiceTimeMap(List<Center<RiderGroup>> centerList) {
         Map<String, Double> serviceTimeMap = new HashMap<>();
-        for (Center center : centerList) {
+        for (Center<RiderGroup> center : centerList) {
             serviceTimeMap.put(center.getName(),
                     ((AbstractCenter) ((StatsCenter) center).getCenter()).getAvgDuration());
         }

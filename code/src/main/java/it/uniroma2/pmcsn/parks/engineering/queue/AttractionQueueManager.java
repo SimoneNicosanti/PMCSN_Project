@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.engineering.queue;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
@@ -24,8 +25,24 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
     public List<RiderGroup> extractFromQueues(Integer numberOfSeats) {
         List<RiderGroup> extractedList = new ArrayList<>();
         int freeSlots = numberOfSeats;
+
+        // Priority groups has only a percentage of the attraction seats
+        double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
+        int prioritySlots = (int) (freeSlots * priorityPercentage);
+
+        // What if a priority group is bigger than the number of priority seat? Take
+        // always at least one priority group
+        if (priorityQueue.getNextSize() != 0) {
+            // Get job from priority queue
+            RiderGroup riderGroup = priorityQueue.dequeue();
+
+            freeSlots -= riderGroup.getGroupSize();
+            prioritySlots -= riderGroup.getGroupSize();
+            extractedList.add(riderGroup);
+        }
+
         while (true) {
-            if (priorityQueue.getNextSize() <= freeSlots && priorityQueue.getNextSize() != 0) {
+            if (priorityQueue.getNextSize() <= prioritySlots && priorityQueue.getNextSize() != 0) {
                 // Get job from priority queue
                 RiderGroup riderGroup = priorityQueue.dequeue();
                 if (riderGroup == null) {
@@ -33,6 +50,7 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                     continue;
                 }
                 freeSlots -= riderGroup.getGroupSize();
+                prioritySlots -= riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
             } else if (normalQueue.getNextSize() <= freeSlots && normalQueue.getNextSize() != 0) {
                 // Get job from normal queue
@@ -65,9 +83,7 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 queueLength = priorityQueue.queueLength();
                 break;
             case NORMAL:
-                // TODO uncomment
-                // queueLength = priorityQueue.queueLength() + normalQueue.queueLength();
-                queueLength = normalQueue.queueLength();
+                queueLength = priorityQueue.queueLength() + normalQueue.queueLength();
                 break;
         }
         return queueLength;
@@ -84,7 +100,8 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
                 normalQueue.enqueue(item);
                 return QueuePriority.NORMAL;
         }
-        return QueuePriority.NORMAL;
+
+        throw new RuntimeException("Unkown priority.");
     }
 
 }

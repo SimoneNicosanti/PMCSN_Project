@@ -81,6 +81,12 @@ public class RandomHandler {
         return distributionGenerator.exponential(m);
     }
 
+    public double getPoisson(String streamName, double m) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        return distributionGenerator.poisson(m);
+    }
+
     public double getErlang(String streamName, long k, double m) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
