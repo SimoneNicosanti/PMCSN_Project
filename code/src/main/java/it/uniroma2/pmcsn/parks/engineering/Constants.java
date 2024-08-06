@@ -45,7 +45,7 @@ public class Constants {
     public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
     public static final String VERIFICATION_CONFIG_FILENAME = "ConfigVerify.json";
     public static final int VERIFY_SIMULATION_NUM = 75;
-    public static final int BATCH_SIZE = 1792; // DO NOT CHANGE THIS VALUE
-    public static final int BATCH_NUMBER = 64; // DO NOT CHANGE THIS VALUE
+    public static final int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
+    public static final int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
 
 }

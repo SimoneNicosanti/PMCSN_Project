@@ -113,13 +113,15 @@ public class Acs {
     }
     variance = variance / data.size();
 
+    // Computing auto covariance as the real definition is
     Double autoCov = 0.0;
     for (int idx = 0; idx < data.size() - lag; idx++) {
-      autoCov += data.get(idx) * data.get(idx + lag);
+      autoCov += (data.get(idx) - mean) * (data.get(idx + lag) - mean);
     }
-    autoCov = autoCov / (data.size() - lag);
-    autoCov = autoCov - Math.pow(mean, 2);
+    autoCov = autoCov / (data.size());
+    // autoCov = autoCov - Math.pow(mean, 2);
 
-    return autoCov / variance;
+    Double autoCorr = autoCov / variance;
+    return autoCorr;
   }
 }

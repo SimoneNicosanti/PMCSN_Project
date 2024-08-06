@@ -18,7 +18,6 @@ import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.verification.TheoreticalValueComputer;
 import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.CumulativeAvg;
 
 public class VerifyController implements Controller<RiderGroup> {
 
@@ -50,15 +49,15 @@ public class VerifyController implements Controller<RiderGroup> {
 
         TheoreticalValueComputer theoryValueComputer = new TheoreticalValueComputer();
         Map<String, Map<String, Double>> theoryMap = theoryValueComputer.computeAllTheoreticalValues(centerList);
-        VerificationWriter.writeTheoreticalQueueTimeValues(theoryMap);
+        // VerificationWriter.writeTheoreticalQueueTimeValues(theoryMap);
+
+        VerificationWriter.writeSimulationResult(centerList, theoryMap);
 
         ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
         computer.updateStatistics(centerList);
         List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals(theoryMap);
-        VerificationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
-
-        List<CumulativeAvg> cumulativeAvgs = computer.computeCumulativeAvg(theoryMap);
-        VerificationWriter.writeCumulativeAvgs(cumulativeAvgs);
+        VerificationWriter.writeConfidenceIntervals(confidenceIntervals,
+                "ConfidenceIntervals");
 
         // Write confidence intervals for all statistics
     }

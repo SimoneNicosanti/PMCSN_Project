@@ -66,6 +66,7 @@ public class ParkController implements Controller<RiderGroup> {
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 // TODO Re add START_PROCESS to have more transparency
+                // or add the control in the stats center
                 case ARRIVAL:
                     boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
                     center.arrival(job);

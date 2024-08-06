@@ -2,14 +2,16 @@ package it.uniroma2.pmcsn.parks.verification;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStats;
 import it.uniroma2.pmcsn.parks.utils.CsvWriter;
@@ -108,15 +110,12 @@ public class VerificationWriter {
         };
         CsvWriter.writeHeader(filePath, header);
 
-        confidenceIntervals.sort(new Comparator<ConfidenceInterval>() {
-            @Override
-            public int compare(ConfidenceInterval arg0, ConfidenceInterval arg1) {
-                int centerComparison = arg0.centerName().compareTo(arg1.centerName());
-                if (centerComparison != 0) {
-                    return centerComparison;
-                }
-                return arg0.statsName().compareTo(arg1.statsName());
+        confidenceIntervals.sort((arg0, arg1) -> {
+            int centerComparison = arg0.centerName().compareTo(arg1.centerName());
+            if (centerComparison != 0) {
+                return centerComparison;
             }
+            return arg0.statsName().compareTo(arg1.statsName());
         });
 
         for (ConfidenceInterval interval : confidenceIntervals) {
@@ -170,6 +169,53 @@ public class VerificationWriter {
             record.addAll(cumAvg.cumulativeAvg());
             CsvWriter.writeRecord(filePath, record);
         }
+    }
+
+    public static void writeSimulationResult(List<Center<RiderGroup>> centerList,
+            Map<String, Map<String, Double>> theoryMap) {
+        Path filePath = Path.of(Constants.VERIFICATION_PATH, "RawResults.csv");
+        String[] header = { "CenterName", "StatName", "TheoryValue" };
+        CsvWriter.writeHeader(filePath, header);
+
+        for (Center<RiderGroup> center : centerList) {
+            List<BatchStats> batchStatList = ((StatsCenter) center).getBatchStats();
+            for (BatchStats batchStats : batchStatList) {
+                String statName = batchStats.getStatName();
+                List<Double> batchAvgs;
+                if (statName == "QueueTime") {
+                    batchAvgs = batchStats.getTimeAvgs();
+                    writeSimulationRecord(theoryMap, filePath, center, batchAvgs, "QueueTime");
+
+                    batchAvgs = batchStats.getNumberAvgs();
+                    writeSimulationRecord(theoryMap, filePath, center, batchAvgs, "N_Q");
+                } else {
+                    batchAvgs = batchStats.getTimeAvgs();
+                    writeSimulationRecord(theoryMap, filePath, center, batchAvgs, "ServiceTime");
+
+                    Integer m = ((AbstractCenter) ((StatsCenter) center).getCenter()).getSlotNumber();
+                    batchAvgs = batchStats.getNumberAvgs();
+                    batchAvgs.replaceAll(elem -> elem / m);
+
+                    writeSimulationRecord(theoryMap, filePath, center, batchAvgs, "Rho");
+                }
+            }
+        }
+    }
+
+    private static void writeSimulationRecord(Map<String, Map<String, Double>> theoryMap, Path filePath,
+            Center<RiderGroup> center,
+            List<Double> batchAvgs, String statName) {
+        Double theoryValue = theoryMap.get(center.getName()).get(statName);
+
+        // List<Double> numberAvg = batchStats.getNumberAvgs();
+
+        List<Object> record = new ArrayList<>();
+        record.add(center.getName());
+        record.add(statName);
+        record.add(theoryValue);
+        record.addAll(batchAvgs);
+
+        CsvWriter.writeRecord(filePath, record);
     }
 
 }

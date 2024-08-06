@@ -39,7 +39,8 @@ public class StatsCenter implements Center<RiderGroup> {
         this.queueStatsManager = new QueueStatsManager();
         this.stats = new CenterStatistics();
         this.startServingTimeMap = new HashMap<>();
-        this.serviceBatchStats = new BatchStats();
+
+        this.serviceBatchStats = new BatchStats("ServiceTime");
     }
 
     public Center<RiderGroup> getCenter() {
@@ -174,6 +175,10 @@ public class StatsCenter implements Center<RiderGroup> {
 
     public BatchStats getQueueBatchStats() {
         return this.queueStatsManager.getQueueBatchStats();
+    }
+
+    public List<BatchStats> getBatchStats() {
+        return List.of(serviceBatchStats, queueStatsManager.getQueueBatchStats());
     }
 
     @Override

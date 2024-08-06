@@ -33,8 +33,27 @@ public class TheoreticalValueComputer {
     }
 
     public Map<String, Map<String, Double>> computeAllTheoreticalValues(List<Center<RiderGroup>> centerList) {
+
+        int attractionNumber = 0;
+        int restaurantNumber = 0;
+        for (Center<RiderGroup> center : centerList) {
+            if (((StatsCenter) center).getCenter() instanceof Restaurant) {
+                restaurantNumber++;
+            } else if (((StatsCenter) center).getCenter() instanceof Attraction) {
+                attractionNumber++;
+            }
+        }
+
         Map<String, Double> serviceTimeMap = computeTheoreticalServiceTimeMap(centerList);
-        Map<String, Double> queueTimeMap = computeTheoreticalQueueTimeMap(centerList);
+        Map<String, Double> queueTimeMap = computeTheoreticalQueueTimeMap(centerList, attractionNumber,
+                restaurantNumber);
+        // Map<String, Double> responseTimeMap =
+        // computeTheoreticalResponseTime(serviceTimeMap, queueTimeMap);
+        Map<String, Double> numberInQueueMap = computeTheoreticalNumberInQueue(queueTimeMap, centerList,
+                attractionNumber,
+                restaurantNumber);
+
+        Map<String, Double> rhoMap = computeTheoreticalRho(centerList, attractionNumber, restaurantNumber);
 
         Map<String, Map<String, Double>> returnMap = new HashMap<>();
         for (Center<RiderGroup> center : centerList) {
@@ -46,8 +65,85 @@ public class TheoreticalValueComputer {
         for (String centerName : queueTimeMap.keySet()) {
             returnMap.get(centerName).put("QueueTime", queueTimeMap.get(centerName));
         }
+        for (String centerName : serviceTimeMap.keySet()) {
+            returnMap.get(centerName).put("Rho", rhoMap.get(centerName));
+        }
+        for (String centerName : numberInQueueMap.keySet()) {
+            returnMap.get(centerName).put("N_Q", numberInQueueMap.get(centerName));
+        }
 
         return returnMap;
+    }
+
+    private Map<String, Double> computeTheoreticalNumberInQueue(Map<String, Double> queueTimeMap,
+            List<Center<RiderGroup>> centerList, int attractionNumber, int restaurantNumber) {
+
+        Map<String, Double> returnMap = new HashMap<>();
+        for (Center<RiderGroup> center : centerList) {
+            AbstractCenter absCenter = (AbstractCenter) ((StatsCenter) center).getCenter();
+
+            Double queueTime = queueTimeMap.get(center.getName());
+            Double centerLambda = 0.0;
+
+            if (absCenter instanceof Attraction) {
+                centerLambda = this.lambda_a / attractionNumber;
+            } else if (absCenter instanceof Restaurant) {
+                centerLambda = this.lambda_r / restaurantNumber;
+            } else if (absCenter instanceof Entrance) {
+                centerLambda = this.lambda;
+            } else {
+                centerLambda = -1.0;
+            }
+
+            double n_q = centerLambda * queueTime;
+
+            returnMap.put(center.getName(), n_q);
+        }
+
+        return returnMap;
+    }
+
+    private Map<String, Double> computeTheoreticalResponseTime(Map<String, Double> serviceTimeMap,
+            Map<String, Double> queueTimeMap) {
+
+        Map<String, Double> responseTimeMap = new HashMap<>();
+        for (String centerName : serviceTimeMap.keySet()) {
+            Double serviceTime = serviceTimeMap.get(centerName);
+            Double queueTime = queueTimeMap.get(centerName);
+
+            responseTimeMap.put(centerName, queueTime + serviceTime);
+        }
+
+        return responseTimeMap;
+    }
+
+    private Map<String, Double> computeTheoreticalRho(List<Center<RiderGroup>> centerList, int attractionNumber,
+            int restaurantNumber) {
+
+        Map<String, Double> rhoMap = new HashMap<>();
+
+        for (Center<RiderGroup> center : centerList) {
+            AbstractCenter absCenter = (AbstractCenter) ((StatsCenter) center).getCenter();
+            Double centerLambda = 0.0;
+
+            if (absCenter instanceof Attraction) {
+                centerLambda = this.lambda_a / attractionNumber;
+            } else if (absCenter instanceof Restaurant) {
+                centerLambda = this.lambda_r / restaurantNumber;
+            } else if (absCenter instanceof Entrance) {
+                centerLambda = this.lambda;
+            } else {
+                centerLambda = -1.0;
+            }
+
+            int m = absCenter.getSlotNumber();
+            double e_s_i = absCenter.getAvgDuration();
+            double rho = centerLambda * e_s_i / m;
+
+            rhoMap.put(center.getName(), rho);
+        }
+
+        return rhoMap;
     }
 
     private Map<String, Double> computeTheoreticalServiceTimeMap(List<Center<RiderGroup>> centerList) {
@@ -59,19 +155,10 @@ public class TheoreticalValueComputer {
         return serviceTimeMap;
     }
 
-    private Map<String, Double> computeTheoreticalQueueTimeMap(List<Center<RiderGroup>> centerList) {
+    private Map<String, Double> computeTheoreticalQueueTimeMap(List<Center<RiderGroup>> centerList,
+            int attractionNumber, int restaurantNumber) {
 
         Map<String, Double> returnMap = new HashMap<>();
-
-        int attractionNumber = 0;
-        int restaurantNumber = 0;
-        for (Center<RiderGroup> center : centerList) {
-            if (((StatsCenter) center).getCenter() instanceof Restaurant) {
-                restaurantNumber++;
-            } else if (((StatsCenter) center).getCenter() instanceof Attraction) {
-                attractionNumber++;
-            }
-        }
 
         for (Center<RiderGroup> center : centerList) {
             AbstractCenter absCenter = (AbstractCenter) ((StatsCenter) center).getCenter();

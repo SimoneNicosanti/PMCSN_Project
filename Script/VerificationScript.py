@@ -1,13 +1,16 @@
 import matplotlib.pyplot as plt
+import scipy.stats as st 
 import pandas as pd 
 import os
 
+centerTypeList = ["Attraction", "Restaurant"]
+statNameList = ["QueueTime", "ServiceTime", "Rho", "N_Q"]
+
 def verificationCharts() :
-    dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Verification/CumulativeAvgs.csv", skiprows=1, header=None) 
-    createVerificationChartForCenterAndStat(dataFrame, "Attraction", "QueueTime")
-    createVerificationChartForCenterAndStat(dataFrame, "Attraction", "ServiceTime")
-    createVerificationChartForCenterAndStat(dataFrame, "Restaurant", "QueueTime")
-    createVerificationChartForCenterAndStat(dataFrame, "Restaurant", "ServiceTime")
+    dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Verification/RawResults.csv", skiprows=1, header=None) 
+    for centerType in centerTypeList :
+        for statName in statNameList :
+            createVerificationChartForCenterAndStat(dataFrame, centerType, statName)
     return
 
 def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType : str, statName : str) :
@@ -18,8 +21,11 @@ def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType
         center : str = row[0]
         stat : str = row[1]
         
+        cumAvg = data.expanding().mean()
+        if (statName == "Rho") :
+            print(cumAvg)
         if (center.startswith(centerType) and stat == statName) :
-            axes.plot(data, label = center, marker = "o", markersize = "3.5")
+            axes.plot(cumAvg, label = center)
             theoryValue : float = row[2]
     
     axes.set_xlabel("Batch Num")
@@ -32,14 +38,13 @@ def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType
     plt.savefig("./Out/Charts/Verification/Convergence/" + centerType + "_" + statName + "_" + "Convergence")
     plt.clf()
 
-############################################################################################################################à
+############################################################################################################################
 
 def confidenceIntervalCharts() :
     dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Verification/ConfidenceIntervals.csv") 
-    createVerificationChartForConfidenceInterval(dataFrame, "Attraction", "QueueTime")
-    createVerificationChartForConfidenceInterval(dataFrame, "Attraction", "ServiceTime")
-    createVerificationChartForConfidenceInterval(dataFrame, "Restaurant", "QueueTime")
-    createVerificationChartForConfidenceInterval(dataFrame, "Restaurant", "ServiceTime")
+    for centerType in centerTypeList :
+            for statName in statNameList :
+                createVerificationChartForCenterAndStat(dataFrame, centerType, statName)
     return
 
 def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, centerType : str, statName : str) :
@@ -64,7 +69,7 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
     
     #axes.set_xlabel("Batch Num")
     axes.set_ylabel(statName + " - Confidence Intervals")
-    axes.set_title("Confidence Intervals - " + statName + " - " + centerType)
+    axes.set_title("99% Confidence Intervals - " + statName + " - " + centerType)
     axes.set_xticks([])
 
     plt.tight_layout()
@@ -72,6 +77,26 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
     plt.savefig("./Out/Charts/Verification/Intervals/" + centerType + "_" + statName + "_" + "ConfidenceIntervals")
     plt.clf()
 
+############################################################################################################################
+
+# def processVerificationData() :
+#     dataFrame = pd.read_csv("./Out/Data/Verification/RawResults.csv", skiprows=1, header=None)
+
+#     for _, row in dataFrame.iterrows() :
+#         data = row[3 : ] 
+#         center : str = row[0]
+#         stat : str = row[1]
+#         theory : float = row[2]
+
+#         interval = st.t.interval(
+#             confidence = 0.99,
+#             df = len(data) - 1,
+#             loc = data.mean(),
+#             scale = data.var(ddof=1)
+#         )
+#         print("Center > ", center, "Stat > " + stat, interval)
+
+#     return
 
 
 if __name__ == "__main__" :

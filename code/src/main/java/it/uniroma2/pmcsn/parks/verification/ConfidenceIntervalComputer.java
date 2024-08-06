@@ -63,39 +63,6 @@ public class ConfidenceIntervalComputer {
         this.valuesMap = new HashMap<>();
     }
 
-    public List<CumulativeAvg> computeCumulativeAvg(Map<String, Map<String, Double>> theoryValuesPerCenter) {
-        List<CumulativeAvg> returnList = new ArrayList<>();
-        for (String centerName : valuesMap.keySet()) {
-            StatsValues values = valuesMap.get(centerName);
-            for (String statsName : values.getValues().keySet()) {
-                List<Double> valuesList = values.getValues().get(statsName);
-
-                List<Double> cumulativeAvgs = new ArrayList<>();
-                for (int lastIdx = 0; lastIdx < valuesList.size(); lastIdx++) {
-                    Double cumulativeAvg = computeCumulativeAvgUntilIdx(valuesList, lastIdx);
-                    cumulativeAvgs.add(cumulativeAvg);
-                }
-                returnList.add(new CumulativeAvg(
-                        centerName,
-                        statsName,
-                        theoryValuesPerCenter.get(centerName).get(statsName),
-                        cumulativeAvgs));
-            }
-        }
-
-        return returnList;
-    }
-
-    private Double computeCumulativeAvgUntilIdx(List<Double> valuesList, int lastIdx) {
-        Double mean = 0.0;
-        for (int i = 0; i <= lastIdx; i++) {
-            mean += valuesList.get(i);
-        }
-        mean = mean / (lastIdx + 1);
-        return mean;
-
-    }
-
     public void updateStatistics(List<Center<RiderGroup>> centerList) {
         for (Center<RiderGroup> center : centerList) {
             if (valuesMap.get(center.getName()) == null) {
@@ -105,9 +72,11 @@ public class ConfidenceIntervalComputer {
             BatchStats serviceBatchStats = ((StatsCenter) center).getServiceBatchStats();
             BatchStats queueBatchStats = ((StatsCenter) center).getQueueBatchStats();
 
-            valuesMap.get(center.getName()).addAllValues("ServiceTime", serviceBatchStats.getAverages());
-            valuesMap.get(center.getName()).addAllValues("QueueTime", queueBatchStats.getAverages());
+            valuesMap.get(center.getName()).addAllValues("ServiceTime", serviceBatchStats.getTimeAvgs());
+            valuesMap.get(center.getName()).addAllValues("QueueTime", queueBatchStats.getTimeAvgs());
 
+            valuesMap.get(center.getName()).addAllValues("Rho", serviceBatchStats.getNumberAvgs());
+            valuesMap.get(center.getName()).addAllValues("N_Q", queueBatchStats.getNumberAvgs());
             // valuesMap.get(center.getName()).addStatsValue(
             // "ServiceTime", centerStatistics.getAvgServiceTimePerGroup());
             // valuesMap.get(center.getName()).addStatsValue(
@@ -123,7 +92,7 @@ public class ConfidenceIntervalComputer {
             for (String statsName : values.getValues().keySet()) {
                 List<Double> valuesList = values.getValues().get(statsName);
                 Double mean = computeMean(valuesList);
-                Double interval = Estimate.computeConfidenceInterval(valuesList, 0.95);
+                Double interval = Estimate.computeConfidenceInterval(valuesList, 0.99);
                 Double autocorrelation = Acs.computeAutocorrelationByLag(valuesList, 1);
                 returnList.add(new ConfidenceInterval(
                         centerName,

@@ -19,7 +19,7 @@ public class QueueStatsManager {
         this.arrivalTimeMaps = new HashMap<>();
         this.queueStatsMap = new HashMap<>();
         this.aggregatedStats = new QueueStats(null);
-        this.queueBatchStats = new BatchStats();
+        this.queueBatchStats = new BatchStats("QueueTime");
 
         resetQueueStats();
     }
