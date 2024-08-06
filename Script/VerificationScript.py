@@ -14,7 +14,7 @@ def verificationCharts() :
     return
 
 def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType : str, statName : str) :
-    plt.figure(figsize=(16,5))
+    plt.figure(figsize=(10,5))
     axes = plt.subplot()
     for _, row in dataFrame.iterrows() :
         data = row[3 : ] 
@@ -22,8 +22,6 @@ def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType
         stat : str = row[1]
         
         cumAvg = data.expanding().mean()
-        if (statName == "Rho") :
-            print(cumAvg)
         if (center.startswith(centerType) and stat == statName) :
             axes.plot(cumAvg, label = center)
             theoryValue : float = row[2]
@@ -44,14 +42,14 @@ def confidenceIntervalCharts() :
     dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Verification/ConfidenceIntervals.csv") 
     for centerType in centerTypeList :
             for statName in statNameList :
-                createVerificationChartForCenterAndStat(dataFrame, centerType, statName)
+                createVerificationChartForConfidenceInterval(dataFrame, centerType, statName)
     return
 
 def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, centerType : str, statName : str) :
     filteredDf = dataFrame[(dataFrame["Center Name"].str.startswith(centerType)) & (dataFrame["Metric Name"] == statName)]
     theoryValue = filteredDf["Theory Value"].iloc[0]
 
-    plt.figure(figsize=(15,5))
+    plt.figure(figsize=(10,5))
     axes = plt.subplot()
     axes.axhline(y = theoryValue, color='black', linestyle='--', label='TheoryValue')
     

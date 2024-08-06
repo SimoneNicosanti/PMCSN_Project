@@ -7,6 +7,7 @@ import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.random.Acs;
@@ -75,7 +76,10 @@ public class ConfidenceIntervalComputer {
             valuesMap.get(center.getName()).addAllValues("ServiceTime", serviceBatchStats.getTimeAvgs());
             valuesMap.get(center.getName()).addAllValues("QueueTime", queueBatchStats.getTimeAvgs());
 
-            valuesMap.get(center.getName()).addAllValues("Rho", serviceBatchStats.getNumberAvgs());
+            List<Double> rhoList = serviceBatchStats.getNumberAvgs();
+            int m = ((AbstractCenter) ((StatsCenter) center).getCenter()).getSlotNumber();
+            rhoList.replaceAll(elem -> elem / m);
+            valuesMap.get(center.getName()).addAllValues("Rho", rhoList);
             valuesMap.get(center.getName()).addAllValues("N_Q", queueBatchStats.getNumberAvgs());
             // valuesMap.get(center.getName()).addStatsValue(
             // "ServiceTime", centerStatistics.getAvgServiceTimePerGroup());
