@@ -3,7 +3,7 @@ import scipy.stats as st
 import pandas as pd 
 import os
 
-centerTypeList = ["Attraction", "Restaurant"]
+centerTypeList = ["Attraction", "Restaurant", "Entrance"]
 statNameList = ["QueueTime", "ServiceTime", "Rho", "N_Q"]
 
 def verificationCharts() :
@@ -49,11 +49,12 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
     filteredDf = dataFrame[(dataFrame["Center Name"].str.startswith(centerType)) & (dataFrame["Metric Name"] == statName)]
     theoryValue = filteredDf["Theory Value"].iloc[0]
 
-    plt.figure(figsize=(10,5))
+    plt.figure(figsize=(6,4))
     axes = plt.subplot()
     axes.axhline(y = theoryValue, color='black', linestyle='--', label='TheoryValue')
     
     index = 0 
+    xLabels = []
     for centerName in filteredDf["Center Name"] :
         mean = filteredDf[filteredDf["Center Name"] == centerName]["Mean Value"]
         lower = filteredDf[filteredDf["Center Name"] == centerName]["Lower Bound"]
@@ -61,14 +62,18 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
 
         plot = axes.scatter([index, index, index], [lower, mean, upper], s = 25)
         color = plot.get_facecolors()
-        axes.vlines(x = index, ymin = lower, ymax = upper, label = centerName, colors=color)
+        axes.vlines(x = index, ymin = lower, ymax = upper, colors=color)
 
         index += 1
+        xLabels.append(centerName)
     
-    #axes.set_xlabel("Batch Num")
+    axes.set_xlabel("Center Name")
+    axes.set_xticks(ticks = [x for x in range(0, len(xLabels))], labels=xLabels, rotation = 30)
+
     axes.set_ylabel(statName + " - Confidence Intervals")
+
     axes.set_title("99% Confidence Intervals - " + statName + " - " + centerType)
-    axes.set_xticks([])
+   
 
     plt.tight_layout()
     plt.legend()
