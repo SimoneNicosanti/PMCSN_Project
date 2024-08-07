@@ -27,15 +27,15 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
 
         for (Center<RiderGroup> attraction : attractions) {
 
-            // double popularityTerm = 5 * attraction.getPopularity() / sumPop;
-            // double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
-            // maxQueue);
-            // double visitTerm = 0 * (1 -
-            // job.getGroupStats().getVisitsPerAttraction(attraction.getName()) / maxVisit);
+            double popularityTerm = 5 * attraction.getPopularity() / sumPop;
+            double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
+                    maxQueue);
+            double visitTerm = 0 * (1 -
+                    job.getGroupStats().getVisitsPerAttraction(attraction.getName()) / maxVisit);
 
-            // double score = popularityTerm + queueTerm + visitTerm;
+            double score = popularityTerm + queueTerm + visitTerm;
 
-            // double attractionProb = Math.exp(score);
+            double attractionProb = Math.exp(score);
 
             // double popularityTerm = 0.01 * Math.pow(attraction.getPopularity() / sumPop,
             // 2);
@@ -46,16 +46,17 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
 
             // double score = popularityTerm + queueTerm + visitTerm;
 
-            double popularityTerm = 10 * attraction.getPopularity() / sumPop;
-            double queueTerm = 1;
-            // if (attraction.getQueueLenght(job.getPriority()) < 100) {
-            // queueTerm = 1;
-            // } else {
-            // queueTerm = Math.pow(attraction.getQueueLenght(job.getPriority()), 2);
-            // }
-            double visitTerm = 1 + job.getGroupStats().getVisitsPerAttraction(attraction.getName());
-            // double attractionProb = Math.exp(score);
-            double attractionProb = popularityTerm / (queueTerm * visitTerm);
+            // double popularityTerm = 10 * attraction.getPopularity() / sumPop;
+            // double queueTerm = 1;
+            // // if (attraction.getQueueLenght(job.getPriority()) < 100) {
+            // // queueTerm = 1;
+            // // } else {
+            // // queueTerm = Math.pow(attraction.getQueueLenght(job.getPriority()), 2);
+            // // }
+            // double visitTerm = 1 +
+            // job.getGroupStats().getVisitsPerAttraction(attraction.getName());
+            // // double attractionProb = Math.exp(score);
+            // double attractionProb = popularityTerm / (queueTerm * visitTerm);
 
             this.probabilities.add(attractionProb);
             this.sumProbabilities += attractionProb;

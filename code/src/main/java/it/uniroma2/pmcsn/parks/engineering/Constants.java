@@ -28,7 +28,7 @@ public class Constants {
 
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "Config_1.json";
-    public static final String ATTRACTION_FILE = "AttractionsData_2.csv"; // TODO
+    public static final String ATTRACTION_FILE = "AttractionsData_1.csv"; // TODO
     public static final String ENTRANCE_FILE = "EntranceData.csv";
     public static final String RESTAURANT_FILE = "RestaurantsData.csv";
 

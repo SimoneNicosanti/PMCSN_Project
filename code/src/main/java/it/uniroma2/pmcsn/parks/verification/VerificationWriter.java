@@ -8,6 +8,7 @@ import java.util.Map;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
@@ -47,19 +48,16 @@ public class VerificationWriter {
 
         double avgQueueTimePerGroupNormal = 0.0;
         double avgQueueTimePerGroupPrio = 0.0;
-        long numberOfNormalJobs = 0;
-        long numberOfPriorityJobs = 0;
+        long numberOfNormalJobs = stats.getNumberOfServedGroup(QueuePriority.NORMAL);
+        long numberOfPriorityJobs = stats.getNumberOfServedGroup(QueuePriority.PRIORITY);
 
         for (QueueStats queue : perPrioQueueStats) {
             switch (queue.getPriority()) {
                 case NORMAL:
                     avgQueueTimePerGroupNormal = queue.getAvgWaitingTimePerGroups();
-                    numberOfNormalJobs = queue.getNumberOfGroup();
                     break;
-
                 case PRIORITY:
                     avgQueueTimePerGroupPrio = queue.getAvgWaitingTimePerGroups();
-                    numberOfPriorityJobs = queue.getNumberOfGroup();
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");

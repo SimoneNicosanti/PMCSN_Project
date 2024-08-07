@@ -23,6 +23,8 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
 
     @Override
     public List<RiderGroup> extractFromQueues(Integer numberOfSeats) {
+        // TODO what if a group is too big for the attraction?
+
         List<RiderGroup> extractedList = new ArrayList<>();
         int freeSlots = numberOfSeats;
 

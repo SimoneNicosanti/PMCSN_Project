@@ -134,6 +134,8 @@ public class ParkController implements Controller<RiderGroup> {
     private void writeCenterStats(Interval interval) {
         for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
 
+            // ((StatsCenter) center).updateAreas();
+
             if (interval == null) {
                 StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
                         "TotalCenterStats", center);

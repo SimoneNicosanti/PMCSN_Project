@@ -29,6 +29,7 @@ public class StatsCenter implements Center<RiderGroup> {
     protected long peopleInTheCenter;
 
     protected Map<Long, Double> startServingTimeMap;
+    protected Map<Long, QueuePriority> priorityMap; // Given the job id, return the job priority
 
     public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
@@ -39,6 +40,7 @@ public class StatsCenter implements Center<RiderGroup> {
         this.queueStatsManager = new QueueStatsManager();
         this.stats = new CenterStatistics();
         this.startServingTimeMap = new HashMap<>();
+        this.priorityMap = new HashMap<>();
 
         this.serviceBatchStats = new BatchStats("ServiceTime");
     }
@@ -49,21 +51,35 @@ public class StatsCenter implements Center<RiderGroup> {
 
     @Override
     public QueuePriority arrival(RiderGroup job) {
-
         // Compute areas
-        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
-        groupsInTheCenter++;
-        peopleInTheCenter += job.getGroupSize();
+        // stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+        // groupsInTheCenter++;
+        // peopleInTheCenter += job.getGroupSize();
+        // updateAreas(1, job.getGroupSize());
 
         // Call arrival
         QueuePriority priority = this.center.arrival(job);
 
         // Save arrival time
         if (priority != null) {
+            // Compute areas
+            updateAreas(1, job.getGroupSize());
+
             this.queueStatsManager.put(job, priority);
+            priorityMap.put(job.getGroupId(), priority);
         }
 
         return priority;
+    }
+
+    public void updateAreas() {
+        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+    }
+
+    private void updateAreas(int inc, int groupSizeInc) {
+        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+        groupsInTheCenter += inc;
+        peopleInTheCenter += groupSizeInc;
     }
 
     @Override
@@ -97,9 +113,10 @@ public class StatsCenter implements Center<RiderGroup> {
     @Override
     public void endService(RiderGroup endedJob) {
 
-        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
-        groupsInTheCenter--;
-        peopleInTheCenter -= endedJob.getGroupSize();
+        // stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
+        // groupsInTheCenter--;
+        // peopleInTheCenter -= endedJob.getGroupSize();
+        // updateAreas(-1, -endedJob.getGroupSize());
 
         this.collectEndServiceStats(endedJob);
 
@@ -121,8 +138,12 @@ public class StatsCenter implements Center<RiderGroup> {
             this.stats.addServiceTime(jobServiceTime);
         }
 
+        // Update area stats
+        updateAreas(-1, -endedJob.getGroupSize());
+
         // Increment statistics about services
-        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize());
+        QueuePriority jobPriority = priorityMap.remove(endedJob.getGroupId());
+        this.stats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize(), jobPriority);
 
         this.serviceBatchStats.addTime(jobServiceTime);
     }
@@ -202,6 +223,7 @@ public class StatsCenter implements Center<RiderGroup> {
         Double currentClock = ClockHandler.getInstance().getClock();
         for (RiderGroup job : removedGroups) {
             collectQueueTimeStats(currentClock, job);
+            updateAreas(-1, -job.getGroupSize());
         }
 
         return removedGroups;

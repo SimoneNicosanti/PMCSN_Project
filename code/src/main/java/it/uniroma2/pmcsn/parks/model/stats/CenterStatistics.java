@@ -1,8 +1,11 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class CenterStatistics {
     // The total service time of a center
@@ -12,7 +15,9 @@ public class CenterStatistics {
 
     // Number of jobs serverd by the center
     private long numberOfServedPerson;
+    private Map<QueuePriority, Long> personPerPriority; // Given the priority, return the number of person served
     private long numberOfServedGroup;
+    private Map<QueuePriority, Long> groupPerPriority; // Given the priority, return the number of group served
     private long numberOfCompletedServices;
 
     // Time-averaged stats
@@ -37,7 +42,15 @@ public class CenterStatistics {
         this.groupsArea = 0.0;
         this.peopleArea = 0.0;
 
-        this.previousEventTime = ClockHandler.getInstance().getClock();
+        this.groupPerPriority = new HashMap<>();
+        this.personPerPriority = new HashMap<>();
+
+        for (QueuePriority priority : QueuePriority.values()) {
+            groupPerPriority.put(priority, 0L);
+            personPerPriority.put(priority, 0L);
+        }
+
+        this.previousEventTime = 0.0;
 
     }
 
@@ -78,16 +91,14 @@ public class CenterStatistics {
     }
 
     public double getAvgNumberOfPersonInTheQueue() {
+        // queue time = waiting time - service time
         double area = peopleArea - perPersonServiceTime;
         return area / ClockHandler.getInstance().getClock();
     }
 
     public double getAvgNumberOfGroupInTheQueue() {
+        // queue time = waiting time - service time
         double area = groupsArea - perGroupServiceTime;
-
-        // if (area < 0)
-        // throw new RuntimeException();
-
         return area / ClockHandler.getInstance().getClock();
     }
 
@@ -107,6 +118,14 @@ public class CenterStatistics {
         return this.numberOfServedGroup;
     }
 
+    public long getNumberOfServedGroup(QueuePriority priority) {
+        return this.groupPerPriority.get(priority);
+    }
+
+    public long getNumberOfServedPerson(QueuePriority priority) {
+        return this.personPerPriority.get(priority);
+    }
+
     public void updateAreas(long groups, long people) {
         double currentEventTime = ClockHandler.getInstance().getClock();
 
@@ -119,11 +138,25 @@ public class CenterStatistics {
         previousEventTime = currentEventTime;
     }
 
-    public void endServiceUpdate(double serviceTime, int personServed) {
+    public void endServiceUpdate(double serviceTime, int personServed, QueuePriority priority) {
         this.perGroupServiceTime += serviceTime;
         this.perPersonServiceTime += serviceTime * personServed;
+        updateNumberOfJobServed(personServed, priority);
+    }
+
+    // Update the number of job and person served in this center
+    private void updateNumberOfJobServed(int personServed, QueuePriority priority) {
+        // Increase the total number of jobs served
         this.numberOfServedGroup++;
         this.numberOfServedPerson += personServed;
+
+        // Increase the number of jobs served with this priority
+        long numberOfGroup = this.groupPerPriority.get(priority);
+        this.groupPerPriority.put(priority, numberOfGroup + 1);
+
+        // Increase the number of person served with this priority
+        long numberOfPerson = this.groupPerPriority.get(priority);
+        this.personPerPriority.put(priority, numberOfPerson + personServed);
     }
 
     public void addServiceTime(double serviceTime) {
