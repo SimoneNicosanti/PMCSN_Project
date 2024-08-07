@@ -54,10 +54,10 @@ public class VerificationWriter {
         for (QueueStats queue : perPrioQueueStats) {
             switch (queue.getPriority()) {
                 case NORMAL:
-                    avgQueueTimePerGroupNormal = queue.getAvgWaitingTimePerGroups();
+                    avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups(numberOfNormalJobs);
                     break;
                 case PRIORITY:
-                    avgQueueTimePerGroupPrio = queue.getAvgWaitingTimePerGroups();
+                    avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups(numberOfPriorityJobs);
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");

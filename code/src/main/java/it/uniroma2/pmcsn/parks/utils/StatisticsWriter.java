@@ -94,9 +94,7 @@ public class StatisticsWriter {
         QueueStats generalQueueStats = stats.getAggregatedQueueStats();
         double avgQueueTimePerPersonNormal = 0.0;
         double avgQueueTimePerPersonPrio = 0.0;
-        long numberOfPriorityRiderEnqueued = 0;
-        long numberOfNormalRiderEnqueued = 0;
-        double avgQueueTimePerPerson = generalQueueStats.getAvgWaitingTimePerPerson();
+        double avgQueueTimePerPerson = generalQueueStats.getAvgQueueingTimePerPerson(peopleServed);
         long numberOfNormalRider = stats.getNumberOfServedPerson(QueuePriority.NORMAL);
         long numberOfPriorityRider = stats.getNumberOfServedPerson(QueuePriority.PRIORITY);
 
@@ -105,15 +103,13 @@ public class StatisticsWriter {
                 case NORMAL:
                     if (avgQueueTimePerPersonNormal != 0.0)
                         throw new RuntimeException(name + " has more than one normal queue");
-                    numberOfNormalRiderEnqueued = queue.getNumberOfPerson();
-                    avgQueueTimePerPersonNormal = queue.getAvgWaitingTimePerPerson();
+                    avgQueueTimePerPersonNormal = queue.getAvgQueueingTimePerPerson(numberOfNormalRider);
                     break;
 
                 case PRIORITY:
                     if (avgQueueTimePerPersonPrio != 0.0)
                         throw new RuntimeException(name + " has more than one priority queue");
-                    numberOfPriorityRiderEnqueued = queue.getNumberOfPerson();
-                    avgQueueTimePerPersonPrio = queue.getAvgWaitingTimePerPerson();
+                    avgQueueTimePerPersonPrio = queue.getAvgQueueingTimePerPerson(numberOfPriorityRider);
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");
@@ -126,8 +122,7 @@ public class StatisticsWriter {
                 "People Served", "Normal People Served", "Priority People Served",
                 "N_s", "N_q", "Avg Waiting Time By Area",
                 "Avg Service Time", "Lambda", "Rho",
-                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio",
-                "Normal People Enqueued", "Priority People Enqueued"
+                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
         };
 
         // Writing the header
@@ -139,8 +134,7 @@ public class StatisticsWriter {
                 peopleServed, numberOfNormalRider, numberOfPriorityRider,
                 people_N_s, people_N_q, peopleWaitByArea,
                 avgServiceTimePerPerson, lambda, rho,
-                avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio,
-                numberOfNormalRiderEnqueued, numberOfPriorityRiderEnqueued);
+                avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio);
         CsvWriter.writeRecord(filePath, record);
     }
 
@@ -170,11 +164,9 @@ public class StatisticsWriter {
 
         List<QueueStats> perPrioQueueStats = stats.getQueueStats();
         QueueStats generalQueueStats = stats.getAggregatedQueueStats();
-        long numberOfPriorityGroupEnqueued = 0;
-        long numberOfNormalGroupEnqueued = 0;
         long numberOfNormalGroup = stats.getNumberOfServedGroup(QueuePriority.NORMAL);
         long numberOfPriorityGroup = stats.getNumberOfServedGroup(QueuePriority.PRIORITY);
-        double avgQueueTimePerGroup = generalQueueStats.getAvgWaitingTimePerGroups();
+        double avgQueueTimePerGroup = generalQueueStats.getAvgQueueingTimePerGroups(groupsServed);
         double avgQueueTimePerGroupNormal = 0.0;
         double avgQueueTimePerGroupPrio = 0.0;
 
@@ -183,15 +175,13 @@ public class StatisticsWriter {
                 case NORMAL:
                     if (avgQueueTimePerGroupNormal != 0.0)
                         throw new RuntimeException(name + " has more than one normal queue");
-                    numberOfNormalGroupEnqueued = queue.getNumberOfGroup();
-                    avgQueueTimePerGroupNormal = queue.getAvgWaitingTimePerGroups();
+                    avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups(numberOfNormalGroup);
                     break;
 
                 case PRIORITY:
                     if (avgQueueTimePerGroupPrio != 0.0)
                         throw new RuntimeException(name + " has more than one priority queue");
-                    numberOfPriorityGroupEnqueued = queue.getNumberOfGroup();
-                    avgQueueTimePerGroupPrio = queue.getAvgWaitingTimePerGroups();
+                    avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups(numberOfPriorityGroup);
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");
@@ -204,8 +194,7 @@ public class StatisticsWriter {
                 "Groups Served", "Normal Group Served", "Priority Group Served",
                 "N_s", "N_q", "Avg Waiting Time By Area",
                 "Avg Service Time - Groups", "Lambda", "Rho",
-                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio",
-                "Normal People Enqueued", "Priority People Enqueued"
+                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
         };
 
         // Writing the header
@@ -217,8 +206,7 @@ public class StatisticsWriter {
                 groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
                 group_N_s, group_N_q, groupsWaitByArea,
                 avgServiceTimePerGroup, lambda, rho,
-                avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio,
-                numberOfNormalGroupEnqueued, numberOfPriorityGroupEnqueued);
+                avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio);
         CsvWriter.writeRecord(filePath, record);
     }
 

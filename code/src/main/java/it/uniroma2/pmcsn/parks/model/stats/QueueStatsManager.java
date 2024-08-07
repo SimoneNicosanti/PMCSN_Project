@@ -56,11 +56,11 @@ public class QueueStatsManager {
                 if (entranceTime == null)
                     throw new RuntimeException("The entrance time must be defined for the enqueued item");
 
-                Double waitingTime = ClockHandler.getInstance().getClock() - entranceTime;
+                Double queueingTime = ClockHandler.getInstance().getClock() - entranceTime;
 
-                queueStatsMap.get(priority).updateStats(waitingTime, job.getGroupSize());
+                queueStatsMap.get(priority).updateStats(queueingTime, job.getGroupSize());
 
-                collectAggregatedOnExtract(job, waitingTime);
+                collectAggregatedOnExtract(job, queueingTime);
             }
         }
     }

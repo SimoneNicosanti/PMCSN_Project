@@ -51,11 +51,6 @@ public class StatsCenter implements Center<RiderGroup> {
 
     @Override
     public QueuePriority arrival(RiderGroup job) {
-        // Compute areas
-        // stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
-        // groupsInTheCenter++;
-        // peopleInTheCenter += job.getGroupSize();
-        // updateAreas(1, job.getGroupSize());
 
         // Call arrival
         QueuePriority priority = this.center.arrival(job);
@@ -103,6 +98,8 @@ public class StatsCenter implements Center<RiderGroup> {
         Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
         Double queueTime = currentClock - arrivalTime;
 
+        stats.incrementWaitingTime(queueTime);
+
         // Update queue time
         queueStatsManager.remove(job);
         if (center instanceof Attraction) {
@@ -113,11 +110,6 @@ public class StatsCenter implements Center<RiderGroup> {
     @Override
     public void endService(RiderGroup endedJob) {
 
-        // stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
-        // groupsInTheCenter--;
-        // peopleInTheCenter -= endedJob.getGroupSize();
-        // updateAreas(-1, -endedJob.getGroupSize());
-
         this.collectEndServiceStats(endedJob);
 
         this.center.endService(endedJob);
@@ -125,6 +117,8 @@ public class StatsCenter implements Center<RiderGroup> {
 
     private void collectEndServiceStats(RiderGroup endedJob) {
         double jobServiceTime = this.retrieveServiceTime(endedJob);
+
+        stats.incrementWaitingTime(jobServiceTime);
 
         if (center instanceof Attraction) {
             // Attraction management
@@ -216,7 +210,6 @@ public class StatsCenter implements Center<RiderGroup> {
 
     @Override
     public List<RiderGroup> closeCenter() {
-        // TODO update groups and people in the center variables
 
         List<RiderGroup> removedGroups = this.center.closeCenter();
 

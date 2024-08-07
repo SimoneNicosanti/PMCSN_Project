@@ -21,6 +21,7 @@ public class CenterStatistics {
     private long numberOfCompletedServices;
 
     // Time-averaged stats
+    protected Double groupWaitingTimeSum; // TODO delete this
     private double groupsArea;
     private double peopleArea;
 
@@ -52,6 +53,12 @@ public class CenterStatistics {
 
         this.previousEventTime = 0.0;
 
+        this.groupWaitingTimeSum = 0.0;
+
+    }
+
+    public void incrementWaitingTime(double inc) {
+        this.groupWaitingTimeSum += inc;
     }
 
     public void setQueueStats(List<QueueStats> queueStatsList) {

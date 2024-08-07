@@ -6,47 +6,33 @@ import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 public class QueueStats {
 
     private QueuePriority priority;
-    private double perGroupWaitingTime;
-    private double perPersonWaitingTime;
-    private long numberOfGroup;
-    private long numberOfPerson;
+    private double perGroupQueueingTime;
+    private double perPersonQueueingTime;
 
     public QueueStats(QueuePriority priority) {
         this.priority = priority;
-        this.perGroupWaitingTime = 0;
-        this.numberOfGroup = 0;
-        this.numberOfPerson = 0;
+        this.perGroupQueueingTime = 0;
     }
 
     public QueuePriority getPriority() {
         return priority;
     }
 
-    public void updateStats(double waitingTime, int groupSize) {
-        this.perGroupWaitingTime += waitingTime;
-        this.perPersonWaitingTime += waitingTime * groupSize;
-        this.numberOfGroup++;
-        this.numberOfPerson += groupSize;
+    public void updateStats(double queueingTime, int groupSize) {
+        this.perGroupQueueingTime += queueingTime;
+        this.perPersonQueueingTime += queueingTime * groupSize;
     }
 
-    public long getNumberOfPerson() {
-        return numberOfPerson;
-    }
-
-    public long getNumberOfGroup() {
-        return numberOfGroup;
-    }
-
-    public double getAvgWaitingTimePerGroups() {
+    public double getAvgQueueingTimePerGroups(long numberOfGroup) {
         if (numberOfGroup == 0)
             return 0;
-        return perGroupWaitingTime / numberOfGroup;
+        return perGroupQueueingTime / numberOfGroup;
     }
 
-    public double getAvgWaitingTimePerPerson() {
+    public double getAvgQueueingTimePerPerson(long numberOfPerson) {
         if (numberOfPerson == 0)
             return 0;
-        return perPersonWaitingTime / numberOfPerson;
+        return perPersonQueueingTime / numberOfPerson;
     }
 
 }
