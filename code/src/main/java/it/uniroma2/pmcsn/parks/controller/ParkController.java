@@ -23,6 +23,7 @@ public class ParkController implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
     private ClockHandler clockHandler;
+    private EventsPool<RiderGroup> eventsPool;
     private ConfigHandler configHandler;
     private Interval currentInterval;
 
@@ -30,6 +31,7 @@ public class ParkController implements Controller<RiderGroup> {
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
         this.configHandler = ConfigHandler.getInstance();
+        this.eventsPool = EventsPool.<RiderGroup>getInstance();
 
         this.init_simulation();
 
@@ -48,7 +50,7 @@ public class ParkController implements Controller<RiderGroup> {
 
         while (true) {
 
-            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+            SystemEvent<RiderGroup> nextEvent = eventsPool.getNextEvent();
             if (nextEvent == null) {
                 // When all the events finish, the simulation ends
                 break;
@@ -60,6 +62,16 @@ public class ParkController implements Controller<RiderGroup> {
             Interval interval = configHandler.getInterval(clockHandler.getClock());
             if (isIntervalChanged(interval)) {
                 changeInterval(interval);
+
+                // If the park is closing...
+                if (configHandler.isParkClosing(currentInterval)) {
+                    // ... free and terminate the current services and ...
+                    // eventsPool.freePool();
+                    // ... close all centers (free the queues)
+                    for (Center<RiderGroup> center : this.networkBuilder.getAllCenters()) {
+                        center.closeCenter();
+                    }
+                }
             }
 
             RiderGroup job = nextEvent.getJob();
@@ -163,6 +175,6 @@ public class ParkController implements Controller<RiderGroup> {
     private void scheduleArrivalEvent() {
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
         SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
+        eventsPool.scheduleNewEvent(arrivalEvent);
     }
 }

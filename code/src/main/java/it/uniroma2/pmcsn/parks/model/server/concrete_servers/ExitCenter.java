@@ -66,4 +66,9 @@ public class ExitCenter implements Center<RiderGroup> {
         return true;
     }
 
+    @Override
+    public List<RiderGroup> closeCenter() {
+        return null;
+    }
+
 }

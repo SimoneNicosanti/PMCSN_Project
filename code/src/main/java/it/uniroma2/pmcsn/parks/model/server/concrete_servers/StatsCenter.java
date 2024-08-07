@@ -59,7 +59,9 @@ public class StatsCenter implements Center<RiderGroup> {
         QueuePriority priority = this.center.arrival(job);
 
         // Save arrival time
-        this.queueStatsManager.put(job, priority);
+        if (priority != null) {
+            this.queueStatsManager.put(job, priority);
+        }
 
         return priority;
     }
@@ -72,19 +74,24 @@ public class StatsCenter implements Center<RiderGroup> {
         // Collect stats of the started jobs
         Double currentClock = ClockHandler.getInstance().getClock();
         for (RiderGroup job : startingJobs) {
-            Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
-            Double queueTime = currentClock - arrivalTime;
-
-            // Update queue time
-            queueStatsManager.remove(job);
-            if (center instanceof Attraction) {
-                job.getGroupStats().incrementQueueTime(queueTime);
-            }
+            collectQueueTimeStats(currentClock, job);
 
             // Save start serving time
             this.startServingTimeMap.put(job.getGroupId(), currentClock);
         }
         return startingJobs;
+    }
+
+    // Collect stats when the job exits from the queue
+    private void collectQueueTimeStats(Double currentClock, RiderGroup job) {
+        Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
+        Double queueTime = currentClock - arrivalTime;
+
+        // Update queue time
+        queueStatsManager.remove(job);
+        if (center instanceof Attraction) {
+            job.getGroupStats().incrementQueueTime(queueTime);
+        }
     }
 
     @Override
@@ -184,6 +191,20 @@ public class StatsCenter implements Center<RiderGroup> {
     @Override
     public boolean canServe(Integer slots) {
         return center.canServe(slots);
+    }
+
+    @Override
+    public List<RiderGroup> closeCenter() {
+        // TODO update groups and people in the center variables
+
+        List<RiderGroup> removedGroups = this.center.closeCenter();
+
+        Double currentClock = ClockHandler.getInstance().getClock();
+        for (RiderGroup job : removedGroups) {
+            collectQueueTimeStats(currentClock, job);
+        }
+
+        return removedGroups;
     }
 
 }

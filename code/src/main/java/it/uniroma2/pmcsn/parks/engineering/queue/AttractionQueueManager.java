@@ -104,4 +104,12 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
         throw new RuntimeException("Unkown priority.");
     }
 
+    @Override
+    public List<RiderGroup> dequeueAll() {
+        List<RiderGroup> dequeuedList = new ArrayList<>();
+        dequeuedList.addAll(priorityQueue.dequeueAll());
+        dequeuedList.addAll(normalQueue.dequeueAll());
+        return dequeuedList;
+    }
+
 }

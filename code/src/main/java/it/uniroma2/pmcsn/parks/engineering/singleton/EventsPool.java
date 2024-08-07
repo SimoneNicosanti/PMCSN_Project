@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
+import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 
 public class EventsPool<T> {
@@ -26,6 +30,34 @@ public class EventsPool<T> {
     public EventsPool() {
         this.eventMap = new HashMap<>();
     }
+
+    /**
+     * Free the event pool at the park closure. All events will be deleted except
+     * those for termination of the current services and the arrival to the
+     * ExitCenter.
+     */
+    // public void freePool(Center<T> exitCenter) {
+    // for (Entry<EventsPoolId, List<SystemEvent<T>>> entry :
+    // this.eventMap.entrySet()) {
+    // EventsPoolId key = entry.getKey();
+
+    // if (key.getCenterName().equals(Constants.EXIT)
+    // || key.getEventType() == EventType.END_PROCESS) {
+    // continue;
+    // }
+
+    // if (key.getEventType() == EventType.ARRIVAL) {
+    // for (SystemEvent<T> event : entry.getValue()) {
+    // event.setCenter(exitCenter);
+
+    // }
+    // continue;
+    // }
+
+    // // Free the list items
+    // entry.getValue().clear();
+    // }
+    // }
 
     public SystemEvent<T> getNextEvent() {
         SystemEvent<T> nextEvent = null;

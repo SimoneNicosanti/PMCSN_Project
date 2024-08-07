@@ -110,6 +110,13 @@ public class ConfigHandler {
         return getInterval(currentClock);
     }
 
+    public boolean isParkClosing(Interval interval) {
+        int size = intervals.size();
+        Interval lastInterval = intervals.get(size - 1);
+
+        return interval.equals(lastInterval);
+    }
+
     public List<Interval> getAllIntervals() {
         return this.intervals;
     }

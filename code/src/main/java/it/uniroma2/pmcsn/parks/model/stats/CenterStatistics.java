@@ -84,6 +84,10 @@ public class CenterStatistics {
 
     public double getAvgNumberOfGroupInTheQueue() {
         double area = groupsArea - perGroupServiceTime;
+
+        // if (area < 0)
+        // throw new RuntimeException();
+
         return area / ClockHandler.getInstance().getClock();
     }
 
@@ -106,8 +110,8 @@ public class CenterStatistics {
     public void updateAreas(long groups, long people) {
         double currentEventTime = ClockHandler.getInstance().getClock();
 
-        assert groups < 0 || people < 0;
-        assert currentEventTime - previousEventTime < 0;
+        if (groups < 0 || people < 0 || currentEventTime - previousEventTime < 0)
+            throw new RuntimeException();
 
         groupsArea += (currentEventTime - previousEventTime) * groups;
         peopleArea += (currentEventTime - previousEventTime) * people;
