@@ -6,45 +6,33 @@ import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 
-public class Attraction extends StatsCenter {
+public class Attraction extends AbstractCenter {
 
     private double currentServiceTime;
-    private double popularity;
-    private double avgDuration;
 
     public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, new AttractionQueueManager(), numberOfSeats);
+        super(name, new AttractionQueueManager(), numberOfSeats, avgDuration, popularity);
         this.currentServiceTime = 0.0;
-        this.popularity = popularity;
-        this.avgDuration = avgDuration;
     }
 
-    public int getQueueLenght(GroupPriority priority) {
+    public Integer getQueueLenght(GroupPriority priority) {
         return ((AttractionQueueManager) this.queueManager).queueLength(priority);
     }
 
-    public double getPopularity() {
+    @Override
+    public Double getPopularity() {
         return this.popularity;
     }
 
-    public double getAvgDuration() {
-        return this.avgDuration;
+    @Override
+    public QueuePriority arrival(RiderGroup job) {
+        return this.commonArrivalManagement(job);
     }
 
-    @Override // Override to do verify
-    protected void terminateService(RiderGroup endedJob) {
-
-        this.currentServingJobs.remove(endedJob);
-
-        if (currentServingJobs.isEmpty()) {
-            this.currentServiceTime = 0.0;
-            this.startService();
-        }
-    }
-
-    @Override // Override to do verify
+    @Override
     public boolean canServe(Integer jobSize) {
         return this.currentServingJobs.isEmpty();
     }
@@ -57,31 +45,21 @@ public class Attraction extends StatsCenter {
     @Override // Override to do verify
     protected Double getNewServiceTime(RiderGroup group) {
         if (this.currentServiceTime == 0.0) {
-            this.currentServiceTime = RandomHandler.getInstance().getUniform(name, avgDuration - 0.5,
-                    avgDuration + 0.5);
+            this.currentServiceTime = RandomHandler.getInstance().getUniform(name, this.avgServiceTime - 0.5,
+                    this.avgServiceTime + 0.5);
         }
         return this.currentServiceTime;
     }
 
     @Override
-    public void doArrival(RiderGroup job) {
-    }
+    public void endService(RiderGroup endedJob) {
+        this.commonEndManagement(endedJob);
 
-    @Override
-    public void doEndService(RiderGroup endedJob) {
-    }
-
-    @Override // Override to do verify
-    protected void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.getServiceTime(endedJob);
-
-        endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
-
-        if (this.startServingTimeMap.isEmpty()) {
-            this.stats.addServiceTime(jobServiceTime);
+        // Attractions will start a new service when all the jobs have finished
+        if (this.currentServingJobs.isEmpty()) {
+            this.currentServiceTime = 0.0;
+            // this.startService();
         }
-
-        this.stats.addServedGroup(endedJob.getGroupSize());
     }
 
 }

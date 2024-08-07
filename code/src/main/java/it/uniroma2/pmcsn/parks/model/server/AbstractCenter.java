@@ -9,25 +9,38 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.model.event.Event;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public abstract class AbstractCenter implements Center<RiderGroup> {
 
+    protected double avgServiceTime;
     protected final String name;
     protected List<RiderGroup> currentServingJobs;
     protected QueueManager<RiderGroup> queueManager;
     protected final Integer slotNumber;
+    protected Double popularity;
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
-    public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber) {
+    public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber,
+            Double avgServiceTime, Double popularity) {
         this.name = name;
         this.currentServingJobs = new ArrayList<>();
         this.queueManager = queueManager;
         this.slotNumber = slotNumber;
+        this.avgServiceTime = avgServiceTime;
+        this.popularity = popularity;
+    }
+
+    public double getAvgDuration() {
+        return this.avgServiceTime;
+    }
+
+    public int getSlotNumber() {
+        return this.slotNumber;
     }
 
     /**
@@ -35,34 +48,39 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * it adds it to a queue and starts the service, otherwise it just adds
      * the job to the queue.
      */
-    protected void commonArrivalManagement(RiderGroup job) {
+    protected QueuePriority commonArrivalManagement(RiderGroup job) {
         int jobSize = job.getGroupSize();
 
         // Check before adding the job in the queue, otherwise the queue is never empty
-        boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
-        this.queueManager.addToQueues(job);
+        // boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
+        QueuePriority jobPriority = this.queueManager.addToQueues(job);
 
         // If job arrives and can be served immediately, we schedule the new job
-        if (mustServe) {
-            this.startService();
-        }
+        // if (mustServe) {
+        // this.startService();
+        // }
+
+        return jobPriority;
+    }
+
+    protected void commonEndManagement(RiderGroup endedJob) {
+        this.currentServingJobs.remove(endedJob);
+        this.scheduleArrivalToNewCenter(endedJob);
     }
 
     /**
      * End service for serving job and schedule the next arrival event based on the
      * next center that is returned by the network routing node.
      */
-    protected void commonEndManagement(RiderGroup endedJob) {
-        // Removing this job from service
-        this.terminateService(endedJob);
+    protected void scheduleArrivalToNewCenter(RiderGroup endedJob) {
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
-        Event<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
+        SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 ClockHandler.getInstance().getClock());
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
 
-        EventLogger.logEvent("Schedule ", newEvent);
+        // EventLogger.logEvent("Schedule ", newEvent);
     }
 
     /**
@@ -87,12 +105,26 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     /**
      * Start the service and schedule the correlated END_PROCESS events
      */
-    public abstract List<RiderGroup> startService();
+    public List<RiderGroup> startService() {
+        List<RiderGroup> jobsToServe = this.getJobsToServe();
 
-    /**
-     * Terminate the service for the job and start the next service if possible
-     */
-    protected abstract void terminateService(RiderGroup endedJob);
+        this.currentServingJobs.addAll(jobsToServe);
+
+        for (RiderGroup job : jobsToServe) {
+            double serviceTime = this.getNewServiceTime(job);
+
+            // Schedule an END_PROCESS event
+            SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+                    EventType.END_PROCESS,
+                    job,
+                    ClockHandler.getInstance().getClock() + serviceTime);
+            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+
+            // EventLogger.logEvent("Schedule ", newEvent);
+        }
+
+        return jobsToServe;
+    }
 
     /**
      * Return the jobs to serve. If no jobs are available, an empty list is
@@ -104,10 +136,5 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * Return the new service time for the job
      */
     protected abstract Double getNewServiceTime(RiderGroup job);
-
-    /**
-     * Check if the center is able to serve a job with size "jobSize"
-     */
-    protected abstract boolean canServe(Integer jobSize);
 
 }

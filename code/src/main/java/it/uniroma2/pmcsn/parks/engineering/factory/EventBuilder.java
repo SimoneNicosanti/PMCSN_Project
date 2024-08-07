@@ -1,21 +1,33 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.Event;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class EventBuilder {
 
     private static Long riderGroupId = 0L;
+    private static Map<String, StatsCenter> statsCenterMap;
 
-    public static Event<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
+    public static void setStatsCenterMap(Map<String, Center<RiderGroup>> map) {
+        statsCenterMap = new HashMap<>();
+        for (String centerName : map.keySet()) {
+            statsCenterMap.put(centerName, (StatsCenter) map.get(centerName));
+        }
+    }
+
+    public static SystemEvent<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
         // If arrivalRate == 0, stop the arrival
         if (arrivalRate == 0.0) {
@@ -23,15 +35,20 @@ public class EventBuilder {
         }
         // TODO Manage distributions
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
-                arrivalRate);
+                1 / arrivalRate);
 
-        int groupSize = Double.valueOf(RandomHandler.getInstance().getUniform(Constants.GROUP_SIZE_STREAM, 1, 10))
-                .intValue(); // Change to 1 constant value to verify
+        int groupSize = SimulationBuilder.getJobSize();
         GroupPriority priority = computeGroupPriority();
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
-        Event<RiderGroup> arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
+        Center<RiderGroup> statsCenter = statsCenterMap.get(arrivalCenter.getName());
+
+        if (statsCenter == null) {
+            statsCenter = arrivalCenter;
+        }
+
+        SystemEvent<RiderGroup> arrivalEvent = buildEventFrom(statsCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
@@ -41,6 +58,9 @@ public class EventBuilder {
     }
 
     private static GroupPriority computeGroupPriority() {
+        if (Constants.VERIFICATION_MODE)
+            return GroupPriority.NORMAL;
+
         double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM);
         if (groupPriorityProb < Constants.PRIORITY_PASS_PROB) {
             return GroupPriority.PRIORITY;
@@ -50,11 +70,15 @@ public class EventBuilder {
     }
 
     // Builds a new generic event
-    public static Event<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
-            RiderGroup job,
-            double eventTime) {
+    public static SystemEvent<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
+            RiderGroup job, double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
-        return new Event<>(poolId, center, eventTime, job);
+        Center<RiderGroup> statsCenter = statsCenterMap.get(center.getName());
+
+        if (statsCenter == null) {
+            statsCenter = center;
+        }
+        return new SystemEvent<>(poolId, statsCenter, eventTime, job);
     }
 
 }

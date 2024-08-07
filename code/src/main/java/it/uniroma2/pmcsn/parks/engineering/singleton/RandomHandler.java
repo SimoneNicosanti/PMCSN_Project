@@ -3,12 +3,13 @@ package it.uniroma2.pmcsn.parks.engineering.singleton;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.random.Rngs;
 import it.uniroma2.pmcsn.parks.random.Rvgs;
 
 public class RandomHandler {
 
-    private static long SEED = 123456;
+    private static long SEED = Constants.SEED;
     private static long MAX_STREAM_NUM = 256;
 
     private static RandomHandler instance = null;
@@ -78,6 +79,18 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         return distributionGenerator.exponential(m);
+    }
+
+    public double getPoisson(String streamName, double m) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        return distributionGenerator.poisson(m);
+    }
+
+    public double getErlang(String streamName, long k, double m) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        return distributionGenerator.erlang(k, m);
     }
 
     public Map<String, Integer> getStreamMap() {

@@ -24,7 +24,7 @@ public class CenterFactory {
 
     public static Attraction buildAttraction(String name, int numberOfSeats, double popularity,
             double avgDuration) {
-        return new Attraction(name, numberOfSeats, popularity, avgDuration);
+        return SimulationBuilder.buildAttraction(name, numberOfSeats, popularity, avgDuration);
     }
 
     public static Entrance buildEntrance(String name, int numberOfSeats, double avgDuration) {

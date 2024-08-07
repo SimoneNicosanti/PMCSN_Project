@@ -38,10 +38,14 @@ public class QueueStats {
     }
 
     public double getAvgWaitingTimePerGroups() {
+        if (numberOfGroup == 0)
+            return 0;
         return perGroupWaitingTime / numberOfGroup;
     }
 
     public double getAvgWaitingTimePerPerson() {
+        if (numberOfPerson == 0)
+            return 0;
         return perPersonWaitingTime / numberOfPerson;
     }
 

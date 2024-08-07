@@ -32,7 +32,13 @@ public class ConfigHandler {
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
-        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(Constants.CONFIG_FILENAME);
+        String configFilePath;
+        if (Constants.VERIFICATION_MODE) {
+            configFilePath = Constants.VERIFICATION_CONFIG_FILENAME;
+        } else {
+            configFilePath = Constants.CONFIG_FILENAME;
+        }
+        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFilePath);
 
         centersDistribution = ParametersParser.parseCentersDistribution(Constants.CONFIG_FILENAME);
 

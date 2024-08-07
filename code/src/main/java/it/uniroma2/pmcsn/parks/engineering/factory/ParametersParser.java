@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.engineering.factory;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.model.Distribution;
 import it.uniroma2.pmcsn.parks.model.Interval;
@@ -20,42 +22,34 @@ import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
 
 public class ParametersParser {
 
-    public static List<Pair<Interval, Parameters>> parseParameters(String configFileName) {
+    public static List<Pair<Interval, Parameters>> parseParameters(String fileName) {
         // Read the config.json file
         JsonNode rootNode;
         List<Pair<Interval, Parameters>> returnList = new ArrayList<>();
 
         try {
-            rootNode = getRootNode(configFileName);
+            rootNode = getRootNode(fileName);
             JsonNode jsonIntervals = rootNode.path("timeIntervals");
-            Double openingTime = null;
             Double lastEnd = 0.0;
             for (JsonNode jsonInterval : jsonIntervals) {
-                String startStr = jsonInterval.path("start").asText();
-                String endStr = jsonInterval.path("end").asText();
+                Double startClock = jsonInterval.path("start").asDouble();
+                Double endClock = jsonInterval.path("end").asDouble();
                 Double arrivalRate = jsonInterval.path("arrivalRate").asDouble();
 
                 JsonNode routingProbs = jsonInterval.path("routingProbability");
                 Map<RoutingNodeType, Double> probabilityMap = parseRoutingProbs(routingProbs);
 
-                Double start = parseTime(startStr);
-                if (openingTime == null) {
-                    openingTime = start;
-                }
-                start = convertToClock(start, openingTime);
-
-                Double end = parseTime(endStr);
-                end = convertToClock(end, openingTime);
-                lastEnd = end;
-
-                Interval interval = new Interval(start, end);
+                Interval interval = new Interval(startClock, endClock);
                 Parameters intervalParams = new Parameters(probabilityMap, arrivalRate);
                 returnList.add(Pair.of(interval, intervalParams));
+
+                lastEnd = endClock;
             }
 
             // Add the last interval created for exiting all the jobs from the
             // system
-            returnList.add(getFakeInterval(lastEnd));
+            Pair<Interval, Parameters> finalIntervalCouple = buildFinalInterval(lastEnd);
+            returnList.add(finalIntervalCouple);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +59,7 @@ public class ParametersParser {
 
     // Return a fake interval created for exiting all the jobs from the
     // system
-    private static Pair<Interval, Parameters> getFakeInterval(Double lastEnd) {
+    private static Pair<Interval, Parameters> buildFinalInterval(Double lastEnd) {
         Interval interval = new Interval(lastEnd, Double.MAX_VALUE);
         Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
         probabilityMap.put(RoutingNodeType.ATTRACTION, 0.0);
@@ -77,12 +71,9 @@ public class ParametersParser {
         return Pair.of(interval, parameters);
     }
 
-    private static double convertToClock(Double time, Double openingTime) {
-        return time - openingTime;
-    }
-
-    private static JsonNode getRootNode(String configFileName) throws JsonProcessingException, IOException {
+    private static JsonNode getRootNode(String fileName) throws JsonProcessingException, IOException {
         // Read the config.json file
+        String configFileName = Path.of(Constants.CONFIG_PATH, fileName).toString();
         File configFile = new File(configFileName);
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readTree(configFile);
@@ -127,6 +118,7 @@ public class ParametersParser {
 
     // Parse a time in the format HH:MM in a clock that starts from zero, based on
     // the first interval
+    @SuppressWarnings("unused")
     private static Double parseTime(String timeStr) {
         String[] parts = timeStr.split(":");
         int hours = Integer.parseInt(parts[0]);
