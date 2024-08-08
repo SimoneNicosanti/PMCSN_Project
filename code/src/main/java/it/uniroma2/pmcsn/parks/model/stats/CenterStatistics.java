@@ -21,7 +21,6 @@ public class CenterStatistics {
     private long numberOfCompletedServices;
 
     // Time-averaged stats
-    protected Double groupWaitingTimeSum; // TODO delete this
     private double groupsArea;
     private double peopleArea;
 
@@ -53,12 +52,6 @@ public class CenterStatistics {
 
         this.previousEventTime = 0.0;
 
-        this.groupWaitingTimeSum = 0.0;
-
-    }
-
-    public void incrementWaitingTime(double inc) {
-        this.groupWaitingTimeSum += inc;
     }
 
     public void setQueueStats(List<QueueStats> queueStatsList) {
@@ -70,23 +63,19 @@ public class CenterStatistics {
     }
 
     public double getAvgGroupQueueTimeByArea() {
-        return getAvgGroupWaitByArea() - getAvgServiceTimePerGroup();
+        long groups = aggregatedQueueStats.getNumberOfGroupEnqueued();
+        if (groups == 0)
+            return 0;
+        double area = groupsArea - perGroupServiceTime;
+        return area / groups;
     }
 
     public double getAvgPersonQueueTimeByArea() {
-        return getAvgPersonWaitByArea() - getAvgServiceTimePerPerson();
-    }
-
-    public double getAvgPersonWaitByArea() {
-        if (numberOfServedPerson == 0)
+        long people = aggregatedQueueStats.getNumberOfPersonEnqueued();
+        if (people == 0)
             return 0;
-        return peopleArea / numberOfServedPerson;
-    }
-
-    public double getAvgGroupWaitByArea() {
-        if (numberOfServedPerson == 0)
-            return 0;
-        return groupsArea / numberOfServedGroup;
+        double area = peopleArea - perPersonServiceTime;
+        return area / people;
     }
 
     public double getAvgNumberOfPersonInTheSystem() {
@@ -162,7 +151,7 @@ public class CenterStatistics {
         this.groupPerPriority.put(priority, numberOfGroup + 1);
 
         // Increase the number of person served with this priority
-        long numberOfPerson = this.groupPerPriority.get(priority);
+        long numberOfPerson = this.personPerPriority.get(priority);
         this.personPerPriority.put(priority, numberOfPerson + personServed);
     }
 

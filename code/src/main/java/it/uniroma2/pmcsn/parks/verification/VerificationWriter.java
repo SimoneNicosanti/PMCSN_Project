@@ -39,7 +39,7 @@ public class VerificationWriter {
         CenterStatistics stats = ((StatsCenter) center).getCenterStats();
         QueueStats generalQueueStats = statsCenter.getCenterStats().getAggregatedQueueStats();
 
-        double avgQueueTime = stats.getAvgGroupWaitByArea() - stats.getAvgServiceTimePerGroup();
+        double avgQueueTime = stats.getAvgGroupQueueTimeByArea() - stats.getAvgServiceTimePerGroup();
         double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
 
         double avgSystemTime = avgQueueTime + avgServiceTimePerCompletedService;
@@ -54,10 +54,10 @@ public class VerificationWriter {
         for (QueueStats queue : perPrioQueueStats) {
             switch (queue.getPriority()) {
                 case NORMAL:
-                    avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups(numberOfNormalJobs);
+                    avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups();
                     break;
                 case PRIORITY:
-                    avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups(numberOfPriorityJobs);
+                    avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups();
                     break;
                 default:
                     throw new RuntimeException("Unknown queue priority");

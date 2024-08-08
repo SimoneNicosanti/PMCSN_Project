@@ -98,8 +98,6 @@ public class StatsCenter implements Center<RiderGroup> {
         Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
         Double queueTime = currentClock - arrivalTime;
 
-        stats.incrementWaitingTime(queueTime);
-
         // Update queue time
         queueStatsManager.remove(job);
         if (center instanceof Attraction) {
@@ -117,8 +115,6 @@ public class StatsCenter implements Center<RiderGroup> {
 
     private void collectEndServiceStats(RiderGroup endedJob) {
         double jobServiceTime = this.retrieveServiceTime(endedJob);
-
-        stats.incrementWaitingTime(jobServiceTime);
 
         if (center instanceof Attraction) {
             // Attraction management

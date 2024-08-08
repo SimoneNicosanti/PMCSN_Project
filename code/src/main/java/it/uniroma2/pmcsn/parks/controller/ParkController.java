@@ -75,6 +75,7 @@ public class ParkController implements Controller<RiderGroup> {
             }
 
             RiderGroup job = nextEvent.getJob();
+            Long groupId = job.getGroupId();
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 // TODO Re add START_PROCESS to have more transparency

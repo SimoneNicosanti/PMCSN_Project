@@ -25,7 +25,7 @@ public class SimulationBuilder {
         if (Constants.VERIFICATION_MODE) {
             return 1;
         } else {
-            return 1 + Double.valueOf(RandomHandler.getInstance().getPoisson(Constants.GROUP_SIZE_STREAM, 2.6))
+            return 1 + Double.valueOf(RandomHandler.getInstance().getPoisson(Constants.GROUP_SIZE_STREAM, 3))
                     .intValue();
         }
     }

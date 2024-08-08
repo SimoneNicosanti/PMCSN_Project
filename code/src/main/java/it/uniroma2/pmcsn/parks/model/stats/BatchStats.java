@@ -13,11 +13,25 @@ public class BatchStats {
     private Double prevClosingTime;
     private String statName;
 
+    private Integer jobsInBatch;
+    private List<Double> areaList;
+    private List<Double> serviceList;
+
     public BatchStats(String statName) {
         this.timeList = new ArrayList<>();
         this.batchDurationList = new ArrayList<>();
         this.statName = statName;
         this.prevClosingTime = 0.0;
+
+        this.areaList = new ArrayList<>();
+        this.serviceList = new ArrayList<>();
+    }
+
+    public void addArea(Double newArea) {
+        if (this.jobsInBatch % Constants.BATCH_SIZE == 0
+                && this.jobsInBatch < Constants.BATCH_SIZE * Constants.BATCH_NUMBER) {
+            this.areaList.add(newArea);
+        }
     }
 
     public void addTime(Double newTime) {
