@@ -23,7 +23,7 @@ public class IntervalStatsManager {
         this.totalStatistics = new CenterStatistics();
     }
 
-    public void updateServiceTime(Double startService, Double endService, Integer jobSize) {
+    public void updateServiceTime(Double startService, Double endService, Integer jobSize, Integer multiplier) {
         List<Interval> intervalList = findCoveredIntervals(startService, endService);
         for (Interval interval : intervalList) {
             Double coveredTime = findTimeIntersectionWithInterval(startService, endService, interval);
@@ -33,10 +33,10 @@ public class IntervalStatsManager {
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
-            intervalStatistics.updateServiceArea(coveredTime, jobSize);
+            intervalStatistics.updateServiceArea(coveredTime, jobSize, multiplier);
         }
 
-        totalStatistics.updateServiceArea(endService - startService, jobSize);
+        totalStatistics.updateServiceArea(endService - startService, jobSize, multiplier);
     }
 
     public void updateQueueTime(Double startQueue, Double endQueue, QueuePriority prio, Integer jobSize) {

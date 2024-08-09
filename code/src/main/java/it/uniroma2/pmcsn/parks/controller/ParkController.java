@@ -109,6 +109,8 @@ public class ParkController implements Controller<RiderGroup> {
         IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
 
         EventLogger.logRandomStreams("RandomStreams");
+
+        System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock());
     }
 
     private boolean isIntervalChanged(Interval interval) {

@@ -207,9 +207,13 @@ public class CenterStatistics {
     // ##########################################################################################################################################
     // NEW STATS
 
-    public void updateServiceArea(Double time, Integer groupSize) {
-        this.serviceAreaGroup.updateArea(time, 1);
-        this.serviceAreaPeople.updateArea(time, groupSize);
+    // Multiplier is intended as the number by which the area has to be multiplied
+    // In case of per person statistic and a k-erlang distribution, the time is the
+    // total
+    // se we have to multiply by 1 and not by the size of the group
+    public void updateServiceArea(Double time, Integer groupSize, Integer multiplier) {
+        this.serviceAreaGroup.updateArea(time, 1, 1);
+        this.serviceAreaPeople.updateArea(time, groupSize, multiplier);
     }
 
     public void updateQueueArea(Double time, QueuePriority prio, Integer groupSize) {
@@ -217,11 +221,11 @@ public class CenterStatistics {
             this.queueAreaPerPrioGroup.put(prio, new AreaStats());
             this.queueAreaPerPrioPeople.put(prio, new AreaStats());
         }
-        this.queueAreaPerPrioGroup.get(prio).updateArea(time, 1);
-        this.queueAreaPerPrioPeople.get(prio).updateArea(time, groupSize);
+        this.queueAreaPerPrioGroup.get(prio).updateArea(time, 1, 1);
+        this.queueAreaPerPrioPeople.get(prio).updateArea(time, groupSize, groupSize);
 
-        this.queueAreaGroup.updateArea(time, 1);
-        this.queueAreaPeople.updateArea(time, groupSize);
+        this.queueAreaGroup.updateArea(time, 1, 1);
+        this.queueAreaPeople.updateArea(time, groupSize, groupSize);
     }
 
     public Double getServiceAreaValue(StatsType statsType) {

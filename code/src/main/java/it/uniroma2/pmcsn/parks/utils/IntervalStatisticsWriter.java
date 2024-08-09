@@ -54,6 +54,7 @@ public class IntervalStatisticsWriter {
         AreaStats serviceAreaStats = stats.getServiceAreaStats(statsType);
         Double mPerRho = serviceAreaStats.getArea() / intervalDuration;
         Double avgServiceTime = serviceAreaStats.getSizeAvgdStat();
+        Integer totalServed = stats.getServiceAreaStats(statsType).getSize();
 
         Integer m = ((AbstractCenter) ((StatsCenter) center).getCenter()).getSlotNumber();
         Double rho = mPerRho / m;
@@ -79,7 +80,7 @@ public class IntervalStatisticsWriter {
                 "Center name",
                 "E[Nq]", "m*Rho", "Rho", "E[Ns]",
                 "E[Tq]", "E[S]", "E[Ts]",
-                "NormalEnqueued", "PriorityEnqueued", "TotalEnqueued",
+                "NormalEnqueued", "PriorityEnqueued", "TotalEnqueued", "TotalServed",
                 "E[Tq] Normal", "E[Tq] Priority"
         };
 
@@ -90,7 +91,7 @@ public class IntervalStatisticsWriter {
                 name,
                 avgNumberInQueue, mPerRho, rho, avgNumberInCenter,
                 avgQueueTime, avgServiceTime, avgTimeInCenter,
-                totalNormalDequeued, totalPriorityDequeued, totalDequeued,
+                totalNormalDequeued, totalPriorityDequeued, totalDequeued, totalServed,
                 avgNormalQueueTime, avgPriorityQueueTime);
         CsvWriter.writeRecord(filePath, record);
     }

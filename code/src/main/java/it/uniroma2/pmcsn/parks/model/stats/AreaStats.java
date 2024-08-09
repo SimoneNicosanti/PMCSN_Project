@@ -10,8 +10,8 @@ public class AreaStats {
         this.size = 0;
     }
 
-    public void updateArea(Double areaInc, Integer sizeInc) {
-        this.area += areaInc * sizeInc;
+    public void updateArea(Double areaInc, Integer sizeInc, Integer multiplier) {
+        this.area += areaInc * multiplier;
         this.size += sizeInc;
     }
 

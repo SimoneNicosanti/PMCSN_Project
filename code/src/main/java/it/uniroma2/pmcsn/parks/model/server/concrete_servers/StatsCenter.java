@@ -31,7 +31,7 @@ public class StatsCenter implements Center<RiderGroup> {
     protected long peopleInTheCenter;
 
     protected Map<Long, Double> startServingTimeMap;
-    protected Map<Long, QueuePriority> priorityMap; // Given the job id, return the job priority
+    protected Map<Long, QueuePriority> priorityMap; // Given the job id, return the job priority in queue
 
     protected IntervalStatsManager intervalStatsManager;
 
@@ -123,6 +123,7 @@ public class StatsCenter implements Center<RiderGroup> {
         Double endServingTime = ClockHandler.getInstance().getClock();
         Double jobServiceTime = endServingTime - startServingTime;
 
+        Integer multiplier = 1;
         if (center instanceof Attraction) {
             // Attraction management
             endedJob.getGroupStats().incrementRidesInfo(this.getName(), jobServiceTime);
@@ -130,14 +131,19 @@ public class StatsCenter implements Center<RiderGroup> {
             if (this.startServingTimeMap.isEmpty()) {
                 this.stats.addServiceTime(jobServiceTime);
             }
+            multiplier = endedJob.getGroupSize();
         } else {
             // General management
             this.stats.addServiceTime(jobServiceTime);
         }
 
+        if (center instanceof Entrance || center instanceof Restaurant) {
+            multiplier = 1;
+        }
+
         // Update area stats
         updateAreas(-1, -endedJob.getGroupSize());
-        intervalStatsManager.updateServiceTime(startServingTime, endServingTime, endedJob.getGroupSize());
+        intervalStatsManager.updateServiceTime(startServingTime, endServingTime, endedJob.getGroupSize(), multiplier);
 
         // Increment statistics about services
         QueuePriority jobPriority = priorityMap.remove(endedJob.getGroupId());
