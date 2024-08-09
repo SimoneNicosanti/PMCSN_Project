@@ -8,7 +8,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.JobStatisticsWriter;
 
 /**
  * Fake center for exiting jobs
@@ -25,7 +25,7 @@ public class ExitCenter implements Center<RiderGroup> {
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
         if (!Constants.VERIFICATION_MODE) {
-            StatisticsWriter.writeStatistics("Job", filename, job);
+            JobStatisticsWriter.writeStatistics("Job", filename, job);
         }
         return null;
     }

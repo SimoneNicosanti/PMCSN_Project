@@ -30,6 +30,15 @@ public class CenterStatistics {
     private List<QueueStats> queueStatsList;
     private QueueStats aggregatedQueueStats;
 
+    // NEW STATS
+    private AreaStats serviceAreaGroup;
+    private AreaStats serviceAreaPeople;
+
+    private AreaStats queueAreaGroup;
+    private AreaStats queueAreaPeople;
+    private Map<QueuePriority, AreaStats> queueAreaPerPrioGroup;
+    private Map<QueuePriority, AreaStats> queueAreaPerPrioPeople;
+
     public CenterStatistics() {
         this.perPersonServiceTime = 0;
         this.perGroupServiceTime = 0;
@@ -52,6 +61,15 @@ public class CenterStatistics {
 
         this.previousEventTime = 0.0;
 
+        // NEW STATS
+        this.serviceAreaGroup = new AreaStats();
+        this.serviceAreaPeople = new AreaStats();
+
+        this.queueAreaGroup = new AreaStats();
+        this.queueAreaPeople = new AreaStats();
+
+        this.queueAreaPerPrioGroup = new HashMap<>();
+        this.queueAreaPerPrioPeople = new HashMap<>();
     }
 
     public void setQueueStats(List<QueueStats> queueStatsList) {
@@ -184,5 +202,72 @@ public class CenterStatistics {
 
     public QueueStats getAggregatedQueueStats() {
         return this.aggregatedQueueStats;
+    }
+
+    // ##########################################################################################################################################
+    // NEW STATS
+
+    public void updateServiceArea(Double time, Integer groupSize) {
+        this.serviceAreaGroup.updateArea(time, 1);
+        this.serviceAreaPeople.updateArea(time, groupSize);
+    }
+
+    public void updateQueueArea(Double time, QueuePriority prio, Integer groupSize) {
+        if (this.queueAreaPerPrioGroup.get(prio) == null) {
+            this.queueAreaPerPrioGroup.put(prio, new AreaStats());
+            this.queueAreaPerPrioPeople.put(prio, new AreaStats());
+        }
+        this.queueAreaPerPrioGroup.get(prio).updateArea(time, 1);
+        this.queueAreaPerPrioPeople.get(prio).updateArea(time, groupSize);
+
+        this.queueAreaGroup.updateArea(time, 1);
+        this.queueAreaPeople.updateArea(time, groupSize);
+    }
+
+    public Double getServiceAreaValue(StatsType statsType) {
+        AreaStats serviceArea;
+        AreaStats queueArea;
+        switch (statsType) {
+            case GROUP:
+                serviceArea = this.serviceAreaGroup;
+                queueArea = this.queueAreaGroup;
+                break;
+
+            case PERSON:
+                serviceArea = this.serviceAreaPeople;
+                queueArea = this.queueAreaPeople;
+                break;
+
+            default:
+                return null;
+        }
+
+        return serviceArea.getArea() + queueArea.getArea();
+    }
+
+    public AreaStats getServiceAreaStats(StatsType statsType) {
+        return switch (statsType) {
+            case GROUP -> this.serviceAreaGroup;
+            case PERSON -> this.serviceAreaPeople;
+            default -> null;
+        };
+    }
+
+    public AreaStats getQueueAreaStats(StatsType statsType, QueuePriority queuePrio) {
+
+        if (queuePrio == null) {
+            return switch (statsType) {
+                case GROUP -> this.queueAreaGroup;
+                case PERSON -> this.queueAreaPeople;
+                default -> null;
+            };
+        }
+
+        return switch (statsType) {
+            case GROUP -> this.queueAreaPerPrioGroup.get(queuePrio);
+            case PERSON -> this.queueAreaPerPrioPeople.get(queuePrio);
+            default -> null;
+        };
+
     }
 }

@@ -6,6 +6,9 @@ public class Constants {
 
     public static final String DATA_PATH = Path.of(".", "Out", "Data").toString();
     public static final String INTERVAL_DATA_PATH = Path.of(DATA_PATH, "Interval").toString();
+    public static final String CENTER_DATA_PATH = Path.of(DATA_PATH, "Center").toString();
+    public static final String PEOPLE_DATA_PATH = Path.of(CENTER_DATA_PATH, "People").toString();
+    public static final String GROUP_DATA_PATH = Path.of(CENTER_DATA_PATH, "Group").toString();
     public static final String GENERAL_DATA_PATH = Path.of(DATA_PATH, "General").toString();
     public static final String JOB_DATA_PATH = Path.of(DATA_PATH, "Job").toString();
     public static final String LOG_PATH = Path.of(".", "Out", "Log").toString();
@@ -38,7 +41,7 @@ public class Constants {
     public static final long SEED = 1234;
 
     // Indicates whether to collect statistics for each interval or not
-    public static final boolean INTERVAL_STATS = false;
+    public static final boolean INTERVAL_STATS = true;
 
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";

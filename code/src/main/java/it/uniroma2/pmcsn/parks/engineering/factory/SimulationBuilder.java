@@ -33,7 +33,7 @@ public class SimulationBuilder {
     // Return a fake interval created for exiting all the jobs from the
     // system
     public static Pair<Interval, Parameters> getInifiniteInterval() {
-        Interval interval = new Interval(0.0, Double.MAX_VALUE);
+        Interval interval = new Interval(0.0, Double.MAX_VALUE, 0);
         Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
         probabilityMap.put(RoutingNodeType.ATTRACTION, 0.9);
         probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);

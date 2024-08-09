@@ -15,8 +15,10 @@ import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
+import it.uniroma2.pmcsn.parks.utils.CenterStatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.IntervalStatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.JobStatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 
 public class ParkController implements Controller<RiderGroup> {
@@ -104,6 +106,8 @@ public class ParkController implements Controller<RiderGroup> {
             writeCenterStats(null);
         }
 
+        IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
+
         EventLogger.logRandomStreams("RandomStreams");
     }
 
@@ -138,13 +142,13 @@ public class ParkController implements Controller<RiderGroup> {
             // ((StatsCenter) center).updateAreas();
 
             if (interval == null) {
-                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
+                CenterStatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
                         "TotalCenterStats", center);
 
                 // Check whether we are veryfing the model or not
 
             } else {
-                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
+                CenterStatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
                         interval.getStart() + "-" + interval.getEnd(),
                         center);
 
@@ -163,13 +167,15 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void init_simulation() {
         // Reset statistics
-        StatisticsWriter.resetStatistics("Job");
+        WriterHelper.clearDirectory("Job");
 
         if (Constants.INTERVAL_STATS) {
-            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Interval").toString());
+            WriterHelper.clearDirectory(Path.of(".", "Center", "Interval").toString());
         } else {
-            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Total").toString());
+            WriterHelper.clearDirectory(Path.of(".", "Center", "Total").toString());
         }
+        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Center").toString());
+        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
         // Prepare the logger and set the system clock to 0
         WriterHelper.clearDirectory(Constants.LOG_PATH);
         ClockHandler.getInstance().setClock(0);

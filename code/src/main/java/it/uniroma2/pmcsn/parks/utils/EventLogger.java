@@ -1,9 +1,16 @@
 package it.uniroma2.pmcsn.parks.utils;
 
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVFormat.Builder;
+import org.apache.commons.csv.CSVPrinter;
 
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -16,10 +23,13 @@ public class EventLogger {
         Map<String, Integer> streamMap = RandomHandler.getInstance().getStreamMap();
         Path randomStreamsPath = Path.of("Out", "Log", streamFileName + ".log");
 
-        try {
-            randomStreamsPath.toFile().createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!randomStreamsPath.toFile().exists()) {
+            try {
+                Files.createDirectories(randomStreamsPath.getParent());
+                randomStreamsPath.toFile().createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         try (FileOutputStream streamLogWriter = new FileOutputStream(randomStreamsPath.toFile(), true)) {

@@ -7,11 +7,13 @@ import java.util.Map;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
+import it.uniroma2.pmcsn.parks.model.stats.IntervalStatsManager;
 import it.uniroma2.pmcsn.parks.model.stats.QueueStatsManager;
 
 /**
@@ -31,6 +33,8 @@ public class StatsCenter implements Center<RiderGroup> {
     protected Map<Long, Double> startServingTimeMap;
     protected Map<Long, QueuePriority> priorityMap; // Given the job id, return the job priority
 
+    protected IntervalStatsManager intervalStatsManager;
+
     public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
 
@@ -43,6 +47,8 @@ public class StatsCenter implements Center<RiderGroup> {
         this.priorityMap = new HashMap<>();
 
         this.serviceBatchStats = new BatchStats("ServiceTime");
+
+        this.intervalStatsManager = new IntervalStatsManager();
     }
 
     public Center<RiderGroup> getCenter() {
@@ -65,10 +71,6 @@ public class StatsCenter implements Center<RiderGroup> {
         }
 
         return priority;
-    }
-
-    public void updateAreas() {
-        stats.updateAreas(groupsInTheCenter, peopleInTheCenter);
     }
 
     private void updateAreas(int inc, int groupSizeInc) {
@@ -95,14 +97,17 @@ public class StatsCenter implements Center<RiderGroup> {
 
     // Collect stats when the job exits from the queue
     private void collectQueueTimeStats(Double currentClock, RiderGroup job) {
-        Double arrivalTime = this.queueStatsManager.getArrivalTime(job);
-        Double queueTime = currentClock - arrivalTime;
+        Double enqueueTime = this.queueStatsManager.getArrivalTime(job);
+        Double dequeueTime = currentClock;
 
         // Update queue time
         queueStatsManager.remove(job);
         if (center instanceof Attraction) {
-            job.getGroupStats().incrementQueueTime(queueTime);
+            job.getGroupStats().incrementQueueTime(dequeueTime - enqueueTime);
         }
+
+        QueuePriority queuePrio = this.priorityMap.get(job.getGroupId());
+        intervalStatsManager.updateQueueTime(enqueueTime, dequeueTime, queuePrio, job.getGroupSize());
     }
 
     @Override
@@ -114,7 +119,9 @@ public class StatsCenter implements Center<RiderGroup> {
     }
 
     private void collectEndServiceStats(RiderGroup endedJob) {
-        double jobServiceTime = this.retrieveServiceTime(endedJob);
+        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
+        Double endServingTime = ClockHandler.getInstance().getClock();
+        Double jobServiceTime = endServingTime - startServingTime;
 
         if (center instanceof Attraction) {
             // Attraction management
@@ -130,6 +137,7 @@ public class StatsCenter implements Center<RiderGroup> {
 
         // Update area stats
         updateAreas(-1, -endedJob.getGroupSize());
+        intervalStatsManager.updateServiceTime(startServingTime, endServingTime, endedJob.getGroupSize());
 
         // Increment statistics about services
         QueuePriority jobPriority = priorityMap.remove(endedJob.getGroupId());
@@ -163,12 +171,6 @@ public class StatsCenter implements Center<RiderGroup> {
         this.stats = new CenterStatistics();
 
         this.queueStatsManager.resetQueueStats();
-    }
-
-    protected double retrieveServiceTime(RiderGroup endedJob) {
-        Double startServingTime = startServingTimeMap.remove(endedJob.getGroupId());
-
-        return ClockHandler.getInstance().getClock() - startServingTime;
     }
 
     @Override
@@ -216,6 +218,14 @@ public class StatsCenter implements Center<RiderGroup> {
         }
 
         return removedGroups;
+    }
+
+    public Map<Interval, CenterStatistics> getStatsPerInterval() {
+        return this.intervalStatsManager.getAllIntervalStats();
+    }
+
+    public CenterStatistics getWholeDayStats() {
+        return this.intervalStatsManager.getTotalStats();
     }
 
 }

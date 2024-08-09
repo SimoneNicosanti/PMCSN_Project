@@ -31,6 +31,7 @@ public class ParametersParser {
             rootNode = getRootNode(fileName);
             JsonNode jsonIntervals = rootNode.path("timeIntervals");
             Double lastEnd = 0.0;
+            Integer intervalIdx = 0;
             for (JsonNode jsonInterval : jsonIntervals) {
                 Double startClock = jsonInterval.path("start").asDouble();
                 Double endClock = jsonInterval.path("end").asDouble();
@@ -39,16 +40,17 @@ public class ParametersParser {
                 JsonNode routingProbs = jsonInterval.path("routingProbability");
                 Map<RoutingNodeType, Double> probabilityMap = parseRoutingProbs(routingProbs);
 
-                Interval interval = new Interval(startClock, endClock);
+                Interval interval = new Interval(startClock, endClock, intervalIdx);
                 Parameters intervalParams = new Parameters(probabilityMap, arrivalRate);
                 returnList.add(Pair.of(interval, intervalParams));
 
                 lastEnd = endClock;
+                intervalIdx++;
             }
 
             // Add the last interval created for exiting all the jobs from the
             // system
-            Pair<Interval, Parameters> finalIntervalCouple = buildFinalInterval(lastEnd);
+            Pair<Interval, Parameters> finalIntervalCouple = buildFinalInterval(lastEnd, intervalIdx);
             returnList.add(finalIntervalCouple);
         } catch (IOException e) {
             e.printStackTrace();
@@ -59,8 +61,8 @@ public class ParametersParser {
 
     // Return a fake interval created for exiting all the jobs from the
     // system
-    private static Pair<Interval, Parameters> buildFinalInterval(Double lastEnd) {
-        Interval interval = new Interval(lastEnd, Double.MAX_VALUE);
+    private static Pair<Interval, Parameters> buildFinalInterval(Double lastEnd, Integer lastIdx) {
+        Interval interval = new Interval(lastEnd, Double.MAX_VALUE, lastIdx);
         Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
         probabilityMap.put(RoutingNodeType.ATTRACTION, 0.0);
         probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);
