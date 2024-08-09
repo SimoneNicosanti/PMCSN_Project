@@ -23,151 +23,164 @@ public class CenterStatisticsWriter {
         String personFolder = Path.of(statsFolder, Constants.PEOPLE_DIRECTORY).toString();
         String groupFolder = Path.of(statsFolder, Constants.GROUP_DIRECTORY).toString();
 
-        writePersonStatistics(personFolder, fileName, center);
-        writeGroupStatistics(groupFolder, fileName, center);
+        // writePersonStatistics(personFolder, fileName, center);
+        // writeGroupStatistics(groupFolder, fileName, center);
     }
 
-    public static void writePersonStatistics(String statsFolder, String fileName, Center<RiderGroup> center) {
-        if (center instanceof ExitCenter)
-            return;
+    // public static void writePersonStatistics(String statsFolder, String fileName,
+    // Center<RiderGroup> center) {
+    // if (center instanceof ExitCenter)
+    // return;
 
-        String name = center.getName();
+    // String name = center.getName();
 
-        CenterStatistics stats = ((StatsCenter) center).getCenterStats();
-        double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
-        double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
+    // CenterStatistics stats = ((StatsCenter) center).getCenterStats();
+    // double avgServiceTimePerPerson = stats.getAvgServiceTimePerPerson();
+    // double avgServiceTimePerCompletedService =
+    // stats.getAvgServiceTimePerCompletedService();
 
-        double people_N_s = stats.getAvgNumberOfPersonInTheSystem();
-        double people_N_q = stats.getAvgNumberOfPersonInTheQueue();
+    // double people_N_s = stats.getAvgNumberOfPersonInTheSystem();
+    // double people_N_q = stats.getAvgNumberOfPersonInTheQueue();
 
-        double peopleQueueTimeByArea = stats.getAvgPersonQueueTimeByArea();
+    // double peopleQueueTimeByArea = stats.getAvgPersonQueueTimeByArea();
 
-        // double avgQueueTime = stats.getAvgQueueTime();
-        long peopleServed = stats.getNumberOfServedPerson();
+    // // double avgQueueTime = stats.getAvgQueueTime();
+    // long peopleServed = stats.getNumberOfServedPerson();
 
-        double lambda = peopleServed / ClockHandler.getInstance().getClock();
-        double mu = avgServiceTimePerPerson;
-        double rho = lambda / mu;
-        if (rho > 1)
-            rho = 1;
+    // double lambda = peopleServed / ClockHandler.getInstance().getClock();
+    // double mu = avgServiceTimePerPerson;
+    // double rho = lambda / mu;
+    // if (rho > 1)
+    // rho = 1;
 
-        List<QueueStats> perPrioQueueStats = stats.getQueueStats();
-        QueueStats generalQueueStats = stats.getAggregatedQueueStats();
-        double avgQueueTimePerPersonNormal = 0.0;
-        double avgQueueTimePerPersonPrio = 0.0;
-        double avgQueueTimePerPerson = generalQueueStats.getAvgQueueingTimePerPerson();
-        long numberOfNormalRider = stats.getNumberOfServedPerson(QueuePriority.NORMAL);
-        long numberOfPriorityRider = stats.getNumberOfServedPerson(QueuePriority.PRIORITY);
+    // List<QueueStats> perPrioQueueStats = stats.getQueueStats();
+    // QueueStats generalQueueStats = stats.getAggregatedQueueStats();
+    // double avgQueueTimePerPersonNormal = 0.0;
+    // double avgQueueTimePerPersonPrio = 0.0;
+    // double avgQueueTimePerPerson =
+    // generalQueueStats.getAvgQueueingTimePerPerson();
+    // long numberOfNormalRider =
+    // stats.getNumberOfServedPerson(QueuePriority.NORMAL);
+    // long numberOfPriorityRider =
+    // stats.getNumberOfServedPerson(QueuePriority.PRIORITY);
 
-        for (QueueStats queue : perPrioQueueStats) {
-            switch (queue.getPriority()) {
-                case NORMAL:
-                    if (avgQueueTimePerPersonNormal != 0.0)
-                        throw new RuntimeException(name + " has more than one normal queue");
-                    avgQueueTimePerPersonNormal = queue.getAvgQueueingTimePerPerson();
-                    break;
+    // for (QueueStats queue : perPrioQueueStats) {
+    // switch (queue.getPriority()) {
+    // case NORMAL:
+    // if (avgQueueTimePerPersonNormal != 0.0)
+    // throw new RuntimeException(name + " has more than one normal queue");
+    // avgQueueTimePerPersonNormal = queue.getAvgQueueingTimePerPerson();
+    // break;
 
-                case PRIORITY:
-                    if (avgQueueTimePerPersonPrio != 0.0)
-                        throw new RuntimeException(name + " has more than one priority queue");
-                    avgQueueTimePerPersonPrio = queue.getAvgQueueingTimePerPerson();
-                    break;
-                default:
-                    throw new RuntimeException("Unknown queue priority");
-            }
-        }
+    // case PRIORITY:
+    // if (avgQueueTimePerPersonPrio != 0.0)
+    // throw new RuntimeException(name + " has more than one priority queue");
+    // avgQueueTimePerPersonPrio = queue.getAvgQueueingTimePerPerson();
+    // break;
+    // default:
+    // throw new RuntimeException("Unknown queue priority");
+    // }
+    // }
 
-        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName + ".csv");
-        String[] header = {
-                "Center name", "Avg Queue Time", "Avg Service Time per Services",
-                "People Served", "Normal People Served", "Priority People Served",
-                "N_s", "N_q", "Avg Queue Time By Area",
-                "Avg Service Time", "Lambda", "Rho",
-                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
-        };
+    // Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName +
+    // ".csv");
+    // String[] header = {
+    // "Center name", "Avg Queue Time", "Avg Service Time per Services",
+    // "People Served", "Normal People Served", "Priority People Served",
+    // "N_s", "N_q", "Avg Queue Time By Area",
+    // "Avg Service Time", "Lambda", "Rho",
+    // "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
+    // };
 
-        // Writing the header
-        CsvWriter.writeHeader(filePath, header);
+    // // Writing the header
+    // CsvWriter.writeHeader(filePath, header);
 
-        // Writing the file
-        List<Object> record = List.of(
-                name, avgQueueTimePerPerson, avgServiceTimePerCompletedService,
-                peopleServed, numberOfNormalRider, numberOfPriorityRider,
-                people_N_s, people_N_q, peopleQueueTimeByArea,
-                avgServiceTimePerPerson, lambda, rho,
-                avgQueueTimePerPerson, avgQueueTimePerPersonNormal, avgQueueTimePerPersonPrio);
-        CsvWriter.writeRecord(filePath, record);
-    }
+    // // Writing the file
+    // List<Object> record = List.of(
+    // name, avgQueueTimePerPerson, avgServiceTimePerCompletedService,
+    // peopleServed, numberOfNormalRider, numberOfPriorityRider,
+    // people_N_s, people_N_q, peopleQueueTimeByArea,
+    // avgServiceTimePerPerson, lambda, rho,
+    // avgQueueTimePerPerson, avgQueueTimePerPersonNormal,
+    // avgQueueTimePerPersonPrio);
+    // CsvWriter.writeRecord(filePath, record);
+    // }
 
-    public static void writeGroupStatistics(String statsFolder, String fileName, Center<RiderGroup> center) {
-        if (center instanceof ExitCenter)
-            return;
+    // public static void writeGroupStatistics(String statsFolder, String fileName,
+    // Center<RiderGroup> center) {
+    // if (center instanceof ExitCenter)
+    // return;
 
-        String name = center.getName();
+    // String name = center.getName();
 
-        CenterStatistics stats = ((StatsCenter) center).getCenterStats();
-        double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();
-        double avgServiceTimePerCompletedService = stats.getAvgServiceTimePerCompletedService();
+    // CenterStatistics stats = ((StatsCenter) center).getCenterStats();
+    // double avgServiceTimePerGroup = stats.getAvgServiceTimePerGroup();
+    // double avgServiceTimePerCompletedService =
+    // stats.getAvgServiceTimePerCompletedService();
 
-        double group_N_s = stats.getAvgNumberOfGroupInTheSystem();
-        double group_N_q = stats.getAvgNumberOfGroupInTheQueue();
+    // double group_N_s = stats.getAvgNumberOfGroupInTheSystem();
+    // double group_N_q = stats.getAvgNumberOfGroupInTheQueue();
 
-        double groupsQueueTimeByArea = stats.getAvgGroupQueueTimeByArea();
+    // double groupsQueueTimeByArea = stats.getAvgGroupQueueTimeByArea();
 
-        // double avgQueueTime = stats.getAvgQueueTime();
-        long groupsServed = stats.getNumberOfServedGroup();
+    // // double avgQueueTime = stats.getAvgQueueTime();
+    // long groupsServed = stats.getNumberOfServedGroup();
 
-        double lambda = groupsServed / ClockHandler.getInstance().getClock();
-        double mu = avgServiceTimePerGroup;
-        double rho = lambda / mu;
-        if (rho > 1)
-            rho = 1;
+    // double lambda = groupsServed / ClockHandler.getInstance().getClock();
+    // double mu = avgServiceTimePerGroup;
+    // double rho = lambda / mu;
+    // if (rho > 1)
+    // rho = 1;
 
-        List<QueueStats> perPrioQueueStats = stats.getQueueStats();
-        QueueStats generalQueueStats = stats.getAggregatedQueueStats();
-        long numberOfNormalGroup = stats.getNumberOfServedGroup(QueuePriority.NORMAL);
-        long numberOfPriorityGroup = stats.getNumberOfServedGroup(QueuePriority.PRIORITY);
-        double avgQueueTimePerGroup = generalQueueStats.getAvgQueueingTimePerGroups();
-        double avgQueueTimePerGroupNormal = 0.0;
-        double avgQueueTimePerGroupPrio = 0.0;
+    // List<QueueStats> perPrioQueueStats = stats.getQueueStats();
+    // QueueStats generalQueueStats = stats.getAggregatedQueueStats();
+    // long numberOfNormalGroup =
+    // stats.getNumberOfServedGroup(QueuePriority.NORMAL);
+    // long numberOfPriorityGroup =
+    // stats.getNumberOfServedGroup(QueuePriority.PRIORITY);
+    // double avgQueueTimePerGroup =
+    // generalQueueStats.getAvgQueueingTimePerGroups();
+    // double avgQueueTimePerGroupNormal = 0.0;
+    // double avgQueueTimePerGroupPrio = 0.0;
 
-        for (QueueStats queue : perPrioQueueStats) {
-            switch (queue.getPriority()) {
-                case NORMAL:
-                    if (avgQueueTimePerGroupNormal != 0.0)
-                        throw new RuntimeException(name + " has more than one normal queue");
-                    avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups();
-                    break;
+    // for (QueueStats queue : perPrioQueueStats) {
+    // switch (queue.getPriority()) {
+    // case NORMAL:
+    // if (avgQueueTimePerGroupNormal != 0.0)
+    // throw new RuntimeException(name + " has more than one normal queue");
+    // avgQueueTimePerGroupNormal = queue.getAvgQueueingTimePerGroups();
+    // break;
 
-                case PRIORITY:
-                    if (avgQueueTimePerGroupPrio != 0.0)
-                        throw new RuntimeException(name + " has more than one priority queue");
-                    avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups();
-                    break;
-                default:
-                    throw new RuntimeException("Unknown queue priority");
-            }
-        }
+    // case PRIORITY:
+    // if (avgQueueTimePerGroupPrio != 0.0)
+    // throw new RuntimeException(name + " has more than one priority queue");
+    // avgQueueTimePerGroupPrio = queue.getAvgQueueingTimePerGroups();
+    // break;
+    // default:
+    // throw new RuntimeException("Unknown queue priority");
+    // }
+    // }
 
-        Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName + ".csv");
-        String[] header = {
-                "Center name", "Avg Queue Time", "Avg Service Time per Services",
-                "Groups Served", "Normal Group Served", "Priority Group Served",
-                "N_s", "N_q", "Avg Queue Time By Area",
-                "Avg Service Time - Groups", "Lambda", "Rho",
-                "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
-        };
+    // Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName +
+    // ".csv");
+    // String[] header = {
+    // "Center name", "Avg Queue Time", "Avg Service Time per Services",
+    // "Groups Served", "Normal Group Served", "Priority Group Served",
+    // "N_s", "N_q", "Avg Queue Time By Area",
+    // "Avg Service Time - Groups", "Lambda", "Rho",
+    // "Avg Queue Time", "Avg Queue Time Normal", "Avg Queue Time Prio"
+    // };
 
-        // Writing the header
-        CsvWriter.writeHeader(filePath, header);
+    // // Writing the header
+    // CsvWriter.writeHeader(filePath, header);
 
-        // Writing the file
-        List<Object> record = List.of(
-                name, avgQueueTimePerGroup, avgServiceTimePerCompletedService,
-                groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
-                group_N_s, group_N_q, groupsQueueTimeByArea,
-                avgServiceTimePerGroup, lambda, rho,
-                avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio);
-        CsvWriter.writeRecord(filePath, record);
-    }
+    // // Writing the file
+    // List<Object> record = List.of(
+    // name, avgQueueTimePerGroup, avgServiceTimePerCompletedService,
+    // groupsServed, numberOfNormalGroup, numberOfPriorityGroup,
+    // group_N_s, group_N_q, groupsQueueTimeByArea,
+    // avgServiceTimePerGroup, lambda, rho,
+    // avgQueueTimePerGroup, avgQueueTimePerGroupNormal, avgQueueTimePerGroupPrio);
+    // CsvWriter.writeRecord(filePath, record);
+    // }
 }

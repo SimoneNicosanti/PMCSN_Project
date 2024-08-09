@@ -38,10 +38,7 @@ public class Constants {
     public static final double PRIORITY_PASS_PROB = 0.1;
     public static final double PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
     public static final double NORMAL_PERCENTAGE_PER_RIDE = 0.50;
-    public static final long SEED = 1234;
-
-    // Indicates whether to collect statistics for each interval or not
-    public static final boolean INTERVAL_STATS = false;
+    public static final long SEED = 4321;
 
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";

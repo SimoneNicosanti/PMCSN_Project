@@ -99,13 +99,6 @@ public class ParkController implements Controller<RiderGroup> {
             }
         }
 
-        if (Constants.INTERVAL_STATS) {
-            // write end stats
-            writeCenterStats(currentInterval);
-        } else {
-            writeCenterStats(null);
-        }
-
         IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
 
         EventLogger.logRandomStreams("RandomStreams");
@@ -121,13 +114,6 @@ public class ParkController implements Controller<RiderGroup> {
         System.out.println("CURRENT INTERVAL CHANGED");
         System.out.println(interval.getStart() + " - " + interval.getEnd());
         System.out.println("");
-
-        if (Constants.INTERVAL_STATS) {
-            // Save stats for the ended interval time
-            writeCenterStats(currentInterval);
-            // Reset stats for the next interval time
-            resetCenterStats();
-        }
 
         // Change the parameters based on the interval
         changeParameters(interval);
@@ -158,24 +144,9 @@ public class ParkController implements Controller<RiderGroup> {
         }
     }
 
-    private void resetCenterStats() {
-        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-            if (center instanceof ExitCenter) {
-                continue;
-            }
-            ((StatsCenter) center).resetCenterStats();
-        }
-    }
-
     private void init_simulation() {
         // Reset statistics
         WriterHelper.clearDirectory("Job");
-
-        if (Constants.INTERVAL_STATS) {
-            WriterHelper.clearDirectory(Path.of(".", "Center", "Interval").toString());
-        } else {
-            WriterHelper.clearDirectory(Path.of(".", "Center", "Total").toString());
-        }
         WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Center").toString());
         WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
         // Prepare the logger and set the system clock to 0
