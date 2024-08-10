@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.engineering.factory;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -58,7 +59,7 @@ public class EventBuilder {
     }
 
     private static GroupPriority computeGroupPriority() {
-        if (Constants.VERIFICATION_MODE)
+        if (Constants.MODE == SimulationMode.VERIFICATION)
             return GroupPriority.NORMAL;
 
         double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM);

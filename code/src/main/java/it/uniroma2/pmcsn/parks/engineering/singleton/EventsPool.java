@@ -26,34 +26,6 @@ public class EventsPool<T> {
         this.eventMap = new HashMap<>();
     }
 
-    /**
-     * Free the event pool at the park closure. All events will be deleted except
-     * those for termination of the current services and the arrival to the
-     * ExitCenter.
-     */
-    // public void freePool(Center<T> exitCenter) {
-    // for (Entry<EventsPoolId, List<SystemEvent<T>>> entry :
-    // this.eventMap.entrySet()) {
-    // EventsPoolId key = entry.getKey();
-
-    // if (key.getCenterName().equals(Constants.EXIT)
-    // || key.getEventType() == EventType.END_PROCESS) {
-    // continue;
-    // }
-
-    // if (key.getEventType() == EventType.ARRIVAL) {
-    // for (SystemEvent<T> event : entry.getValue()) {
-    // event.setCenter(exitCenter);
-
-    // }
-    // continue;
-    // }
-
-    // // Free the list items
-    // entry.getValue().clear();
-    // }
-    // }
-
     public SystemEvent<T> getNextEvent() {
         SystemEvent<T> nextEvent = null;
         EventsPoolId nextEventsPoolId = null;

@@ -83,8 +83,13 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
+        Double arrivalTime = ClockHandler.getInstance().getClock();
+
+        // Adding this makes the queue times decrease (should we add it??)
+        //
+
         SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
-                ClockHandler.getInstance().getClock());
+                arrivalTime);
         EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
 
         // EventLogger.logEvent("Schedule ", newEvent);

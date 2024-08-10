@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.UnaryOperator;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -45,7 +47,6 @@ public class ConfidenceIntervalComputer {
     public record ConfidenceInterval(
             String centerName,
             String statsName,
-            Double theoryValue,
             Double mean,
             Double autocorrelation,
             Double interval) {
@@ -89,7 +90,7 @@ public class ConfidenceIntervalComputer {
         }
     }
 
-    public List<ConfidenceInterval> computeConfidenceIntervals(Map<String, Map<String, Double>> theoryValues) {
+    public List<ConfidenceInterval> computeConfidenceIntervals() {
         List<ConfidenceInterval> returnList = new ArrayList<>();
         for (String centerName : valuesMap.keySet()) {
             StatsValues values = valuesMap.get(centerName);
@@ -101,7 +102,6 @@ public class ConfidenceIntervalComputer {
                 returnList.add(new ConfidenceInterval(
                         centerName,
                         statsName,
-                        theoryValues.get(centerName).get(statsName),
                         mean,
                         autocorrelation,
                         interval));

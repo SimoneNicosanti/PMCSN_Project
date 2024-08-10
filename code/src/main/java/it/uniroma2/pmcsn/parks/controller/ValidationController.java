@@ -1,7 +1,6 @@
 package it.uniroma2.pmcsn.parks.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -17,25 +16,26 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
-import it.uniroma2.pmcsn.parks.verification.TheoreticalValueComputer;
-import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
 
-public class VerifyController implements Controller<RiderGroup> {
+public class ValidationController implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
 
     public static void main(String[] args) {
         WriterHelper.createAllFolders();
         long start = System.currentTimeMillis();
-        new VerifyController().simulate();
+        new ValidationController().simulate();
         Long time = System.currentTimeMillis() - start;
         System.out.println("Run Time >>> " + time);
     }
 
-    public VerifyController() {
-        Constants.VERIFICATION_MODE = true;
-        Constants.MODE = SimulationMode.VERIFICATION;
+    public ValidationController() {
+        Constants.MODE = SimulationMode.VALIDATION;
+        Constants.VALIDATION_MODE = true;
+        Constants.BATCH_NUMBER = 40;
+        Constants.BATCH_SIZE = 250;
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
 
@@ -49,7 +49,7 @@ public class VerifyController implements Controller<RiderGroup> {
     @Override
     public void simulate() {
 
-        VerificationWriter.resetData();
+        ValidationWriter.resetData();
 
         // Reset verification stats
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
@@ -58,22 +58,17 @@ public class VerifyController implements Controller<RiderGroup> {
 
         List<Center<RiderGroup>> centerList = batchSimulation();
 
-        TheoreticalValueComputer theoryValueComputer = new TheoreticalValueComputer();
-        Map<String, Map<String, Double>> theoryMap = theoryValueComputer.computeAllTheoreticalValues(centerList);
-        // VerificationWriter.writeTheoreticalQueueTimeValues(theoryMap);
-
-        VerificationWriter.writeSimulationResult(centerList, theoryMap);
-
         ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
         computer.updateStatistics(centerList);
         List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals();
-        VerificationWriter.writeConfidenceIntervals(confidenceIntervals, theoryMap,
-                "ConfidenceIntervals");
+
+        ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
 
         // Write confidence intervals for all statistics
     }
 
     public List<Center<RiderGroup>> batchSimulation() {
+        int i = 0;
 
         while (!stopSimulation()) {
 
@@ -99,6 +94,14 @@ public class VerifyController implements Controller<RiderGroup> {
                     }
                     break;
             }
+
+            int dividend = (int) ClockHandler.getInstance().getClock();
+
+            if (dividend / 10000 != i) {
+                System.out.println(ClockHandler.getInstance().getClock());
+                i++;
+            }
+
         }
 
         System.out.println("Final Clock >>> " + ClockHandler.getInstance().getClock());
@@ -118,5 +121,4 @@ public class VerifyController implements Controller<RiderGroup> {
         }
         return true;
     }
-
 }

@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.controller;
 
 import java.nio.file.Path;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
 import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
@@ -25,7 +26,13 @@ public class ParkController implements Controller<RiderGroup> {
     private ConfigHandler configHandler;
     private Interval currentInterval;
 
+    public static void main(String[] args) {
+        WriterHelper.createAllFolders();
+        new ParkController().simulate();
+    }
+
     public ParkController() {
+        Constants.MODE = SimulationMode.NORMAL;
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
         this.configHandler = ConfigHandler.getInstance();

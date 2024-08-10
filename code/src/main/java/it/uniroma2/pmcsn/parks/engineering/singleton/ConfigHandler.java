@@ -32,9 +32,12 @@ public class ConfigHandler {
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
+        // TODO Try to better handle this
         String configFilePath;
         if (Constants.VERIFICATION_MODE) {
             configFilePath = Constants.VERIFICATION_CONFIG_FILENAME;
+        } else if (Constants.VALIDATION_MODE) {
+            configFilePath = Constants.VALIDATION_CONFIG_FILENAME;
         } else {
             configFilePath = Constants.CONFIG_FILENAME;
         }

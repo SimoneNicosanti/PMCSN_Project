@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -130,7 +131,17 @@ public class StatsCenter implements Center<RiderGroup> {
         this.intervalStatsManager.updateServiceTime(startServingTime, endServingTime, endedJob.getGroupSize(),
                 multiplier);
         this.wholeDayStats.updateServiceArea(endServingTime - startServingTime, endedJob.getGroupSize(), multiplier);
+
+        // if (Constants.VALIDATION_MODE && center instanceof Attraction) {
+        // // If validation mode and center is an attraction, increment service times
+        // once
+        // // for each service -> otherwise the batch will be filled by copy of the same
+        // // values
+        // this.serviceBatchStats.addTime(jobServiceTime);
+
+        // } else {
         this.serviceBatchStats.addTime(jobServiceTime);
+        // }
 
     }
 

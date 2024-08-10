@@ -1,0 +1,17 @@
+{
+  "timeIntervals": [
+    {
+      "start": 0.0,
+      "end": 525600.0,
+      "routingProbability": {
+        "attractions": 0.9,
+        "restaurants": 0.05,
+        "exit": 0.05
+      },
+      "arrivalRate": 11.0
+    }
+  ],
+  "entranceDistribution": "Exponential",
+  "attractionsDistribution": "Exponential",
+  "restaurantsDistribution": "Exponential"
+}

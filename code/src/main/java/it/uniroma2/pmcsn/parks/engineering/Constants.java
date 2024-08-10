@@ -2,6 +2,8 @@ package it.uniroma2.pmcsn.parks.engineering;
 
 import java.nio.file.Path;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
+
 public class Constants {
 
     public static final String DATA_PATH = Path.of(".", "Out", "Data").toString();
@@ -13,6 +15,7 @@ public class Constants {
     public static final String JOB_DATA_PATH = Path.of(DATA_PATH, "Job").toString();
     public static final String LOG_PATH = Path.of(".", "Out", "Log").toString();
     public static final String VERIFICATION_PATH = Path.of(".", "Out", "Data", "Verification").toString();
+    public static final String VALIDATION_PATH = Path.of(".", "Out", "Data", "Validation").toString();
     public static final String CONFIG_PATH = Path.of(".", "config").toString();
 
     public static final String ENTRANCE = "Entrance";
@@ -40,13 +43,17 @@ public class Constants {
     public static final double NORMAL_PERCENTAGE_PER_RIDE = 0.50;
     public static final long SEED = 4321;
 
+    public static SimulationMode MODE;
     public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";
     public static final String VERIFICATION_RESTAURANT_FILE = "RestaurantsDataVerify.csv";
     public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
     public static final String VERIFICATION_CONFIG_FILENAME = "ConfigVerify.json";
     public static final int VERIFY_SIMULATION_NUM = 75;
-    public static final int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
-    public static final int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
+    public static int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
+    public static int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
+
+    public static boolean VALIDATION_MODE = false;
+    public static final String VALIDATION_CONFIG_FILENAME = "ConfigVerify.json";
 
 }

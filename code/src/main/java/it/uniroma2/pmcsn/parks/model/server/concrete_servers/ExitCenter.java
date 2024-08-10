@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
@@ -24,7 +25,7 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        if (!Constants.VERIFICATION_MODE) {
+        if (Constants.MODE == SimulationMode.NORMAL) {
             JobInfoWriter.writeJobInfo("Job", filename, job);
         }
         return null;

@@ -73,7 +73,6 @@ public class CenterStatistics {
         return switch (statsType) {
             case GROUP -> this.serviceAreaGroup;
             case PERSON -> this.serviceAreaPeople;
-            default -> null;
         };
     }
 
