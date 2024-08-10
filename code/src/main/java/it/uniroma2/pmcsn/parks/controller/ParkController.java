@@ -13,11 +13,8 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.IntervalStatisticsWriter;
-import it.uniroma2.pmcsn.parks.utils.JobInfoWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 
 public class ParkController implements Controller<RiderGroup> {

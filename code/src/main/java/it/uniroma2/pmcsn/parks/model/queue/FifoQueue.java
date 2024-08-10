@@ -2,8 +2,6 @@ package it.uniroma2.pmcsn.parks.model.queue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
-
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 

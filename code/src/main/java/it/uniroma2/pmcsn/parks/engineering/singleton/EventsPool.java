@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
-import it.uniroma2.pmcsn.parks.engineering.Constants;
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
-import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 
 public class EventsPool<T> {
