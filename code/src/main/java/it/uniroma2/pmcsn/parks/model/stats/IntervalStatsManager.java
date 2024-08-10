@@ -25,8 +25,7 @@ public class IntervalStatsManager {
         for (Interval interval : intervalList) {
             Double coveredTime = findTimeIntersectionWithInterval(startService, endService, interval);
             if (coveredTime <= 0) {
-                // As the list of interval is sorted
-                // we can break the for
+                // As the list of interval is sorted we can break the for
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
@@ -39,8 +38,7 @@ public class IntervalStatsManager {
         for (Interval interval : intervalList) {
             Double coveredTime = findTimeIntersectionWithInterval(startQueue, endQueue, interval);
             if (coveredTime <= 0) {
-                // As the list of interval is sorted
-                // we can break the for
+                // As the list of interval is sorted we can break the for
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
@@ -63,8 +61,6 @@ public class IntervalStatsManager {
         for (Interval interval : intervalStatsMap.keySet()) {
             if (findTimeIntersectionWithInterval(startTime, endTime, interval) > 0) {
                 coveredIntervals.add(interval);
-            } else {
-                System.out.println("CIAO");
             }
         }
 

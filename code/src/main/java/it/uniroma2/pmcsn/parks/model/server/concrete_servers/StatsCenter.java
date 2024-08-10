@@ -14,7 +14,6 @@ import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.model.stats.CenterStatistics;
 import it.uniroma2.pmcsn.parks.model.stats.IntervalStatsManager;
-import it.uniroma2.pmcsn.parks.model.stats.QueueStatsManager;
 
 /**
  * Decorator for collecting stats.
@@ -24,7 +23,7 @@ public class StatsCenter implements Center<RiderGroup> {
     private Center<RiderGroup> center;
 
     protected CenterStatistics wholeDayStats;
-    // protected QueueStatsManager queueStatsManager;
+
     protected BatchStats serviceBatchStats;
     protected BatchStats queueBatchStats;
 
@@ -37,7 +36,6 @@ public class StatsCenter implements Center<RiderGroup> {
     public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
 
-        // this.queueStatsManager = new QueueStatsManager();
         this.wholeDayStats = new CenterStatistics();
 
         this.startServingTimeMap = new HashMap<>();
@@ -62,7 +60,6 @@ public class StatsCenter implements Center<RiderGroup> {
 
         // Save arrival time
         if (priority != null) {
-            // Compute areas
             this.priorityMap.put(job.getGroupId(), priority);
             this.enqueuedTimeMap.put(job.getGroupId(), ClockHandler.getInstance().getClock());
         }
@@ -103,9 +100,7 @@ public class StatsCenter implements Center<RiderGroup> {
 
     @Override
     public void endService(RiderGroup endedJob) {
-
         this.collectEndServiceStats(endedJob);
-
         this.center.endService(endedJob);
     }
 
@@ -136,11 +131,6 @@ public class StatsCenter implements Center<RiderGroup> {
                 multiplier);
         this.wholeDayStats.updateServiceArea(endServingTime - startServingTime, endedJob.getGroupSize(), multiplier);
         this.serviceBatchStats.addTime(jobServiceTime);
-
-        // Increment statistics about services
-        // QueuePriority jobPriority = priorityMap.remove(endedJob.getGroupId());
-        // this.wholeDayStats.endServiceUpdate(jobServiceTime, endedJob.getGroupSize(),
-        // jobPriority);
 
     }
 

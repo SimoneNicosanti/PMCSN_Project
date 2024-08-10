@@ -15,10 +15,9 @@ import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
-import it.uniroma2.pmcsn.parks.utils.CenterStatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
 import it.uniroma2.pmcsn.parks.utils.IntervalStatisticsWriter;
-import it.uniroma2.pmcsn.parks.utils.JobStatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.JobInfoWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 
 public class ParkController implements Controller<RiderGroup> {
@@ -122,26 +121,6 @@ public class ParkController implements Controller<RiderGroup> {
 
     private void changeParameters(Interval interval) {
         ConfigHandler.getInstance().changeParameters(interval);
-    }
-
-    private void writeCenterStats(Interval interval) {
-        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-
-            // ((StatsCenter) center).updateAreas();
-
-            if (interval == null) {
-                CenterStatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
-                        "TotalCenterStats", center);
-
-                // Check whether we are veryfing the model or not
-
-            } else {
-                CenterStatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
-                        interval.getStart() + "-" + interval.getEnd(),
-                        center);
-
-            }
-        }
     }
 
     private void init_simulation() {

@@ -7,9 +7,9 @@ import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-public class JobStatisticsWriter {
+public class JobInfoWriter {
 
-    public static void writeStatistics(String statsFolder, String fileName, RiderGroup riderGroup) {
+    public static void writeJobInfo(String statsFolder, String fileName, RiderGroup riderGroup) {
 
         Long groupId = riderGroup.getGroupId();
         Integer groupSize = riderGroup.getGroupSize();
