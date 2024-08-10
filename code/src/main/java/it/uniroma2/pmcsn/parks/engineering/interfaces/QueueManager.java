@@ -15,4 +15,6 @@ public interface QueueManager<T> {
 
     public int queueLength(GroupPriority priority);
 
+    public List<T> dequeueAll();
+
 }

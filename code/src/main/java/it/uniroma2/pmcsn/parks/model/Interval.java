@@ -3,10 +3,16 @@ package it.uniroma2.pmcsn.parks.model;
 public class Interval {
     private Double start;
     private Double end;
+    private Integer index;
 
-    public Interval(Double start, Double end) {
+    public Integer getIndex() {
+        return index;
+    }
+
+    public Interval(Double start, Double end, Integer index) {
         this.start = start;
         this.end = end;
+        this.index = index;
     }
 
     @Override
@@ -26,6 +32,10 @@ public class Interval {
 
     public double getEnd() {
         return this.end;
+    }
+
+    public double getSize() {
+        return this.end - this.start;
     }
 
 }

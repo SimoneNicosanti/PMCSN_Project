@@ -13,16 +13,15 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.StatisticsWriter;
+import it.uniroma2.pmcsn.parks.utils.IntervalStatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 
 public class ParkController implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
     private ClockHandler clockHandler;
+    private EventsPool<RiderGroup> eventsPool;
     private ConfigHandler configHandler;
     private Interval currentInterval;
 
@@ -30,6 +29,7 @@ public class ParkController implements Controller<RiderGroup> {
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
         this.configHandler = ConfigHandler.getInstance();
+        this.eventsPool = EventsPool.<RiderGroup>getInstance();
 
         this.init_simulation();
 
@@ -48,7 +48,7 @@ public class ParkController implements Controller<RiderGroup> {
 
         while (true) {
 
-            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+            SystemEvent<RiderGroup> nextEvent = eventsPool.getNextEvent();
             if (nextEvent == null) {
                 // When all the events finish, the simulation ends
                 break;
@@ -60,9 +60,20 @@ public class ParkController implements Controller<RiderGroup> {
             Interval interval = configHandler.getInterval(clockHandler.getClock());
             if (isIntervalChanged(interval)) {
                 changeInterval(interval);
+
+                // If the park is closing...
+                if (configHandler.isParkClosing(currentInterval)) {
+                    // ... free and terminate the current services and ...
+                    // eventsPool.freePool();
+                    // ... close all centers (free the queues)
+                    for (Center<RiderGroup> center : this.networkBuilder.getAllCenters()) {
+                        center.closeCenter();
+                    }
+                }
             }
 
             RiderGroup job = nextEvent.getJob();
+            Long groupId = job.getGroupId();
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 // TODO Re add START_PROCESS to have more transparency
@@ -84,14 +95,11 @@ public class ParkController implements Controller<RiderGroup> {
             }
         }
 
-        if (Constants.INTERVAL_STATS) {
-            // write end stats
-            writeCenterStats(currentInterval);
-        } else {
-            writeCenterStats(null);
-        }
+        IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
 
         EventLogger.logRandomStreams("RandomStreams");
+
+        System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock());
     }
 
     private boolean isIntervalChanged(Interval interval) {
@@ -103,13 +111,6 @@ public class ParkController implements Controller<RiderGroup> {
         System.out.println(interval.getStart() + " - " + interval.getEnd());
         System.out.println("");
 
-        if (Constants.INTERVAL_STATS) {
-            // Save stats for the ended interval time
-            writeCenterStats(currentInterval);
-            // Reset stats for the next interval time
-            resetCenterStats();
-        }
-
         // Change the parameters based on the interval
         changeParameters(interval);
         this.currentInterval = interval;
@@ -119,42 +120,11 @@ public class ParkController implements Controller<RiderGroup> {
         ConfigHandler.getInstance().changeParameters(interval);
     }
 
-    private void writeCenterStats(Interval interval) {
-        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-
-            if (interval == null) {
-                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Total").toString(),
-                        "TotalCenterStats", center);
-
-                // Check whether we are veryfing the model or not
-
-            } else {
-                StatisticsWriter.writeCenterStatistics(Path.of(".", "Center", "Interval").toString(),
-                        interval.getStart() + "-" + interval.getEnd(),
-                        center);
-
-            }
-        }
-    }
-
-    private void resetCenterStats() {
-        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
-            if (center instanceof ExitCenter) {
-                continue;
-            }
-            ((StatsCenter) center).resetCenterStats();
-        }
-    }
-
     private void init_simulation() {
         // Reset statistics
-        StatisticsWriter.resetStatistics("Job");
-
-        if (Constants.INTERVAL_STATS) {
-            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Interval").toString());
-        } else {
-            StatisticsWriter.resetStatistics(Path.of(".", "Center", "Total").toString());
-        }
+        WriterHelper.clearDirectory("Job");
+        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Center").toString());
+        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
         // Prepare the logger and set the system clock to 0
         WriterHelper.clearDirectory(Constants.LOG_PATH);
         ClockHandler.getInstance().setClock(0);
@@ -163,6 +133,6 @@ public class ParkController implements Controller<RiderGroup> {
     private void scheduleArrivalEvent() {
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
         SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
+        eventsPool.scheduleNewEvent(arrivalEvent);
     }
 }

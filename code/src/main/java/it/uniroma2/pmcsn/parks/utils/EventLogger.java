@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.utils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
@@ -16,10 +17,13 @@ public class EventLogger {
         Map<String, Integer> streamMap = RandomHandler.getInstance().getStreamMap();
         Path randomStreamsPath = Path.of("Out", "Log", streamFileName + ".log");
 
-        try {
-            randomStreamsPath.toFile().createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (!randomStreamsPath.toFile().exists()) {
+            try {
+                Files.createDirectories(randomStreamsPath.getParent());
+                randomStreamsPath.toFile().createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         try (FileOutputStream streamLogWriter = new FileOutputStream(randomStreamsPath.toFile(), true)) {

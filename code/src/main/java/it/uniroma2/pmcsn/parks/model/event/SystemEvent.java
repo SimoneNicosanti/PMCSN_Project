@@ -16,6 +16,10 @@ public class SystemEvent<T> implements Comparable<SystemEvent<T>> {
         this.job = job;
     }
 
+    public void setCenter(Center<T> center) {
+        this.eventCenter = center;
+    }
+
     public EventsPoolId getPoolId() {
         return this.id;
     }

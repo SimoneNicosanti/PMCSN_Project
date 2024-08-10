@@ -23,6 +23,8 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected final Integer slotNumber;
     protected Double popularity;
 
+    private boolean isCenterClosed;
+
     private RoutingNode<RiderGroup> nextRoutingNode;
 
     public AbstractCenter(String name, QueueManager<RiderGroup> queueManager, Integer slotNumber,
@@ -33,6 +35,8 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         this.slotNumber = slotNumber;
         this.avgServiceTime = avgServiceTime;
         this.popularity = popularity;
+
+        this.isCenterClosed = false;
     }
 
     public double getAvgDuration() {
@@ -43,12 +47,15 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         return this.slotNumber;
     }
 
-    /**
-     * Arrival of a new job in the center. If the center is able to serve the job,
-     * it adds it to a queue and starts the service, otherwise it just adds
-     * the job to the queue.
-     */
     protected QueuePriority commonArrivalManagement(RiderGroup job) {
+
+        if (isCenterClosed) {
+            Center<RiderGroup> nextCenter = this.nextRoutingNode.route(job);
+            Double currentClock = ClockHandler.getInstance().getClock();
+            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, job, currentClock);
+            return null;
+        }
+
         int jobSize = job.getGroupSize();
 
         // Check before adding the job in the queue, otherwise the queue is never empty
@@ -136,5 +143,19 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * Return the new service time for the job
      */
     protected abstract Double getNewServiceTime(RiderGroup job);
+
+    @Override
+    public List<RiderGroup> closeCenter() {
+        List<RiderGroup> removedGroups = this.queueManager.dequeueAll();
+
+        for (RiderGroup group : removedGroups) {
+            Center<RiderGroup> nextCenter = nextRoutingNode.route(group);
+            Double currentClock = ClockHandler.getInstance().getClock();
+            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, group, currentClock);
+        }
+
+        this.isCenterClosed = true;
+        return removedGroups;
+    }
 
 }

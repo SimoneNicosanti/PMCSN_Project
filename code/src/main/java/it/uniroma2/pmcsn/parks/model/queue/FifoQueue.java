@@ -2,7 +2,6 @@ package it.uniroma2.pmcsn.parks.model.queue;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
@@ -42,5 +41,13 @@ public class FifoQueue implements Queue<RiderGroup> {
             sum += group.getGroupSize();
         }
         return sum;
+    }
+
+    @Override
+    public List<RiderGroup> dequeueAll() {
+        List<RiderGroup> dequeuedList = new ArrayList<>();
+        dequeuedList.addAll(queueList);
+        queueList.removeIf(elem -> true);
+        return dequeuedList;
     }
 }

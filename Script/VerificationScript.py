@@ -33,7 +33,7 @@ def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType
 
     plt.tight_layout()
     plt.legend()
-    plt.savefig("./Out/Charts/Verification/Convergence/" + centerType + "_" + statName + "_" + "Convergence")
+    plt.savefig("./Out/Charts/Verification/Convergence/" + centerType + "/" + centerType + "_" + statName + "_" + "Convergence")
     plt.clf()
 
 ############################################################################################################################
@@ -77,7 +77,7 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
 
     plt.tight_layout()
     plt.legend()
-    plt.savefig("./Out/Charts/Verification/Intervals/" + centerType + "_" + statName + "_" + "ConfidenceIntervals")
+    plt.savefig("./Out/Charts/Verification/Intervals/" + centerType + "/" + centerType + "_" + statName + "_" + "ConfidenceIntervals")
     plt.clf()
 
 ############################################################################################################################
@@ -103,7 +103,8 @@ def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, cente
 
 
 if __name__ == "__main__" :
-    os.makedirs("./Out/Charts/Verification/Convergence", exist_ok = True)
-    os.makedirs("./Out/Charts/Verification/Intervals", exist_ok = True)
+    for centerType in centerTypeList :
+        os.makedirs("./Out/Charts/Verification/Convergence/" + centerType + "/", exist_ok = True)
+        os.makedirs("./Out/Charts/Verification/Intervals/" + centerType + "/", exist_ok = True)
     verificationCharts() 
     confidenceIntervalCharts()

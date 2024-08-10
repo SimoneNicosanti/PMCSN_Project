@@ -53,4 +53,9 @@ public class EntranceQueueManager implements QueueManager<RiderGroup> {
         return this.queue.queueLength();
     }
 
+    @Override
+    public List<RiderGroup> dequeueAll() {
+        return queue.dequeueAll();
+    }
+
 }

@@ -29,7 +29,7 @@ public class EventBuilder {
 
     public static SystemEvent<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
-        // If arrivalRate == 0, stop the arrival
+        // If arrivalRate == 0, stop arrivals
         if (arrivalRate == 0.0) {
             return null;
         }
