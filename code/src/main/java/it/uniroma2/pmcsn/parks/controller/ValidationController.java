@@ -33,7 +33,6 @@ public class ValidationController implements Controller<RiderGroup> {
 
     public ValidationController() {
         Constants.MODE = SimulationMode.VALIDATION;
-        Constants.VALIDATION_MODE = true;
         Constants.BATCH_NUMBER = 40;
         Constants.BATCH_SIZE = 250;
         this.networkBuilder = new NetworkBuilder();
@@ -72,6 +71,8 @@ public class ValidationController implements Controller<RiderGroup> {
 
         while (!stopSimulation()) {
 
+            // long time = System.currentTimeMillis();
+
             SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             Double nextEventTime = nextEvent.getEventTime();
 
@@ -94,6 +95,9 @@ public class ValidationController implements Controller<RiderGroup> {
                     }
                     break;
             }
+
+            // time = System.currentTimeMillis() - time;
+            // System.out.println(time);
 
             int dividend = (int) ClockHandler.getInstance().getClock();
 

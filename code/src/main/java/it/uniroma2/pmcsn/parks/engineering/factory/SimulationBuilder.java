@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
@@ -22,7 +23,7 @@ import it.uniroma2.pmcsn.parks.verification.AttractionVerify;
 public class SimulationBuilder {
 
     public static int getJobSize() {
-        if (Constants.VERIFICATION_MODE) {
+        if (Constants.MODE == SimulationMode.VERIFICATION) {
             return 1;
         } else {
             return 1 + Double.valueOf(RandomHandler.getInstance().getPoisson(Constants.GROUP_SIZE_STREAM, 3))
@@ -47,7 +48,7 @@ public class SimulationBuilder {
     public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(
             List<Center<RiderGroup>> attractionList) {
 
-        if (Constants.VERIFICATION_MODE) {
+        if (Constants.MODE == SimulationMode.VERIFICATION) {
             return new AttractionRouterProbabilitiesVerify(attractionList);
         } else {
             return new AttractionRouterProbabilities(attractionList);
@@ -56,7 +57,7 @@ public class SimulationBuilder {
 
     public static Attraction buildAttraction(String name, int numberOfSeats, double popularity,
             double avgDuration) {
-        if (Constants.VERIFICATION_MODE) {
+        if (Constants.MODE == SimulationMode.VERIFICATION) {
             return new AttractionVerify(name, numberOfSeats, popularity, avgDuration);
         } else {
             return new Attraction(name, numberOfSeats, popularity, avgDuration);

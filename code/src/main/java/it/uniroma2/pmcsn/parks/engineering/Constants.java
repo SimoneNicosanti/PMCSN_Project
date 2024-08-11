@@ -44,7 +44,6 @@ public class Constants {
     public static final long SEED = 4321;
 
     public static SimulationMode MODE;
-    public static boolean VERIFICATION_MODE = false;
     public static final String VERIFICATION_ATTRACTION_FILE = "AttractionsDataVerify.csv";
     public static final String VERIFICATION_RESTAURANT_FILE = "RestaurantsDataVerify.csv";
     public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
@@ -53,7 +52,6 @@ public class Constants {
     public static int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
     public static int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
 
-    public static boolean VALIDATION_MODE = false;
     public static final String VALIDATION_CONFIG_FILENAME = "ConfigVerify.json";
 
 }

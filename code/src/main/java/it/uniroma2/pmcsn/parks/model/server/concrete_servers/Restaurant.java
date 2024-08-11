@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.queue.RestaurantQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
@@ -20,7 +21,7 @@ public class Restaurant extends MultiServer {
 
     @Override
     protected Double getNewServiceTime(RiderGroup job) {
-        if (Constants.VERIFICATION_MODE && job.getGroupSize() != 1)
+        if (Constants.MODE == SimulationMode.VERIFICATION && job.getGroupSize() != 1)
             throw new RuntimeException();
         return RandomHandler.getInstance().getErlang(this.name, job.getGroupSize(), this.avgServiceTime);
     }

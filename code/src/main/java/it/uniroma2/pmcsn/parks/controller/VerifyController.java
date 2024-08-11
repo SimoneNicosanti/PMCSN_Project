@@ -34,7 +34,6 @@ public class VerifyController implements Controller<RiderGroup> {
     }
 
     public VerifyController() {
-        Constants.VERIFICATION_MODE = true;
         Constants.MODE = SimulationMode.VERIFICATION;
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();

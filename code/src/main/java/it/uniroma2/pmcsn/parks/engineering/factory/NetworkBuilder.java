@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
@@ -89,21 +90,21 @@ public class NetworkBuilder {
     private String getBuildFileName(ServerType serverType) {
         switch (serverType) {
             case ENTRANCE:
-                if (Constants.VERIFICATION_MODE) {
+                if (Constants.MODE == SimulationMode.VERIFICATION) {
                     return Constants.VERIFICATION_ENTRANCE_FILE;
                 } else {
                     return Constants.ENTRANCE_FILE;
                 }
 
             case ATTRACTION:
-                if (Constants.VERIFICATION_MODE) {
+                if (Constants.MODE == SimulationMode.VERIFICATION) {
                     return Constants.VERIFICATION_ATTRACTION_FILE;
                 } else {
                     return Constants.ATTRACTION_FILE;
                 }
 
             case RESTAURANT:
-                if (Constants.VERIFICATION_MODE) {
+                if (Constants.MODE == SimulationMode.VERIFICATION) {
                     return Constants.VERIFICATION_RESTAURANT_FILE;
                 } else {
                     return Constants.RESTAURANT_FILE;

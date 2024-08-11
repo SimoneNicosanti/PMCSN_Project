@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.factory.ParametersParser;
@@ -34,9 +35,9 @@ public class ConfigHandler {
 
         // TODO Try to better handle this
         String configFilePath;
-        if (Constants.VERIFICATION_MODE) {
+        if (Constants.MODE == SimulationMode.VERIFICATION) {
             configFilePath = Constants.VERIFICATION_CONFIG_FILENAME;
-        } else if (Constants.VALIDATION_MODE) {
+        } else if (Constants.MODE == SimulationMode.VALIDATION) {
             configFilePath = Constants.VALIDATION_CONFIG_FILENAME;
         } else {
             configFilePath = Constants.CONFIG_FILENAME;
