@@ -23,7 +23,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected final Integer slotNumber;
     protected Double popularity;
 
-    private boolean isCenterClosed;
+    protected boolean isCenterClosed;
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
@@ -56,7 +56,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
             return null;
         }
 
-        int jobSize = job.getGroupSize();
+        // int jobSize = job.getGroupSize();
 
         // Check before adding the job in the queue, otherwise the queue is never empty
         // boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
@@ -118,7 +118,12 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * Start the service and schedule the correlated END_PROCESS events
      */
     public List<RiderGroup> startService() {
+
         List<RiderGroup> jobsToServe = this.getJobsToServe();
+
+        if (isCenterClosed)
+            if (!jobsToServe.isEmpty())
+                throw new RuntimeException();
 
         this.currentServingJobs.addAll(jobsToServe);
 

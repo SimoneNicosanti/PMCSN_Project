@@ -19,7 +19,8 @@ public class JobInfoWriter {
         Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
 
         Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName);
-        String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "NumberRides" };
+        String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "ExitTime",
+                "NumberRides" };
 
         // Writing the header
         CsvWriter.writeHeader(filePath, header);
@@ -32,6 +33,7 @@ public class JobInfoWriter {
                 totalQueueTime,
                 totalRidingTime,
                 ClockHandler.getInstance().getClock() - riderGroup.getGroupStats().getSystemEntranceTime(),
+                ClockHandler.getInstance().getClock(),
                 totalRiding);
         CsvWriter.writeRecord(filePath, record);
     }

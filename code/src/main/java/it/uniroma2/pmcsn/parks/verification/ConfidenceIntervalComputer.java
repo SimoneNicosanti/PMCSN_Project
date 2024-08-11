@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
-import java.util.function.UnaryOperator;
-
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
@@ -22,13 +19,6 @@ public class ConfidenceIntervalComputer {
 
         public StatsValues() {
             this.statsValues = new HashMap<>();
-        }
-
-        public void addStatsValue(String statsName, Double statsValue) {
-            if (statsValues.get(statsName) == null) {
-                statsValues.put(statsName, new ArrayList<>());
-            }
-            statsValues.get(statsName).add(statsValue);
         }
 
         public void addAllValues(String statsName, List<Double> statsValue) {

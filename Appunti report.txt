@@ -1,0 +1,1 @@
+- Autocorrelazione nei controlli di consistenza alta a causa dell'esecuzione in batch delle attrazioni

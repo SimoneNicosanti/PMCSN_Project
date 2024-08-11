@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.apache.commons.lang3.tuple.Pair;
 
-import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.factory.ParametersParser;
@@ -33,18 +32,15 @@ public class ConfigHandler {
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
-        // TODO Try to better handle this
-        String configFilePath;
-        if (Constants.MODE == SimulationMode.VERIFICATION) {
-            configFilePath = Constants.VERIFICATION_CONFIG_FILENAME;
-        } else if (Constants.MODE == SimulationMode.VALIDATION) {
-            configFilePath = Constants.VALIDATION_CONFIG_FILENAME;
-        } else {
-            configFilePath = Constants.CONFIG_FILENAME;
-        }
+        String configFilePath = switch (Constants.MODE) {
+            case NORMAL -> Constants.CONFIG_FILENAME;
+            case VERIFICATION -> Constants.VERIFICATION_CONFIG_FILENAME;
+            case VALIDATION -> Constants.VALIDATION_CONFIG_FILENAME;
+            case CONSISTENCY_CHECK -> Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME;
+        };
         List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFilePath);
 
-        centersDistribution = ParametersParser.parseCentersDistribution(Constants.CONFIG_FILENAME);
+        centersDistribution = ParametersParser.parseCentersDistribution(configFilePath);
 
         checkOrder(pairList);
 

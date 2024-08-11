@@ -97,11 +97,12 @@ public class NetworkBuilder {
                 }
 
             case ATTRACTION:
-                if (Constants.MODE == SimulationMode.VERIFICATION) {
-                    return Constants.VERIFICATION_ATTRACTION_FILE;
-                } else {
-                    return Constants.ATTRACTION_FILE;
-                }
+                return switch (Constants.MODE) {
+                    case NORMAL -> Constants.ATTRACTION_FILE;
+                    case VERIFICATION -> Constants.VERIFICATION_ATTRACTION_FILE;
+                    case VALIDATION -> Constants.VALIDATION_ATTRACTION_FILE;
+                    case CONSISTENCY_CHECK -> Constants.CONSISTENCY_CHECKS_ATTRACTION_FILE;
+                };
 
             case RESTAURANT:
                 if (Constants.MODE == SimulationMode.VERIFICATION) {

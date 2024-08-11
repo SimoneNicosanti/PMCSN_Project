@@ -11,6 +11,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
+import it.uniroma2.pmcsn.parks.random.Estimate;
 import it.uniroma2.pmcsn.parks.utils.CsvWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
@@ -116,6 +117,25 @@ public class ValidationWriter {
         record.addAll(batchAvgs);
 
         CsvWriter.writeRecord(filePath, record);
+    }
+
+    public static void writeReplicationsResult(Map<String, List<Double>> queueTimeMap) {
+
+        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Validation", "Replication").toString());
+
+        Path filePath = Path.of(Constants.DATA_PATH, "Validation", "Replication", "ReplicationResults.csv");
+
+        String[] header = { "Center Name", "E[Tq]", "Interval", "LowerBound", "UpperBound" };
+        CsvWriter.writeHeader(filePath, header);
+
+        for (String centerName : queueTimeMap.keySet()) {
+            List<Double> values = queueTimeMap.get(centerName);
+            Double interval = Estimate.computeConfidenceInterval(values, 0.99);
+            Double mean = values.stream().reduce(0.0, Double::sum) / Constants.VALDATION_REPLICATIONS_NUMBER;
+
+            List<Object> record = List.of(centerName, mean, interval, mean - interval, mean + interval);
+            CsvWriter.writeRecord(filePath, record);
+        }
     }
 
 }

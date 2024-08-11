@@ -1,11 +1,9 @@
 package it.uniroma2.pmcsn.parks.controller;
 
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.naming.ldap.Control;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -19,12 +17,16 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
+import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
+import it.uniroma2.pmcsn.parks.model.stats.StatsType;
 import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.IntervalStatisticsWriter;
 import it.uniroma2.pmcsn.parks.utils.WriterHelper;
+import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 
-public class ValidationController_1 implements Controller<RiderGroup> {
+public class ValidationControllerReplication implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
     private ClockHandler clockHandler;
@@ -34,12 +36,12 @@ public class ValidationController_1 implements Controller<RiderGroup> {
 
     public static void main(String[] args) {
         WriterHelper.createAllFolders();
-        new ValidationController_1().simulate();
+        new ValidationControllerReplication().simulate();
     }
 
-    public ValidationController_1() {
+    public ValidationControllerReplication() {
         Constants.MODE = SimulationMode.VALIDATION;
-        this.networkBuilder.buildNetwork();
+
         this.configHandler = ConfigHandler.getInstance();
         this.eventsPool = EventsPool.<RiderGroup>getInstance();
     }
@@ -48,19 +50,38 @@ public class ValidationController_1 implements Controller<RiderGroup> {
     public void simulate() {
         init_simulation();
 
-        Map<String, Double> queueTimeMap = new HashMap<>();
+        Map<String, List<Double>> queueTimeMap = new HashMap<>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < Constants.VALDATION_REPLICATIONS_NUMBER; i++) {
+            System.out.println("Replication Number >>> " + i);
             this.simulateOnce();
             List<Center<RiderGroup>> centerList = this.networkBuilder.getAllCenters();
 
             for (Center<RiderGroup> center : centerList) {
-                if (((StatsCenter) center).getCenter() instanceof )
+                AbstractCenter absCenter = (AbstractCenter) ((StatsCenter) center).getCenter();
+                if (absCenter instanceof Attraction) {
+                    AreaStats queueTimeStats = ((StatsCenter) center).getWholeDayStats()
+                            .getQueueAreaStats(StatsType.PERSON, null);
+
+                    if (queueTimeMap.get(center.getName()) == null) {
+                        queueTimeMap.put(center.getName(), new ArrayList<>());
+                    }
+                    queueTimeMap.computeIfPresent(center.getName(),
+                            (String key, List<Double> value) -> {
+                                value.add(queueTimeStats.getSizeAvgdStat());
+                                return value;
+                            });
+                }
             }
         }
+
+        ValidationWriter.writeReplicationsResult(queueTimeMap);
+
     }
 
     public void simulateOnce() {
+        this.networkBuilder = new NetworkBuilder();
+        this.networkBuilder.buildNetwork();
 
         ClockHandler.getInstance().setClock(0);
         eventsPool.resetPool();
@@ -97,7 +118,6 @@ public class ValidationController_1 implements Controller<RiderGroup> {
             }
 
             RiderGroup job = nextEvent.getJob();
-            Long groupId = job.getGroupId();
             Center<RiderGroup> center = nextEvent.getEventCenter();
             switch (nextEvent.getEventType()) {
                 // TODO Re add START_PROCESS to have more transparency
@@ -119,11 +139,12 @@ public class ValidationController_1 implements Controller<RiderGroup> {
             }
         }
 
-        IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
+        // IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
 
         EventLogger.logRandomStreams("RandomStreams");
 
         System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock());
+        System.out.println();
     }
 
     private void scheduleArrivalEvent() {
@@ -134,9 +155,10 @@ public class ValidationController_1 implements Controller<RiderGroup> {
 
     private void init_simulation() {
         // Reset statistics
-        WriterHelper.clearDirectory("Job");
-        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Center").toString());
-        WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
+        // WriterHelper.clearDirectory("Job");
+        // WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH,
+        // "Center").toString());
+        // WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
         // Prepare the logger and set the system clock to 0
         WriterHelper.clearDirectory(Constants.LOG_PATH);
         ClockHandler.getInstance().setClock(0);
@@ -147,9 +169,9 @@ public class ValidationController_1 implements Controller<RiderGroup> {
     }
 
     private void changeInterval(Interval interval) {
-        System.out.println("CURRENT INTERVAL CHANGED");
-        System.out.println(interval.getStart() + " - " + interval.getEnd());
-        System.out.println("");
+        // System.out.println("CURRENT INTERVAL CHANGED");
+        // System.out.println(interval.getStart() + " - " + interval.getEnd());
+        // System.out.println("");
 
         // Change the parameters based on the interval
         changeParameters(interval);

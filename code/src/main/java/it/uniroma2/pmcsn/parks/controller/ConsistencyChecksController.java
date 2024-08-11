@@ -19,22 +19,23 @@ import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
 import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
 
-public class ValidationController implements Controller<RiderGroup> {
+public class ConsistencyChecksController implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
 
     public static void main(String[] args) {
         WriterHelper.createAllFolders();
         long start = System.currentTimeMillis();
-        new ValidationController().simulate();
+        new ConsistencyChecksController().simulate();
         Long time = System.currentTimeMillis() - start;
         System.out.println("Run Time >>> " + time);
     }
 
-    public ValidationController() {
-        Constants.MODE = SimulationMode.VALIDATION;
-        Constants.BATCH_NUMBER = 40;
-        Constants.BATCH_SIZE = 250;
+    public ConsistencyChecksController() {
+        Constants.MODE = SimulationMode.CONSISTENCY_CHECK;
+        Constants.VERIFICATION_BATCH_NUMBER = 50;
+        Constants.VERIFICATION_BATCH_SIZE = 1024;
+
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
 
@@ -62,8 +63,6 @@ public class ValidationController implements Controller<RiderGroup> {
         List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals();
 
         ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
-
-        // Write confidence intervals for all statistics
     }
 
     public List<Center<RiderGroup>> batchSimulation() {

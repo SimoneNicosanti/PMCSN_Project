@@ -51,6 +51,8 @@ public class IntervalStatisticsWriter {
             CenterStatistics stats, Double intervalDuration) {
         String name = center.getName();
 
+        // TODO Should we use the time of last update of the AreaStats instead of
+        // the last clock of the simulation??
         AreaStats serviceAreaStats = stats.getServiceAreaStats(statsType);
         Double mPerRho = serviceAreaStats.getArea() / intervalDuration;
         Double avgServiceTime = serviceAreaStats.getSizeAvgdStat();

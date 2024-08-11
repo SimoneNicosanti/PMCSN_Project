@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -33,6 +32,9 @@ public class StatsCenter implements Center<RiderGroup> {
     protected Map<Long, QueuePriority> priorityMap; // Given the job id, return the job priority in queue
 
     protected IntervalStatsManager intervalStatsManager;
+
+    private boolean serviceBatchFinished = false;
+    private boolean queueBatchFinished = false;
 
     public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
@@ -97,6 +99,10 @@ public class StatsCenter implements Center<RiderGroup> {
         this.intervalStatsManager.updateQueueTime(enqueueTime, dequeueTime, queuePrio, job.getGroupSize());
         this.wholeDayStats.updateQueueArea(dequeueTime - enqueueTime, queuePrio, job.getGroupSize());
         this.queueBatchStats.addTime(dequeueTime - enqueueTime);
+        if (queueBatchStats.isBatchCompleted() && !queueBatchFinished) {
+            System.out.println(center.getName() + " QUEUE BATCH COMPLETED");
+            queueBatchFinished = true;
+        }
     }
 
     @Override
@@ -132,16 +138,26 @@ public class StatsCenter implements Center<RiderGroup> {
                 multiplier);
         this.wholeDayStats.updateServiceArea(endServingTime - startServingTime, endedJob.getGroupSize(), multiplier);
 
-        // if (Constants.VALIDATION_MODE && center instanceof Attraction) {
+        // if (Constants.MODE == SimulationMode.CONSISTENCY_CHECK && center instanceof
+        // Attraction) {
         // // If validation mode and center is an attraction, increment service times
-        // once
+        // // once
         // // for each service -> otherwise the batch will be filled by copy of the same
         // // values
+
+        // if (this.startServingTimeMap.isEmpty())
         // this.serviceBatchStats.addTime(jobServiceTime);
 
         // } else {
-        this.serviceBatchStats.addTime(jobServiceTime);
+        // this.serviceBatchStats.addTime(jobServiceTime);
         // }
+
+        this.serviceBatchStats.addTime(jobServiceTime);
+
+        if (serviceBatchStats.isBatchCompleted() && !serviceBatchFinished) {
+            System.out.println(center.getName() + " SERVICE BATCH COMPLETED");
+            serviceBatchFinished = true;
+        }
 
     }
 

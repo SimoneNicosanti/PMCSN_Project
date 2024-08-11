@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -21,12 +20,13 @@ public class VerificationWriter {
 
     public static void writeConfidenceIntervals(List<ConfidenceInterval> confidenceIntervals,
             Map<String, Map<String, Double>> theoryMap, String fileName) {
-        String subFolder = "";
-        if (Constants.MODE == SimulationMode.VERIFICATION) {
-            subFolder = "Verification";
-        } else {
-            subFolder = "Validation";
-        }
+        String subFolder = switch (Constants.MODE) {
+            case NORMAL -> "";
+            case VERIFICATION -> "Verification";
+            case VALIDATION -> "Validation";
+            case CONSISTENCY_CHECK -> "Consistency Checks";
+        };
+
         Path filePath = Path.of(".", Constants.DATA_PATH, subFolder, fileName + ".csv");
 
         String[] header = {

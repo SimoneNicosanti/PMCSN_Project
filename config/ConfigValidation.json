@@ -2,16 +2,46 @@
   "timeIntervals": [
     {
       "start": 0.0,
-      "end": 525600.0,
+      "end": 180.0,
       "routingProbability": {
         "attractions": 0.9,
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 11.0
+      "arrivalRate": 9.5
+    },
+    {
+      "start": 180.0,
+      "end": 300.0,
+      "routingProbability": {
+        "attractions": 0.55,
+        "restaurants": 0.4,
+        "exit": 0.05
+      },
+      "arrivalRate": 6.5
+    },
+    {
+      "start": 300.0,
+      "end": 600.0,
+      "routingProbability": {
+        "attractions": 0.9,
+        "restaurants": 0.05,
+        "exit": 0.05
+      },
+      "arrivalRate": 1.5
+    },
+    {
+      "start": 600.0,
+      "end": 720.0,
+      "routingProbability": {
+        "attractions": 0.6,
+        "restaurants": 0.2,
+        "exit": 0.2
+      },
+      "arrivalRate": 0.2
     }
   ],
   "entranceDistribution": "Exponential",
-  "attractionsDistribution": "Exponential",
+  "attractionsDistribution": "Uniform",
   "restaurantsDistribution": "Exponential"
 }

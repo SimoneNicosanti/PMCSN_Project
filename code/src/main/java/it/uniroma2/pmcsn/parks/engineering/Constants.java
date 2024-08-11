@@ -33,7 +33,7 @@ public class Constants {
     public static final String PEOPLE_DIRECTORY = "people";
 
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
-    public static final String CONFIG_FILENAME = "Config_1.json";
+    public static final String CONFIG_FILENAME = "Config_Normal.json";
     public static final String ATTRACTION_FILE = "AttractionsData_1.csv"; // TODO
     public static final String ENTRANCE_FILE = "EntranceData.csv";
     public static final String RESTAURANT_FILE = "RestaurantsData.csv";
@@ -48,10 +48,15 @@ public class Constants {
     public static final String VERIFICATION_RESTAURANT_FILE = "RestaurantsDataVerify.csv";
     public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
     public static final String VERIFICATION_CONFIG_FILENAME = "ConfigVerify.json";
-    public static final int VERIFY_SIMULATION_NUM = 75;
-    public static int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
-    public static int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
+    public static int VERIFICATION_BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
+    public static int VERIFICATION_BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
 
-    public static final String VALIDATION_CONFIG_FILENAME = "ConfigVerify.json";
+    public static final String VALIDATION_CONFIG_FILENAME = "ConfigValidation.json";
+    public static final String VALIDATION_ATTRACTION_FILE = "AttractionsData_2.csv";
+    public static final Integer VALDATION_REPLICATIONS_NUMBER = 100;
 
+    public static final String CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency.json";
+    public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData_2.csv";
+    public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
+    public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 }

@@ -103,20 +103,6 @@ public class TheoreticalValueComputer {
         return returnMap;
     }
 
-    private Map<String, Double> computeTheoreticalResponseTime(Map<String, Double> serviceTimeMap,
-            Map<String, Double> queueTimeMap) {
-
-        Map<String, Double> responseTimeMap = new HashMap<>();
-        for (String centerName : serviceTimeMap.keySet()) {
-            Double serviceTime = serviceTimeMap.get(centerName);
-            Double queueTime = queueTimeMap.get(centerName);
-
-            responseTimeMap.put(centerName, queueTime + serviceTime);
-        }
-
-        return responseTimeMap;
-    }
-
     private Map<String, Double> computeTheoreticalRho(List<Center<RiderGroup>> centerList, int attractionNumber,
             int restaurantNumber) {
 
