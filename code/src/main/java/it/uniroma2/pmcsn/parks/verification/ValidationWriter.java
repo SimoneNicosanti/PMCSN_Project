@@ -1,6 +1,5 @@
 package it.uniroma2.pmcsn.parks.verification;
 
-import java.io.Writer;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
@@ -13,10 +12,14 @@ import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class ValidationWriter {
 
+    public static void resetConsistencyCheckDirectory() {
+        Path fileDirectory = Path.of(".", Constants.DATA_PATH, "Validation", "Consistency");
+        WriterHelper.clearDirectory(fileDirectory.toString());
+    }
+
     public static void writeConfidenceIntervals(List<ConfidenceInterval> confidenceIntervals, String fileName) {
 
         Path fileDirectory = Path.of(".", Constants.DATA_PATH, "Validation", "Consistency");
-        WriterHelper.clearDirectory(fileDirectory.toString());
 
         Path filePath = Path.of(fileDirectory.toString(), fileName + ".csv");
         WriterHelper.clearDirectory(filePath.toString());

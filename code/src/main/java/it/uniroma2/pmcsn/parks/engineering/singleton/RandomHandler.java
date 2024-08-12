@@ -97,4 +97,8 @@ public class RandomHandler {
         return this.assignedStreams;
     }
 
+    public static void reset() {
+        instance = null;
+    }
+
 }

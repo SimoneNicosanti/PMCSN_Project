@@ -32,15 +32,16 @@ public class ConfigHandler {
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
-        String configFilePath = switch (Constants.MODE) {
+        String configFileName = switch (Constants.MODE) {
             case NORMAL -> Constants.CONFIG_FILENAME;
             case VERIFICATION -> Constants.VERIFICATION_CONFIG_FILENAME;
             case VALIDATION -> Constants.VALIDATION_CONFIG_FILENAME;
             case CONSISTENCY_CHECK -> Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME;
         };
-        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFilePath);
 
-        centersDistribution = ParametersParser.parseCentersDistribution(configFilePath);
+        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFileName);
+
+        centersDistribution = ParametersParser.parseCentersDistribution(configFileName);
 
         checkOrder(pairList);
 
@@ -119,6 +120,10 @@ public class ConfigHandler {
 
     public List<Interval> getAllIntervals() {
         return this.intervals;
+    }
+
+    public static void reset() {
+        instance = null;
     }
 
 }

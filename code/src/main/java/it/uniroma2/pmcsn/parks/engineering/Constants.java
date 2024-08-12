@@ -55,7 +55,9 @@ public class Constants {
     public static final String VALIDATION_ATTRACTION_FILE = "AttractionsData_2.csv";
     public static final Integer VALDATION_REPLICATIONS_NUMBER = 100;
 
-    public static final String CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency.json";
+    public static String CONSISTENCY_CHECKS_CONFIG_FILENAME = null;
+    public static final String PRE_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_pre.json";
+    public static final String POST_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_post.json";
     public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData_2.csv";
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;

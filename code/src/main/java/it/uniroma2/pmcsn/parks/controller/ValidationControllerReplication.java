@@ -84,7 +84,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
         this.networkBuilder.buildNetwork();
 
         ClockHandler.getInstance().setClock(0);
-        eventsPool.resetPool();
+        EventsPool.reset();
         this.currentInterval = configHandler.getCurrentInterval();
         configHandler.changeParameters(currentInterval);
 

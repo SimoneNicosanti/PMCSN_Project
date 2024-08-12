@@ -70,8 +70,8 @@ public class EventsPool<T> {
         }
     }
 
-    public void resetPool() {
-        this.eventMap = new HashMap<>();
+    public static void reset() {
+        instance = null;
     }
 
 }

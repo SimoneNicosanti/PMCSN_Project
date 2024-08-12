@@ -10,7 +10,9 @@ import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
@@ -38,11 +40,45 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         Constants.VERIFICATION_BATCH_SIZE = 1024;
 
         this.networkBuilder = new NetworkBuilder();
-        this.networkBuilder.buildNetwork();
     }
 
     @Override
     public void simulate() {
+
+        ValidationWriter.resetConsistencyCheckDirectory();
+
+        // Base Arrival Rate
+        Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME = Constants.PRE_CONSISTENCY_CHECKS_CONFIG_FILENAME;
+        simulateOnce(0);
+        // printUsedStrams();
+
+        resetSingletons();
+
+        // Increase the arrival rate
+        Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME = Constants.POST_CONSISTENCY_CHECKS_CONFIG_FILENAME;
+        simulateOnce(1);
+        // printUsedStrams();
+
+    }
+
+    private void printUsedStrams() {
+        RandomHandler.getInstance().getStreamMap()
+                .forEach(
+                        (name, streamIdx) -> System.out.println("Name >>> " + name + " - Stream Idx >>> " + streamIdx));
+        ;
+
+    }
+
+    private void resetSingletons() {
+        ClockHandler.reset();
+        ConfigHandler.reset();
+        EventsPool.reset();
+        RandomHandler.getInstance();
+    }
+
+    public void simulateOnce(int i) {
+
+        this.networkBuilder.buildNetwork();
 
         // Reset verification stats
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
@@ -64,7 +100,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         // List<ConfidenceInterval> confidenceIntervals =
         // computer.computeAllConfidenceIntervals();
 
-        ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
+        ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals_" + i);
     }
 
     public List<Center<RiderGroup>> batchSimulation() {
