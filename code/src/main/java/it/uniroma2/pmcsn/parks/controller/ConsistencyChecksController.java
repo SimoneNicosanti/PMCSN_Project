@@ -61,6 +61,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
     }
 
+    @SuppressWarnings("unused")
     private void printUsedStrams() {
         RandomHandler.getInstance().getStreamMap()
                 .forEach(

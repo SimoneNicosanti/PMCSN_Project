@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
@@ -16,18 +17,21 @@ import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
  * It simply writes stas on a file when the job exists from the system
  */
 public class ExitCenter implements Center<RiderGroup> {
-    String name;
+    private String name;
+    private List<RiderGroup> exitRiderGroup;
 
     public ExitCenter(String name) {
         this.name = name;
+        this.exitRiderGroup = new ArrayList<>();
     }
 
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        if (Constants.MODE == SimulationMode.NORMAL) {
-            JobInfoWriter.writeJobInfo("Job", filename, job);
-        }
+        // if (Constants.MODE == SimulationMode.NORMAL) {
+        // JobInfoWriter.writeJobInfo("Job", filename, job);
+        // }
+        exitRiderGroup.add(job);
         return null;
     }
 
@@ -72,6 +76,10 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public List<RiderGroup> closeCenter() {
         return null;
+    }
+
+    public List<RiderGroup> getExitJobs() {
+        return this.exitRiderGroup;
     }
 
 }

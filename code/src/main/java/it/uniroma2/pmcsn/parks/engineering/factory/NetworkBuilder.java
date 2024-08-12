@@ -23,9 +23,11 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
 public class NetworkBuilder {
 
     private Map<String, Center<RiderGroup>> centerMap;
+    private ExitCenter exitCenter;
 
     public NetworkBuilder() {
         this.centerMap = new HashMap<>();
+        this.exitCenter = new ExitCenter(Constants.EXIT);
     }
 
     public void buildNetwork() {
@@ -33,7 +35,6 @@ public class NetworkBuilder {
         List<Center<RiderGroup>> restaurants = buildListOfCenters(ServerType.RESTAURANT);
         List<Center<RiderGroup>> attractions = buildListOfCenters(ServerType.ATTRACTION);
         List<Center<RiderGroup>> entrances = buildListOfCenters(ServerType.ENTRANCE);
-        Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);
 
         // Create the routing nodes
         RoutingNode<RiderGroup> attractionRoutingNode = new AttractionRoutingNode(attractions);
@@ -125,6 +126,10 @@ public class NetworkBuilder {
 
     public List<Center<RiderGroup>> getAllCenters() {
         return List.copyOf(centerMap.values());
+    }
+
+    public ExitCenter getExitCenter() {
+        return this.exitCenter;
     }
 
 }

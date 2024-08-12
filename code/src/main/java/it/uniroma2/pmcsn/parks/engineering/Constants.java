@@ -62,6 +62,8 @@ public class Constants {
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 
-    public static final boolean IMPROVED_MODEL = false;
+    public static final Integer FUN_INDEX_REPLICATIONS_NUMBER = 100;
+
+    public static boolean IMPROVED_MODEL = false;
 
 }
