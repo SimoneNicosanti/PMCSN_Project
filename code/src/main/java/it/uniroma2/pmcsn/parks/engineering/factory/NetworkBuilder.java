@@ -27,10 +27,11 @@ public class NetworkBuilder {
 
     public NetworkBuilder() {
         this.centerMap = new HashMap<>();
-        this.exitCenter = new ExitCenter(Constants.EXIT);
     }
 
     public void buildNetwork() {
+
+        this.exitCenter = new ExitCenter(Constants.EXIT);
 
         List<Center<RiderGroup>> restaurants = buildListOfCenters(ServerType.RESTAURANT);
         List<Center<RiderGroup>> attractions = buildListOfCenters(ServerType.ATTRACTION);
@@ -40,7 +41,7 @@ public class NetworkBuilder {
         RoutingNode<RiderGroup> attractionRoutingNode = new AttractionRoutingNode(attractions);
         RoutingNode<RiderGroup> restaurantsRoutingNode = new RestaurantRoutingNode(restaurants);
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
-                restaurantsRoutingNode, exitCenter);
+                restaurantsRoutingNode, this.exitCenter);
 
         for (Center<RiderGroup> attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
@@ -56,6 +57,7 @@ public class NetworkBuilder {
         entrance.setNextRoutingNode(networkRoutingNode);
 
         EventBuilder.setStatsCenterMap(centerMap);
+
     }
 
     private List<Center<RiderGroup>> buildListOfCenters(ServerType serverType) {

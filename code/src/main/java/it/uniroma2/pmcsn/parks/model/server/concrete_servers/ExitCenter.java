@@ -14,7 +14,7 @@ import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
 
 /**
  * Fake center for exiting jobs
- * It simply writes stas on a file when the job exists from the system
+ * It simply writes stats on a file when jobs exit the system
  */
 public class ExitCenter implements Center<RiderGroup> {
     private String name;
@@ -28,9 +28,9 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        // if (Constants.MODE == SimulationMode.NORMAL) {
-        // JobInfoWriter.writeJobInfo("Job", filename, job);
-        // }
+        if (Constants.MODE == SimulationMode.NORMAL) {
+            JobInfoWriter.writeJobInfo("Job", filename, job);
+        }
         exitRiderGroup.add(job);
         return null;
     }

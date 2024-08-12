@@ -50,14 +50,14 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         // Base Arrival Rate
         Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME = Constants.PRE_CONSISTENCY_CHECKS_CONFIG_FILENAME;
         simulateOnce(0);
-        // printUsedStrams();
+        printUsedStrams();
 
         resetSingletons();
 
         // Increase the arrival rate
         Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME = Constants.POST_CONSISTENCY_CHECKS_CONFIG_FILENAME;
         simulateOnce(1);
-        // printUsedStrams();
+        printUsedStrams();
 
     }
 
@@ -74,7 +74,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         ClockHandler.reset();
         ConfigHandler.reset();
         EventsPool.reset();
-        RandomHandler.getInstance();
+        RandomHandler.reset();
     }
 
     public void simulateOnce(int i) {
@@ -83,8 +83,8 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
         // Reset verification stats
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
+        SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        EventsPool.getInstance().scheduleNewEvent(arrivalEvent);
 
         List<Center<RiderGroup>> centerList = batchSimulation();
 
@@ -109,7 +109,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
         while (!stopSimulation()) {
 
-            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+            SystemEvent nextEvent = EventsPool.getInstance().getNextEvent();
             Double nextEventTime = nextEvent.getEventTime();
 
             ClockHandler.getInstance().setClock(nextEventTime);

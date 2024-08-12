@@ -88,9 +88,9 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         // Adding this makes the queue times decrease (should we add it??)
         //
 
-        SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
+        SystemEvent newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 arrivalTime);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+        EventsPool.getInstance().scheduleNewEvent(newEvent);
 
         // EventLogger.logEvent("Schedule ", newEvent);
     }
@@ -131,11 +131,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
             double serviceTime = this.getNewServiceTime(job);
 
             // Schedule an END_PROCESS event
-            SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+            SystemEvent newEvent = EventBuilder.buildEventFrom(this,
                     EventType.END_PROCESS,
                     job,
                     ClockHandler.getInstance().getClock() + serviceTime);
-            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+            EventsPool.getInstance().scheduleNewEvent(newEvent);
 
             // EventLogger.logEvent("Schedule ", newEvent);
         }

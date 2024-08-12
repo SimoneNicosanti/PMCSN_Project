@@ -6,6 +6,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
@@ -24,7 +25,7 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
     public Center<RiderGroup> route(RiderGroup job) {
         double attractionProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.ATTRACTION);
         double restaurantProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.RESTAURANT);
-        double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE);
+        double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE, job);
 
         if (routingProb <= attractionProb) {
             // Go to attractions

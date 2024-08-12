@@ -9,6 +9,12 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class JobInfoWriter {
 
+    public static void writeAllJobsInfo(String statsFolder, String fileName, List<RiderGroup> riderGroups) {
+        for (RiderGroup group : riderGroups) {
+            writeJobInfo(statsFolder, fileName, group);
+        }
+    }
+
     public static void writeJobInfo(String statsFolder, String fileName, RiderGroup riderGroup) {
 
         Long groupId = riderGroup.getGroupId();
@@ -16,7 +22,7 @@ public class JobInfoWriter {
         String priority = riderGroup.getPriority().name();
         Double totalQueueTime = riderGroup.getGroupStats().getQueueTime();
         Double totalRidingTime = riderGroup.getGroupStats().getServiceTime();
-        Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfVisits();
+        Integer totalRiding = riderGroup.getGroupStats().getTotalNumberOfRides();
 
         Path filePath = Path.of(".", Constants.DATA_PATH, statsFolder, fileName);
         String[] header = { "GroupId", "GroupSize", "Priority", "QueueTime", "RidingTime", "TotalTime", "ExitTime",

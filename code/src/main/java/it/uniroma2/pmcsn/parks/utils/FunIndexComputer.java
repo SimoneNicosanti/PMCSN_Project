@@ -15,13 +15,15 @@ public class FunIndexComputer {
         Map<GroupPriority, List<Double>> valuesMap = new HashMap<>();
         for (RiderGroup group : exitGroups) {
             valuesMap.putIfAbsent(group.getPriority(), new ArrayList<>());
-            valuesMap.get(group.getPriority()).add(computeFunIndex(group));
+            if (group.getGroupStats().getTotalNumberOfRides() > 0) {
+                valuesMap.get(group.getPriority()).add(computeFunIndex(group));
+            }
         }
 
         Map<GroupPriority, Double> returnMap = new HashMap<>();
         for (GroupPriority prio : valuesMap.keySet()) {
             List<Double> values = valuesMap.get(prio);
-            Double mean = values.stream().reduce(0.0, (elem1, elem2) -> elem1 + elem2);
+            Double mean = values.stream().reduce(0.0, Double::sum);
             mean = mean / values.size();
 
             returnMap.put(prio, mean);
@@ -32,6 +34,6 @@ public class FunIndexComputer {
 
     private static Double computeFunIndex(RiderGroup group) {
         GroupStats stats = group.getGroupStats();
-        return (stats.getServiceTime() * stats.getTotalNumberOfVisits()) / (stats.getQueueTime() + 1);
+        return (stats.getServiceTime() * stats.getTotalNumberOfRides()) / (stats.getQueueTime() + 1);
     }
 }

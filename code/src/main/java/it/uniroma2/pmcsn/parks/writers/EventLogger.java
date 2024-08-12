@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
@@ -38,36 +39,40 @@ public class EventLogger {
 
     }
 
-    public static void logEvent(String processingType, SystemEvent<RiderGroup> event) {
+    // public static void logEvent(String processingType, SystemEvent<RiderGroup>
+    // event) {
 
-        Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName() + ".log");
-        Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");
+    // Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName()
+    // + ".log");
+    // Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");
 
-        String logString = "Simulation Type >> " + processingType + "\n" +
-                "Event Type >> " + event.getEventType().name() + "\n" +
-                "Center Name >>> " + event.getEventCenter().getName() + "\n" +
-                "Group Id >>> " + event.getJob().getGroupId() + "\n" +
-                "Event Time >>> " + event.getEventTime() + "\n" +
-                "Simulation Clock >>> " + ClockHandler.getInstance().getClock() + "\n\n";
+    // String logString = "Simulation Type >> " + processingType + "\n" +
+    // "Event Type >> " + event.getEventType().name() + "\n" +
+    // "Center Name >>> " + event.getEventCenter().getName() + "\n" +
+    // "Group Id >>> " + event.getJob().getGroupId() + "\n" +
+    // "Event Time >>> " + event.getEventTime() + "\n" +
+    // "Simulation Clock >>> " + ClockHandler.getInstance().getClock() + "\n\n";
 
-        try {
-            centerFilePath.toFile().createNewFile();
-            generalFilePath.toFile().createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // try {
+    // centerFilePath.toFile().createNewFile();
+    // generalFilePath.toFile().createNewFile();
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
-        try (
-                FileOutputStream centerLogWriter = new FileOutputStream(centerFilePath.toFile(), true);
-                FileOutputStream generalLogWriter = new FileOutputStream(generalFilePath.toFile(), true);) {
-            centerLogWriter.write(logString.getBytes());
-            generalLogWriter.write(logString.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    // try (
+    // FileOutputStream centerLogWriter = new
+    // FileOutputStream(centerFilePath.toFile(), true);
+    // FileOutputStream generalLogWriter = new
+    // FileOutputStream(generalFilePath.toFile(), true);) {
+    // centerLogWriter.write(logString.getBytes());
+    // generalLogWriter.write(logString.getBytes());
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
-        // System.out.println(logString);
-    }
+    // // System.out.println(logString);
+    // }
 
     public static void logExit(double clock) {
         Path exitLogFilePath = Path.of("Out", "Log", "Exit.log");
@@ -89,5 +94,18 @@ public class EventLogger {
         }
 
         System.out.println(logString);
+    }
+
+    public static void writeRandomLogString(String randomLog) {
+        Path filePath = Path.of(Constants.LOG_PATH, "RandomString.log");
+        try {
+            filePath.toFile().createNewFile();
+            FileOutputStream exitLogWriter = new FileOutputStream(filePath.toFile(), true);
+            exitLogWriter.write(randomLog.getBytes());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
 }

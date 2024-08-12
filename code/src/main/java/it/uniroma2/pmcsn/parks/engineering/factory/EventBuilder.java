@@ -28,7 +28,7 @@ public class EventBuilder {
         }
     }
 
-    public static SystemEvent<RiderGroup> getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
+    public static SystemEvent getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
         // If arrivalRate == 0, stop arrivals
         if (arrivalRate == 0.0) {
@@ -39,7 +39,7 @@ public class EventBuilder {
                 1 / arrivalRate);
 
         int groupSize = SimulationBuilder.getJobSize();
-        GroupPriority priority = computeGroupPriority();
+        GroupPriority priority = computeGroupPriority(riderGroupId);
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
@@ -49,7 +49,7 @@ public class EventBuilder {
             statsCenter = arrivalCenter;
         }
 
-        SystemEvent<RiderGroup> arrivalEvent = buildEventFrom(statsCenter, EventType.ARRIVAL,
+        SystemEvent arrivalEvent = buildEventFrom(statsCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
@@ -58,11 +58,11 @@ public class EventBuilder {
 
     }
 
-    private static GroupPriority computeGroupPriority() {
+    private static GroupPriority computeGroupPriority(long jobId) {
         if (Constants.MODE == SimulationMode.VERIFICATION)
             return GroupPriority.NORMAL;
 
-        double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM);
+        double groupPriorityProb = RandomHandler.getInstance().getRandom(Constants.PRIORITY_STREAM, jobId);
         if (groupPriorityProb < Constants.PRIORITY_PASS_PROB) {
             return GroupPriority.PRIORITY;
         } else {
@@ -71,7 +71,7 @@ public class EventBuilder {
     }
 
     // Builds a new generic event
-    public static SystemEvent<RiderGroup> buildEventFrom(Center<RiderGroup> center, EventType eventType,
+    public static SystemEvent buildEventFrom(Center<RiderGroup> center, EventType eventType,
             RiderGroup job, double eventTime) {
         EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
         Center<RiderGroup> statsCenter = statsCenterMap.get(center.getName());
@@ -79,7 +79,7 @@ public class EventBuilder {
         if (statsCenter == null) {
             statsCenter = center;
         }
-        return new SystemEvent<>(poolId, statsCenter, eventTime, job);
+        return new SystemEvent(poolId, statsCenter, eventTime, job);
     }
 
 }

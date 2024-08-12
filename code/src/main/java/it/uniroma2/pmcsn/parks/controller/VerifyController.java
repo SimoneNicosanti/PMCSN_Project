@@ -52,8 +52,8 @@ public class VerifyController implements Controller<RiderGroup> {
 
         // Reset verification stats
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
+        SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        EventsPool.getInstance().scheduleNewEvent(arrivalEvent);
 
         List<Center<RiderGroup>> centerList = batchSimulation();
 
@@ -76,7 +76,7 @@ public class VerifyController implements Controller<RiderGroup> {
 
         while (!stopSimulation()) {
 
-            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+            SystemEvent nextEvent = EventsPool.getInstance().getNextEvent();
             Double nextEventTime = nextEvent.getEventTime();
 
             ClockHandler.getInstance().setClock(nextEventTime);

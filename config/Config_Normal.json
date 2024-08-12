@@ -4,8 +4,8 @@
       "start": 0.0,
       "end": 180.0,
       "routingProbability": {
-        "attractions": 0.9,
-        "restaurants": 0.05,
+        "attractions": 0.95,
+        "restaurants": 0.0,
         "exit": 0.05
       },
       "arrivalRate": 11.11
@@ -14,8 +14,8 @@
       "start": 180.0,
       "end": 300.0,
       "routingProbability": {
-        "attractions": 0.55,
-        "restaurants": 0.4,
+        "attractions": 0.95,
+        "restaurants": 0.0,
         "exit": 0.05
       },
       "arrivalRate": 8.3
@@ -24,8 +24,8 @@
       "start": 300.0,
       "end": 600.0,
       "routingProbability": {
-        "attractions": 0.9,
-        "restaurants": 0.05,
+        "attractions": 0.95,
+        "restaurants": 0.0,
         "exit": 0.05
       },
       "arrivalRate": 3.3
@@ -34,9 +34,9 @@
       "start": 600.0,
       "end": 720.0,
       "routingProbability": {
-        "attractions": 0.6,
-        "restaurants": 0.2,
-        "exit": 0.2
+        "attractions": 0.95,
+        "restaurants": 0.0,
+        "exit": 0.05
       },
       "arrivalRate": 1.6
     }

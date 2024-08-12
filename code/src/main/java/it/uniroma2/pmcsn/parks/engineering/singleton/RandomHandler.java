@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.random.Rngs;
 import it.uniroma2.pmcsn.parks.random.Rvgs;
 
@@ -21,6 +22,8 @@ public class RandomHandler {
     private Map<String, Integer> assignedStreams;
     private int streamCount;
 
+    private String randomLog;
+
     private RandomHandler() {
         this.streamGenerator = new Rngs();
         this.streamGenerator.plantSeeds(SEED);
@@ -28,6 +31,7 @@ public class RandomHandler {
         this.assignedStreams = new HashMap<>();
 
         this.streamCount = 0;
+        this.randomLog = "";
     }
 
     public static RandomHandler getInstance() {
@@ -46,17 +50,17 @@ public class RandomHandler {
         return returnCounter;
     }
 
-    public int assignNewStream(String name) {
+    private void assignNewStream(String name) {
         if (this.assignedStreams.containsKey(name)) {
             throw new RuntimeException("Stream name already assigned");
         }
         int streamIndex = getNewStreamIndex();
         this.assignedStreams.put(name, streamIndex);
 
-        return streamIndex;
+        return;
     }
 
-    public int getStream(String name) {
+    private int getStream(String name) {
         if (!this.assignedStreams.containsKey(name)) {
             this.assignNewStream(name);
         }
@@ -66,31 +70,57 @@ public class RandomHandler {
     public double getRandom(String streamName) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
-        return streamGenerator.random();
+        double randomNumber = streamGenerator.random();
+        randomLog += streamName + " " + randomNumber + "\n";
+        return randomNumber;
+    }
+
+    public double getRandom(String streamName, RiderGroup job) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        double randomNumber = streamGenerator.random();
+        randomLog += streamName + " " + randomNumber + " " + job.getGroupId() + "\n";
+        return randomNumber;
+    }
+
+    public double getRandom(String streamName, long jobId) {
+        int stream = getStream(streamName);
+        streamGenerator.selectStream(stream);
+        double randomNumber = streamGenerator.random();
+        randomLog += streamName + " " + randomNumber + " " + jobId + "\n";
+        return randomNumber;
     }
 
     public double getUniform(String streamName, double a, double b) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
-        return distributionGenerator.uniform(a, b);
+        double randomNumber = distributionGenerator.uniform(a, b);
+        randomLog += streamName + " " + randomNumber + "\n";
+        return randomNumber;
     }
 
     public double getExponential(String streamName, double m) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
-        return distributionGenerator.exponential(m);
+        double randomNumber = distributionGenerator.exponential(m);
+        randomLog += streamName + " " + randomNumber + "\n";
+        return randomNumber;
     }
 
     public double getPoisson(String streamName, double m) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
-        return distributionGenerator.poisson(m);
+        double randomNumber = distributionGenerator.poisson(m);
+        randomLog += streamName + " " + randomNumber + "\n";
+        return randomNumber;
     }
 
     public double getErlang(String streamName, long k, double m) {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
-        return distributionGenerator.erlang(k, m);
+        double randomNumber = distributionGenerator.erlang(k, m);
+        randomLog += streamName + " " + randomNumber + "\n";
+        return randomNumber;
     }
 
     public Map<String, Integer> getStreamMap() {
@@ -99,6 +129,10 @@ public class RandomHandler {
 
     public static void reset() {
         instance = null;
+    }
+
+    public String getRandomLog() {
+        return randomLog;
     }
 
 }

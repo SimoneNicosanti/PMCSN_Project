@@ -1,22 +1,23 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
-public class SystemEvent<T> implements Comparable<SystemEvent<T>> {
+public class SystemEvent implements Comparable<SystemEvent> {
 
     private EventsPoolId id;
     private double eventTime;
-    private Center<T> eventCenter;
-    private T job;
+    private Center<RiderGroup> eventCenter;
+    private RiderGroup job;
 
-    public SystemEvent(EventsPoolId id, Center<T> eventCenter, double eventTime, T job) {
+    public SystemEvent(EventsPoolId id, Center<RiderGroup> eventCenter, double eventTime, RiderGroup job) {
         this.id = id;
         this.eventTime = eventTime;
         this.eventCenter = eventCenter;
         this.job = job;
     }
 
-    public void setCenter(Center<T> center) {
+    public void setCenter(Center<RiderGroup> center) {
         this.eventCenter = center;
     }
 
@@ -24,7 +25,7 @@ public class SystemEvent<T> implements Comparable<SystemEvent<T>> {
         return this.id;
     }
 
-    public T getJob() {
+    public RiderGroup getJob() {
         return job;
     }
 
@@ -32,23 +33,12 @@ public class SystemEvent<T> implements Comparable<SystemEvent<T>> {
         return this.eventTime;
     }
 
-    public Center<T> getEventCenter() {
+    public Center<RiderGroup> getEventCenter() {
         return this.eventCenter;
     }
 
     public EventType getEventType() {
         return this.id.getEventType();
-    }
-
-    @Override
-    public int compareTo(SystemEvent<T> otherEvent) {
-        if (this.getEventTime() < otherEvent.getEventTime()) {
-            return -1;
-        } else if (this.getEventTime() == otherEvent.getEventTime()) {
-            return 0;
-        } else {
-            return 1;
-        }
     }
 
     public void addServiceTime(double serviceTime) {
@@ -57,6 +47,15 @@ public class SystemEvent<T> implements Comparable<SystemEvent<T>> {
 
     public String getName() {
         return this.id.toString();
+    }
+
+    @Override
+    public int compareTo(SystemEvent otherEvent) {
+        int timeComparison = Double.valueOf(this.eventTime).compareTo(Double.valueOf((otherEvent.eventTime)));
+        if (timeComparison != 0) {
+            return timeComparison;
+        }
+        return this.job.getGroupId().compareTo(otherEvent.getJob().getGroupId());
     }
 
 }

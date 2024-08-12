@@ -13,13 +13,15 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
 import it.uniroma2.pmcsn.parks.writers.EventLogger;
-import it.uniroma2.pmcsn.parks.writers.FunIndexWriter;
+import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class FunIndexController implements Controller<RiderGroup> {
@@ -38,7 +40,6 @@ public class FunIndexController implements Controller<RiderGroup> {
         Constants.MODE = SimulationMode.NORMAL;
         // Constants.IMPROVED_MODEL = true;
         this.networkBuilder = new NetworkBuilder();
-        this.configHandler = ConfigHandler.getInstance();
     }
 
     @Override
@@ -47,23 +48,38 @@ public class FunIndexController implements Controller<RiderGroup> {
         init_simulation();
 
         Map<GroupPriority, Double> funIndexMap = new HashMap<>();
+        for (GroupPriority prio : GroupPriority.values()) {
+            funIndexMap.put(prio, 0.0);
+        }
 
         for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
-            this.simulateOnce();
-            List<RiderGroup> exitRiderGroups = this.networkBuilder.getExitCenter().getExitJobs();
+
+            // resetSingletons();
+
+            ExitCenter exitCenter = new Simulation().simulateOnce();
+            // this.simulateOnce();
+
+            EventLogger.writeRandomLogString(RandomHandler.getInstance().getRandomLog());
+
+            // List<RiderGroup> exitRiderGroups =
+            // this.networkBuilder.getExitCenter().getExitJobs();
+            List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
+
+            JobInfoWriter.writeAllJobsInfo("Job", "Job_Info_2.csv", exitRiderGroups);
 
             Map<GroupPriority, Double> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
 
-            for (GroupPriority prio : currentFunIndexMap.keySet()) {
-                funIndexMap.putIfAbsent(prio, 0.0);
-                funIndexMap.compute(prio, (key, value) -> value + currentFunIndexMap.get(prio));
-            }
+            System.out.println(currentFunIndexMap.toString());
+
+            // funIndexMap.replaceAll((prio, value) -> value +
+            // currentFunIndexMap.getOrDefault(prio, 0.0));
         }
 
-        funIndexMap.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
+        // funIndexMap.replaceAll((key, value) -> value /
+        // Constants.FUN_INDEX_REPLICATIONS_NUMBER);
 
-        FunIndexWriter.writeFunIndexResults(funIndexMap);
+        // FunIndexWriter.writeFunIndexResults(funIndexMap);
 
     }
 
@@ -71,17 +87,18 @@ public class FunIndexController implements Controller<RiderGroup> {
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
 
-        ClockHandler.getInstance().setClock(0);
+        ClockHandler.getInstance().setClock(0.0);
         EventsPool.reset();
+        this.configHandler = ConfigHandler.getInstance();
         this.currentInterval = configHandler.getCurrentInterval();
-        configHandler.changeParameters(currentInterval);
+        this.configHandler.changeParameters(currentInterval);
 
         this.scheduleArrivalEvent();
         clockHandler = ClockHandler.getInstance();
 
         while (true) {
 
-            SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
+            SystemEvent nextEvent = EventsPool.getInstance().getNextEvent();
             if (nextEvent == null) {
                 // When all the events finish, the simulation ends
                 break;
@@ -135,18 +152,17 @@ public class FunIndexController implements Controller<RiderGroup> {
 
     private void scheduleArrivalEvent() {
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(arrivalEvent);
+        SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        EventsPool.getInstance().scheduleNewEvent(arrivalEvent);
     }
 
     private void init_simulation() {
         // Reset statistics
-        // WriterHelper.clearDirectory("Job");
         // WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH,
         // "Center").toString());
-        // WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH, "Job").toString());
+        WriterHelper.clearDirectory(Constants.JOB_DATA_PATH);
         // Prepare the logger and set the system clock to 0
-        WriterHelper.clearDirectory(Constants.LOG_PATH);
+        // WriterHelper.clearDirectory(Constants.LOG_PATH);
         ClockHandler.getInstance().setClock(0);
     }
 

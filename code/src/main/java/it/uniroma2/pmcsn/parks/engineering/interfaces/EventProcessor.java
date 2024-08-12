@@ -7,6 +7,6 @@ import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 public interface EventProcessor<T> {
 
     // Returns new events generated from this processed event
-    public List<SystemEvent<T>> processEvent(SystemEvent<T> event);
+    public List<SystemEvent> processEvent(SystemEvent event);
 
 }

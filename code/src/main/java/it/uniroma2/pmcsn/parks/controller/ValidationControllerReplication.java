@@ -30,7 +30,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
 
     private NetworkBuilder networkBuilder;
     private ClockHandler clockHandler;
-    private EventsPool<RiderGroup> eventsPool;
+    private EventsPool eventsPool;
     private ConfigHandler configHandler;
     private Interval currentInterval;
 
@@ -43,7 +43,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
         Constants.MODE = SimulationMode.VALIDATION;
 
         this.configHandler = ConfigHandler.getInstance();
-        this.eventsPool = EventsPool.<RiderGroup>getInstance();
+        this.eventsPool = EventsPool.getInstance();
     }
 
     @Override
@@ -93,7 +93,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
 
         while (true) {
 
-            SystemEvent<RiderGroup> nextEvent = eventsPool.getNextEvent();
+            SystemEvent nextEvent = eventsPool.getNextEvent();
             if (nextEvent == null) {
                 // When all the events finish, the simulation ends
                 break;
@@ -149,7 +149,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
 
     private void scheduleArrivalEvent() {
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
-        SystemEvent<RiderGroup> arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
+        SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         eventsPool.scheduleNewEvent(arrivalEvent);
     }
 

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
-import it.uniroma2.pmcsn.parks.random.Estimate;
 
 public class FunIndexWriter {
 

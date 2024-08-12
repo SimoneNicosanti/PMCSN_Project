@@ -7,17 +7,15 @@ import java.util.Map;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 
-public class EventsPool<T> {
+public class EventsPool {
 
-    @SuppressWarnings("rawtypes")
     private static EventsPool instance = null;
 
-    private Map<EventsPoolId, List<SystemEvent<T>>> eventMap;
+    private Map<EventsPoolId, List<SystemEvent>> eventMap;
 
-    @SuppressWarnings("unchecked")
-    public static <T> EventsPool<T> getInstance() {
+    public static EventsPool getInstance() {
         if (instance == null) {
-            instance = new EventsPool<>();
+            instance = new EventsPool();
         }
         return instance;
     }
@@ -26,18 +24,18 @@ public class EventsPool<T> {
         this.eventMap = new HashMap<>();
     }
 
-    public SystemEvent<T> getNextEvent() {
-        SystemEvent<T> nextEvent = null;
+    public SystemEvent getNextEvent() {
+        SystemEvent nextEvent = null;
         EventsPoolId nextEventsPoolId = null;
         for (EventsPoolId id : eventMap.keySet()) {
-            List<SystemEvent<T>> currentEventList = eventMap.get(id);
+            List<SystemEvent> currentEventList = eventMap.get(id);
             if (currentEventList.size() > 0) {
                 if (nextEvent == null) {
                     nextEvent = currentEventList.get(0);
                     nextEventsPoolId = id;
                 } else {
                     // Lists are ordered, so the first elem is the lowest
-                    SystemEvent<T> currentEvent = currentEventList.get(0);
+                    SystemEvent currentEvent = currentEventList.get(0);
                     if (nextEvent.getEventTime() > currentEvent.getEventTime()) {
                         nextEvent = currentEvent;
                         nextEventsPoolId = id;
@@ -53,9 +51,9 @@ public class EventsPool<T> {
         return nextEvent;
     }
 
-    public void scheduleNewEvent(SystemEvent<T> event) {
+    public void scheduleNewEvent(SystemEvent event) {
         EventsPoolId poolId = event.getPoolId();
-        List<SystemEvent<T>> eventList = eventMap.get(poolId);
+        List<SystemEvent> eventList = eventMap.get(poolId);
         if (eventList == null) {
             eventList = new ArrayList<>();
             eventMap.put(poolId, eventList);
@@ -64,8 +62,8 @@ public class EventsPool<T> {
         eventList.sort(null);
     }
 
-    public void scheduleNewEvents(List<SystemEvent<T>> events) {
-        for (SystemEvent<T> event : events) {
+    public void scheduleNewEvents(List<SystemEvent> events) {
+        for (SystemEvent event : events) {
             scheduleNewEvent(event);
         }
     }

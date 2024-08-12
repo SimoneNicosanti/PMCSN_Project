@@ -21,7 +21,7 @@ public class Entrance extends MultiServer {
         QueuePriority queuePriority = this.commonArrivalManagement(job);
 
         // Scheduling new arrival to the park
-        SystemEvent<RiderGroup> newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
+        SystemEvent newArrivalEvent = EventBuilder.getNewArrivalEvent(this);
         if (newArrivalEvent != null) {
             EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newArrivalEvent);
             // EventLogger.logEvent("Generated", newArrivalEvent);
