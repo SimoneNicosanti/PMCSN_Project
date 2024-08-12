@@ -121,9 +121,8 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
         List<RiderGroup> jobsToServe = this.getJobsToServe();
 
-        if (isCenterClosed)
-            if (!jobsToServe.isEmpty())
-                throw new RuntimeException();
+        if (isCenterClosed && !jobsToServe.isEmpty())
+            throw new RuntimeException();
 
         this.currentServingJobs.addAll(jobsToServe);
 

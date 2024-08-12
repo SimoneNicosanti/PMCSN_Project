@@ -21,6 +21,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
 import it.uniroma2.pmcsn.parks.writers.EventLogger;
+import it.uniroma2.pmcsn.parks.writers.FunIndexWriter;
 import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
@@ -55,31 +56,24 @@ public class FunIndexController implements Controller<RiderGroup> {
         for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
 
-            // resetSingletons();
-
             ExitCenter exitCenter = new Simulation().simulateOnce();
-            // this.simulateOnce();
 
             EventLogger.writeRandomLogString(RandomHandler.getInstance().getRandomLog());
 
-            // List<RiderGroup> exitRiderGroups =
-            // this.networkBuilder.getExitCenter().getExitJobs();
             List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
 
             JobInfoWriter.writeAllJobsInfo("Job", "Job_Info_2.csv", exitRiderGroups);
 
             Map<GroupPriority, Double> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
 
-            System.out.println(currentFunIndexMap.toString());
-
-            // funIndexMap.replaceAll((prio, value) -> value +
-            // currentFunIndexMap.getOrDefault(prio, 0.0));
+            funIndexMap.replaceAll((prio, value) -> value + currentFunIndexMap.getOrDefault(prio, 0.0));
         }
 
-        // funIndexMap.replaceAll((key, value) -> value /
-        // Constants.FUN_INDEX_REPLICATIONS_NUMBER);
+        funIndexMap.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
 
-        // FunIndexWriter.writeFunIndexResults(funIndexMap);
+        System.out.println(funIndexMap.toString());
+
+        FunIndexWriter.writeFunIndexResults(funIndexMap);
 
     }
 

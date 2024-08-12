@@ -27,17 +27,15 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
 
         for (Center<RiderGroup> attraction : attractions) {
 
-            // double popularityTerm = 5 * attraction.getPopularity() / sumPop;
-            // double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
-            // maxQueue);
-            // double visitTerm = 0.15 * (1 -
-            // job.getGroupStats().getVisitsPerAttraction(attraction.getName()) / maxVisit);
+            double popularityTerm = 5 * attraction.getPopularity() / sumPop;
+            double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
+                    maxQueue);
+            double visitTerm = 0.15 * (1 -
+                    job.getGroupStats().getVisitsPerAttraction(attraction.getName()) / maxVisit);
 
-            // double score = popularityTerm + queueTerm + visitTerm;
+            double score = popularityTerm + queueTerm + visitTerm;
 
-            // double attractionProb = Math.exp(score);
-
-            double attractionProb = 1;
+            double attractionProb = Math.exp(score);
 
             this.probabilities.add(attractionProb);
             this.sumProbabilities += attractionProb;
