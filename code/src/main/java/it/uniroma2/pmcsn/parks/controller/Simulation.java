@@ -65,6 +65,8 @@ public class Simulation {
                 break;
             }
 
+            EventLogger.logEvent(Constants.MODE.name(), nextEvent);
+
             clockHandler.setClock(nextEvent.getEventTime());
 
             // Check if the current interval changed

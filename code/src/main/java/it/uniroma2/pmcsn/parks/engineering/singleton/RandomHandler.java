@@ -71,7 +71,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = streamGenerator.random();
-        randomLog += streamName + " " + randomNumber + "\n";
+        // randomLog += streamName + " " + randomNumber + "\n";
         return randomNumber;
     }
 
@@ -79,7 +79,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = streamGenerator.random();
-        randomLog += streamName + " " + randomNumber + " " + job.getGroupId() + "\n";
+        // randomLog += streamName + " " + randomNumber + " " + job.getGroupId() + "\n";
         return randomNumber;
     }
 
@@ -87,7 +87,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = streamGenerator.random();
-        randomLog += streamName + " " + randomNumber + " " + jobId + "\n";
+        // randomLog += streamName + " " + randomNumber + " " + jobId + "\n";
         return randomNumber;
     }
 
@@ -95,7 +95,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = distributionGenerator.uniform(a, b);
-        randomLog += streamName + " " + randomNumber + "\n";
+        // randomLog += streamName + " " + randomNumber + "\n";
         return randomNumber;
     }
 
@@ -103,7 +103,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = distributionGenerator.exponential(m);
-        randomLog += streamName + " " + randomNumber + "\n";
+        // randomLog += streamName + " " + randomNumber + "\n";
         return randomNumber;
     }
 
@@ -111,7 +111,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = distributionGenerator.poisson(m);
-        randomLog += streamName + " " + randomNumber + "\n";
+        // randomLog += streamName + " " + randomNumber + "\n";
         return randomNumber;
     }
 
@@ -119,7 +119,7 @@ public class RandomHandler {
         int stream = getStream(streamName);
         streamGenerator.selectStream(stream);
         double randomNumber = distributionGenerator.erlang(k, m);
-        randomLog += streamName + " " + randomNumber + "\n";
+        // randomLog += streamName + " " + randomNumber + "\n";
         return randomNumber;
     }
 

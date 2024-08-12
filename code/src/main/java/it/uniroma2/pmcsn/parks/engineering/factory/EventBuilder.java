@@ -55,7 +55,6 @@ public class EventBuilder {
         riderGroupId++;
 
         return arrivalEvent;
-
     }
 
     private static GroupPriority computeGroupPriority(long jobId) {

@@ -13,7 +13,6 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
@@ -58,7 +57,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
             ExitCenter exitCenter = new Simulation().simulateOnce();
 
-            EventLogger.writeRandomLogString(RandomHandler.getInstance().getRandomLog());
+            // EventLogger.writeRandomLogString(RandomHandler.getInstance().getRandomLog());
 
             List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
 
