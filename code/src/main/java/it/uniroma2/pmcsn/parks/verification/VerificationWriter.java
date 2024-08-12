@@ -11,10 +11,10 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
-import it.uniroma2.pmcsn.parks.utils.CsvWriter;
-import it.uniroma2.pmcsn.parks.utils.WriterHelper;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.CumulativeAvg;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.CumulativeAvg;
+import it.uniroma2.pmcsn.parks.writers.CsvWriter;
+import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class VerificationWriter {
 

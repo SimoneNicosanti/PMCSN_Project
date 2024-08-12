@@ -9,7 +9,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.utils.JobInfoWriter;
+import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
 
 /**
  * Fake center for exiting jobs

@@ -34,7 +34,7 @@ public class EventBuilder {
         if (arrivalRate == 0.0) {
             return null;
         }
-        // TODO Manage distributions
+
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 1 / arrivalRate);
 

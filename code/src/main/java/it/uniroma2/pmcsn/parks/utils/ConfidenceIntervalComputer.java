@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.verification;
+package it.uniroma2.pmcsn.parks.utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public class ConfidenceIntervalComputer {
         this.valuesMap = new HashMap<>();
     }
 
-    public void updateStatistics(List<Center<RiderGroup>> centerList) {
+    public void updateAllStatistics(List<Center<RiderGroup>> centerList) {
         for (Center<RiderGroup> center : centerList) {
             if (valuesMap.get(center.getName()) == null) {
                 valuesMap.put(center.getName(), new StatsValues());
@@ -80,27 +80,32 @@ public class ConfidenceIntervalComputer {
         }
     }
 
-    public List<ConfidenceInterval> computeConfidenceIntervals() {
+    public List<ConfidenceInterval> computeAllConfidenceIntervals() {
         List<ConfidenceInterval> returnList = new ArrayList<>();
         for (String centerName : valuesMap.keySet()) {
             StatsValues values = valuesMap.get(centerName);
             for (String statsName : values.getValues().keySet()) {
                 List<Double> valuesList = values.getValues().get(statsName);
-                Double mean = computeMean(valuesList);
-                Double interval = Estimate.computeConfidenceInterval(valuesList, 0.99);
-                Double autocorrelation = Acs.computeAutocorrelationByLag(valuesList, 1);
-                returnList.add(new ConfidenceInterval(
-                        centerName,
-                        statsName,
-                        mean,
-                        autocorrelation,
-                        interval));
+                returnList.add(computeConfidenceInterval(valuesList, centerName, statsName));
             }
         }
         return returnList;
     }
 
-    private Double computeMean(List<Double> valuesList) {
+    public static ConfidenceInterval computeConfidenceInterval(List<Double> values, String centerName,
+            String statName) {
+        Double mean = computeMean(values);
+        Double interval = Estimate.computeConfidenceInterval(values, 0.99);
+        Double autocorrelation = Acs.computeAutocorrelationByLag(values, 1);
+        return new ConfidenceInterval(
+                centerName,
+                statName,
+                mean,
+                autocorrelation,
+                interval);
+    }
+
+    private static Double computeMean(List<Double> valuesList) {
         if (valuesList.size() == 0) {
             return 0.0;
         }

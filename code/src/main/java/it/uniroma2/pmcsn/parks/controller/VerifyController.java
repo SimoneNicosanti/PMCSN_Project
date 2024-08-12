@@ -14,12 +14,12 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.WriterHelper;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
-import it.uniroma2.pmcsn.parks.verification.TheoreticalValueComputer;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
+import it.uniroma2.pmcsn.parks.utils.TheoreticalValueComputer;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
 import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.writers.EventLogger;
+import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class VerifyController implements Controller<RiderGroup> {
 
@@ -64,8 +64,8 @@ public class VerifyController implements Controller<RiderGroup> {
         VerificationWriter.writeSimulationResult(centerList, theoryMap);
 
         ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
-        computer.updateStatistics(centerList);
-        List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals();
+        computer.updateAllStatistics(centerList);
+        List<ConfidenceInterval> confidenceIntervals = computer.computeAllConfidenceIntervals();
         VerificationWriter.writeConfidenceIntervals(confidenceIntervals, theoryMap,
                 "ConfidenceIntervals");
 

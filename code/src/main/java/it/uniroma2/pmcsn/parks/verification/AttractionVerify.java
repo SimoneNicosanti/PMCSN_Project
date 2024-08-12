@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.verification;
 
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
@@ -11,8 +12,9 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public class AttractionVerify extends Attraction {
 
-    public AttractionVerify(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, numberOfSeats, popularity, avgDuration);
+    public AttractionVerify(String name, QueueManager<RiderGroup> queueManager, int numberOfSeats, double popularity,
+            double avgDuration) {
+        super(name, queueManager, numberOfSeats, popularity, avgDuration);
     }
 
     @Override

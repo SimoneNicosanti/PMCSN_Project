@@ -34,7 +34,7 @@ public class Constants {
 
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "Config_Normal.json";
-    public static final String ATTRACTION_FILE = "AttractionsData_1.csv"; // TODO
+    public static final String ATTRACTION_FILE = "AttractionsData_1.csv";
     public static final String ENTRANCE_FILE = "EntranceData.csv";
     public static final String RESTAURANT_FILE = "RestaurantsData.csv";
 
@@ -59,4 +59,7 @@ public class Constants {
     public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData_2.csv";
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
+
+    public static final boolean IMPROVED_MODEL = false;
+
 }

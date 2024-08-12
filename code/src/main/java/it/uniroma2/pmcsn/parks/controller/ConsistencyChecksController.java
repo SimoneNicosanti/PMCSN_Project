@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
@@ -13,10 +14,10 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.WriterHelper;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer;
-import it.uniroma2.pmcsn.parks.verification.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
 
 public class ConsistencyChecksController implements Controller<RiderGroup> {
@@ -38,18 +39,10 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
         this.networkBuilder = new NetworkBuilder();
         this.networkBuilder.buildNetwork();
-
-        // this.configHandler = ConfigHandler.getInstance();
-
-        // this.init_simulation();
-
-        // this.currentInterval = configHandler.getCurrentInterval();
     }
 
     @Override
     public void simulate() {
-
-        ValidationWriter.resetData();
 
         // Reset verification stats
         Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
@@ -59,8 +52,17 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         List<Center<RiderGroup>> centerList = batchSimulation();
 
         ConfidenceIntervalComputer computer = new ConfidenceIntervalComputer();
-        computer.updateStatistics(centerList);
-        List<ConfidenceInterval> confidenceIntervals = computer.computeConfidenceIntervals();
+        computer.updateAllStatistics(centerList);
+
+        List<ConfidenceInterval> confidenceIntervals = new ArrayList<>();
+        for (Center<RiderGroup> center : centerList) {
+            BatchStats queueBatchStats = ((StatsCenter) center).getQueueBatchStats();
+            ConfidenceInterval confidenceInterval = ConfidenceIntervalComputer
+                    .computeConfidenceInterval(queueBatchStats.getNumberAvgs(), center.getName(), "E[Tq]");
+            confidenceIntervals.add(confidenceInterval);
+        }
+        // List<ConfidenceInterval> confidenceIntervals =
+        // computer.computeAllConfidenceIntervals();
 
         ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals");
     }
@@ -69,8 +71,6 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         int i = 0;
 
         while (!stopSimulation()) {
-
-            // long time = System.currentTimeMillis();
 
             SystemEvent<RiderGroup> nextEvent = EventsPool.<RiderGroup>getInstance().getNextEvent();
             Double nextEventTime = nextEvent.getEventTime();
@@ -95,9 +95,6 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
                     break;
             }
 
-            // time = System.currentTimeMillis() - time;
-            // System.out.println(time);
-
             int dividend = (int) ClockHandler.getInstance().getClock();
 
             if (dividend / 10000 != i) {
@@ -108,8 +105,6 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         }
 
         System.out.println("Final Clock >>> " + ClockHandler.getInstance().getClock());
-
-        EventLogger.logRandomStreams("RandomStreams");
 
         return networkBuilder.getAllCenters();
     }

@@ -21,9 +21,9 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
-import it.uniroma2.pmcsn.parks.utils.EventLogger;
-import it.uniroma2.pmcsn.parks.utils.WriterHelper;
 import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
+import it.uniroma2.pmcsn.parks.writers.EventLogger;
+import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 
 public class ValidationControllerReplication implements Controller<RiderGroup> {

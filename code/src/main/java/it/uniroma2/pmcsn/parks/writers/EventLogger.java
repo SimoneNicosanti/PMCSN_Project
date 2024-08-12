@@ -1,4 +1,4 @@
-package it.uniroma2.pmcsn.parks.utils;
+package it.uniroma2.pmcsn.parks.writers;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
