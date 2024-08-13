@@ -47,7 +47,8 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             this.probabilities.add(attractionProb);
             this.sumProbabilities += attractionProb;
         }
-        // TODO If the group is too large for any attraction, it exits the park
+        // TODO How to lead the group out of the park?
+        // If the group is too large for any attraction, it exits the park
         // if (sumProbabilities == 0.0)
 
         this.normalize();

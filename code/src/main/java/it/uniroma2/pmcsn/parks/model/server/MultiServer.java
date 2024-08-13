@@ -39,7 +39,6 @@ public abstract class MultiServer extends AbstractCenter {
 
     @Override
     public Integer getQueueLenght(GroupPriority prio) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getQueueLenght'");
     }
 
