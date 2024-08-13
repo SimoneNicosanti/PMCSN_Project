@@ -47,20 +47,14 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
             if (priorityQueue.getNextSize() <= prioritySlots && priorityQueue.getNextSize() != 0) {
                 // Get job from priority queue
                 RiderGroup riderGroup = priorityQueue.dequeue();
-                if (riderGroup == null) {
-                    // No one in the queue to serve --> Go to next queue
-                    continue;
-                }
+
                 freeSlots -= riderGroup.getGroupSize();
                 prioritySlots -= riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
             } else if (normalQueue.getNextSize() <= freeSlots && normalQueue.getNextSize() != 0) {
                 // Get job from normal queue
                 RiderGroup riderGroup = normalQueue.dequeue();
-                if (riderGroup == null) {
-                    // No one in the queue to serve
-                    break;
-                }
+
                 freeSlots -= riderGroup.getGroupSize();
                 extractedList.add(riderGroup);
             } else {

@@ -10,7 +10,6 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
-import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -72,13 +71,12 @@ public class EventBuilder {
     // Builds a new generic event
     public static SystemEvent buildEventFrom(Center<RiderGroup> center, EventType eventType,
             RiderGroup job, double eventTime) {
-        EventsPoolId poolId = new EventsPoolId(center.getName(), eventType);
         Center<RiderGroup> statsCenter = statsCenterMap.get(center.getName());
 
         if (statsCenter == null) {
             statsCenter = center;
         }
-        return new SystemEvent(poolId, statsCenter, eventTime, job);
+        return new SystemEvent(eventType, statsCenter, eventTime, job);
     }
 
 }

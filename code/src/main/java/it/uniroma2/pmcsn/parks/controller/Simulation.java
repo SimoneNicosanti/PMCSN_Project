@@ -65,9 +65,9 @@ public class Simulation {
                 break;
             }
 
-            EventLogger.logEvent(Constants.MODE.name(), nextEvent);
-
             clockHandler.setClock(nextEvent.getEventTime());
+
+            EventLogger.logEvent(Constants.MODE.name(), nextEvent);
 
             // Check if the current interval changed
             Interval interval = configHandler.getInterval(clockHandler.getClock());

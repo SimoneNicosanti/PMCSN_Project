@@ -13,6 +13,7 @@ import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public abstract class AbstractCenter implements Center<RiderGroup> {
 
@@ -123,6 +124,10 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
         if (isCenterClosed && !jobsToServe.isEmpty())
             throw new RuntimeException();
+
+        if (this instanceof Attraction) {
+            jobsToServe.sort((arg0, arg1) -> arg0.getGroupId().compareTo(arg1.getGroupId()));
+        }
 
         this.currentServingJobs.addAll(jobsToServe);
 

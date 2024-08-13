@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.model.event;
 
 import java.util.Objects;
 
-public class EventsPoolId {
+public class EventsPoolId implements Comparable<EventsPoolId> {
     // ** The name of the center to which the pool of events belongs */
     private final String centerName;
     // ** The type of events: */
@@ -35,6 +35,16 @@ public class EventsPoolId {
     @Override
     public String toString() {
         return centerName + "_" + eventType;
+    }
+
+    @Override
+    public int compareTo(EventsPoolId arg0) {
+        int typeCompare = eventType.compareTo(arg0.eventType);
+        if (typeCompare != 0) {
+            return typeCompare;
+        }
+        return centerName.compareTo(arg0.centerName);
+
     }
 
 }
