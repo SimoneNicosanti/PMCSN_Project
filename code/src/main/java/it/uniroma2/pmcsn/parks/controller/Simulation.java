@@ -12,11 +12,17 @@ import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
+import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class Simulation {
 
     private ConfigHandler configHandler;
     private Interval currentInterval;
+
+    public static void main(String[] args) {
+        WriterHelper.createAllFolders();
+        new Simulation(SimulationMode.NORMAL).simulateOnce();
+    }
 
     public Simulation(SimulationMode mode) {
         Constants.MODE = mode;

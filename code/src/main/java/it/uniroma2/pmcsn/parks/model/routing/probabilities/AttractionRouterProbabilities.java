@@ -27,6 +27,13 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
 
         for (Center<RiderGroup> attraction : attractions) {
 
+            // If the group is too large for the attraction, the probability to go there is
+            // zero.
+            if (attraction.getSlotNumber() < job.getGroupSize()) {
+                this.probabilities.add(0.0);
+                continue;
+            }
+
             double popularityTerm = 5 * attraction.getPopularity() / sumPop;
             double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
                     maxQueue);
@@ -40,6 +47,9 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             this.probabilities.add(attractionProb);
             this.sumProbabilities += attractionProb;
         }
+        // TODO If the group is too large for any attraction, it exits the park
+        // if (sumProbabilities == 0.0)
+
         this.normalize();
 
         return this.probabilities;

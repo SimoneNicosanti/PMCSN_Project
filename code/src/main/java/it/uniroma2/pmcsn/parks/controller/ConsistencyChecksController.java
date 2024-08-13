@@ -20,10 +20,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
     public static void main(String[] args) {
         WriterHelper.createAllFolders();
-        long start = System.currentTimeMillis();
         new ConsistencyChecksController().simulate();
-        Long time = System.currentTimeMillis() - start;
-        System.out.println("Run Time >>> " + time);
     }
 
     public ConsistencyChecksController() {

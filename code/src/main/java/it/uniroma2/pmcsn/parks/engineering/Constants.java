@@ -32,6 +32,7 @@ public class Constants {
     public static final String GROUP_DIRECTORY = "groups";
     public static final String PEOPLE_DIRECTORY = "people";
 
+    public static boolean COLLECT_JOB_STATS = false;
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
     public static final String CONFIG_FILENAME = "Config_Normal.json";
     public static final String ATTRACTION_FILE = "AttractionsData_1.csv";

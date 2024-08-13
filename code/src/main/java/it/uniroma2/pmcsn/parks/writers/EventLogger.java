@@ -97,6 +97,8 @@ public class EventLogger {
             filePath.toFile().createNewFile();
             FileOutputStream exitLogWriter = new FileOutputStream(filePath.toFile(), true);
             exitLogWriter.write(randomLog.getBytes());
+
+            exitLogWriter.close();
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

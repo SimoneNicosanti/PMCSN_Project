@@ -230,4 +230,9 @@ public class StatsCenter implements Center<RiderGroup> {
         return this.wholeDayStats;
     }
 
+    @Override
+    public int getSlotNumber() {
+        return center.getSlotNumber();
+    }
+
 }

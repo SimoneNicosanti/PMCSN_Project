@@ -44,6 +44,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         return this.avgServiceTime;
     }
 
+    @Override
     public int getSlotNumber() {
         return this.slotNumber;
     }

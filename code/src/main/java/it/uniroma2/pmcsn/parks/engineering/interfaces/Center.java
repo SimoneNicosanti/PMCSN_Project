@@ -28,6 +28,8 @@ public interface Center<T> {
      */
     public boolean canServe(Integer slots);
 
+    public int getSlotNumber();
+
     public List<T> closeCenter();
 
 }

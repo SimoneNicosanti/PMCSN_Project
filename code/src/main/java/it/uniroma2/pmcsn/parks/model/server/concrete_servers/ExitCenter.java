@@ -3,7 +3,6 @@ package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
@@ -28,9 +27,9 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        // if (Constants.MODE == SimulationMode.NORMAL) {
-        // JobInfoWriter.writeJobInfo("Job", filename, job);
-        // }
+        if (Constants.COLLECT_JOB_STATS) {
+            JobInfoWriter.writeJobInfo("Job", filename, job);
+        }
         exitRiderGroup.add(job);
         return null;
     }
@@ -80,6 +79,11 @@ public class ExitCenter implements Center<RiderGroup> {
 
     public List<RiderGroup> getExitJobs() {
         return this.exitRiderGroup;
+    }
+
+    @Override
+    public int getSlotNumber() {
+        return 0;
     }
 
 }
