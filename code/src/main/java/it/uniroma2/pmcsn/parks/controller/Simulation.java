@@ -1,8 +1,5 @@
 package it.uniroma2.pmcsn.parks.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
@@ -13,49 +10,33 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
-import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
-import it.uniroma2.pmcsn.parks.writers.EventLogger;
-import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class Simulation {
 
-    private NetworkBuilder networkBuilder;
-    private ClockHandler clockHandler;
     private ConfigHandler configHandler;
     private Interval currentInterval;
 
-    public static void main(String[] args) {
-        ExitCenter exitCenter = new Simulation().simulateOnce();
+    public Simulation(SimulationMode mode) {
+        Constants.MODE = mode;
 
-        List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
-
-        JobInfoWriter.writeAllJobsInfo("Job", "Job_Info_2.csv", exitRiderGroups);
-
-        Map<GroupPriority, Double> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
-
-        System.out.println(currentFunIndexMap.toString());
-    }
-
-    public Simulation() {
-        Constants.MODE = SimulationMode.NORMAL;
-        ClockHandler.getInstance().setClock(0.0);
-        this.configHandler = ConfigHandler.getInstance();
-        this.currentInterval = configHandler.getCurrentInterval();
-        this.configHandler.changeParameters(currentInterval);
-
-        this.networkBuilder = new NetworkBuilder();
-    }
-
-    public ExitCenter simulateOnce() {
-        this.networkBuilder.buildNetwork();
-
+        // TODO IF NEEDED RESET RANDOM_HANDLER!!!!!
+        ClockHandler.reset();
         EventsPool.reset();
+        ConfigHandler.reset();
 
-        this.scheduleArrivalEvent();
-        clockHandler = ClockHandler.getInstance();
+        this.configHandler = ConfigHandler.getInstance();
+        this.currentInterval = configHandler.getInterval(ClockHandler.getInstance().getClock());
+        this.configHandler.changeParameters(currentInterval);
+    }
+
+    public NetworkBuilder simulateOnce() {
+
+        NetworkBuilder networkBuilder = new NetworkBuilder();
+        networkBuilder.buildNetwork();
+
+        scheduleFirstArrival(networkBuilder.getCenterByName(Constants.ENTRANCE));
 
         while (true) {
 
@@ -65,12 +46,12 @@ public class Simulation {
                 break;
             }
 
-            clockHandler.setClock(nextEvent.getEventTime());
+            ClockHandler.getInstance().setClock(nextEvent.getEventTime());
 
-            EventLogger.logEvent(Constants.MODE.name(), nextEvent);
+            // EventLogger.logEvent(Constants.MODE.name(), nextEvent);
 
             // Check if the current interval changed
-            Interval interval = configHandler.getInterval(clockHandler.getClock());
+            Interval interval = configHandler.getInterval(ClockHandler.getInstance().getClock());
             if (isIntervalChanged(interval)) {
                 changeInterval(interval);
 
@@ -79,44 +60,23 @@ public class Simulation {
                     // ... free and terminate the current services and ...
                     // eventsPool.freePool();
                     // ... close all centers (free the queues)
-                    for (Center<RiderGroup> center : this.networkBuilder.getAllCenters()) {
+                    for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
                         center.closeCenter();
                     }
                 }
             }
 
-            RiderGroup job = nextEvent.getJob();
-            Center<RiderGroup> center = nextEvent.getEventCenter();
-            switch (nextEvent.getEventType()) {
-                case ARRIVAL:
-                    boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
-                    center.arrival(job);
-                    if (mustServe) {
-                        center.startService();
-                    }
-                    break;
-
-                case END_PROCESS:
-                    center.endService(job);
-                    if (center.canServe(1)) {
-                        center.startService();
-                    }
-                    break;
-            }
+            processNextEvent(nextEvent);
         }
-
+        System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock() + "\n");
         // IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
 
-        EventLogger.logRandomStreams("RandomStreams");
+        // EventLogger.logRandomStreams("RandomStreams");
 
-        System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock());
-        System.out.println();
-
-        return networkBuilder.getExitCenter();
+        return networkBuilder;
     }
 
-    private void scheduleArrivalEvent() {
-        Center<RiderGroup> entranceCenter = networkBuilder.getCenterByName(Constants.ENTRANCE);
+    private void scheduleFirstArrival(Center<RiderGroup> entranceCenter) {
         SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.getInstance().scheduleNewEvent(arrivalEvent);
     }
@@ -125,17 +85,61 @@ public class Simulation {
         return !interval.equals(this.currentInterval);
     }
 
+    // Change the parameters based on the interval
     private void changeInterval(Interval interval) {
-        // System.out.println("CURRENT INTERVAL CHANGED");
-        // System.out.println(interval.getStart() + " - " + interval.getEnd());
-        // System.out.println("");
-
-        // Change the parameters based on the interval
-        changeParameters(interval);
+        ConfigHandler.getInstance().changeParameters(interval);
         this.currentInterval = interval;
     }
 
-    private void changeParameters(Interval interval) {
-        ConfigHandler.getInstance().changeParameters(interval);
+    public NetworkBuilder batchSimulation() {
+        NetworkBuilder networkBuilder = new NetworkBuilder();
+        networkBuilder.buildNetwork();
+
+        scheduleFirstArrival(networkBuilder.getCenterByName(Constants.ENTRANCE));
+
+        while (!stopBatchSimulation(networkBuilder)) {
+            SystemEvent nextEvent = EventsPool.getInstance().getNextEvent();
+            Double nextEventTime = nextEvent.getEventTime();
+            ClockHandler.getInstance().setClock(nextEventTime);
+
+            processNextEvent(nextEvent);
+        }
+        System.out.println("Final Clock >>> " + ClockHandler.getInstance().getClock() + "\n");
+
+        // EventLogger.logRandomStreams("RandomStreams");
+
+        return networkBuilder;
+    }
+
+    private void processNextEvent(SystemEvent nextEvent) {
+        RiderGroup job = nextEvent.getJob();
+        Center<RiderGroup> center = nextEvent.getEventCenter();
+        switch (nextEvent.getEventType()) {
+            case ARRIVAL:
+                boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
+                center.arrival(job);
+                if (mustServe) {
+                    center.startService();
+                }
+                break;
+
+            case END_PROCESS:
+                center.endService(job);
+                if (center.canServe(1)) {
+                    center.startService();
+                }
+                break;
+        }
+    }
+
+    private boolean stopBatchSimulation(NetworkBuilder networkBuilder) {
+        for (Center<RiderGroup> center : networkBuilder.getAllCenters()) {
+            StatsCenter statCenter = (StatsCenter) center;
+
+            if (!statCenter.areBatchesCompleted()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

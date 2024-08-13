@@ -40,7 +40,7 @@ public class ParkController implements Controller<RiderGroup> {
 
         this.init_simulation();
 
-        this.currentInterval = configHandler.getCurrentInterval();
+        this.currentInterval = configHandler.getInterval(ClockHandler.getInstance().getClock());
     }
 
     public NetworkBuilder getNetworkBuilder() {

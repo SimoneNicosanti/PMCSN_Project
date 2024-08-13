@@ -28,9 +28,9 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        if (Constants.MODE == SimulationMode.NORMAL) {
-            JobInfoWriter.writeJobInfo("Job", filename, job);
-        }
+        // if (Constants.MODE == SimulationMode.NORMAL) {
+        // JobInfoWriter.writeJobInfo("Job", filename, job);
+        // }
         exitRiderGroup.add(job);
         return null;
     }

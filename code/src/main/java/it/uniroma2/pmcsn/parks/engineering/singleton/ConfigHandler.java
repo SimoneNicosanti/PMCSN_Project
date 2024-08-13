@@ -106,11 +106,6 @@ public class ConfigHandler {
         throw new RuntimeException("Interval not found for time " + time);
     }
 
-    public Interval getCurrentInterval() {
-        Double currentClock = ClockHandler.getInstance().getClock();
-        return getInterval(currentClock);
-    }
-
     public boolean isParkClosing(Interval interval) {
         int size = intervals.size();
         Interval lastInterval = intervals.get(size - 1);

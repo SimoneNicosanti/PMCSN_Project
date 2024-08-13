@@ -1,1 +1,2 @@
 - Autocorrelazione nei controlli di consistenza alta a causa dell'esecuzione in batch delle attrazioni
+-  Between the two simulations we have to use the same random streams -> Must be the same configuaration, but with an higher arrival rate.
