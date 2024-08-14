@@ -1,9 +1,10 @@
-package it.uniroma2.pmcsn.parks.controller;
+package it.uniroma2.pmcsn.parks.controller.validation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
+import it.uniroma2.pmcsn.parks.controller.Simulation;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;

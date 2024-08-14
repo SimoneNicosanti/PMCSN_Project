@@ -1,9 +1,10 @@
-package it.uniroma2.pmcsn.parks.controller;
+package it.uniroma2.pmcsn.parks.controller.verify;
 
 import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
+import it.uniroma2.pmcsn.parks.controller.Simulation;
 import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;

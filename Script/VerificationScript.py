@@ -40,10 +40,17 @@ def createVerificationChartForCenterAndStat(dataFrame : pd.DataFrame, centerType
 
 def confidenceIntervalCharts() :
     dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Verification/ConfidenceIntervals.csv") 
+    dataFrame.to_csv("./Out/Data/Verification/ConfidenceIntervals_Round.csv", index = False, float_format="%.4f")
+
+    createCutFiles(dataFrame)
+
     for centerType in centerTypeList :
             for statName in statNameList :
                 createVerificationChartForConfidenceInterval(dataFrame, centerType, statName)
     return
+
+
+
 
 def createVerificationChartForConfidenceInterval(dataFrame : pd.DataFrame, centerType : str, statName : str) :
     filteredDf = dataFrame[(dataFrame["Center Name"].str.startswith(centerType)) & (dataFrame["Metric Name"] == statName)]

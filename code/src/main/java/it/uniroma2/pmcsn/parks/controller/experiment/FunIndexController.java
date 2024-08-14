@@ -1,10 +1,11 @@
-package it.uniroma2.pmcsn.parks.controller;
+package it.uniroma2.pmcsn.parks.controller.experiment;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
+import it.uniroma2.pmcsn.parks.controller.Simulation;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
@@ -53,7 +54,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
         funIndexMap.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
 
-        System.out.println(funIndexMap.toString());
+        // System.out.println(funIndexMap.toString());
 
         FunIndexWriter.writeFunIndexResults(funIndexMap);
     }
