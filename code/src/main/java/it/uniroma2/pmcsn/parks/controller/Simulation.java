@@ -72,7 +72,7 @@ public class Simulation {
                 }
             }
 
-            processNextEvent(nextEvent);
+            processNextEvent(nextEvent, networkBuilder);
         }
         System.out.println("LAST CLOCK >>> " + ClockHandler.getInstance().getClock() + "\n");
         // IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
@@ -108,7 +108,7 @@ public class Simulation {
             Double nextEventTime = nextEvent.getEventTime();
             ClockHandler.getInstance().setClock(nextEventTime);
 
-            processNextEvent(nextEvent);
+            processNextEvent(nextEvent, networkBuilder);
         }
         System.out.println("Final Clock >>> " + ClockHandler.getInstance().getClock() + "\n");
 
@@ -117,9 +117,9 @@ public class Simulation {
         return networkBuilder;
     }
 
-    private void processNextEvent(SystemEvent nextEvent) {
+    private void processNextEvent(SystemEvent nextEvent, NetworkBuilder networkBuilder) {
         RiderGroup job = nextEvent.getJob();
-        Center<RiderGroup> center = nextEvent.getEventCenter();
+        Center<RiderGroup> center = networkBuilder.getCenterByName(nextEvent.getCenterName());
         switch (nextEvent.getEventType()) {
             case ARRIVAL:
                 boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());

@@ -13,19 +13,10 @@ import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class EventBuilder {
 
     private static Long riderGroupId = 0L;
-    private static Map<String, StatsCenter> statsCenterMap;
-
-    public static void setStatsCenterMap(Map<String, Center<RiderGroup>> map) {
-        statsCenterMap = new HashMap<>();
-        for (String centerName : map.keySet()) {
-            statsCenterMap.put(centerName, (StatsCenter) map.get(centerName));
-        }
-    }
 
     public static SystemEvent getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
         Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
@@ -42,13 +33,7 @@ public class EventBuilder {
         RiderGroup riderGroup = new RiderGroup(riderGroupId, groupSize, priority,
                 ClockHandler.getInstance().getClock() + interarrivalTime);
 
-        Center<RiderGroup> statsCenter = statsCenterMap.get(arrivalCenter.getName());
-
-        if (statsCenter == null) {
-            statsCenter = arrivalCenter;
-        }
-
-        SystemEvent arrivalEvent = buildEventFrom(statsCenter, EventType.ARRIVAL,
+        SystemEvent arrivalEvent = buildEventFrom(arrivalCenter, EventType.ARRIVAL,
                 riderGroup, ClockHandler.getInstance().getClock() + interarrivalTime);
 
         riderGroupId++;
@@ -71,12 +56,8 @@ public class EventBuilder {
     // Builds a new generic event
     public static SystemEvent buildEventFrom(Center<RiderGroup> center, EventType eventType,
             RiderGroup job, double eventTime) {
-        Center<RiderGroup> statsCenter = statsCenterMap.get(center.getName());
 
-        if (statsCenter == null) {
-            statsCenter = center;
-        }
-        return new SystemEvent(eventType, statsCenter, eventTime, job);
+        return new SystemEvent(eventType, center.getName(), eventTime, job);
     }
 
 }

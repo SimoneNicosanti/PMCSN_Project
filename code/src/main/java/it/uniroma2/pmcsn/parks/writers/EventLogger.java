@@ -40,12 +40,12 @@ public class EventLogger {
 
     public static void logEvent(String processingType, SystemEvent event) {
 
-        Path centerFilePath = Path.of("Out", "Log", event.getEventCenter().getName()
+        Path centerFilePath = Path.of("Out", "Log", event.getCenterName()
                 + ".log");
         Path generalFilePath = Path.of("Out", "Log", "GeneralEventLog.log");
 
         String logString = "Event Type >> " + event.getEventType().name() + "\n" +
-                "Center Name >>> " + event.getEventCenter().getName() + "\n" +
+                "Center Name >>> " + event.getCenterName() + "\n" +
                 "Group Id >>> " + event.getJob().getGroupId() + "\n" +
                 "Event Time >>> " + event.getEventTime() + "\n" +
                 "Simulation Clock >>> " + ClockHandler.getInstance().getClock() + "\n\n";
@@ -100,7 +100,6 @@ public class EventLogger {
 
             exitLogWriter.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 

@@ -56,8 +56,6 @@ public class NetworkBuilder {
         this.centerMap.put(Constants.ENTRANCE, entrance);
         entrance.setNextRoutingNode(networkRoutingNode);
 
-        EventBuilder.setStatsCenterMap(centerMap);
-
     }
 
     private List<Center<RiderGroup>> buildListOfCenters(ServerType serverType) {
@@ -119,11 +117,16 @@ public class NetworkBuilder {
 
     }
 
-    public Center<RiderGroup> getCenterByName(String name) {
-        if (!centerMap.containsKey(name)) {
-            throw new RuntimeException("Center " + name + " does not exist");
+    public Center<RiderGroup> getCenterByName(String centerName) {
+
+        if (centerName.equals(exitCenter.getName())) {
+            return this.exitCenter;
         }
-        return centerMap.get(name);
+
+        if (!centerMap.containsKey(centerName)) {
+            throw new RuntimeException("Center " + centerName + " does not exist");
+        }
+        return centerMap.get(centerName);
     }
 
     public List<Center<RiderGroup>> getAllCenters() {

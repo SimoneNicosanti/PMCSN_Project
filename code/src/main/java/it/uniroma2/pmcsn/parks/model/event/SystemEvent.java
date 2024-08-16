@@ -1,6 +1,5 @@
 package it.uniroma2.pmcsn.parks.model.event;
 
-import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class SystemEvent implements Comparable<SystemEvent> {
@@ -8,23 +7,15 @@ public class SystemEvent implements Comparable<SystemEvent> {
     // ** The type of events: */
     private final EventType eventType;
     private double eventTime;
-    private Center<RiderGroup> eventCenter;
+    private String centerName;
     private RiderGroup job;
 
-    public SystemEvent(EventType eventType, Center<RiderGroup> eventCenter, double eventTime,
+    public SystemEvent(EventType eventType, String centerName, double eventTime,
             RiderGroup job) {
         this.eventType = eventType;
         this.eventTime = eventTime;
-        this.eventCenter = eventCenter;
+        this.centerName = centerName;
         this.job = job;
-    }
-
-    public void setCenter(Center<RiderGroup> center) {
-        this.eventCenter = center;
-    }
-
-    public String getCenterName() {
-        return this.eventCenter.getName();
     }
 
     public EventType getEventType() {
@@ -39,12 +30,8 @@ public class SystemEvent implements Comparable<SystemEvent> {
         return this.eventTime;
     }
 
-    public Center<RiderGroup> getEventCenter() {
-        return this.eventCenter;
-    }
-
-    public void addServiceTime(double serviceTime) {
-        this.eventTime += serviceTime;
+    public String getCenterName() {
+        return this.centerName;
     }
 
     @Override
