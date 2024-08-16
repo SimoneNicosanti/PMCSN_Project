@@ -27,7 +27,7 @@ public class Simulation {
     public Simulation(SimulationMode mode) {
         Constants.MODE = mode;
 
-        // TODO IF NEEDED RESET RANDOM_HANDLER!!!!!
+        // TODO IF NEEDED RESET RANDOM_HANDLER OUTSIDE THIS!!!!!
         ClockHandler.reset();
         EventsPool.reset();
         ConfigHandler.reset();
