@@ -14,8 +14,8 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.writers.ValidationWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
-import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
 
 public class ConsistencyChecksController implements Controller<RiderGroup> {
 
@@ -26,8 +26,8 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
 
     public ConsistencyChecksController() {
         Constants.MODE = SimulationMode.CONSISTENCY_CHECK;
-        Constants.VERIFICATION_BATCH_NUMBER = 50;
-        Constants.VERIFICATION_BATCH_SIZE = 1024;
+        Constants.VERIFICATION_BATCH_NUMBER = 250;
+        Constants.VERIFICATION_BATCH_SIZE = 1500;
     }
 
     @Override
@@ -74,6 +74,6 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
             confidenceIntervals.add(confidenceInterval);
         }
         ValidationWriter.writeConfidenceIntervals(confidenceIntervals, "ConfidenceIntervals_" + i);
-
+        ValidationWriter.writeRawResults(centerList, "RawList_" + i);
     }
 }

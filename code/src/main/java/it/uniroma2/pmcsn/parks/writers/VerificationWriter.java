@@ -1,11 +1,9 @@
-package it.uniroma2.pmcsn.parks.verification;
+package it.uniroma2.pmcsn.parks.writers;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.math3.dfp.DfpField.RoundingMode;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
@@ -15,8 +13,6 @@ import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.stats.BatchStats;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.CumulativeAvg;
-import it.uniroma2.pmcsn.parks.writers.CsvWriter;
-import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class VerificationWriter {
 

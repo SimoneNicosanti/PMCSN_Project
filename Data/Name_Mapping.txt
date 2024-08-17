@@ -1,0 +1,5 @@
+Doom -> Attraction_1
+Hippogriff -> Attraction_2
+Harry_Potter -> Attraction_3
+Jurassic_World -> Attraction_4
+Skull

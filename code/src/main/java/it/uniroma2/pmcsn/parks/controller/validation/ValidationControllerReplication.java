@@ -17,7 +17,7 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
-import it.uniroma2.pmcsn.parks.verification.ValidationWriter;
+import it.uniroma2.pmcsn.parks.writers.ValidationWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 

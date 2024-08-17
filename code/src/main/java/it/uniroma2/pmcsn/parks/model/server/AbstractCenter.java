@@ -9,6 +9,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -86,9 +87,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
         Double arrivalTime = ClockHandler.getInstance().getClock();
-
-        // Adding this makes the queue times decrease (should we add it??)
-        //
 
         SystemEvent newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
                 arrivalTime);

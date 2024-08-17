@@ -12,7 +12,7 @@ import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.TheoreticalValueComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
-import it.uniroma2.pmcsn.parks.verification.VerificationWriter;
+import it.uniroma2.pmcsn.parks.writers.VerificationWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
 public class VerifyController implements Controller<RiderGroup> {
