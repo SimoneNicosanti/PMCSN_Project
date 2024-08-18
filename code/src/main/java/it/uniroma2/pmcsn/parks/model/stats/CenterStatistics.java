@@ -91,4 +91,11 @@ public class CenterStatistics {
         };
 
     }
+
+    public Map<QueuePriority, AreaStats> getAllQueueAreaStats(StatsType statsType) {
+        return switch (statsType) {
+            case GROUP -> this.queueAreaPerPrioGroup;
+            case PERSON -> this.queueAreaPerPrioPeople;
+        };
+    }
 }
