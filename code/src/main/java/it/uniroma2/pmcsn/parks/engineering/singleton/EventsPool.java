@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 
 public class EventsPool {
 
@@ -45,7 +45,7 @@ public class EventsPool {
                 } else {
                     // Lists are ordered, so the first elem is the lowest
                     SystemEvent currentEvent = currentEventList.get(0);
-                    if (nextEvent.getEventTime() > currentEvent.getEventTime()) {
+                    if (currentEvent.compareTo(nextEvent) < 0) {
                         nextEvent = currentEvent;
                         nextEventsPoolId = id;
                     }
@@ -69,6 +69,7 @@ public class EventsPool {
         if ((totalListNextEvent != null && nextEvent != null) && totalListNextEvent.compareTo(nextEvent) != 0) {
             throw new RuntimeException("Inconsistant Lists 2");
         }
+        
 
         return nextEvent;
     }

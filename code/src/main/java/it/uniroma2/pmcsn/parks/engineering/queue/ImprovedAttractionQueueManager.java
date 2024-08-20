@@ -1,7 +1,7 @@
 package it.uniroma2.pmcsn.parks.engineering.queue;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Queue;

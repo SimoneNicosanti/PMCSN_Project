@@ -9,9 +9,8 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
@@ -53,9 +52,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected QueuePriority commonArrivalManagement(RiderGroup job) {
 
         if (isCenterClosed) {
-            Center<RiderGroup> nextCenter = this.nextRoutingNode.route(job);
-            Double currentClock = ClockHandler.getInstance().getClock();
-            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, job, currentClock);
+            scheduleArrivalToNewCenter(job) ;
             return null;
         }
 
@@ -159,15 +156,13 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
     @Override
     public List<RiderGroup> closeCenter() {
+
+        this.isCenterClosed = true;
         List<RiderGroup> removedGroups = this.queueManager.dequeueAll();
 
         for (RiderGroup group : removedGroups) {
-            Center<RiderGroup> nextCenter = nextRoutingNode.route(group);
-            Double currentClock = ClockHandler.getInstance().getClock();
-            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, group, currentClock);
+            scheduleArrivalToNewCenter(group) ;
         }
-
-        this.isCenterClosed = true;
         return removedGroups;
     }
 

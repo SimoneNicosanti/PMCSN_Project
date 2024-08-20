@@ -24,7 +24,7 @@ public class EventsPoolId implements Comparable<EventsPoolId> {
     @Override
     public boolean equals(Object o) {
         EventsPoolId poolId = (EventsPoolId) o;
-        return centerName == poolId.centerName && eventType == poolId.eventType;
+        return centerName.equals(centerName) && eventType == poolId.eventType;
     }
 
     @Override

@@ -1,13 +1,10 @@
 package it.uniroma2.pmcsn.parks.controller.experiment;
 
 import java.nio.file.Path;
-import java.nio.file.attribute.GroupPrincipal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.function.Consumer;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.controller.Simulation;
@@ -51,7 +48,7 @@ public class RhoController implements Controller<RiderGroup> {
 
         Map<String, Double> smallRiderNum = new HashMap<>();
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Index >>> " + i);
             NetworkBuilder networkBuilder = new Simulation(SimulationMode.NORMAL).simulateOnce();
 
@@ -68,6 +65,7 @@ public class RhoController implements Controller<RiderGroup> {
 
             System.out.println("Small Groups >>> " + smallGroups + "\n\n");
 
+            // TODO Try to understand by which clock we have to divide
             for (Center<RiderGroup> center : centerList) {
                 StatsCenter statCenter = (StatsCenter) center;
                 if (statCenter.getCenter() instanceof Attraction) {
@@ -80,22 +78,26 @@ public class RhoController implements Controller<RiderGroup> {
                     rhoListMap.get(center.getName()).add(multipliedRho);
 
                     seatsNumberMap.putIfAbsent(center.getName(), center.getSlotNumber());
+                    if (Constants.IMPROVED_MODEL) {
+                        AreaStats smallGroupAreaStat = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.PERSON,
+                                QueuePriority.SMALL);
 
-                    // AreaStats smallGroupAreaStat =
-                    // statCenter.getWholeDayStats().getQueueAreaStats(StatsType.PERSON,
-                    // QueuePriority.SMALL);
+                        smallRiderNum.putIfAbsent(center.getName(), 0.0);
+                        smallRiderNum.replace(center.getName(), smallRiderNum.get(center.getName())
+                                + smallGroupAreaStat.getTimeAvgdStat());
+                    }
 
-                    // smallRiderNum.putIfAbsent(center.getName(), 0.0);
-                    // smallRiderNum.replace(center.getName(), smallRiderNum.get(center.getName())
-                    // + smallGroupAreaStat.getArea() / ClockHandler.getInstance().getClock());
                 }
             }
         }
 
         System.out.println(RandomHandler.getInstance().getStreamMap());
 
-        smallRiderNum.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
-        System.out.println(smallRiderNum);
+        if (Constants.IMPROVED_MODEL) {
+            smallRiderNum.replaceAll((key, value) -> value /
+                    Constants.FUN_INDEX_REPLICATIONS_NUMBER);
+            System.out.println(smallRiderNum);
+        }
 
         Map<String, ConfidenceInterval> confidenceIntervalMap = new HashMap<>();
         rhoListMap.forEach((key, value) -> confidenceIntervalMap.put(key,
