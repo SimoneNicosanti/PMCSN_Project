@@ -30,58 +30,58 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
         List<RiderGroup> extractedList = new ArrayList<>();
         int freeSlots = numberOfSeats;
 
-        // // If there is a normal group blocking the queue because it is too big, then
-        // we
-        // // take it first
-        // if (this.normalQueueExtractionTryTimes >
-        // Constants.MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES
-        // && normalQueue.getNextSize() != 0) {
-        // Integer firstNormalExtracted = extractFromOneQueue(normalQueue,
-        // normalQueue.getNextSize(), extractedList);
-        // freeSlots -= firstNormalExtracted;
+        // If there is a normal group blocking the queue because it is too big, then
+        // we take it first
+        if (this.normalQueueExtractionTryTimes > Constants.MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES
+                && normalQueue.getNextSize() != 0) {
+            Integer firstNormalExtracted = extractFromOneQueue(normalQueue,
+                    normalQueue.getNextSize(), extractedList);
+            freeSlots -= firstNormalExtracted;
 
-        // this.normalQueueExtractionTryTimes = 0;
-        // }
+            this.normalQueueExtractionTryTimes = 0;
+        }
 
-        // // Priority groups has only a percentage of the attraction seats
-        // double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
-        // int prioritySlots = (int) (freeSlots * priorityPercentage);
+        // Priority groups has only a percentage of the attraction seats
+        double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
+        int prioritySlots = (int) (freeSlots * priorityPercentage);
 
-        // // What if a priority group is bigger than the number of priority seat? Take
-        // // always at least one priority group
-        // if (priorityQueue.getNextSize() != 0) {
-        // // Get job from priority queue
-        // RiderGroup riderGroup = priorityQueue.dequeue();
+        // What if a priority group is bigger than the number of priority seat? Take
+        // always at least one priority group
+        if (priorityQueue.getNextSize() != 0) {
+            // Get job from priority queue
+            RiderGroup riderGroup = priorityQueue.dequeue();
 
-        // freeSlots -= riderGroup.getGroupSize();
-        // prioritySlots -= riderGroup.getGroupSize();
-        // extractedList.add(riderGroup);
-        // }
+            freeSlots -= riderGroup.getGroupSize();
+            prioritySlots -= riderGroup.getGroupSize();
+            extractedList.add(riderGroup);
+        }
 
-        // // First extract all groups we can from the priority queue
-        // Integer priorityExtractedNum = extractFromOneQueue(priorityQueue,
-        // prioritySlots, extractedList);
-        // freeSlots = freeSlots - priorityExtractedNum;
+        // First extract all groups we can from the priority queue
+        Integer priorityExtractedNum = extractFromOneQueue(priorityQueue,
+                prioritySlots, extractedList);
+        freeSlots = freeSlots - priorityExtractedNum;
 
-        // // Then we extract all groups we can from the normal queue
-        // Integer normalExtractedNum = extractFromOneQueue(normalQueue, freeSlots,
-        // extractedList);
-        // freeSlots = freeSlots - normalExtractedNum;
-        // if (normalExtractedNum == 0 && this.normalQueue.getNextSize() > 0) {
-        // // It means that there is a group blocking the normal queue
-        // this.normalQueueExtractionTryTimes++;
-        // } else if (normalExtractedNum > 0) {
-        // this.normalQueueExtractionTryTimes = 0;
-        // }
+        // Then we extract all groups we can from the normal queue
+        Integer normalExtractedNum = extractFromOneQueue(normalQueue, freeSlots,
+                extractedList);
+        freeSlots = freeSlots - normalExtractedNum;
+        if (normalExtractedNum == 0 && this.normalQueue.getNextSize() > 0) {
+            // It means that there is a group blocking the normal queue
+            this.normalQueueExtractionTryTimes++;
+        } else if (normalExtractedNum > 0) {
+            this.normalQueueExtractionTryTimes = 0;
+        }
 
-        // // If there are other free seats, try to extract again from the priority
+        // If there are other free seats, try to extract again from the priority
         // queue
-        // if (freeSlots > 0) {
-        // extractFromOneQueue(priorityQueue, freeSlots, extractedList);
-        // }
+        if (freeSlots > 0) {
+            extractFromOneQueue(priorityQueue, freeSlots, extractedList);
+        }
 
-        freeSlots = freeSlots - extractFromOneQueue(priorityQueue, freeSlots, extractedList);
-        freeSlots = freeSlots - extractFromOneQueue(normalQueue, freeSlots, extractedList);
+        // freeSlots = freeSlots - extractFromOneQueue(priorityQueue, freeSlots,
+        // extractedList);
+        // freeSlots = freeSlots - extractFromOneQueue(normalQueue, freeSlots,
+        // extractedList);
 
         return extractedList;
     }

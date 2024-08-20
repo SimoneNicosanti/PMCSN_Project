@@ -23,8 +23,8 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
-import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer.FunIndexInfo;
 import it.uniroma2.pmcsn.parks.writers.FunIndexWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
@@ -37,6 +37,7 @@ public class FunIndexController implements Controller<RiderGroup> {
     }
 
     public FunIndexController() {
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override
@@ -44,25 +45,35 @@ public class FunIndexController implements Controller<RiderGroup> {
 
         init_simulation();
 
-        for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.05) {
+        for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.1) {
             Constants.PRIORITY_PERCENTAGE_PER_RIDE = priorityPercSeats;
 
-            simulateForOneValue();
+            if (!Constants.IMPROVED_MODEL) {
+                simulateForOneValue();
+                RandomHandler.reset();
+            } else {
+                for (int smallGroupSize = 1; smallGroupSize <= 1; smallGroupSize++) {
+                    Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
+                    simulateForOneValue();
 
-            RandomHandler.reset();
+                    RandomHandler.reset();
+                }
+            }
         }
 
         // IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
     }
 
     private void simulateForOneValue() {
-        Map<GroupPriority, List<FunIndexInfo>> funIndexMap = new HashMap<>();
+        Map<String, List<FunIndexInfo>> funIndexMap = new HashMap<>();
         Map<String, List<Double>> priorityQueueTimeMap = new HashMap<>();
         Map<String, List<Double>> normalQueueTimeMap = new HashMap<>();
+        Map<String, List<Double>> smallQueueTimeMap = new HashMap<>();
 
         for (GroupPriority prio : GroupPriority.values()) {
-            funIndexMap.put(prio, new ArrayList<>());
+            funIndexMap.put(prio.name(), new ArrayList<>());
         }
+        funIndexMap.put("SMALL", new ArrayList<>());
 
         for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
@@ -74,9 +85,9 @@ public class FunIndexController implements Controller<RiderGroup> {
 
             List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
 
-            Map<GroupPriority, FunIndexInfo> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
+            Map<String, FunIndexInfo> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
 
-            for (GroupPriority prio : currentFunIndexMap.keySet()) {
+            for (String prio : currentFunIndexMap.keySet()) {
                 funIndexMap.get(prio).add(currentFunIndexMap.get(prio));
             }
             // funIndexMap.replaceAll(
@@ -96,19 +107,26 @@ public class FunIndexController implements Controller<RiderGroup> {
                             QueuePriority.NORMAL);
                     normalQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
                     normalQueueTimeMap.get(center.getName()).add(normalQueueAreaStats.getSizeAvgdStat());
+
+                    if (Constants.IMPROVED_MODEL) {
+                        AreaStats smallQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
+                                QueuePriority.SMALL);
+                        smallQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
+                        smallQueueTimeMap.get(center.getName()).add(smallQueueAreaStats.getSizeAvgdStat());
+                    }
                 }
             }
         }
 
-        Map<GroupPriority, ConfidenceInterval> funIdxConfInterMap = new HashMap<>();
-        for (GroupPriority prio : funIndexMap.keySet()) {
-            List<FunIndexInfo> funIndexInfoList = funIndexMap.get(prio);
+        Map<String, ConfidenceInterval> funIdxConfInterMap = new HashMap<>();
+        for (String prioName : funIndexMap.keySet()) {
+            List<FunIndexInfo> funIndexInfoList = funIndexMap.get(prioName);
             List<Double> funIndexValues = new ArrayList<>();
             funIndexInfoList.forEach(arg0 -> funIndexValues.add(arg0.avgFunIndex()));
 
             ConfidenceInterval funIndexConfInt = ConfidenceIntervalComputer.computeConfidenceInterval(funIndexValues,
-                    prio.name(), "FunIndex");
-            funIdxConfInterMap.put(prio, funIndexConfInt);
+                    prioName, "FunIndex");
+            funIdxConfInterMap.put(prioName, funIndexConfInt);
         }
 
         Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap = new HashMap<>();
@@ -121,6 +139,10 @@ public class FunIndexController implements Controller<RiderGroup> {
             perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.NORMAL, ConfidenceIntervalComputer
                     .computeConfidenceInterval(normalQueueTimeMap.get(centerName), centerName, "QueueTime"));
 
+            if (Constants.IMPROVED_MODEL) {
+                perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.SMALL, ConfidenceIntervalComputer
+                        .computeConfidenceInterval(smallQueueTimeMap.get(centerName), centerName, "QueueTime"));
+            }
         }
 
         FunIndexWriter.writeFunIndexResults(funIdxConfInterMap);

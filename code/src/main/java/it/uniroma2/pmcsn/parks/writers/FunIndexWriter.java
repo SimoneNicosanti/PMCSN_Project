@@ -5,28 +5,25 @@ import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
-import it.uniroma2.pmcsn.parks.utils.FunIndexComputer.FunIndexInfo;
 
 public class FunIndexWriter {
 
-    public static void writeFunIndexResults(Map<GroupPriority, ConfidenceInterval> funIdxConfInterMap) {
+    public static void writeFunIndexResults(Map<String, ConfidenceInterval> funIdxConfInterMap) {
 
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        Path filePath = Path.of(fileDirectory.toString(), "FunIndex.csv");
+        Path filePath = Path.of(fileDirectory.toString(), "FunIndex_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
         String[] header = { "Percentage", "Priority", "FunIndex", "Interval" };
         CsvWriter.writeHeader(filePath, header);
 
-        for (GroupPriority priority : funIdxConfInterMap.keySet()) {
+        for (String priority : funIdxConfInterMap.keySet()) {
             ConfidenceInterval confInterval = funIdxConfInterMap.get(priority);
 
             List<Object> record = List.of(
                     Constants.PRIORITY_PERCENTAGE_PER_RIDE,
-                    priority.name(),
+                    priority,
                     confInterval.mean(),
                     confInterval.interval());
             CsvWriter.writeRecord(filePath, record);
@@ -37,7 +34,7 @@ public class FunIndexWriter {
     public static void writePriorityQueueTimes(
             Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap) {
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        Path filePath = Path.of(fileDirectory.toString(), "PriorityQueueTime.csv");
+        Path filePath = Path.of(fileDirectory.toString(), "PriorityQueueTime_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
         String[] header = { "Percentage", "Priority", "CenterName", "AvgQueueTime", "Interval" };
         CsvWriter.writeHeader(filePath, header);

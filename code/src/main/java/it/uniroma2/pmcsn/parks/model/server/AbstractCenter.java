@@ -52,7 +52,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected QueuePriority commonArrivalManagement(RiderGroup job) {
 
         if (isCenterClosed) {
-            scheduleArrivalToNewCenter(job) ;
+            scheduleArrivalToNewCenter(job);
             return null;
         }
 
@@ -136,8 +136,6 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
                     job,
                     ClockHandler.getInstance().getClock() + serviceTime);
             EventsPool.getInstance().scheduleNewEvent(newEvent);
-
-            // EventLogger.logEvent("Schedule ", newEvent);
         }
 
         return jobsToServe;
@@ -161,7 +159,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         List<RiderGroup> removedGroups = this.queueManager.dequeueAll();
 
         for (RiderGroup group : removedGroups) {
-            scheduleArrivalToNewCenter(group) ;
+            scheduleArrivalToNewCenter(group);
         }
         return removedGroups;
     }

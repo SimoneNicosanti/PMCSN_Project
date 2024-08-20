@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
+
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.stats.GroupStats;
 
@@ -31,17 +31,19 @@ public class FunIndexComputer {
         }
     }
 
-    public static Map<GroupPriority, FunIndexInfo> computeAvgsFunIndex(List<RiderGroup> exitGroups) {
-        Map<GroupPriority, List<FunIndexInfo>> valuesMap = new HashMap<>();
+    public static Map<String, FunIndexInfo> computeAvgsFunIndex(List<RiderGroup> exitGroups) {
+        Map<String, List<FunIndexInfo>> valuesMap = new HashMap<>();
         for (RiderGroup group : exitGroups) {
-            valuesMap.putIfAbsent(group.getPriority(), new ArrayList<>());
+
+            valuesMap.putIfAbsent(findGroupPriorityName(group), new ArrayList<>());
+
             if (group.getGroupStats().getTotalNumberOfRides() > 0) {
-                valuesMap.get(group.getPriority()).add(computeFunIndexInfo(group));
+                valuesMap.get(findGroupPriorityName(group)).add(computeFunIndexInfo(group));
             }
         }
 
-        Map<GroupPriority, FunIndexInfo> returnMap = new HashMap<>();
-        for (GroupPriority prio : valuesMap.keySet()) {
+        Map<String, FunIndexInfo> returnMap = new HashMap<>();
+        for (String prio : valuesMap.keySet()) {
             List<FunIndexInfo> values = valuesMap.get(prio);
             FunIndexInfo summed = values.stream().reduce(
                     new FunIndexInfo(0, 0, 0, 0.0),
@@ -56,8 +58,16 @@ public class FunIndexComputer {
 
     private static FunIndexInfo computeFunIndexInfo(RiderGroup group) {
         GroupStats stats = group.getGroupStats();
-        Double funIndex = (stats.getServiceTime() * stats.getTotalNumberOfRides()) / (stats.getQueueTime() + 1);
+        Double funIndex = (stats.getServiceTime()) / (stats.getQueueTime() + 1);
 
         return new FunIndexInfo(stats.getTotalNumberOfRides(), stats.getServiceTime(), stats.getQueueTime(), funIndex);
+    }
+
+    private static String findGroupPriorityName(RiderGroup group) {
+        if (group.isSmallGroup()) {
+            return "SMALL";
+        } else {
+            return group.getPriority().name();
+        }
     }
 }
