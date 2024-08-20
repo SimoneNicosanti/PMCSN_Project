@@ -64,13 +64,13 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
         freeSlots = freeSlots - priorityExtractedNum;
 
         // Then we extract all groups for normal priority
-        Integer normalReservedSeats = (int) (freeSlots *
-                (1 - Constants.PRIORITY_PERCENTAGE_PER_RIDE));
+        // Integer normalReservedSeats = (int) (freeSlots *
+        // (1 - Constants.PRIORITY_PERCENTAGE_PER_RIDE));
 
         // Then we extract all groups we can from the normal queue
 
         Integer normalExtractedNum = extractFromOneQueue(normalQueue,
-                normalReservedSeats, extractedList);
+                freeSlots, extractedList);
         freeSlots = freeSlots - normalExtractedNum;
         if (normalExtractedNum == 0 && this.normalQueue.getNextSize() > 0) {
             // It means that there is a group blocking the normal queue
