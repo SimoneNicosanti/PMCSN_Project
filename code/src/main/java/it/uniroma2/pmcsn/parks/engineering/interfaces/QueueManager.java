@@ -13,7 +13,7 @@ public interface QueueManager<T> {
 
     public boolean areQueuesEmpty();
 
-    public int queueLength(GroupPriority priority);
+    public int queueLength(GroupPriority priority, Integer groupSize);
 
     public List<T> dequeueAll();
 

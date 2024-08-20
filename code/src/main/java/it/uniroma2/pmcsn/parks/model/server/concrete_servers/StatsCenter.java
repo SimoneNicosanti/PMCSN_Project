@@ -177,8 +177,8 @@ public class StatsCenter implements Center<RiderGroup> {
     }
 
     @Override
-    public Integer getQueueLenght(GroupPriority prio) {
-        return this.center.getQueueLenght(prio);
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize) {
+        return this.center.getQueueLenght(prio, groupSize);
     }
 
     @Override

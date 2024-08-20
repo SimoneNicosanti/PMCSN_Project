@@ -19,8 +19,8 @@ public class Attraction extends AbstractCenter {
         this.currentServiceTime = 0.0;
     }
 
-    public Integer getQueueLenght(GroupPriority priority) {
-        return this.queueManager.queueLength(priority);
+    public Integer getQueueLenght(GroupPriority priority, Integer groupSize) {
+        return this.queueManager.queueLength(priority, groupSize);
     }
 
     @Override

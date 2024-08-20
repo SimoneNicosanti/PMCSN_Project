@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-metricList = ["FunIndex", "AvgVisits", "AvgServiceTime", "AvgQueueTime"]
+metricList = ["FunIndex"]#, "AvgVisits", "AvgServiceTime", "AvgQueueTime"]
 
 def funIndexChart() :
     plt.figure(figsize=(10,5))
@@ -12,12 +12,16 @@ def funIndexChart() :
     for metricName in metricList :
         for name, group in groupedDataFrame:
             # data = (group[metricName] - group[metricName].min()) / (group[metricName].max() - group[metricName].min())
-            data = np.log10(group[metricName] + 1)
-            plt.plot(group["Percentage"], data, label=f'Gruppo {name}', marker = "o")
+            data = group[metricName]
+            plt.plot(group["Percentage"], np.log10(data), label=f'Gruppo {name}', marker = "o")
+            plt.fill_between(group["Percentage"], np.log10(data - 
+                             group["Interval"]), np.log10(data + group["Interval"]), alpha = 0.2)
 
             plt.xticks(ticks = np.arange(0, 1.05, 0.05))
             plt.xlabel(xlabel = "Priority Seats Percentage")
             plt.ylabel(ylabel = "Log_10 " + metricName)
+
+            plt.title("FunIndex Trend")
 
             plt.tight_layout()
             plt.legend()
@@ -31,15 +35,19 @@ def priorityQueueTimeChart() :
     dataFrame : pd.DataFrame = pd.read_csv("./Out/Data/Fun/PriorityQueueTime.csv")
     groupedDataFrame = dataFrame.groupby(["CenterName"])
     priorities = dataFrame["Priority"].unique()
-    print(priorities)
     for name, group in groupedDataFrame:
         for priority in priorities :
             data = group[group["Priority"] == priority]
             plt.plot(data["Percentage"], data["AvgQueueTime"], label=f'{priority}', marker = "o")
+            plt.fill_between(data["Percentage"], data["AvgQueueTime"] - data["Interval"], data["AvgQueueTime"] + data["Interval"], alpha = 0.2)
 
         plt.xticks(ticks = np.arange(0, 1.05, 0.05))
         plt.xlabel(xlabel = "Priority Seats Percentage")
         plt.ylabel(ylabel = "AvgQueueTime")
+
+        plt.axhline(y = 30, color = "black", linestyle='--', label='QoS')
+
+        plt.title(label = name[0] + " - Avg E[Tq]")
 
         plt.tight_layout()
         plt.legend()

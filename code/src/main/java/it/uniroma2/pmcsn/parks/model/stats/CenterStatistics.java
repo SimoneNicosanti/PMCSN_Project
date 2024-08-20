@@ -48,7 +48,7 @@ public class CenterStatistics {
         this.queueAreaPeople.updateArea(time, groupSize, groupSize);
     }
 
-    public Double getServiceAreaValue(StatsType statsType) {
+    public Double getResponseAreaValue(StatsType statsType) {
         AreaStats serviceArea;
         AreaStats queueArea;
         switch (statsType) {

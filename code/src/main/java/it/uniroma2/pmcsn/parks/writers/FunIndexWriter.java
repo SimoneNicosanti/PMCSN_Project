@@ -7,52 +7,57 @@ import java.util.Map;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer.FunIndexInfo;
 
 public class FunIndexWriter {
 
-    public static void writeFunIndexResults(Map<GroupPriority, FunIndexInfo> funIndexMap) {
+    public static void writeFunIndexResults(Map<GroupPriority, ConfidenceInterval> funIdxConfInterMap) {
 
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
         Path filePath = Path.of(fileDirectory.toString(), "FunIndex.csv");
 
-        String[] header = { "Percentage", "Priority", "AvgVisits", "AvgServiceTime", "AvgQueueTime", "FunIndex" };
+        String[] header = { "Percentage", "Priority", "FunIndex", "Interval" };
         CsvWriter.writeHeader(filePath, header);
 
-        for (GroupPriority priority : funIndexMap.keySet()) {
-            FunIndexInfo funIndexInfo = funIndexMap.get(priority);
+        for (GroupPriority priority : funIdxConfInterMap.keySet()) {
+            ConfidenceInterval confInterval = funIdxConfInterMap.get(priority);
 
             List<Object> record = List.of(
                     Constants.PRIORITY_PERCENTAGE_PER_RIDE,
                     priority.name(),
-                    funIndexInfo.avgNumberOfRides(),
-                    funIndexInfo.avgServiceTime(),
-                    funIndexInfo.avgQueueTime(),
-                    funIndexInfo.avgFunIndex());
+                    confInterval.mean(),
+                    confInterval.interval());
             CsvWriter.writeRecord(filePath, record);
         }
 
     }
 
-    public static void writePriorityQueueTimes(Map<QueuePriority, Map<String, Double>> perPrioQueueTimeMap) {
+    public static void writePriorityQueueTimes(
+            Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap) {
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
         Path filePath = Path.of(fileDirectory.toString(), "PriorityQueueTime.csv");
 
-        String[] header = { "Percentage", "Priority", "CenterName", "AvgQueueTime" };
+        String[] header = { "Percentage", "Priority", "CenterName", "AvgQueueTime", "Interval" };
         CsvWriter.writeHeader(filePath, header);
 
-        for (QueuePriority prio : perPrioQueueTimeMap.keySet()) {
-            Map<String, Double> priorityQueueTimeMap = perPrioQueueTimeMap.get(prio);
+        for (String centerName : perPrioQueueTimeMap.keySet()) {
+            Map<QueuePriority, ConfidenceInterval> confIntervalMap = perPrioQueueTimeMap.get(centerName);
 
-            for (String centerName : priorityQueueTimeMap.keySet()) {
+            for (QueuePriority prio : confIntervalMap.keySet()) {
+
+                ConfidenceInterval confInterval = confIntervalMap.get(prio);
 
                 List<Object> record = List.of(
                         Constants.PRIORITY_PERCENTAGE_PER_RIDE,
                         prio.name(),
-                        centerName,
-                        priorityQueueTimeMap.get(centerName));
+                        confInterval.centerName(),
+                        confInterval.mean(),
+                        confInterval.interval());
                 CsvWriter.writeRecord(filePath, record);
             }
+
         }
 
     }

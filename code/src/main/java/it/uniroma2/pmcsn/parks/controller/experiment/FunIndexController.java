@@ -1,6 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller.experiment;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,9 @@ import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
+import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer.FunIndexInfo;
 import it.uniroma2.pmcsn.parks.writers.FunIndexWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
@@ -53,12 +56,12 @@ public class FunIndexController implements Controller<RiderGroup> {
     }
 
     private void simulateForOneValue() {
-        Map<GroupPriority, FunIndexInfo> funIndexMap = new HashMap<>();
-        Map<String, Double> priorityQueueTimeMap = new HashMap<>();
-        Map<String, Double> normalQueueTimeMap = new HashMap<>();
+        Map<GroupPriority, List<FunIndexInfo>> funIndexMap = new HashMap<>();
+        Map<String, List<Double>> priorityQueueTimeMap = new HashMap<>();
+        Map<String, List<Double>> normalQueueTimeMap = new HashMap<>();
 
         for (GroupPriority prio : GroupPriority.values()) {
-            funIndexMap.put(prio, new FunIndexInfo(0, 0, 0, 0.0));
+            funIndexMap.put(prio, new ArrayList<>());
         }
 
         for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
@@ -71,13 +74,14 @@ public class FunIndexController implements Controller<RiderGroup> {
 
             List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
 
-            // JobInfoWriter.writeAllJobsInfo("Job", "Job_Info_2.csv", exitRiderGroups);
-
             Map<GroupPriority, FunIndexInfo> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
 
-            funIndexMap.replaceAll(
-                    (prio, value) -> FunIndexInfo.sum(value,
-                            currentFunIndexMap.getOrDefault(prio, new FunIndexInfo(0, 0, 0, 0.0))));
+            for (GroupPriority prio : currentFunIndexMap.keySet()) {
+                funIndexMap.get(prio).add(currentFunIndexMap.get(prio));
+            }
+            // funIndexMap.replaceAll(
+            // (prio, value) -> FunIndexInfo.sum(value,
+            // currentFunIndexMap.getOrDefault(prio, new FunIndexInfo(0, 0, 0, 0.0))));
 
             List<Center<RiderGroup>> centerList = networkBuilder.getAllCenters();
             for (Center<RiderGroup> center : centerList) {
@@ -85,31 +89,41 @@ public class FunIndexController implements Controller<RiderGroup> {
                 if (statCenter.getCenter() instanceof Attraction) {
                     AreaStats priorityQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
                             QueuePriority.PRIORITY);
-                    priorityQueueTimeMap.putIfAbsent(center.getName(), 0.0);
-                    priorityQueueTimeMap.replace(center.getName(),
-                            priorityQueueTimeMap.get(center.getName()) + priorityQueueAreaStats.getSizeAvgdStat());
+                    priorityQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
+                    priorityQueueTimeMap.get(center.getName()).add(priorityQueueAreaStats.getSizeAvgdStat());
 
                     AreaStats normalQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
                             QueuePriority.NORMAL);
-                    normalQueueTimeMap.putIfAbsent(center.getName(), 0.0);
-                    normalQueueTimeMap.replace(center.getName(),
-                            normalQueueTimeMap.get(center.getName()) + normalQueueAreaStats.getSizeAvgdStat());
+                    normalQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
+                    normalQueueTimeMap.get(center.getName()).add(normalQueueAreaStats.getSizeAvgdStat());
                 }
             }
         }
 
-        funIndexMap.replaceAll(
-                (key, value) -> FunIndexInfo.divideValuesBy(value, Constants.FUN_INDEX_REPLICATIONS_NUMBER.intValue()));
+        Map<GroupPriority, ConfidenceInterval> funIdxConfInterMap = new HashMap<>();
+        for (GroupPriority prio : funIndexMap.keySet()) {
+            List<FunIndexInfo> funIndexInfoList = funIndexMap.get(prio);
+            List<Double> funIndexValues = new ArrayList<>();
+            funIndexInfoList.forEach(arg0 -> funIndexValues.add(arg0.avgFunIndex()));
 
-        priorityQueueTimeMap.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
-        normalQueueTimeMap.replaceAll((key, value) -> value / Constants.FUN_INDEX_REPLICATIONS_NUMBER);
+            ConfidenceInterval funIndexConfInt = ConfidenceIntervalComputer.computeConfidenceInterval(funIndexValues,
+                    prio.name(), "FunIndex");
+            funIdxConfInterMap.put(prio, funIndexConfInt);
+        }
 
-        Map<QueuePriority, Map<String, Double>> perPrioQueueTimeMap = new HashMap<>();
-        perPrioQueueTimeMap.put(QueuePriority.PRIORITY, priorityQueueTimeMap);
-        perPrioQueueTimeMap.put(QueuePriority.NORMAL, normalQueueTimeMap);
-        // System.out.println(funIndexMap.toString());
+        Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap = new HashMap<>();
+        for (String centerName : priorityQueueTimeMap.keySet()) {
+            perPrioQueueTimeMap.putIfAbsent(centerName, new HashMap<>());
 
-        FunIndexWriter.writeFunIndexResults(funIndexMap);
+            perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.PRIORITY, ConfidenceIntervalComputer
+                    .computeConfidenceInterval(priorityQueueTimeMap.get(centerName), centerName, "QueueTime"));
+
+            perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.NORMAL, ConfidenceIntervalComputer
+                    .computeConfidenceInterval(normalQueueTimeMap.get(centerName), centerName, "QueueTime"));
+
+        }
+
+        FunIndexWriter.writeFunIndexResults(funIdxConfInterMap);
         FunIndexWriter.writePriorityQueueTimes(perPrioQueueTimeMap);
     }
 

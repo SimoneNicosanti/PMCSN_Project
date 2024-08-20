@@ -1,8 +1,11 @@
 package it.uniroma2.pmcsn.parks.model.routing.probabilities;
 
+import java.lang.constant.Constable;
 import java.util.List;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class AttractionRouterProbabilities extends RouterProbabilities<RiderGroup> {
@@ -22,7 +25,7 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
         for (Center<RiderGroup> attraction : attractions) {
             sumPop += attraction.getPopularity();
             maxVisit = Math.max(maxVisit, 1 + job.getGroupStats().getVisitsPerAttraction(attraction.getName()));
-            maxQueue = Math.max(maxQueue, attraction.getQueueLenght(job.getPriority()));
+            maxQueue = Math.max(maxQueue, attraction.getQueueLenght(job.getPriority(), job.getGroupSize()));
         }
 
         for (Center<RiderGroup> attraction : attractions) {
@@ -35,7 +38,7 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             }
 
             double popularityTerm = 5 * attraction.getPopularity() / sumPop;
-            double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority()) /
+            double queueTerm = 0.2 * (1 - attraction.getQueueLenght(job.getPriority(), job.getGroupSize()) /
                     maxQueue);
             double visitTerm = 0.15 * (1 -
                     job.getGroupStats().getVisitsPerAttraction(attraction.getName()) / maxVisit);

@@ -58,7 +58,7 @@ public class ExitCenter implements Center<RiderGroup> {
     }
 
     @Override
-    public Integer getQueueLenght(GroupPriority prio) {
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize) {
         return 0;
     }
 

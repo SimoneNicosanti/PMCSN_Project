@@ -65,6 +65,7 @@ public class Constants {
 
     public static final Integer FUN_INDEX_REPLICATIONS_NUMBER = 100;
     public static final Integer MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES = 3;
+    public static int SMALL_GROUP_LIMIT_SIZE = 1;
 
     public static boolean IMPROVED_MODEL = false;
 

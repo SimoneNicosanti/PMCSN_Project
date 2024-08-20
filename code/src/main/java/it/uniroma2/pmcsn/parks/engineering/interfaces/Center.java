@@ -19,7 +19,7 @@ public interface Center<T> {
 
     public List<T> startService();
 
-    public Integer getQueueLenght(GroupPriority prio);
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize);
 
     public Double getPopularity();
 

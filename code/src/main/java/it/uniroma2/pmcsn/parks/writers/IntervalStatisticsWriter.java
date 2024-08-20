@@ -66,7 +66,7 @@ public class IntervalStatisticsWriter {
         Double avgQueueTime = queueAreaStats.getSizeAvgdStat();
         Integer totalDequeued = queueAreaStats.getSize();
 
-        Double avgNumberInCenter = stats.getServiceAreaValue(statsType) / intervalDuration;
+        Double avgNumberInCenter = stats.getResponseAreaValue(statsType) / intervalDuration;
         Double avgTimeInCenter = avgQueueTime + avgServiceTime;
 
         AreaStats normalQueueAreaStats = stats.getQueueAreaStats(statsType, QueuePriority.NORMAL);
