@@ -42,19 +42,23 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
         }
 
         // Priority groups has only a percentage of the attraction seats
-        double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
-        int prioritySlots = (int) (freeSlots * priorityPercentage);
 
         // What if a priority group is bigger than the number of priority seat? Take
         // always at least one priority group
-        if (priorityQueue.getNextSize() != 0) {
-            // Get job from priority queue
-            RiderGroup riderGroup = priorityQueue.dequeue();
-
-            freeSlots -= riderGroup.getGroupSize();
-            prioritySlots -= riderGroup.getGroupSize();
-            extractedList.add(riderGroup);
+        Integer priorityNextSize = priorityQueue.getNextSize();
+        if (freeSlots > 0 && priorityNextSize <= freeSlots) {
+            Integer priorityExtractedNum = extractFromOneQueue(priorityQueue,
+                    priorityNextSize,
+                    extractedList);
+            if (priorityExtractedNum != priorityNextSize) {
+                throw new RuntimeException("Extracted number is different than the expected size");
+            }
+            freeSlots = freeSlots - priorityExtractedNum;
+            // prioritySlots -= priorityExtractedNum;
         }
+
+        double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
+        int prioritySlots = (int) (freeSlots * priorityPercentage);
 
         // First extract all groups we can from the priority queue
         Integer priorityExtractedNum = extractFromOneQueue(priorityQueue,
@@ -97,7 +101,8 @@ public class AttractionQueueManager implements QueueManager<RiderGroup> {
             extracted.add(riderGroup);
         }
 
-        return numberOfSeats - residualSeats;
+        Integer extractedSeats = numberOfSeats - residualSeats;
+        return extractedSeats;
     }
 
     @Override

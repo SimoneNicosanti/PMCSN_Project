@@ -16,12 +16,12 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.utils.ExperimentsUtils;
 import it.uniroma2.pmcsn.parks.writers.IntervalsQueueTimesWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
@@ -47,7 +47,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
             System.out.println("Replication Number >>> " + i);
 
             NetworkBuilder networkBuilder = new Simulation(SimulationMode.NORMAL).simulateOnce();
-            List<StatsCenter> attractionStatsCenters = this.getAllStatsAttractions(networkBuilder);
+            List<StatsCenter> attractionStatsCenters = ExperimentsUtils.getAllStatsAttractions(networkBuilder);
 
             for (StatsCenter attractionStatCenter : attractionStatsCenters) {
 
@@ -91,19 +91,6 @@ public class QueueTimeController implements Controller<RiderGroup> {
         // Prepare the logger and set the system clock to 0
 
         ClockHandler.getInstance().setClock(0);
-    }
-
-    private List<StatsCenter> getAllStatsAttractions(NetworkBuilder networkBuilder) {
-        List<StatsCenter> attractionStatsCenters = new ArrayList<>();
-        for (Center<RiderGroup> statsCenter : networkBuilder.getAllCenters()) {
-            Center<RiderGroup> center = ((StatsCenter) statsCenter).getCenter();
-
-            if (center instanceof Attraction) {
-                attractionStatsCenters.add((StatsCenter) statsCenter);
-            }
-        }
-
-        return attractionStatsCenters;
     }
 
     // Constructs a key for the map that stores the queue stats for each interval,

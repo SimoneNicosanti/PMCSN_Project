@@ -42,6 +42,33 @@ public class RhoController implements Controller<RiderGroup> {
 
         init_simulation();
 
+        if (Constants.IMPROVED_MODEL) {
+            for (int smallGroupSize : new int[] { 1, 2 }) {
+                Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
+
+                for (double smallPercentSize = 0.0; smallPercentSize < 0.20; smallPercentSize += 0.05) {
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercentSize;
+
+                    simulateForOneValue();
+                    RandomHandler.reset();
+                }
+            }
+
+        } else {
+            simulateForOneValue();
+        }
+
+        // for (double avgSizePoisson = 0.5; avgSizePoisson < 4; avgSizePoisson += 0.5)
+        // {
+        // Constants.AVG_GROUP_SIZE_POISSON = avgSizePoisson;
+
+        // simulateForOneValue();
+        // RandomHandler.reset();
+        // }
+
+    }
+
+    private static void simulateForOneValue() {
         Map<String, List<Double>> rhoListMap = new HashMap<>();
 
         Map<String, Integer> seatsNumberMap = new HashMap<>();
@@ -90,8 +117,6 @@ public class RhoController implements Controller<RiderGroup> {
                 }
             }
         }
-
-        System.out.println(RandomHandler.getInstance().getStreamMap());
 
         if (Constants.IMPROVED_MODEL) {
             smallRiderNum.replaceAll((key, value) -> value /

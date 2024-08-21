@@ -14,16 +14,14 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
-import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
+import it.uniroma2.pmcsn.parks.utils.ExperimentsUtils;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer;
 import it.uniroma2.pmcsn.parks.utils.FunIndexComputer.FunIndexInfo;
 import it.uniroma2.pmcsn.parks.writers.FunIndexWriter;
@@ -38,7 +36,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
     public FunIndexController() {
         // Modify this if you want to run the improved model
-        Constants.IMPROVED_MODEL = true;
+        Constants.IMPROVED_MODEL = false;
     }
 
     @Override
@@ -53,16 +51,14 @@ public class FunIndexController implements Controller<RiderGroup> {
                     Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
                     // Not sure about the loop constraints
-                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.20; smallPercSeats += 0.05) {
+                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.2; smallPercSeats += 0.05) {
                         Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
 
                         this.simulateForOneValue();
                         RandomHandler.reset();
                     }
                 }
-
             }
-
         } else {
             for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.1) {
                 Constants.PRIORITY_PERCENTAGE_PER_RIDE = priorityPercSeats;
@@ -77,7 +73,7 @@ public class FunIndexController implements Controller<RiderGroup> {
         // Reset statistics
         WriterHelper.clearDirectory(Constants.JOB_DATA_PATH);
 
-        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
+        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun", Constants.IMPROVED_MODEL ? "Improved" : "Basic");
         WriterHelper.clearDirectory(fileDirectory.toString());
         // Prepare the logger and set the system clock to 0
 
@@ -89,90 +85,62 @@ public class FunIndexController implements Controller<RiderGroup> {
         Map<String, List<FunIndexInfo>> funIndexMap = new HashMap<>();
         Map<String, List<Double>> queueTimeMap = new HashMap<>();
 
-        for (GroupPriority prio : GroupPriority.values()) {
-            funIndexMap.put(prio.name(), new ArrayList<>());
-        }
-        funIndexMap.put("SMALL", new ArrayList<>());
-
         for (int i = 0; i < Constants.REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
 
             NetworkBuilder networkBuilder = new Simulation(SimulationMode.NORMAL).simulateOnce();
             ExitCenter exitCenter = networkBuilder.getExitCenter();
 
-            // EventLogger.writeRandomLogString(RandomHandler.getInstance().getRandomLog());
+            FunIndexComputer.computeAvgsFunIndex(
+                    exitCenter.getExitJobs()).forEach((prio, funIndexInfo) -> {
+                        funIndexMap.putIfAbsent(prio, new ArrayList<>());
+                        funIndexMap.get(prio).add(funIndexInfo);
+                    });
 
-            List<RiderGroup> exitRiderGroups = exitCenter.getExitJobs();
+            List<StatsCenter> attractionStatsCenters = ExperimentsUtils.getAllStatsAttractions(networkBuilder);
 
-            Map<String, FunIndexInfo> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
+            for (StatsCenter attractionStatCenter : attractionStatsCenters) {
+                for (QueuePriority prio : QueuePriority.values()) {
 
-            currentFunIndexMap.forEach((prio, funIndexInfo) -> {
-                funIndexMap.putIfAbsent(prio, new ArrayList<>());
-                funIndexMap.get(prio).add(funIndexInfo);
-            });
-
-            for (String prio : currentFunIndexMap.keySet()) {
-                funIndexMap.putIfAbsent(prio, new ArrayList<>());
-                funIndexMap.get(prio).add(currentFunIndexMap.get(prio));
-            }
-
-            List<Center<RiderGroup>> centerList = networkBuilder.getAllCenters();
-            for (Center<RiderGroup> center : centerList) {
-                StatsCenter statCenter = (StatsCenter) center;
-                if (statCenter.getCenter() instanceof Attraction) {
-                    AreaStats priorityQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
-                            QueuePriority.PRIORITY);
-                    priorityQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
-                    priorityQueueTimeMap.get(center.getName()).add(priorityQueueAreaStats.getSizeAvgdStat());
-
-                    AreaStats normalQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
-                            QueuePriority.NORMAL);
-                    normalQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
-                    normalQueueTimeMap.get(center.getName()).add(normalQueueAreaStats.getSizeAvgdStat());
-
-                    if (Constants.IMPROVED_MODEL) {
-                        AreaStats smallQueueAreaStats = statCenter.getWholeDayStats().getQueueAreaStats(StatsType.GROUP,
-                                QueuePriority.SMALL);
-                        smallQueueTimeMap.putIfAbsent(center.getName(), new ArrayList<>());
-                        smallQueueTimeMap.get(center.getName()).add(smallQueueAreaStats.getSizeAvgdStat());
+                    if (!Constants.IMPROVED_MODEL && prio.equals(QueuePriority.SMALL)) {
+                        // Skip small queue for normal model
+                        continue;
                     }
+
+                    String key = this.queueStatsKey(attractionStatCenter.getCenter(), prio);
+
+                    queueTimeMap.putIfAbsent(key, new ArrayList<>());
+                    queueTimeMap.get(key).add(attractionStatCenter.getWholeDayStats()
+                            .getQueueAreaStats(StatsType.GROUP, prio).getSizeAvgdStat());
                 }
             }
         }
 
         Map<String, ConfidenceInterval> funIdxConfInterMap = new HashMap<>();
-        for (String prioName : funIndexMap.keySet()) {
-            List<FunIndexInfo> funIndexInfoList = funIndexMap.get(prioName);
+        funIndexMap.forEach((prioName, funIndexInfoList) -> {
             List<Double> funIndexValues = new ArrayList<>();
             funIndexInfoList.forEach(arg0 -> funIndexValues.add(arg0.avgFunIndex()));
 
-            ConfidenceInterval funIndexConfInt = ConfidenceIntervalComputer.computeConfidenceInterval(funIndexValues,
-                    prioName, "FunIndex");
-            funIdxConfInterMap.put(prioName, funIndexConfInt);
-        }
+            funIdxConfInterMap.put(prioName, ConfidenceIntervalComputer.computeConfidenceInterval(funIndexValues,
+                    prioName, "FunIndex"));
+        });
 
-        Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap = new HashMap<>();
-        for (String centerName : priorityQueueTimeMap.keySet()) {
-            perPrioQueueTimeMap.putIfAbsent(centerName, new HashMap<>());
-
-            perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.PRIORITY, ConfidenceIntervalComputer
-                    .computeConfidenceInterval(priorityQueueTimeMap.get(centerName), centerName, "QueueTime"));
-
-            perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.NORMAL, ConfidenceIntervalComputer
-                    .computeConfidenceInterval(normalQueueTimeMap.get(centerName), centerName, "QueueTime"));
-
-            if (Constants.IMPROVED_MODEL) {
-                perPrioQueueTimeMap.get(centerName).putIfAbsent(QueuePriority.SMALL, ConfidenceIntervalComputer
-                        .computeConfidenceInterval(smallQueueTimeMap.get(centerName), centerName, "QueueTime"));
-            }
-        }
+        Map<String, ConfidenceInterval> queueConfIntervals = new HashMap<>();
+        queueTimeMap.forEach((key, queueTimes) -> {
+            queueConfIntervals.put(key, ConfidenceIntervalComputer.computeConfidenceInterval(queueTimes,
+                    this.extractCenterNameFromKey(key), "QueueTime"));
+        });
 
         FunIndexWriter.writeFunIndexResults(funIdxConfInterMap);
-        FunIndexWriter.writePriorityQueueTimes(perPrioQueueTimeMap);
+        FunIndexWriter.writePriorityQueueTimes(queueConfIntervals);
     }
 
     private String queueStatsKey(Center<RiderGroup> center, QueuePriority prio) {
         return center.getName() + "::" + prio.name();
+    }
+
+    private String extractCenterNameFromKey(String key) {
+        return key.split("::")[0];
     }
 
 }

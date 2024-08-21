@@ -5,62 +5,101 @@ import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
-import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.utils.ConfidenceIntervalComputer.ConfidenceInterval;
 
 public class FunIndexWriter {
 
+    // FunIndex related methods
+
     public static void writeFunIndexResults(Map<String, ConfidenceInterval> funIdxConfInterMap) {
 
-        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        Path filePath = Path.of(fileDirectory.toString(), "FunIndex_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
+        Path filePath = Path.of(filePath().toString(), "FunIndex_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
-        String[] header = { "PrioSeatsPercentage", "SmallSeatsPercentage", "PoissonParam", "Priority", "FunIndex",
-                "Interval" };
-        CsvWriter.writeHeader(filePath, header);
+        CsvWriter.writeHeader(filePath, funIdxHeader());
 
-        for (String priority : funIdxConfInterMap.keySet()) {
-            ConfidenceInterval confInterval = funIdxConfInterMap.get(priority);
+        funIdxConfInterMap.forEach((prio, confInterval) -> {
+            CsvWriter.writeRecord(filePath, funIdxRecord(prio, confInterval));
+        });
+    }
 
-            List<Object> record = List.of(
-                    Constants.PRIORITY_PERCENTAGE_PER_RIDE,
+    private static String[] funIdxHeader() {
+        if (Constants.IMPROVED_MODEL) {
+            return new String[] { "SmallSeatsPercentage", "PoissonParam", "Priority", "FunIndex",
+                    "ConfInterval" };
+        } else {
+            return new String[] { "PrioSeatsPercentage", "Priority", "FunIndex",
+                    "ConfInterval" };
+        }
+    }
+
+    private static List<Object> funIdxRecord(String prio, ConfidenceInterval confInterval) {
+
+        if (Constants.IMPROVED_MODEL) {
+            return List.of(
                     Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE,
                     Constants.AVG_GROUP_SIZE_POISSON,
-                    priority,
+                    prio,
                     confInterval.mean(),
                     confInterval.interval());
-            CsvWriter.writeRecord(filePath, record);
+        } else {
+            return List.of(
+                    Constants.PRIORITY_PERCENTAGE_PER_RIDE,
+                    prio,
+                    confInterval.mean(),
+                    confInterval.interval());
         }
-
     }
+
+    // PriorityQueue related methods
 
     public static void writePriorityQueueTimes(
-            Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap) {
-        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        Path filePath = Path.of(fileDirectory.toString(),
+            Map<String, ConfidenceInterval> queueConfIntervals) {
+
+        Path filePath = Path.of(filePath().toString(),
                 "PriorityQueueTime_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
-        String[] header = { "Percentage", "Priority", "CenterName", "AvgQueueTime", "Interval" };
-        CsvWriter.writeHeader(filePath, header);
+        CsvWriter.writeHeader(filePath, queueTimesHeader());
 
-        for (String centerName : perPrioQueueTimeMap.keySet()) {
-            Map<QueuePriority, ConfidenceInterval> confIntervalMap = perPrioQueueTimeMap.get(centerName);
-
-            for (QueuePriority prio : confIntervalMap.keySet()) {
-
-                ConfidenceInterval confInterval = confIntervalMap.get(prio);
-
-                List<Object> record = List.of(
-                        Constants.PRIORITY_PERCENTAGE_PER_RIDE,
-                        prio.name(),
-                        confInterval.centerName(),
-                        confInterval.mean(),
-                        confInterval.interval());
-                CsvWriter.writeRecord(filePath, record);
-            }
-
-        }
-
+        queueConfIntervals.forEach((key, confInterval) -> {
+            String prio = extractFromKey(1, key);
+            CsvWriter.writeRecord(filePath, queueTimesRecord(confInterval.centerName(), prio, confInterval));
+        });
     }
 
+    private static String[] queueTimesHeader() {
+        if (Constants.IMPROVED_MODEL) {
+            return new String[] { "SmallSeatsPercentage", "PoissonParam", "CenterName", "Priority", "AvgQueueTime",
+                    "ConfInterval" };
+        } else {
+            return new String[] { "PrioSeatsPercentage", "CenterName", "Priority", "AvgQueueTime", "ConfInterval" };
+        }
+    }
+
+    private static List<Object> queueTimesRecord(String centerName, String prio, ConfidenceInterval confInterval) {
+
+        if (Constants.IMPROVED_MODEL) {
+            return List.of(
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE,
+                    Constants.AVG_GROUP_SIZE_POISSON,
+                    centerName,
+                    prio,
+                    confInterval.mean(),
+                    confInterval.interval());
+        } else {
+            return List.of(
+                    Constants.PRIORITY_PERCENTAGE_PER_RIDE,
+                    centerName,
+                    prio,
+                    confInterval.mean(),
+                    confInterval.interval());
+        }
+    }
+
+    private static Path filePath() {
+        return Path.of(Constants.DATA_PATH, "Fun", Constants.IMPROVED_MODEL ? "Improved" : "Basic");
+    }
+
+    private static String extractFromKey(int idx, String key) {
+        return key.split("::")[idx];
+    }
 }

@@ -12,11 +12,11 @@ def funIndexChart():
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
-                "./Out/Data/Fun/FunIndex_" + str(idx) + ".csv"
+                "./Out/Data/Fun/Basic/FunIndex_" + str(idx) + ".csv"
             )
             plotFunIndexChart(dataFrame, idx)
-        except:
-            # No such file
+        except FileNotFoundError:
+            print(f"File not found for index {idx}")
             pass
 
 
@@ -27,12 +27,15 @@ def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
             # data = (group[metricName] - group[metricName].min()) / (group[metricName].max() - group[metricName].min())
             data = group[metricName]
             plt.plot(
-                group["Percentage"], np.log10(data), label=f"Gruppo {name}", marker="o"
+                group["PrioSeatsPercentage"],
+                np.log10(data),
+                label=f"Gruppo {name}",
+                marker="o",
             )
             plt.fill_between(
-                group["Percentage"],
-                np.log10(data - group["Interval"]),
-                np.log10(data + group["Interval"]),
+                group["PrioSeatsPercentage"],
+                np.log10(data - group["ConfInterval"]),
+                np.log10(data + group["ConfInterval"]),
                 alpha=0.2,
             )
 
@@ -45,7 +48,7 @@ def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
             plt.tight_layout()
             plt.legend()
             plt.savefig(
-                "./Out/Charts/Fun/Small_" + str(idx) + "/" + metricName + ".png"
+                "./Out/Charts/Fun/Basic/Small_" + str(idx) + "/" + metricName + ".png"
             )
 
         plt.clf()
@@ -56,10 +59,11 @@ def priorityQueueTimeChart():
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
-                "./Out/Data/Fun/PriorityQueueTime_" + str(idx) + ".csv"
+                "./Out/Data/Fun/Basic/PriorityQueueTime_" + str(idx) + ".csv"
             )
             plotQueueTimeChart(dataFrame, idx)
-        except:
+        except FileNotFoundError:
+            print(f"File not found for index {idx}")
             pass
 
 
@@ -70,16 +74,16 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
         for priority in priorities:
             data = group[group["Priority"] == priority]
             plt.plot(
-                data["Percentage"],
+                data["PrioSeatsPercentage"],
                 data["AvgQueueTime"],
                 label=f"{priority}",
                 marker="o",
             )
 
             plt.fill_between(
-                data["Percentage"],
-                data["AvgQueueTime"] - data["Interval"],
-                data["AvgQueueTime"] + data["Interval"],
+                data["PrioSeatsPercentage"],
+                data["AvgQueueTime"] - data["ConfInterval"],
+                data["AvgQueueTime"] + data["ConfInterval"],
                 alpha=0.2,
             )
 
@@ -94,7 +98,7 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
         plt.tight_layout()
         plt.legend()
         plt.savefig(
-            "./Out/Charts/Fun/Small_"
+            "./Out/Charts/Fun/Basic/Small_"
             + str(idx)
             + "/"
             + "PriorityQueueTime_"
@@ -105,8 +109,8 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
 
 
 if __name__ == "__main__":
-    os.makedirs("./Out/Charts/Fun/", exist_ok=True)
+    os.makedirs("./Out/Charts/Fun/Basic/", exist_ok=True)
     for idx in fileIdx:
-        os.makedirs("./Out/Charts/Fun/Small_" + str(idx) + "/", exist_ok=True)
+        os.makedirs("./Out/Charts/Fun/Basic/Small_" + str(idx) + "/", exist_ok=True)
     funIndexChart()
     priorityQueueTimeChart()
