@@ -21,6 +21,11 @@ public class Interval {
         return interval.end == this.end && interval.start == this.start;
     }
 
+    @Override
+    public String toString() {
+        return this.index + " [" + this.start + "-" + this.end + "]";
+    }
+
     public boolean contains(Double time) {
         // start <= time < end
         return this.start <= time && time < this.end;

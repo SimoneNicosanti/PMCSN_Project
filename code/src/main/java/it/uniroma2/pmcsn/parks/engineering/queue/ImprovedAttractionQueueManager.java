@@ -44,12 +44,14 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
         }
 
         // Priority groups has only a percentage of the attraction seats
-        double priorityPercentage = Constants.PRIORITY_PERCENTAGE_PER_RIDE;
-        int prioritySlots = (int) (freeSlots * priorityPercentage);
+        int prioritySlots = (int) (freeSlots * Constants.PRIORITY_PERCENTAGE_PER_RIDE);
+
+        // Small groups have a percentage of the attraction seats
+        int smallSlots = (int) (freeSlots * Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE);
 
         // What if a priority group is bigger than the number of priority seat? Take
         // always at least one priority group
-        if (priorityQueue.getNextSize() != 0) {
+        if (freeSlots > 0 && priorityQueue.getNextSize() >= freeSlots) {
             // Get job from priority queue
             RiderGroup riderGroup = priorityQueue.dequeue();
 
@@ -63,14 +65,12 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
                 prioritySlots, extractedList);
         freeSlots = freeSlots - priorityExtractedNum;
 
-        // Then we extract all groups for normal priority
-        // Integer normalReservedSeats = (int) (freeSlots *
-        // (1 - Constants.PRIORITY_PERCENTAGE_PER_RIDE));
-
-        // Then we extract all groups we can from the normal queue
+        // Then we extract groups for normal priority, leaving some seats for small
+        // groups
+        Integer normalReservedSeats = freeSlots - smallSlots;
 
         Integer normalExtractedNum = extractFromOneQueue(normalQueue,
-                freeSlots, extractedList);
+                normalReservedSeats, extractedList);
         freeSlots = freeSlots - normalExtractedNum;
         if (normalExtractedNum == 0 && this.normalQueue.getNextSize() > 0) {
             // It means that there is a group blocking the normal queue
@@ -79,17 +79,17 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
             this.normalQueueExtractionTryTimes = 0;
         }
 
+        // Then we extract from the small rider queue
+        Integer extractedSmallNum = extractFromOneQueue(smallRiderQueue, freeSlots,
+                extractedList);
+        freeSlots = freeSlots - extractedSmallNum;
+
         // If there are other free seats, try to extract again from the priority
         // queue
         if (freeSlots > 0) {
             freeSlots = freeSlots - extractFromOneQueue(priorityQueue, freeSlots,
                     extractedList);
         }
-
-        // Then we extract from the single rider queue
-        Integer extractedSingleNum = extractFromOneQueue(smallRiderQueue, freeSlots,
-                extractedList);
-        freeSlots = freeSlots - extractedSingleNum;
 
         // If there are other free seats, try to extract again from the normal queue
         if (freeSlots > 0) {

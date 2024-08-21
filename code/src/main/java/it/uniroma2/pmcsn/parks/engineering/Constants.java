@@ -42,6 +42,7 @@ public class Constants {
     public static final double PRIORITY_PASS_PROB = 0.1;
     public static double PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
     public static final double NORMAL_PERCENTAGE_PER_RIDE = 0.50;
+    public static double SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
     public static final long SEED = 4321;
 
     public static SimulationMode MODE;
@@ -63,7 +64,7 @@ public class Constants {
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 
-    public static final Integer FUN_INDEX_REPLICATIONS_NUMBER = 100;
+    public static final Integer REPLICATIONS_NUMBER = 100;
     public static final Integer MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES = 3;
     public static int SMALL_GROUP_LIMIT_SIZE = 1;
 

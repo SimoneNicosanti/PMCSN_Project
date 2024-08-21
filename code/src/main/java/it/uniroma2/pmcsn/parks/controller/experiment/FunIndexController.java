@@ -37,34 +37,49 @@ public class FunIndexController implements Controller<RiderGroup> {
     }
 
     public FunIndexController() {
+        // Modify this if you want to run the improved model
         Constants.IMPROVED_MODEL = true;
     }
 
     @Override
     public void simulate() {
+        this.init_simulation();
 
-        init_simulation();
+        if (Constants.IMPROVED_MODEL) {
+            for (int smallGroupSize : new int[] { 1, 2 }) {
+                Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
-        for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.1) {
-            Constants.PRIORITY_PERCENTAGE_PER_RIDE = priorityPercSeats;
+                // Not sure about the loop constraints
+                for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.02) {
+                    Constants.PRIORITY_PERCENTAGE_PER_RIDE = smallPercSeats;
 
-            if (!Constants.IMPROVED_MODEL) {
-                simulateForOneValue();
-                RandomHandler.reset();
-            } else {
-                for (int smallGroupSize = 1; smallGroupSize <= 1; smallGroupSize++) {
-                    Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
-                    simulateForOneValue();
-
+                    this.simulateForOneValue();
                     RandomHandler.reset();
                 }
             }
-        }
+        } else {
+            for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.1) {
+                Constants.PRIORITY_PERCENTAGE_PER_RIDE = priorityPercSeats;
 
-        // IntervalStatisticsWriter.writeCenterStatistics(networkBuilder.getAllCenters());
+                this.simulateForOneValue();
+                RandomHandler.reset();
+            }
+        }
+    }
+
+    private void init_simulation() {
+        // Reset statistics
+        WriterHelper.clearDirectory(Constants.JOB_DATA_PATH);
+
+        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
+        WriterHelper.clearDirectory(fileDirectory.toString());
+        // Prepare the logger and set the system clock to 0
+
+        ClockHandler.getInstance().setClock(0);
     }
 
     private void simulateForOneValue() {
+
         Map<String, List<FunIndexInfo>> funIndexMap = new HashMap<>();
         Map<String, List<Double>> priorityQueueTimeMap = new HashMap<>();
         Map<String, List<Double>> normalQueueTimeMap = new HashMap<>();
@@ -75,7 +90,7 @@ public class FunIndexController implements Controller<RiderGroup> {
         }
         funIndexMap.put("SMALL", new ArrayList<>());
 
-        for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
+        for (int i = 0; i < Constants.REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
 
             NetworkBuilder networkBuilder = new Simulation(SimulationMode.NORMAL).simulateOnce();
@@ -147,19 +162,6 @@ public class FunIndexController implements Controller<RiderGroup> {
 
         FunIndexWriter.writeFunIndexResults(funIdxConfInterMap);
         FunIndexWriter.writePriorityQueueTimes(perPrioQueueTimeMap);
-    }
-
-    private void init_simulation() {
-        // Reset statistics
-        // WriterHelper.clearDirectory(Path.of(Constants.DATA_PATH,
-        // "Center").toString());
-        WriterHelper.clearDirectory(Constants.JOB_DATA_PATH);
-
-        Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        WriterHelper.clearDirectory(fileDirectory.toString());
-        // Prepare the logger and set the system clock to 0
-
-        ClockHandler.getInstance().setClock(0);
     }
 
 }

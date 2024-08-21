@@ -48,7 +48,7 @@ public class RhoController implements Controller<RiderGroup> {
 
         Map<String, Double> smallRiderNum = new HashMap<>();
 
-        for (int i = 0; i < Constants.FUN_INDEX_REPLICATIONS_NUMBER; i++) {
+        for (int i = 0; i < Constants.REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Index >>> " + i);
             NetworkBuilder networkBuilder = new Simulation(SimulationMode.NORMAL).simulateOnce();
 
@@ -95,7 +95,7 @@ public class RhoController implements Controller<RiderGroup> {
 
         if (Constants.IMPROVED_MODEL) {
             smallRiderNum.replaceAll((key, value) -> value /
-                    Constants.FUN_INDEX_REPLICATIONS_NUMBER);
+                    Constants.REPLICATIONS_NUMBER);
             System.out.println(smallRiderNum);
         }
 

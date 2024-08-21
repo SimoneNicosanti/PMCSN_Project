@@ -14,11 +14,11 @@ import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
 import it.uniroma2.pmcsn.parks.model.server.ServerType;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class NetworkBuilder {
 
