@@ -64,7 +64,7 @@ public class Constants {
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 
-    public static final Integer REPLICATIONS_NUMBER = 100;
+    public static final Integer REPLICATIONS_NUMBER = 75;
     public static final Integer MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES = 3;
     public static int SMALL_GROUP_LIMIT_SIZE = 1;
 

@@ -46,14 +46,14 @@ public class FunIndexController implements Controller<RiderGroup> {
         this.init_simulation();
 
         if (Constants.IMPROVED_MODEL) {
-            for (double poissLambda = 0.5; poissLambda < 3.0; poissLambda += 0.5) {
+            for (double poissLambda = 1; poissLambda <= 3.0; poissLambda += 0.5) {
                 Constants.AVG_GROUP_SIZE_POISSON = poissLambda;
 
-                for (int smallGroupSize : new int[] { 1, 2 }) {
+                for (int smallGroupSize : new int[] { 1 }) {
                     Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
                     // Not sure about the loop constraints
-                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.03) {
+                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.20; smallPercSeats += 0.05) {
                         Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
 
                         this.simulateForOneValue();
@@ -87,9 +87,7 @@ public class FunIndexController implements Controller<RiderGroup> {
     private void simulateForOneValue() {
 
         Map<String, List<FunIndexInfo>> funIndexMap = new HashMap<>();
-        Map<String, List<Double>> priorityQueueTimeMap = new HashMap<>();
-        Map<String, List<Double>> normalQueueTimeMap = new HashMap<>();
-        Map<String, List<Double>> smallQueueTimeMap = new HashMap<>();
+        Map<String, List<Double>> queueTimeMap = new HashMap<>();
 
         for (GroupPriority prio : GroupPriority.values()) {
             funIndexMap.put(prio.name(), new ArrayList<>());
@@ -108,12 +106,15 @@ public class FunIndexController implements Controller<RiderGroup> {
 
             Map<String, FunIndexInfo> currentFunIndexMap = FunIndexComputer.computeAvgsFunIndex(exitRiderGroups);
 
+            currentFunIndexMap.forEach((prio, funIndexInfo) -> {
+                funIndexMap.putIfAbsent(prio, new ArrayList<>());
+                funIndexMap.get(prio).add(funIndexInfo);
+            });
+
             for (String prio : currentFunIndexMap.keySet()) {
+                funIndexMap.putIfAbsent(prio, new ArrayList<>());
                 funIndexMap.get(prio).add(currentFunIndexMap.get(prio));
             }
-            // funIndexMap.replaceAll(
-            // (prio, value) -> FunIndexInfo.sum(value,
-            // currentFunIndexMap.getOrDefault(prio, new FunIndexInfo(0, 0, 0, 0.0))));
 
             List<Center<RiderGroup>> centerList = networkBuilder.getAllCenters();
             for (Center<RiderGroup> center : centerList) {
@@ -168,6 +169,10 @@ public class FunIndexController implements Controller<RiderGroup> {
 
         FunIndexWriter.writeFunIndexResults(funIdxConfInterMap);
         FunIndexWriter.writePriorityQueueTimes(perPrioQueueTimeMap);
+    }
+
+    private String queueStatsKey(Center<RiderGroup> center, QueuePriority prio) {
+        return center.getName() + "::" + prio.name();
     }
 
 }

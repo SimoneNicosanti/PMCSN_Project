@@ -34,7 +34,7 @@ public class RhoController implements Controller<RiderGroup> {
     }
 
     public RhoController() {
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override

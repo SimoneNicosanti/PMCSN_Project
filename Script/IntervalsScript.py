@@ -15,8 +15,8 @@ def plot_data():
     priorities = df["Priority"].unique()
     for centerName, group in groupedDataFrame:
         plt.figure(figsize=(12, 8))
+        plt.axhline(y=30, color="black", linestyle="--", label="QoS")
         for prio in priorities:
-
             data = group[group["Priority"] == prio].sort_values(by="IntervalIndex")
             plot_queue_time(
                 data["IntervalIndex"].astype(int),

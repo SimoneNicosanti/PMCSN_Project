@@ -8,17 +8,16 @@ fileIdx = [1, 2]
 
 
 def funIndexChart():
-    plt.figure(figsize=(10, 5))
+    plt.figure(figsize=(12, 8))
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
                 "./Out/Data/Fun/FunIndex_" + str(idx) + ".csv"
             )
+            plotFunIndexChart(dataFrame, idx)
         except:
             # No such file
             pass
-
-        plotFunIndexChart(dataFrame, idx)
 
 
 def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
