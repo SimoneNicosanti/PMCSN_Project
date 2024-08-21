@@ -13,22 +13,18 @@ public class IntervalsQueueTimesWriter {
             Map<String, ConfidenceInterval> queueTimesConfidenceIntervals) {
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Intervals");
         Path filePath = Path.of(fileDirectory.toString(),
-                "QueueTime_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
+                "QueueTime.csv");
 
-        String[] header = { "TimeInterval", "Percentage", "Priority", "CenterName", "AvgQueueTime", "ConfInterval" };
+        String[] header = { "TimeInterval", "CenterName", "Priority", "AvgQueueTime", "ConfInterval" };
         CsvWriter.writeHeader(filePath, header);
-
-        Double percentage = Constants.IMPROVED_MODEL ? Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE
-                : Constants.PRIORITY_PERCENTAGE_PER_RIDE;
 
         queueTimesConfidenceIntervals.forEach((key, confInterval) -> {
             String timeInterval = extractFromKey(0, key);
             String priority = extractFromKey(2, key);
             List<Object> record = List.of(
                     timeInterval,
-                    percentage,
-                    priority,
                     confInterval.centerName(),
+                    priority,
                     confInterval.mean(),
                     confInterval.interval());
 
