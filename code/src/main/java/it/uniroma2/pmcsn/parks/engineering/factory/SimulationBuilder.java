@@ -1,21 +1,15 @@
 package it.uniroma2.pmcsn.parks.engineering.factory;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.tuple.Pair;
 
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
-import it.uniroma2.pmcsn.parks.engineering.Parameters;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.queue.AttractionQueueManager;
 import it.uniroma2.pmcsn.parks.engineering.queue.ImprovedAttractionQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
-import it.uniroma2.pmcsn.parks.model.Interval;
-import it.uniroma2.pmcsn.parks.model.RoutingNodeType;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.AttractionRouterProbabilities;
 import it.uniroma2.pmcsn.parks.model.routing.probabilities.RouterProbabilities;
@@ -29,23 +23,24 @@ public class SimulationBuilder {
         if (Constants.MODE == SimulationMode.VERIFICATION) {
             return 1;
         } else {
-            return 1 + Double.valueOf(RandomHandler.getInstance().getPoisson(Constants.GROUP_SIZE_STREAM, 3))
+            return 1 + Double.valueOf(RandomHandler.getInstance().getPoisson(Constants.GROUP_SIZE_STREAM, Constants.AVG_GROUP_SIZE_POISSON))
                     .intValue();
         }
     }
 
-    // Return a fake interval created for exiting all the jobs from the
-    // system
-    public static Pair<Interval, Parameters> getInifiniteInterval() {
-        Interval interval = new Interval(0.0, Double.MAX_VALUE, 0);
-        Map<RoutingNodeType, Double> probabilityMap = new HashMap<>();
-        probabilityMap.put(RoutingNodeType.ATTRACTION, 0.9);
-        probabilityMap.put(RoutingNodeType.RESTAURANT, 0.0);
-        probabilityMap.put(RoutingNodeType.EXIT, 0.1);
+    public static double getArrivalRate() {
+        Double configArrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
+        // If arrivalRate == 0, stop arrivals
+        if (configArrivalRate == 0.0) {
+            return configArrivalRate;
+        }
 
-        Parameters parameters = new Parameters(probabilityMap, 7.0);
+        if (Constants.MODE == SimulationMode.VERIFICATION) {
+            // It is the same as the one on the config file
+            return configArrivalRate ;
+        }
 
-        return Pair.of(interval, parameters);
+        return configArrivalRate / (1 + Constants.AVG_GROUP_SIZE_POISSON) ;
     }
 
     public static RouterProbabilities<RiderGroup> buildAttractionRouterProbabilities(

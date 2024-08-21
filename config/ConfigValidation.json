@@ -8,7 +8,7 @@
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 9.5
+      "arrivalRate": 38
     },
     {
       "start": 180.0,
@@ -18,7 +18,7 @@
         "restaurants": 0.4,
         "exit": 0.05
       },
-      "arrivalRate": 6.5
+      "arrivalRate": 26
     },
     {
       "start": 300.0,
@@ -28,7 +28,7 @@
         "restaurants": 0.05,
         "exit": 0.05
       },
-      "arrivalRate": 1.5
+      "arrivalRate": 6
     },
     {
       "start": 600.0,
@@ -38,7 +38,7 @@
         "restaurants": 0.2,
         "exit": 0.2
       },
-      "arrivalRate": 0.2
+      "arrivalRate": 0.8
     }
   ],
   "entranceDistribution": "Exponential",

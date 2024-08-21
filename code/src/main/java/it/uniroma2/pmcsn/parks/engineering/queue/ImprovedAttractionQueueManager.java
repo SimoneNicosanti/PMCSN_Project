@@ -51,13 +51,16 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
 
         // What if a priority group is bigger than the number of priority seat? Take
         // always at least one priority group
-        if (freeSlots > 0 && priorityQueue.getNextSize() >= freeSlots) {
-            // Get job from priority queue
-            RiderGroup riderGroup = priorityQueue.dequeue();
-
-            freeSlots -= riderGroup.getGroupSize();
-            prioritySlots -= riderGroup.getGroupSize();
-            extractedList.add(riderGroup);
+        Integer priorityNextSize = priorityQueue.getNextSize();
+        if (freeSlots > 0 && priorityNextSize >= freeSlots) {
+            Integer priorityExtractedNum = extractFromOneQueue(priorityQueue,
+                    priorityNextSize,
+                    extractedList);
+            if (priorityExtractedNum != priorityNextSize) {
+                throw new RuntimeException("Extracted number is different than the expected size");
+            }
+            freeSlots = freeSlots - priorityExtractedNum;
+            prioritySlots -= priorityExtractedNum;
         }
 
         // First extract all groups we can from the priority queue

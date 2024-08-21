@@ -4,7 +4,6 @@ import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
@@ -16,12 +15,10 @@ public class EventBuilder {
     private static Long riderGroupId = 0L;
 
     public static SystemEvent getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
-        Double arrivalRate = ConfigHandler.getInstance().getCurrentArrivalRate();
-        // If arrivalRate == 0, stop arrivals
+        double arrivalRate = SimulationBuilder.getArrivalRate() ;
         if (arrivalRate == 0.0) {
-            return null;
+            return null ;
         }
-
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 1 / arrivalRate);
 

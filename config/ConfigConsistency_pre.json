@@ -8,7 +8,7 @@
         "restaurants": 0.4,
         "exit": 0.05
       },
-      "arrivalRate": 3.0
+      "arrivalRate": 12.0
     }
   ],
   "entranceDistribution": "Exponential",

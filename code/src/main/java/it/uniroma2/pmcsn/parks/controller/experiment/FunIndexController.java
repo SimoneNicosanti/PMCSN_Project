@@ -50,8 +50,8 @@ public class FunIndexController implements Controller<RiderGroup> {
                 Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
                 // Not sure about the loop constraints
-                for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.02) {
-                    Constants.PRIORITY_PERCENTAGE_PER_RIDE = smallPercSeats;
+                for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.03) {
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
 
                     this.simulateForOneValue();
                     RandomHandler.reset();

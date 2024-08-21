@@ -70,4 +70,6 @@ public class Constants {
 
     public static boolean IMPROVED_MODEL = false;
 
+    public static int AVG_GROUP_SIZE_POISSON = 3 ;
+
 }
