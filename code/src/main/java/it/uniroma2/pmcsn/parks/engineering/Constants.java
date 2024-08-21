@@ -42,7 +42,7 @@ public class Constants {
     public static final double PRIORITY_PASS_PROB = 0.1;
     public static double PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
     public static final double NORMAL_PERCENTAGE_PER_RIDE = 0.50;
-    public static double SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
+    public static double SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.0;
     public static final long SEED = 4321;
 
     public static SimulationMode MODE;
@@ -70,6 +70,6 @@ public class Constants {
 
     public static boolean IMPROVED_MODEL = false;
 
-    public static int AVG_GROUP_SIZE_POISSON = 3 ;
+    public static double AVG_GROUP_SIZE_POISSON = 3;
 
 }

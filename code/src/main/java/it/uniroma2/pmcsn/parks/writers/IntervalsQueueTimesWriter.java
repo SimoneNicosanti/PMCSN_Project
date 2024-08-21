@@ -15,7 +15,7 @@ public class IntervalsQueueTimesWriter {
         Path filePath = Path.of(fileDirectory.toString(),
                 "QueueTime.csv");
 
-        String[] header = { "TimeInterval", "CenterName", "Priority", "AvgQueueTime", "ConfInterval" };
+        String[] header = { "IntervalIndex", "CenterName", "Priority", "AvgQueueTime", "ConfInterval" };
         CsvWriter.writeHeader(filePath, header);
 
         queueTimesConfidenceIntervals.forEach((key, confInterval) -> {

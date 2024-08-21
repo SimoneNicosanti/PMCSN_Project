@@ -46,17 +46,23 @@ public class FunIndexController implements Controller<RiderGroup> {
         this.init_simulation();
 
         if (Constants.IMPROVED_MODEL) {
-            for (int smallGroupSize : new int[] { 1, 2 }) {
-                Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
+            for (double poissLambda = 0.5; poissLambda < 3.0; poissLambda += 0.5) {
+                Constants.AVG_GROUP_SIZE_POISSON = poissLambda;
 
-                // Not sure about the loop constraints
-                for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.03) {
-                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
+                for (int smallGroupSize : new int[] { 1, 2 }) {
+                    Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
-                    this.simulateForOneValue();
-                    RandomHandler.reset();
+                    // Not sure about the loop constraints
+                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.3; smallPercSeats += 0.03) {
+                        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
+
+                        this.simulateForOneValue();
+                        RandomHandler.reset();
+                    }
                 }
+
             }
+
         } else {
             for (Double priorityPercSeats = 0.0; priorityPercSeats < 1.0; priorityPercSeats += 0.1) {
                 Constants.PRIORITY_PERCENTAGE_PER_RIDE = priorityPercSeats;

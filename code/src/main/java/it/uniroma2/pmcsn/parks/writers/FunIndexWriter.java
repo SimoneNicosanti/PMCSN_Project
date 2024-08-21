@@ -15,7 +15,8 @@ public class FunIndexWriter {
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
         Path filePath = Path.of(fileDirectory.toString(), "FunIndex_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
-        String[] header = { "Percentage", "Priority", "FunIndex", "Interval" };
+        String[] header = { "PrioSeatsPercentage", "SmallSeatsPercentage", "PoissonParam", "Priority", "FunIndex",
+                "Interval" };
         CsvWriter.writeHeader(filePath, header);
 
         for (String priority : funIdxConfInterMap.keySet()) {
@@ -23,6 +24,8 @@ public class FunIndexWriter {
 
             List<Object> record = List.of(
                     Constants.PRIORITY_PERCENTAGE_PER_RIDE,
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE,
+                    Constants.AVG_GROUP_SIZE_POISSON,
                     priority,
                     confInterval.mean(),
                     confInterval.interval());
@@ -34,7 +37,8 @@ public class FunIndexWriter {
     public static void writePriorityQueueTimes(
             Map<String, Map<QueuePriority, ConfidenceInterval>> perPrioQueueTimeMap) {
         Path fileDirectory = Path.of(Constants.DATA_PATH, "Fun");
-        Path filePath = Path.of(fileDirectory.toString(), "PriorityQueueTime_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
+        Path filePath = Path.of(fileDirectory.toString(),
+                "PriorityQueueTime_" + Constants.SMALL_GROUP_LIMIT_SIZE + ".csv");
 
         String[] header = { "Percentage", "Priority", "CenterName", "AvgQueueTime", "Interval" };
         CsvWriter.writeHeader(filePath, header);
