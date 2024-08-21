@@ -109,7 +109,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
     // Constructs a key for the map that stores the queue stats for each interval,
     // given a center and one of its queue priority
     private String queueStatsKey(Interval interval, Center<RiderGroup> center, QueuePriority prio) {
-        return interval.toString() + "::" + center.getName() + "::" + prio.name();
+        return interval.getIndex() + "::" + center.getName() + "::" + prio.name();
     }
 
     private String extractCenterNameFromKey(String key) {
