@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
@@ -13,15 +14,16 @@ import it.uniroma2.pmcsn.parks.model.routing.AttractionRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.NetworkRoutingNode;
 import it.uniroma2.pmcsn.parks.model.routing.RestaurantRoutingNode;
 import it.uniroma2.pmcsn.parks.model.server.ServerType;
-import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Entrance;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.ExitCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Restaurant;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 
 public class NetworkBuilder {
 
     private Map<String, Center<RiderGroup>> centerMap;
+    private ExitCenter exitCenter;
 
     public NetworkBuilder() {
         this.centerMap = new HashMap<>();
@@ -29,16 +31,17 @@ public class NetworkBuilder {
 
     public void buildNetwork() {
 
+        this.exitCenter = new ExitCenter(Constants.EXIT);
+
         List<Center<RiderGroup>> restaurants = buildListOfCenters(ServerType.RESTAURANT);
         List<Center<RiderGroup>> attractions = buildListOfCenters(ServerType.ATTRACTION);
         List<Center<RiderGroup>> entrances = buildListOfCenters(ServerType.ENTRANCE);
-        Center<RiderGroup> exitCenter = new ExitCenter(Constants.EXIT);
 
         // Create the routing nodes
         RoutingNode<RiderGroup> attractionRoutingNode = new AttractionRoutingNode(attractions);
         RoutingNode<RiderGroup> restaurantsRoutingNode = new RestaurantRoutingNode(restaurants);
         RoutingNode<RiderGroup> networkRoutingNode = new NetworkRoutingNode(attractionRoutingNode,
-                restaurantsRoutingNode, exitCenter);
+                restaurantsRoutingNode, this.exitCenter);
 
         for (Center<RiderGroup> attraction : attractions) {
             attraction.setNextRoutingNode(networkRoutingNode);
@@ -53,7 +56,6 @@ public class NetworkBuilder {
         this.centerMap.put(Constants.ENTRANCE, entrance);
         entrance.setNextRoutingNode(networkRoutingNode);
 
-        EventBuilder.setStatsCenterMap(centerMap);
     }
 
     private List<Center<RiderGroup>> buildListOfCenters(ServerType serverType) {
@@ -89,21 +91,22 @@ public class NetworkBuilder {
     private String getBuildFileName(ServerType serverType) {
         switch (serverType) {
             case ENTRANCE:
-                if (Constants.VERIFICATION_MODE) {
+                if (Constants.MODE == SimulationMode.VERIFICATION) {
                     return Constants.VERIFICATION_ENTRANCE_FILE;
                 } else {
                     return Constants.ENTRANCE_FILE;
                 }
 
             case ATTRACTION:
-                if (Constants.VERIFICATION_MODE) {
-                    return Constants.VERIFICATION_ATTRACTION_FILE;
-                } else {
-                    return Constants.ATTRACTION_FILE;
-                }
+                return switch (Constants.MODE) {
+                    case NORMAL -> Constants.ATTRACTION_FILE;
+                    case VERIFICATION -> Constants.VERIFICATION_ATTRACTION_FILE;
+                    case VALIDATION -> Constants.VALIDATION_ATTRACTION_FILE;
+                    case CONSISTENCY_CHECK -> Constants.CONSISTENCY_CHECKS_ATTRACTION_FILE;
+                };
 
             case RESTAURANT:
-                if (Constants.VERIFICATION_MODE) {
+                if (Constants.MODE == SimulationMode.VERIFICATION) {
                     return Constants.VERIFICATION_RESTAURANT_FILE;
                 } else {
                     return Constants.RESTAURANT_FILE;
@@ -114,15 +117,24 @@ public class NetworkBuilder {
 
     }
 
-    public Center<RiderGroup> getCenterByName(String name) {
-        if (!centerMap.containsKey(name)) {
-            throw new RuntimeException("Center " + name + " does not exist");
+    public Center<RiderGroup> getCenterByName(String centerName) {
+
+        if (centerName.equals(exitCenter.getName())) {
+            return this.exitCenter;
         }
-        return centerMap.get(name);
+
+        if (!centerMap.containsKey(centerName)) {
+            throw new RuntimeException("Center " + centerName + " does not exist");
+        }
+        return centerMap.get(centerName);
     }
 
     public List<Center<RiderGroup>> getAllCenters() {
         return List.copyOf(centerMap.values());
+    }
+
+    public ExitCenter getExitCenter() {
+        return this.exitCenter;
     }
 
 }

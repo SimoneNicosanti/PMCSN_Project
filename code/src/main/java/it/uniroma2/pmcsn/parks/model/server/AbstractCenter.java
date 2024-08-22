@@ -9,10 +9,12 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
+import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 
 public abstract class AbstractCenter implements Center<RiderGroup> {
 
@@ -23,7 +25,7 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected final Integer slotNumber;
     protected Double popularity;
 
-    private boolean isCenterClosed;
+    protected boolean isCenterClosed;
 
     private RoutingNode<RiderGroup> nextRoutingNode;
 
@@ -37,12 +39,15 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         this.popularity = popularity;
 
         this.isCenterClosed = false;
+
+        RandomHandler.getInstance().getStream(this.name);
     }
 
     public double getAvgDuration() {
         return this.avgServiceTime;
     }
 
+    @Override
     public int getSlotNumber() {
         return this.slotNumber;
     }
@@ -50,13 +55,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
     protected QueuePriority commonArrivalManagement(RiderGroup job) {
 
         if (isCenterClosed) {
-            Center<RiderGroup> nextCenter = this.nextRoutingNode.route(job);
-            Double currentClock = ClockHandler.getInstance().getClock();
-            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, job, currentClock);
+            scheduleArrivalToNewCenter(job);
             return null;
         }
 
-        int jobSize = job.getGroupSize();
+        // int jobSize = job.getGroupSize();
 
         // Check before adding the job in the queue, otherwise the queue is never empty
         // boolean mustServe = this.isQueueEmptyAndCanServe(jobSize);
@@ -83,9 +86,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
         // Scheduling arrival to new center
         Center<RiderGroup> center = nextRoutingNode.route(endedJob);
-        SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
-                ClockHandler.getInstance().getClock());
-        EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
+        Double arrivalTime = ClockHandler.getInstance().getClock();
+
+        SystemEvent newEvent = EventBuilder.buildEventFrom(center, EventType.ARRIVAL, endedJob,
+                arrivalTime);
+        EventsPool.getInstance().scheduleNewEvent(newEvent);
 
         // EventLogger.logEvent("Schedule ", newEvent);
     }
@@ -113,7 +118,15 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
      * Start the service and schedule the correlated END_PROCESS events
      */
     public List<RiderGroup> startService() {
+
         List<RiderGroup> jobsToServe = this.getJobsToServe();
+
+        if (isCenterClosed && !jobsToServe.isEmpty())
+            throw new RuntimeException();
+
+        if (this instanceof Attraction) {
+            jobsToServe.sort((arg0, arg1) -> arg0.getGroupId().compareTo(arg1.getGroupId()));
+        }
 
         this.currentServingJobs.addAll(jobsToServe);
 
@@ -121,13 +134,11 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
             double serviceTime = this.getNewServiceTime(job);
 
             // Schedule an END_PROCESS event
-            SystemEvent<RiderGroup> newEvent = EventBuilder.buildEventFrom(this,
+            SystemEvent newEvent = EventBuilder.buildEventFrom(this,
                     EventType.END_PROCESS,
                     job,
                     ClockHandler.getInstance().getClock() + serviceTime);
-            EventsPool.<RiderGroup>getInstance().scheduleNewEvent(newEvent);
-
-            // EventLogger.logEvent("Schedule ", newEvent);
+            EventsPool.getInstance().scheduleNewEvent(newEvent);
         }
 
         return jobsToServe;
@@ -146,15 +157,13 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
 
     @Override
     public List<RiderGroup> closeCenter() {
+
+        this.isCenterClosed = true;
         List<RiderGroup> removedGroups = this.queueManager.dequeueAll();
 
         for (RiderGroup group : removedGroups) {
-            Center<RiderGroup> nextCenter = nextRoutingNode.route(group);
-            Double currentClock = ClockHandler.getInstance().getClock();
-            EventBuilder.buildEventFrom(nextCenter, EventType.ARRIVAL, group, currentClock);
+            scheduleArrivalToNewCenter(group);
         }
-
-        this.isCenterClosed = true;
         return removedGroups;
     }
 

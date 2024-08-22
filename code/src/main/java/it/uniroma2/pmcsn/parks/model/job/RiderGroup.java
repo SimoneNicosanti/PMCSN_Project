@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.job;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.model.stats.GroupStats;
 
 public class RiderGroup {
@@ -30,6 +31,10 @@ public class RiderGroup {
 
     public GroupStats getGroupStats() {
         return this.stats;
+    }
+
+    public boolean isSmallGroup() {
+        return (this.priority == GroupPriority.NORMAL && this.groupSize <= Constants.SMALL_GROUP_LIMIT_SIZE);
     }
 
 }

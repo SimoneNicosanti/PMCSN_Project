@@ -16,6 +16,7 @@ public class AttractionRoutingNode implements RoutingNode<RiderGroup> {
 
     public AttractionRoutingNode(List<Center<RiderGroup>> attractionList) {
         this.attractionList = attractionList;
+        RandomHandler.getInstance().getStream(Constants.ATTRACTION_ROUTING_NODE);
     }
 
     @Override

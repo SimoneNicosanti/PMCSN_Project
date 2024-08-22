@@ -2,7 +2,7 @@ package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.queue.ImprovedAttractionQueueManager;
+import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -13,13 +13,14 @@ public class Attraction extends AbstractCenter {
 
     private double currentServiceTime;
 
-    public Attraction(String name, int numberOfSeats, double popularity, double avgDuration) {
-        super(name, new ImprovedAttractionQueueManager(), numberOfSeats, avgDuration, popularity);
+    public Attraction(String name, QueueManager<RiderGroup> queueManager, int numberOfSeats, double popularity,
+            double avgDuration) {
+        super(name, queueManager, numberOfSeats, avgDuration, popularity);
         this.currentServiceTime = 0.0;
     }
 
-    public Integer getQueueLenght(GroupPriority priority) {
-        return this.queueManager.queueLength(priority);
+    public Integer getQueueLenght(GroupPriority priority, Integer groupSize) {
+        return this.queueManager.queueLength(priority, groupSize);
     }
 
     @Override

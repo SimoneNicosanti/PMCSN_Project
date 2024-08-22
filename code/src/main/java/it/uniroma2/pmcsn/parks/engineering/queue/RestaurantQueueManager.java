@@ -49,7 +49,7 @@ public class RestaurantQueueManager implements QueueManager<RiderGroup> {
     }
 
     @Override
-    public int queueLength(GroupPriority priority) {
+    public int queueLength(GroupPriority priority, Integer groupSize) {
         return this.queue.queueLength();
     }
 

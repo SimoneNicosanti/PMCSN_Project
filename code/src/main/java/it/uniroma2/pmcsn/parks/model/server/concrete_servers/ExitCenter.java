@@ -1,5 +1,6 @@
 package it.uniroma2.pmcsn.parks.model.server.concrete_servers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -8,25 +9,28 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-import it.uniroma2.pmcsn.parks.utils.JobInfoWriter;
+import it.uniroma2.pmcsn.parks.writers.JobInfoWriter;
 
 /**
  * Fake center for exiting jobs
- * It simply writes stas on a file when the job exists from the system
+ * It simply writes stats on a file when jobs exit the system
  */
 public class ExitCenter implements Center<RiderGroup> {
-    String name;
+    private String name;
+    private List<RiderGroup> exitRiderGroup;
 
     public ExitCenter(String name) {
         this.name = name;
+        this.exitRiderGroup = new ArrayList<>();
     }
 
     @Override
     public QueuePriority arrival(RiderGroup job) {
         String filename = Constants.JOB_STATS_FILENAME;
-        if (!Constants.VERIFICATION_MODE) {
+        if (Constants.COLLECT_JOB_STATS) {
             JobInfoWriter.writeJobInfo("Job", filename, job);
         }
+        exitRiderGroup.add(job);
         return null;
     }
 
@@ -54,7 +58,7 @@ public class ExitCenter implements Center<RiderGroup> {
     }
 
     @Override
-    public Integer getQueueLenght(GroupPriority prio) {
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize) {
         return 0;
     }
 
@@ -71,6 +75,15 @@ public class ExitCenter implements Center<RiderGroup> {
     @Override
     public List<RiderGroup> closeCenter() {
         return null;
+    }
+
+    public List<RiderGroup> getExitJobs() {
+        return this.exitRiderGroup;
+    }
+
+    @Override
+    public int getSlotNumber() {
+        return 0;
     }
 
 }

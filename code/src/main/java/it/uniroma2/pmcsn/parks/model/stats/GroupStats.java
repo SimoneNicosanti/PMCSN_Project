@@ -54,7 +54,7 @@ public class GroupStats {
         return numberOfRides;
     }
 
-    public int getTotalNumberOfVisits() {
+    public int getTotalNumberOfRides() {
         int sum = 0;
         for (int visits : numberOfRidesPerAttraction.values()) {
             sum += visits;

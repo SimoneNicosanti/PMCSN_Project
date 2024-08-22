@@ -13,6 +13,8 @@ public class BatchStats {
     private Double prevClosingTime;
     private String statName;
 
+    private int prevDividend = 0;
+
     public BatchStats(String statName) {
         this.timeList = new ArrayList<>();
         this.batchDurationList = new ArrayList<>();
@@ -21,30 +23,36 @@ public class BatchStats {
     }
 
     public void addTime(Double newTime) {
-        if (timeList.size() + 1 > Constants.BATCH_SIZE * Constants.BATCH_NUMBER) {
+        if (timeList.size() + 1 > Constants.VERIFICATION_BATCH_SIZE * Constants.VERIFICATION_BATCH_NUMBER) {
             return;
         }
         timeList.add(newTime);
 
-        if (timeList.size() % Constants.BATCH_SIZE == 0) {
+        if (timeList.size() % Constants.VERIFICATION_BATCH_SIZE == 0) {
             Double currentTime = ClockHandler.getInstance().getClock();
             Double duration = currentTime - prevClosingTime;
             this.batchDurationList.add(duration);
 
             this.prevClosingTime = currentTime;
         }
+
+        if (timeList.size() / Constants.VERIFICATION_BATCH_SIZE != prevDividend) {
+            prevDividend = timeList.size() / Constants.VERIFICATION_BATCH_SIZE;
+            // System.out.println("BATCH " + this.statName + prevDividend + " " + "
+            // Completed");
+        }
     }
 
     public boolean isBatchCompleted() {
-        return (timeList.size() == Constants.BATCH_SIZE * Constants.BATCH_NUMBER);
+        return (timeList.size() == Constants.VERIFICATION_BATCH_SIZE * Constants.VERIFICATION_BATCH_NUMBER);
     }
 
     public List<Double> getTimeAvgs() {
         List<Double> averages = new ArrayList<>();
 
-        int batchSize = Constants.BATCH_SIZE;
+        int batchSize = Constants.VERIFICATION_BATCH_SIZE;
 
-        for (int i = 0; i < Constants.BATCH_NUMBER; i++) {
+        for (int i = 0; i < Constants.VERIFICATION_BATCH_NUMBER; i++) {
             double sum = 0.0;
             for (int j = 0; j < batchSize; j++) {
                 sum += timeList.get(i * batchSize + j);
@@ -59,7 +67,7 @@ public class BatchStats {
         List<Double> timeAvgs = this.getTimeAvgs();
         List<Double> avgs = new ArrayList<>();
 
-        int batchSize = Constants.BATCH_SIZE;
+        int batchSize = Constants.VERIFICATION_BATCH_SIZE;
 
         for (int i = 0; i < timeAvgs.size(); i++) {
             Double timeValue = timeAvgs.get(i);

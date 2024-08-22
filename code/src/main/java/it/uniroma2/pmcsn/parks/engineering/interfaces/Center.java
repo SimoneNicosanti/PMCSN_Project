@@ -19,7 +19,7 @@ public interface Center<T> {
 
     public List<T> startService();
 
-    public Integer getQueueLenght(GroupPriority prio);
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize);
 
     public Double getPopularity();
 
@@ -27,6 +27,8 @@ public interface Center<T> {
      * Check if the center is able to serve a job with size "jobSize"
      */
     public boolean canServe(Integer slots);
+
+    public int getSlotNumber();
 
     public List<T> closeCenter();
 

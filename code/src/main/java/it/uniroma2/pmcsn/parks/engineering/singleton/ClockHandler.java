@@ -25,4 +25,8 @@ public class ClockHandler {
         this.clock = newClockValue;
     }
 
+    public static void reset() {
+        instance = null;
+    }
+
 }

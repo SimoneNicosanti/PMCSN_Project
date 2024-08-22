@@ -32,15 +32,16 @@ public class ConfigHandler {
         this.centersDistribution = new HashMap<>();
         this.parametersMap = new HashMap<>();
 
-        String configFilePath;
-        if (Constants.VERIFICATION_MODE) {
-            configFilePath = Constants.VERIFICATION_CONFIG_FILENAME;
-        } else {
-            configFilePath = Constants.CONFIG_FILENAME;
-        }
-        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFilePath);
+        String configFileName = switch (Constants.MODE) {
+            case NORMAL -> Constants.CONFIG_FILENAME;
+            case VERIFICATION -> Constants.VERIFICATION_CONFIG_FILENAME;
+            case VALIDATION -> Constants.VALIDATION_CONFIG_FILENAME;
+            case CONSISTENCY_CHECK -> Constants.CONSISTENCY_CHECKS_CONFIG_FILENAME;
+        };
 
-        centersDistribution = ParametersParser.parseCentersDistribution(Constants.CONFIG_FILENAME);
+        List<Pair<Interval, Parameters>> pairList = ParametersParser.parseParameters(configFileName);
+
+        centersDistribution = ParametersParser.parseCentersDistribution(configFileName);
 
         checkOrder(pairList);
 
@@ -105,11 +106,6 @@ public class ConfigHandler {
         throw new RuntimeException("Interval not found for time " + time);
     }
 
-    public Interval getCurrentInterval() {
-        Double currentClock = ClockHandler.getInstance().getClock();
-        return getInterval(currentClock);
-    }
-
     public boolean isParkClosing(Interval interval) {
         int size = intervals.size();
         Interval lastInterval = intervals.get(size - 1);
@@ -119,6 +115,10 @@ public class ConfigHandler {
 
     public List<Interval> getAllIntervals() {
         return this.intervals;
+    }
+
+    public static void reset() {
+        instance = null;
     }
 
 }

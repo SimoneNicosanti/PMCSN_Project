@@ -1,72 +1,51 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
+import java.util.TreeMap;
+
+import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.EventsPoolId;
+import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 
-public class EventsPool<T> {
+public class EventsPool {
 
-    @SuppressWarnings("rawtypes")
     private static EventsPool instance = null;
 
-    private Map<EventsPoolId, List<SystemEvent<T>>> eventMap;
+    private Map<EventsPoolId, List<SystemEvent>> eventMap;
+    private List<EventsPoolId> sortedEventIdList;
 
-    @SuppressWarnings("unchecked")
-    public static <T> EventsPool<T> getInstance() {
+    private List<SystemEvent> totalList;
+
+    public static EventsPool getInstance() {
         if (instance == null) {
-            instance = new EventsPool<>();
+            instance = new EventsPool();
         }
         return instance;
     }
 
     public EventsPool() {
-        this.eventMap = new HashMap<>();
+        this.eventMap = new TreeMap<>();
+        this.totalList = new ArrayList<>();
+        this.sortedEventIdList = new ArrayList<>();
     }
 
-    /**
-     * Free the event pool at the park closure. All events will be deleted except
-     * those for termination of the current services and the arrival to the
-     * ExitCenter.
-     */
-    // public void freePool(Center<T> exitCenter) {
-    // for (Entry<EventsPoolId, List<SystemEvent<T>>> entry :
-    // this.eventMap.entrySet()) {
-    // EventsPoolId key = entry.getKey();
-
-    // if (key.getCenterName().equals(Constants.EXIT)
-    // || key.getEventType() == EventType.END_PROCESS) {
-    // continue;
-    // }
-
-    // if (key.getEventType() == EventType.ARRIVAL) {
-    // for (SystemEvent<T> event : entry.getValue()) {
-    // event.setCenter(exitCenter);
-
-    // }
-    // continue;
-    // }
-
-    // // Free the list items
-    // entry.getValue().clear();
-    // }
-    // }
-
-    public SystemEvent<T> getNextEvent() {
-        SystemEvent<T> nextEvent = null;
+    public SystemEvent getNextEvent() {
+        SystemEvent nextEvent = null;
         EventsPoolId nextEventsPoolId = null;
-        for (EventsPoolId id : eventMap.keySet()) {
-            List<SystemEvent<T>> currentEventList = eventMap.get(id);
+
+        for (EventsPoolId id : sortedEventIdList) {
+            List<SystemEvent> currentEventList = eventMap.get(id);
+
             if (currentEventList.size() > 0) {
                 if (nextEvent == null) {
                     nextEvent = currentEventList.get(0);
                     nextEventsPoolId = id;
                 } else {
                     // Lists are ordered, so the first elem is the lowest
-                    SystemEvent<T> currentEvent = currentEventList.get(0);
-                    if (nextEvent.getEventTime() > currentEvent.getEventTime()) {
+                    SystemEvent currentEvent = currentEventList.get(0);
+                    if (currentEvent.compareTo(nextEvent) < 0) {
                         nextEvent = currentEvent;
                         nextEventsPoolId = id;
                     }
@@ -78,28 +57,59 @@ public class EventsPool<T> {
             eventMap.get(nextEventsPoolId).remove(0);
         }
 
+        SystemEvent totalListNextEvent = null;
+        if (totalList.size() > 0) {
+            totalListNextEvent = totalList.remove(0);
+        }
+
+        if ((totalListNextEvent == null || nextEvent == null) && (totalListNextEvent != nextEvent)) {
+            throw new RuntimeException("Inconsistant Lists 1");
+        }
+
+        if ((totalListNextEvent != null && nextEvent != null) && totalListNextEvent.compareTo(nextEvent) != 0) {
+            throw new RuntimeException("Inconsistant Lists 2");
+        }
+        
+
         return nextEvent;
     }
 
-    public void scheduleNewEvent(SystemEvent<T> event) {
-        EventsPoolId poolId = event.getPoolId();
-        List<SystemEvent<T>> eventList = eventMap.get(poolId);
-        if (eventList == null) {
-            eventList = new ArrayList<>();
-            eventMap.put(poolId, eventList);
+    public void scheduleNewEvent(SystemEvent event) {
+        EventType eventType = event.getEventType();
+        String centerName = event.getCenterName();
+
+        EventsPoolId id = null;
+
+        for (EventsPoolId mapKey : eventMap.keySet()) {
+            if (mapKey.getEventType() == eventType && mapKey.getCenterName().equals(centerName)) {
+                id = mapKey;
+                break;
+            }
         }
-        eventList.add(event);
-        eventList.sort(null);
+
+        if (id == null) {
+            id = new EventsPoolId(centerName, eventType);
+            eventMap.put(id, new ArrayList<>());
+            sortedEventIdList.add(id);
+            sortedEventIdList.sort(null);
+        }
+
+        List<SystemEvent> list = eventMap.get(id);
+        list.add(event);
+        list.sort(null);
+
+        totalList.add(event);
+        totalList.sort(null);
     }
 
-    public void scheduleNewEvents(List<SystemEvent<T>> events) {
-        for (SystemEvent<T> event : events) {
+    public void scheduleNewEvents(List<SystemEvent> events) {
+        for (SystemEvent event : events) {
             scheduleNewEvent(event);
         }
     }
 
-    public void resetPool() {
-        this.eventMap = new HashMap<>();
+    public static void reset() {
+        instance = null;
     }
 
 }

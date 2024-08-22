@@ -48,7 +48,7 @@ public class CenterStatistics {
         this.queueAreaPeople.updateArea(time, groupSize, groupSize);
     }
 
-    public Double getServiceAreaValue(StatsType statsType) {
+    public Double getResponseAreaValue(StatsType statsType) {
         AreaStats serviceArea;
         AreaStats queueArea;
         switch (statsType) {
@@ -73,7 +73,6 @@ public class CenterStatistics {
         return switch (statsType) {
             case GROUP -> this.serviceAreaGroup;
             case PERSON -> this.serviceAreaPeople;
-            default -> null;
         };
     }
 
@@ -91,5 +90,12 @@ public class CenterStatistics {
             case PERSON -> this.queueAreaPerPrioPeople.get(queuePrio);
         };
 
+    }
+
+    public Map<QueuePriority, AreaStats> getAllQueueAreaStats(StatsType statsType) {
+        return switch (statsType) {
+            case GROUP -> this.queueAreaPerPrioGroup;
+            case PERSON -> this.queueAreaPerPrioPeople;
+        };
     }
 }

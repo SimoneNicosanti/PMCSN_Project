@@ -19,20 +19,14 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
         this.attractionNode = attractionNode;
         this.restaurantNode = restaurantNode;
         this.exitCenter = exitCenter;
+
+        RandomHandler.getInstance().getStream(Constants.NETWORK_ROUTING_NODE);
     }
 
     public Center<RiderGroup> route(RiderGroup job) {
         double attractionProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.ATTRACTION);
         double restaurantProb = ConfigHandler.getInstance().getProbability(RoutingNodeType.RESTAURANT);
-        double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE);
-
-        // TODO Feedback eliminated in verification mode
-        // if (Constants.VERIFICATION_MODE) {
-        // if (job.getGroupStats().getTotalNumberOfVisits() == 1)
-        // return exitCenter;
-        // else
-        // return attractionNode.route(job);
-        // }
+        double routingProb = RandomHandler.getInstance().getRandom(Constants.NETWORK_ROUTING_NODE, job);
 
         if (routingProb <= attractionProb) {
             // Go to attractions

@@ -33,6 +33,9 @@ public class StatsCenter implements Center<RiderGroup> {
 
     protected IntervalStatsManager intervalStatsManager;
 
+    private boolean serviceBatchFinished = false;
+    private boolean queueBatchFinished = false;
+
     public StatsCenter(Center<RiderGroup> center) {
         this.center = center;
 
@@ -96,6 +99,10 @@ public class StatsCenter implements Center<RiderGroup> {
         this.intervalStatsManager.updateQueueTime(enqueueTime, dequeueTime, queuePrio, job.getGroupSize());
         this.wholeDayStats.updateQueueArea(dequeueTime - enqueueTime, queuePrio, job.getGroupSize());
         this.queueBatchStats.addTime(dequeueTime - enqueueTime);
+        if (queueBatchStats.isBatchCompleted() && !queueBatchFinished) {
+            System.out.println(center.getName() + " QUEUE BATCH COMPLETED");
+            queueBatchFinished = true;
+        }
     }
 
     @Override
@@ -130,7 +137,27 @@ public class StatsCenter implements Center<RiderGroup> {
         this.intervalStatsManager.updateServiceTime(startServingTime, endServingTime, endedJob.getGroupSize(),
                 multiplier);
         this.wholeDayStats.updateServiceArea(endServingTime - startServingTime, endedJob.getGroupSize(), multiplier);
+
+        // if (Constants.MODE == SimulationMode.CONSISTENCY_CHECK && center instanceof
+        // Attraction) {
+        // // If validation mode and center is an attraction, increment service times
+        // // once
+        // // for each service -> otherwise the batch will be filled by copy of the same
+        // // values
+
+        // if (this.startServingTimeMap.isEmpty())
+        // this.serviceBatchStats.addTime(jobServiceTime);
+
+        // } else {
+        // this.serviceBatchStats.addTime(jobServiceTime);
+        // }
+
         this.serviceBatchStats.addTime(jobServiceTime);
+
+        if (serviceBatchStats.isBatchCompleted() && !serviceBatchFinished) {
+            System.out.println(center.getName() + " SERVICE BATCH COMPLETED");
+            serviceBatchFinished = true;
+        }
 
     }
 
@@ -150,8 +177,8 @@ public class StatsCenter implements Center<RiderGroup> {
     }
 
     @Override
-    public Integer getQueueLenght(GroupPriority prio) {
-        return this.center.getQueueLenght(prio);
+    public Integer getQueueLenght(GroupPriority prio, Integer groupSize) {
+        return this.center.getQueueLenght(prio, groupSize);
     }
 
     @Override
@@ -201,6 +228,11 @@ public class StatsCenter implements Center<RiderGroup> {
 
     public CenterStatistics getWholeDayStats() {
         return this.wholeDayStats;
+    }
+
+    @Override
+    public int getSlotNumber() {
+        return center.getSlotNumber();
     }
 
 }
