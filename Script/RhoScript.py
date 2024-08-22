@@ -34,6 +34,8 @@ def plotRhoVariationChart(dataFrame: pd.DataFrame):
         plt.tight_layout()
         plt.legend()
 
+        plt.yticks(np.arange(0.85, 1.025, 0.025))
+
         plt.savefig("./Out/Charts/Rho/RhoChart_" + str(smallGroupSize) + ".png")
         plt.clf()
 

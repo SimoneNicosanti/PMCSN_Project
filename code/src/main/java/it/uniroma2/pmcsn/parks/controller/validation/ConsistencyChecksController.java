@@ -25,6 +25,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
     }
 
     public ConsistencyChecksController() {
+        Constants.IMPROVED_MODEL = true;
         Constants.MODE = SimulationMode.CONSISTENCY_CHECK;
         Constants.VERIFICATION_BATCH_NUMBER = 250;
         Constants.VERIFICATION_BATCH_SIZE = 1500;
@@ -54,8 +55,6 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
         RandomHandler.getInstance().getStreamMap()
                 .forEach(
                         (name, streamIdx) -> System.out.println("Name >>> " + name + " - Stream Idx >>> " + streamIdx));
-        ;
-
     }
 
     public void consistencySimulation(int i) {

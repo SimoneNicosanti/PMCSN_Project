@@ -43,9 +43,6 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
             this.normalQueueExtractionTryTimes = 0;
         }
 
-        // Small groups have a percentage of the attraction seats
-        int smallSlots = (int) (freeSlots * Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE);
-
         // What if a priority group is bigger than the number of priority seat? Take
         // always at least one priority group
         Integer priorityNextSize = priorityQueue.getNextSize();
@@ -57,9 +54,10 @@ public class ImprovedAttractionQueueManager implements QueueManager<RiderGroup> 
                 throw new RuntimeException("Extracted number is different than the expected size");
             }
             freeSlots = freeSlots - priorityExtractedNum;
-            // prioritySlots -= priorityExtractedNum;
         }
 
+        // Small groups have a percentage of the attraction seats
+        int smallSlots = (int) (freeSlots * Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE);
         // Priority groups has only a percentage of the attraction seats
         int prioritySlots = (int) (freeSlots * Constants.PRIORITY_PERCENTAGE_PER_RIDE);
 

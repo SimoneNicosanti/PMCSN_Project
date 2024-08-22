@@ -1,4 +1,6 @@
 /code/target
 /.vscode
 /.idea
-/Out/*
+/Out/Log/*
+/Out/Data/Job/*
+/Out/Job/*
