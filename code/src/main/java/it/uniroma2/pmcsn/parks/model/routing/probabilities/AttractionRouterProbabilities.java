@@ -1,11 +1,8 @@
 package it.uniroma2.pmcsn.parks.model.routing.probabilities;
 
-import java.lang.constant.Constable;
 import java.util.List;
 
-import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 
 public class AttractionRouterProbabilities extends RouterProbabilities<RiderGroup> {
@@ -50,9 +47,6 @@ public class AttractionRouterProbabilities extends RouterProbabilities<RiderGrou
             this.probabilities.add(attractionProb);
             this.sumProbabilities += attractionProb;
         }
-        // TODO How to lead the group out of the park?
-        // If the group is too large for any attraction, it exits the park
-        // if (sumProbabilities == 0.0)
 
         this.normalize();
 

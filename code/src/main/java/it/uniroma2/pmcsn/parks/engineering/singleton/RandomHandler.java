@@ -1,6 +1,7 @@
 package it.uniroma2.pmcsn.parks.engineering.singleton;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -32,6 +33,9 @@ public class RandomHandler {
 
         this.streamCount = 0;
         this.randomLog = "";
+
+        List.of(Constants.ARRIVAL_STREAM, Constants.PRIORITY_STREAM, Constants.GROUP_SIZE_STREAM)
+                .forEach((key) -> assignedStreams.put(key, getNewStreamIndex()));
     }
 
     public static RandomHandler getInstance() {
@@ -60,7 +64,7 @@ public class RandomHandler {
         return;
     }
 
-    private int getStream(String name) {
+    public int getStream(String name) {
         if (!this.assignedStreams.containsKey(name)) {
             this.assignNewStream(name);
         }

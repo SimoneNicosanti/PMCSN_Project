@@ -9,9 +9,9 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.QueueManager;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.RoutingNode;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
-import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
@@ -39,6 +39,8 @@ public abstract class AbstractCenter implements Center<RiderGroup> {
         this.popularity = popularity;
 
         this.isCenterClosed = false;
+
+        RandomHandler.getInstance().getStream(this.name);
     }
 
     public double getAvgDuration() {

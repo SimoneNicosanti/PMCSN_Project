@@ -8,6 +8,7 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
+import it.uniroma2.pmcsn.parks.engineering.singleton.RandomHandler;
 import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
@@ -21,7 +22,7 @@ public class Simulation {
     public Simulation(SimulationMode mode) {
         Constants.MODE = mode;
 
-        // TODO IF NEEDED RESET RANDOM_HANDLER OUTSIDE THIS!!!!!
+        // IF NEEDED RESET RANDOM_HANDLER OUTSIDE THIS!!!!!
         ClockHandler.reset();
         EventsPool.reset();
         ConfigHandler.reset();

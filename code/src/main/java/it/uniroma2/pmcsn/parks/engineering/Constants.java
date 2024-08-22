@@ -34,12 +34,12 @@ public class Constants {
 
     public static boolean COLLECT_JOB_STATS = false;
     public static final String JOB_STATS_FILENAME = "job_stats.csv";
-    public static final String CONFIG_FILENAME = "Config_Normal.json";
-    public static final String ATTRACTION_FILE = "AttractionsData_1.csv";
+    public static final String CONFIG_FILENAME = "ConfigNormal.json";
+    public static final String ATTRACTION_FILE = "AttractionsData.csv";
     public static final String ENTRANCE_FILE = "EntranceData.csv";
     public static final String RESTAURANT_FILE = "RestaurantsData.csv";
 
-    public static final double PRIORITY_PASS_PROB = 0.1;
+    public static double PRIORITY_PASS_PROB = 0.1;
     public static double PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
     public static final double NORMAL_PERCENTAGE_PER_RIDE = 0.50;
     public static double SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.0;
@@ -54,13 +54,13 @@ public class Constants {
     public static int VERIFICATION_BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
 
     public static final String VALIDATION_CONFIG_FILENAME = "ConfigValidation.json";
-    public static final String VALIDATION_ATTRACTION_FILE = "AttractionsData_2.csv";
+    public static final String VALIDATION_ATTRACTION_FILE = "AttractionsData.csv";
     public static final Integer VALDATION_REPLICATIONS_NUMBER = 100;
 
     public static String CONSISTENCY_CHECKS_CONFIG_FILENAME = null;
     public static final String PRE_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_pre.json";
     public static final String POST_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_post.json";
-    public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData_2.csv";
+    public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData.csv";
     public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
     public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 

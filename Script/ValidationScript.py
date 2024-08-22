@@ -30,7 +30,7 @@ def drawChart(dataFrame : pd.DataFrame, centerType : str, fileIdx : int) :
     #axes.axhline(y = theoryValue, color='black', linestyle='--', label='TheoryValue')
 
     plt.tight_layout()
-    plt.legend()
+    plt.legend(loc='upper right')
     plt.savefig("./Out/Charts/Validation/Trends/" + centerType  + "_Trend_" + str(fileIdx))
     plt.clf()
     pass

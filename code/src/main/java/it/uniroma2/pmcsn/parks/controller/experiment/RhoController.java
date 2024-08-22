@@ -58,14 +58,6 @@ public class RhoController implements Controller<RiderGroup> {
             simulateForOneValue();
         }
 
-        // for (double avgSizePoisson = 0.5; avgSizePoisson < 4; avgSizePoisson += 0.5)
-        // {
-        // Constants.AVG_GROUP_SIZE_POISSON = avgSizePoisson;
-
-        // simulateForOneValue();
-        // RandomHandler.reset();
-        // }
-
     }
 
     private static void simulateForOneValue() {

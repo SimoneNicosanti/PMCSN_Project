@@ -8,7 +8,7 @@ fileIdx = [1, 2]
 
 
 def funIndexChart():
-    plt.figure(figsize=(12, 8))
+    plt.figure(figsize=(10, 5))
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
@@ -39,7 +39,7 @@ def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
                 alpha=0.2,
             )
 
-            plt.xticks(ticks=np.arange(0, 1.05, 0.05))
+            plt.xticks(ticks=np.arange(0, 1.05, 0.1))
             plt.xlabel(xlabel="Priority Seats Percentage")
             plt.ylabel(ylabel="Log_10 " + metricName)
 
@@ -87,7 +87,7 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
                 alpha=0.2,
             )
 
-        plt.xticks(ticks=np.arange(0, 1.05, 0.05))
+        plt.xticks(ticks=np.arange(0, 1.05, 0.1))
         plt.xlabel(xlabel="Priority Seats Percentage")
         plt.ylabel(ylabel="AvgQueueTime")
 

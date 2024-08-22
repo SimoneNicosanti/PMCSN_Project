@@ -15,9 +15,9 @@ public class EventBuilder {
     private static Long riderGroupId = 0L;
 
     public static SystemEvent getNewArrivalEvent(Center<RiderGroup> arrivalCenter) {
-        double arrivalRate = SimulationBuilder.getArrivalRate() ;
+        double arrivalRate = SimulationBuilder.getArrivalRate();
         if (arrivalRate == 0.0) {
-            return null ;
+            return null;
         }
         double interarrivalTime = RandomHandler.getInstance().getExponential(Constants.ARRIVAL_STREAM,
                 1 / arrivalRate);

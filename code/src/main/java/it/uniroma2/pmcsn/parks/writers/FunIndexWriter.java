@@ -71,7 +71,8 @@ public class FunIndexWriter {
             return new String[] { "SmallSeatsPercentage", "PoissonParam", "CenterName", "Priority", "AvgQueueTime",
                     "ConfInterval" };
         } else {
-            return new String[] { "PrioSeatsPercentage", "CenterName", "Priority", "AvgQueueTime", "ConfInterval" };
+            return new String[] { "PrioPassProb", "PrioSeatsPercentage", "CenterName", "Priority", "AvgQueueTime",
+                    "ConfInterval" };
         }
     }
 
@@ -87,6 +88,7 @@ public class FunIndexWriter {
                     confInterval.interval());
         } else {
             return List.of(
+                    Constants.PRIORITY_PASS_PROB,
                     Constants.PRIORITY_PERCENTAGE_PER_RIDE,
                     centerName,
                     prio,

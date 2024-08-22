@@ -19,6 +19,8 @@ public class NetworkRoutingNode implements RoutingNode<RiderGroup> {
         this.attractionNode = attractionNode;
         this.restaurantNode = restaurantNode;
         this.exitCenter = exitCenter;
+
+        RandomHandler.getInstance().getStream(Constants.NETWORK_ROUTING_NODE);
     }
 
     public Center<RiderGroup> route(RiderGroup job) {
