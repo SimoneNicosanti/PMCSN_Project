@@ -6,7 +6,6 @@ import os
 metricList = ["FunIndex"]  # , "AvgVisits", "AvgServiceTime", "AvgQueueTime"]
 fileIdx = [1, 2]
 
-
 def funIndexChart():
     plt.figure(figsize=(10, 5))
     for idx in fileIdx:
@@ -20,11 +19,28 @@ def funIndexChart():
             pass
 
 
-def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
+def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int, showSmallGroup : bool = False):
     groupedDataFrame = dataFrame.groupby("Priority")
+    # normalDataFrame = dataFrame[dataFrame["Priority"] == "Normal"]
+    # priorityDataFrame = dataFrame[dataFrame["Priority"] == "Priority"]
+    # smallDataFrame = dataFrame[dataFrame["Priority"] == "Small"]
+
+    # dataList = []
+
+    # if not showSmallGroup:
+    #     normalDataFrame = normalDataFrame + smallDataFrame
+    # else:
+    #     dataList.append(("Small", smallDataFrame))
+
+    # dataList.append(("Normal", normalDataFrame))
+
+
     for metricName in metricList:
+
+
         for name, group in groupedDataFrame:
             # data = (group[metricName] - group[metricName].min()) / (group[metricName].max() - group[metricName].min())
+
             data = group[metricName]
             plt.plot(
                 group["PrioSeatsPercentage"],

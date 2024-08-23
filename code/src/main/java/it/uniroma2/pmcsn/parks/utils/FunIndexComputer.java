@@ -38,7 +38,7 @@ public class FunIndexComputer {
             valuesMap.putIfAbsent(findGroupPriorityName(group), new ArrayList<>());
 
             if (group.getGroupStats().getTotalNumberOfRides() > 0) {
-                valuesMap.get(findGroupPriorityName(group)).add(computeFunIndexInfo(group));
+                valuesMap.get(findGroupPriorityName(group)).addAll(computeFunIndexInfo(group));
             }
         }
 
@@ -56,11 +56,17 @@ public class FunIndexComputer {
         return returnMap;
     }
 
-    private static FunIndexInfo computeFunIndexInfo(RiderGroup group) {
+    private static List<FunIndexInfo> computeFunIndexInfo(RiderGroup group) {
         GroupStats stats = group.getGroupStats();
         Double funIndex = (stats.getServiceTime()) / (stats.getQueueTime() + 1);
+        List<FunIndexInfo> list = new ArrayList<>();
 
-        return new FunIndexInfo(stats.getTotalNumberOfRides(), stats.getServiceTime(), stats.getQueueTime(), funIndex);
+        for (int i = 0; i < group.getGroupSize(); i++) {
+            list.add(new FunIndexInfo(stats.getTotalNumberOfRides(), stats.getServiceTime(), stats.getQueueTime(),
+                    funIndex));
+        }
+
+        return list;
     }
 
     private static String findGroupPriorityName(RiderGroup group) {
