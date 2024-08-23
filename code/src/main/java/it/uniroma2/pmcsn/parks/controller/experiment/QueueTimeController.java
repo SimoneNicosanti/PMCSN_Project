@@ -33,7 +33,14 @@ public class QueueTimeController implements Controller<RiderGroup> {
     }
 
     public QueueTimeController() {
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
+
+        // Using this percentage, the HP attraction has 3 seats reserved for small
+        // groups, while the others have 0 or 1 seat
+        // Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
+        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
+        Constants.SMALL_GROUP_LIMIT_SIZE = 2;
+
     }
 
     @Override
@@ -62,7 +69,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
                         String key = queueStatsKey(interval, attractionStatCenter.getCenter(), prio);
                         // Update the confidence interval for the current interval
                         intervalsQueueTimes.putIfAbsent(key, new ArrayList<>());
-                        AreaStats queueAreaStats = stats.getQueueAreaStats(StatsType.GROUP, prio);
+                        AreaStats queueAreaStats = stats.getQueueAreaStats(StatsType.PERSON, prio);
                         if (queueAreaStats != null) {
                             intervalsQueueTimes.get(key).add(queueAreaStats.getSizeAvgdStat());
                         }

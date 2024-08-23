@@ -77,7 +77,7 @@ public class PriorityPercentageController implements Controller<RiderGroup> {
 
                     queueTimeMap.putIfAbsent(key, new ArrayList<>());
                     queueTimeMap.get(key).add(attractionStatCenter.getWholeDayStats()
-                            .getQueueAreaStats(StatsType.GROUP, prio).getSizeAvgdStat());
+                            .getQueueAreaStats(StatsType.PERSON, prio).getSizeAvgdStat());
                 }
             }
         }
