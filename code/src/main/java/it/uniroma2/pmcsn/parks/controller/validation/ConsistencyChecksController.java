@@ -25,7 +25,7 @@ public class ConsistencyChecksController implements Controller<RiderGroup> {
     }
 
     public ConsistencyChecksController() {
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
         Constants.MODE = SimulationMode.CONSISTENCY_CHECK;
         Constants.VERIFICATION_BATCH_NUMBER = 250;
         Constants.VERIFICATION_BATCH_SIZE = 1500;

@@ -36,7 +36,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
     public FunIndexController() {
         // Modify this if you want to run the improved model
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override
