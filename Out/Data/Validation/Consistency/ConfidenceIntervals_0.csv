@@ -1,0 +1,13 @@
+Center Name,Mean Value,Autocorrelation,Interval,Lower Bound,Upper Bound
+Doctor_Doom_Fearfall,4.708,0.101,0.090,4.618,4.798
+Entrance,0.000,NaN,0.000,0.000,0.000
+Flight_Hippogriff,5.243,-0.020,0.190,5.053,5.433
+Harry_Potter_Journey,21.430,0.166,0.382,21.048,21.812
+Incredible_Hulk_Coaster,6.697,0.039,0.192,6.505,6.889
+Jurassic_World_VelociCoaster,19.919,0.151,0.879,19.040,20.798
+Restaurant_1,3749.693,0.985,364.710,3384.983,4114.403
+Restaurant_2,4404.383,0.986,410.241,3994.142,4814.625
+Restaurant_3,4260.640,0.987,398.179,3862.461,4658.819
+Restaurant_4,3530.298,0.988,350.412,3179.886,3880.710
+Skull_Island,9.503,0.050,0.184,9.319,9.687
+Storm_Force,6.148,0.005,0.057,6.091,6.204
