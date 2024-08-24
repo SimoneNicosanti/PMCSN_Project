@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.stats.GroupStats;
 
@@ -36,12 +37,15 @@ public class FunIndexComputer {
         for (RiderGroup group : exitGroups) {
 
             valuesMap.putIfAbsent(findGroupPriorityName(group), new ArrayList<>());
-            valuesMap.putIfAbsent("GENERAL", new ArrayList<>());
+            valuesMap.putIfAbsent("NORMAL + SMALL", new ArrayList<>());
 
             if (group.getGroupStats().getTotalNumberOfRides() > 0) {
                 List<FunIndexInfo> list = computeFunIndexInfo(group);
                 valuesMap.get(findGroupPriorityName(group)).addAll(list);
-                valuesMap.get("GENERAL").addAll(list);
+
+                if (group.getPriority() == GroupPriority.NORMAL) {
+                    valuesMap.get("NORMAL + SMALL").addAll(list);
+                }
             }
         }
 
