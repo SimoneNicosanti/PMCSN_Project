@@ -54,7 +54,8 @@ def plotFunIndexLambdaVariationChart(idx: int, dataFrame: pd.DataFrame):
             axes[i].grid()
 
             if (i == 1) :
-                axes[i].set_yticks(np.arange(0.0, 0.8, 0.05))
+                #axes[i].set_yticks(np.arange(0.0, 0.8, 0.05))
+                pass
         #plt.yticks(np.arange(-1.5, 0.6, 0.25))
 
         plt.tight_layout()

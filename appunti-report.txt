@@ -70,6 +70,50 @@ MODELLO MIGLIORATO:
 
 4. FunIndex con le configurazioni più interessanti che troviamo sui punti precedenti e analizzare i risultati
     CONCLUSIONI:
-        DA TRARRE
+        Confronto per maxSize=1 e perc=0 e perc=0.017
+            Gli andamenti sono molto simili. Quando abbiamo un maggior numero di small groups (lambda = 2.5) non allocare
+            posti posta ad avere un funIdx per questi gruppi più basso rispetto all'allocazione; in generale l'allocazione
+            apporta beneficio senza penalizzare eccessivamente i gruppi normali.
+        
+        Confronto per maxSize=2 e perc=0 e perc=0.1
+            Le stesse considerazioni si possono fare in relazione al caso con maxSize=2.
+            Nel caso in cui non allochiamo, abbiamo una curva del funIdx relativo ai job normali che tende ad essere più alta
+            rispetto al caso con allocazione: in questo caso infatti far variare la lambda della poisson e avere small group con
+            size massima 2 porta ad una diminuzione considerevole delle dimensioni delle code normali, con conseguente aumento del
+            funIdx. Allo stesso tempo però quando si arriva al parametro della poisson pari a 3, arriviamo a dei risultati pressoché
+            uguali tra i due casi
+
+        Confronto per (maxSize=1, perc=0.017) e (maxSize=2, perc=0.1).
+            Notiamo che gli andamenti della curva generale sono più o meno gli stessi una volta superato il lambda=2.
+            Nel primo caso riusciamo ad aumentare di molto il funIdx per pochi, mentre nel primo riusciamo ad aumentarlo
+            meno, ma per molti di più le due soluzioni quindi sono abbastanza equivalenti. Ricordiamo tuttavia che una soluzione
+            fattibile con maxSize=2 richiede un'allocazione di posti maggiore, che in generale potrebbe essere poco ragionevole.
+            A valle di queste considerazioni quindi, la soluzione più adatta sembrerebbe essere la prima.
 
 5. Tirare le somme nelle conclusioni e confrontare con modello base + trovare miglioramento percentuale rispetto al caso base
+    CONCLUSIONI:
+        Tempi di coda.
+            L'introduzione di una nuova coda in cui convogliare i gruppi di piccole dimensioni permette di abbassare i tempi di
+            coda di una porzione dei clienti del parco mantenendo quasi inalterato il tempo di coda degli utenti normali che
+            fanno parte di gruppi più piccoli.
+        Utilizzazione.
+            L'introduzione di una nuova coda in cui convogliare i gruppi di piccole dimensioni percmette di aumentare l'utilizzazione
+            dei posti delle giostre permettendo un'aumento dell'efficienza nel loro utilizzo, riempiendo dei posti che in caso contrario
+            rimarrebbero vacanti
+        FunIndex.
+            L'abbassamento dei tempi di coda di una porzione degli utenti normali permette un incremento del FunIndex medio per questo
+            tipo di utenti, portando ad un aumento di circa il 5% rispetto al caso base
+                GENERAL -->
+                    Caso Base = 0.1339
+                    Caso Improved = 0.1408
+                    Frac = 0.05 --> 5%
+
+                SMALL -->
+                    Caso Base = 0.1402
+                    Caso Improved = 0.7184
+                    Frac = 5.1241 --> 410.4%
+
+                NORMAL -->
+                    Base = 0.1338
+                    Improved = 0.1336
+                    Frac = 0.9998 --> -0.02%

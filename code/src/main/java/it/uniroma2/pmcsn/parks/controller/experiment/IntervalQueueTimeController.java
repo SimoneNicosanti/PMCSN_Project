@@ -33,12 +33,14 @@ public class IntervalQueueTimeController implements Controller<RiderGroup> {
     }
 
     public IntervalQueueTimeController() {
-        Constants.IMPROVED_MODEL = true;
+        Constants.IMPROVED_MODEL = false;
+        Constants.PRIORITY_PASS_PROB = 0.3;
+        Constants.PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
 
         // Using this percentage, the HP attraction has 3 seats reserved for small
         // groups, while the others have 0 or 1 seat
         // Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
-        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.086;
+        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
         Constants.SMALL_GROUP_LIMIT_SIZE = 2;
 
     }
