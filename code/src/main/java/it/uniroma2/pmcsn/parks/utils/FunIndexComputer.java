@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.model.job.GroupPriority;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.stats.GroupStats;
 
@@ -36,9 +37,15 @@ public class FunIndexComputer {
         for (RiderGroup group : exitGroups) {
 
             valuesMap.putIfAbsent(findGroupPriorityName(group), new ArrayList<>());
+            valuesMap.putIfAbsent("NORMAL + SMALL", new ArrayList<>());
 
             if (group.getGroupStats().getTotalNumberOfRides() > 0) {
-                valuesMap.get(findGroupPriorityName(group)).add(computeFunIndexInfo(group));
+                List<FunIndexInfo> list = computeFunIndexInfo(group);
+                valuesMap.get(findGroupPriorityName(group)).addAll(list);
+
+                if (group.getPriority() == GroupPriority.NORMAL) {
+                    valuesMap.get("NORMAL + SMALL").addAll(list);
+                }
             }
         }
 
@@ -56,11 +63,21 @@ public class FunIndexComputer {
         return returnMap;
     }
 
-    private static FunIndexInfo computeFunIndexInfo(RiderGroup group) {
+    private static List<FunIndexInfo> computeFunIndexInfo(RiderGroup group) {
         GroupStats stats = group.getGroupStats();
         Double funIndex = (stats.getServiceTime()) / (stats.getQueueTime() + 1);
 
-        return new FunIndexInfo(stats.getTotalNumberOfRides(), stats.getServiceTime(), stats.getQueueTime(), funIndex);
+        // return new FunIndexInfo(stats.getTotalNumberOfRides(),
+        // stats.getServiceTime(), stats.getQueueTime(), funIndex);
+
+        List<FunIndexInfo> list = new ArrayList<>();
+
+        for (int i = 0; i < group.getGroupSize(); i++) {
+            list.add(new FunIndexInfo(stats.getTotalNumberOfRides(), stats.getServiceTime(), stats.getQueueTime(),
+                    funIndex));
+        }
+
+        return list;
     }
 
     private static String findGroupPriorityName(RiderGroup group) {

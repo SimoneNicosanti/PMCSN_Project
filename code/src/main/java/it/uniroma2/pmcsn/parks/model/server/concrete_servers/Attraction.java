@@ -40,7 +40,18 @@ public class Attraction extends AbstractCenter {
 
     @Override
     protected List<RiderGroup> getJobsToServe() {
-        return queueManager.extractFromQueues(this.slotNumber);
+        List<RiderGroup> extractedGroups = queueManager.extractFromQueues(this.slotNumber);
+
+        int sum = 0;
+        for (RiderGroup riderGroup : extractedGroups) {
+            sum += riderGroup.getGroupSize();
+        }
+
+        if (sum > this.slotNumber) {
+            throw new RuntimeException("The queue manager have extracted more the slotNumber people");
+        }
+
+        return extractedGroups;
     }
 
     @Override // Override to do verify

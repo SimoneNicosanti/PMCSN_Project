@@ -34,7 +34,7 @@ public class RhoController implements Controller<RiderGroup> {
     }
 
     public RhoController() {
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override
@@ -43,15 +43,26 @@ public class RhoController implements Controller<RiderGroup> {
         init_simulation();
 
         if (Constants.IMPROVED_MODEL) {
+
+            for (int smallGroupSize : new int[] { 1, 2 }) {
+                Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
+                Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.0;
+
+                simulateForOneValue();
+                RandomHandler.reset();
+            }
+
             for (int smallGroupSize : new int[] { 1, 2 }) {
                 Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
-                for (double smallPercentSize = 0.0; smallPercentSize < 0.20; smallPercentSize += 0.05) {
-                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercentSize;
-
-                    simulateForOneValue();
-                    RandomHandler.reset();
+                if (smallGroupSize == 1) {
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
+                } else {
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
                 }
+
+                simulateForOneValue();
+                RandomHandler.reset();
             }
 
         } else {
@@ -84,7 +95,6 @@ public class RhoController implements Controller<RiderGroup> {
 
             System.out.println("Small Groups >>> " + smallGroups + "\n\n");
 
-            // TODO Try to understand by which clock we have to divide
             for (Center<RiderGroup> center : centerList) {
                 StatsCenter statCenter = (StatsCenter) center;
                 if (statCenter.getCenter() instanceof Attraction) {

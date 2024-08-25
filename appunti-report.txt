@@ -1,0 +1,119 @@
+- Autocorrelazione nei controlli di consistenza alta a causa dell'esecuzione in batch delle attrazioni
+- Between the two simulations we have to use the same random streams -> Must be the same configuaration, but with an higher arrival rate.
+- Aumentando i posti prioritari nelle giostre è possibile avere un tempo di attesa maggiore, poichè ciò comporta che i gruppi prioritari finiscano prima su tutte le giostre e, quindi, facciano mediamente più giri (in un certo senso è come avere più gruppi prioritari rispetto a prima)
+
+
+
+Esperimenti --> 
+MODELLO BASE:
+1. Analisi FunIndex e tempi di coda per trovare migliore percentuale dei gruppi prioritari (questa percentuale viene usata in tutti gli Esperimenti
+    successivi e data per assodata)
+
+2. Analisi dei tempi al variare del lambda parametro della poisson e quindi della dimensione media del gruppo: fino a dove reggiamo il QoS dei prioritari?
+    CONCLUSIONI:
+        Analizzando i grafici possiamo vedere come una percentuale di posti prioritari pari a 0.3 non ci permette di "reggere botta"
+        all'aumento del numero di biglietti prioritari; d'altrocanto l'uso di una percentuale di posti allocati pari a 0.5 fa sì che
+        il sistema sia più resistente a questo aumento, ma abbassa i tempi dei prioritari anche molto sotto il QoS portando ad un
+        aumento del tempo dei prioritari; essendo il QoS rispettato con il 40% dei posti prioritari anche per un numero alto di prioritari
+        viene scelta questa percentuale perché ci permette una maggiore equità pur rimanendo nel QoS
+
+3. Analisi del Rho per collegarci al miglioramento --> Se aumentiamo l'utilizzazione all'interno delle attrazioni riusciamo a migliorare il tutto?
+    CONCLUSIONI:
+        Quello che emerge dall'analisi del rho e dal conseguente numero di posti mediamente occupati nella giostra, è che difficilmente tutti
+        i posti della giostra sono occupati, quindi si introduce una nuova coda con gruppi piccoli per vedere l'eventuale miglioramento del sistema
+        --> MODELLO MIGLIORATIVO
+
+MODELLO MIGLIORATO:
+1. Analisi dei tempi di coda per intervallo per le giostre al variare della percentuale di posti allocati e per dimensione
+    massima degli small groups fino a trovare il valore di smallGroupPercentage a 0.017 con maxSmallGroupSize ad 1 e vedere
+    come va per size 2; 
+    CONCLUSIONI:
+        Analizzando i grafici e i valori quello che emerge è che il comportamento migliore come tappa buchi (percentuale di posti
+        riservati 0%) si ha in caso in cui la dimensione massima degli small groups è 1. Fissandoci sull'attrazione con comportamento
+        peggiore per gli small groups, cerchiamo di aumentare la percentuale di posti riservati per avere un miglioramento dei tempi
+        di coda per migliorarli; questi valori si trovano per maxSize 1 all' 1.7% dei posti, mentre per maxSize 2 al 10% circa dei posti;
+        l'allocazione del 10% dei posti risulta in un'allocazione di almeno un posto in tutte quante le attrazioni; se su attrazioni grandi
+        questa allocazione può non essere troppo impattante, su giostre più piccole potrebbe esserlo, quindi potrebbe essere meglio evitare
+        una maxSize di 2 in quanto comporterebbe svantaggio eccessivo per i gruppi normali non piccoli.
+
+2. Vedere tempi giornalieri con la configurazione trovata al punto 1 al variare del lambda della poisson (vedere in base a i risultati
+    se è interessante continuare con size max 2)
+    CONCLUSIONI:
+        L'analisi si concentra sul vedere come variano i tempi ad un aumento eventuale di small groups. Quello che emerge è che:
+            - per maxGroupSize di 1, si può tollerare un lambda della poisson tra il 2.5 e il 3 permettendo di avere dei tempi
+                di coda medi giornalieri inferiori o comunque di poco superiori rispetto ai normali; in caso di superamento si
+                tratta quasi sempre di tempi non troppo alti
+            - per maxGroupSize di 2 si ottengono circa gli stessi risultati, ma appunto con una percentuale di posti riservati
+                maggiore
+
+3. Analisi del Rho --> vedere come evolve il Rho rispetto al caso base con la configurazione trovata nel punto 1 e fare anche
+    il confronto con smallGroupPercentage a 0.0 per vedere se ci sono eventuali differenze
+    CONCLUSIONI:
+        I valori del rho sono stati analizzati per entrambe le dimensioni 1 e 2; per entrambe è stata provata l'allocazione di 0
+        posti (caso tappa buchi) e per ognuno sono state provati i rispettivi valori di allocazione di posti trovati e provati nei
+        casi precedenti.
+        Rispetto al modello di base, entrambe le size SENZA ALLOCAZIONE di posti portano ad un aumento dell'utilizzazione delle attrazioni
+        (tra gli 1 e i 2 posti in più occupati), quindi effettivamente l'inserimento della coda permette un aumento dell'utilizzazione.
+
+        Confronto per maxSize=1 a perc=0 e perc=0.017.
+            Tra i due casi non ci sono differenze molto significative: i valori sono leggermente diversi, ma tenendo in conto gli intervalli
+            di confidenza le differenze sono trascurabili
+        
+        Confronto per maxSize=2 a perc=0 e perc=0.1
+            Stessa cosa che c'è nella maxSize=2: piccole differenze nei valori medi che sono trascurabili se contiamo gli intervalli di confidenza
+
+        Confronto tra maxSize=1 e maxSize=2 a rispettive percentuali
+            Differenze trascurabili anche quindi
+        
+        In conclusione il miglioramento c'è solo rispetto al caso di base, ma non tra le diverse configurazioni
+
+
+4. FunIndex con le configurazioni più interessanti che troviamo sui punti precedenti e analizzare i risultati
+    CONCLUSIONI:
+        Confronto per maxSize=1 e perc=0 e perc=0.017
+            Gli andamenti sono molto simili. Quando abbiamo un maggior numero di small groups (lambda = 2.5) non allocare
+            posti posta ad avere un funIdx per questi gruppi più basso rispetto all'allocazione; in generale l'allocazione
+            apporta beneficio senza penalizzare eccessivamente i gruppi normali.
+        
+        Confronto per maxSize=2 e perc=0 e perc=0.1
+            Le stesse considerazioni si possono fare in relazione al caso con maxSize=2.
+            Nel caso in cui non allochiamo, abbiamo una curva del funIdx relativo ai job normali che tende ad essere più alta
+            rispetto al caso con allocazione: in questo caso infatti far variare la lambda della poisson e avere small group con
+            size massima 2 porta ad una diminuzione considerevole delle dimensioni delle code normali, con conseguente aumento del
+            funIdx. Allo stesso tempo però quando si arriva al parametro della poisson pari a 3, arriviamo a dei risultati pressoché
+            uguali tra i due casi
+
+        Confronto per (maxSize=1, perc=0.017) e (maxSize=2, perc=0.1).
+            Notiamo che gli andamenti della curva generale sono più o meno gli stessi una volta superato il lambda=2.
+            Nel primo caso riusciamo ad aumentare di molto il funIdx per pochi, mentre nel primo riusciamo ad aumentarlo
+            meno, ma per molti di più le due soluzioni quindi sono abbastanza equivalenti. Ricordiamo tuttavia che una soluzione
+            fattibile con maxSize=2 richiede un'allocazione di posti maggiore, che in generale potrebbe essere poco ragionevole.
+            A valle di queste considerazioni quindi, la soluzione più adatta sembrerebbe essere la prima.
+
+5. Tirare le somme nelle conclusioni e confrontare con modello base + trovare miglioramento percentuale rispetto al caso base
+    CONCLUSIONI:
+        Tempi di coda.
+            L'introduzione di una nuova coda in cui convogliare i gruppi di piccole dimensioni permette di abbassare i tempi di
+            coda di una porzione dei clienti del parco mantenendo quasi inalterato il tempo di coda degli utenti normali che
+            fanno parte di gruppi più piccoli.
+        Utilizzazione.
+            L'introduzione di una nuova coda in cui convogliare i gruppi di piccole dimensioni percmette di aumentare l'utilizzazione
+            dei posti delle giostre permettendo un'aumento dell'efficienza nel loro utilizzo, riempiendo dei posti che in caso contrario
+            rimarrebbero vacanti
+        FunIndex.
+            L'abbassamento dei tempi di coda di una porzione degli utenti normali permette un incremento del FunIndex medio per questo
+            tipo di utenti, portando ad un aumento di circa il 5% rispetto al caso base
+                GENERAL -->
+                    Caso Base = 0.1339
+                    Caso Improved = 0.1408
+                    Frac = 0.05 --> 5%
+
+                SMALL -->
+                    Caso Base = 0.1402
+                    Caso Improved = 0.7184
+                    Frac = 5.1241 --> 410.4%
+
+                NORMAL -->
+                    Base = 0.1338
+                    Improved = 0.1336
+                    Frac = 0.9998 --> -0.02%

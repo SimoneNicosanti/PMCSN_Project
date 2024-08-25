@@ -6,9 +6,7 @@ import os
 metricList = ["FunIndex"]  # , "AvgVisits", "AvgServiceTime", "AvgQueueTime"]
 fileIdx = [1, 2]
 
-
 def funIndexChart():
-    plt.figure(figsize=(10, 5))
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
@@ -20,38 +18,52 @@ def funIndexChart():
             pass
 
 
-def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int):
-    groupedDataFrame = dataFrame.groupby("Priority")
-    for metricName in metricList:
-        for name, group in groupedDataFrame:
-            # data = (group[metricName] - group[metricName].min()) / (group[metricName].max() - group[metricName].min())
-            data = group[metricName]
-            plt.plot(
+def plotFunIndexChart(dataFrame: pd.DataFrame, idx: int, showSmallGroup : bool = False):
+    groupedDataFrame = dataFrame.groupby(["Priority"])
+    
+    fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize = (12.5,5))
+    for name, group in groupedDataFrame:
+        # if (name == "PRIORITY") :
+        #     continue
+        # data = (group[metricName] - group[metricName].min()) / (group[metricName].max() - group[metricName].min())
+        data = group["FunIndex"]
+        axes[0].plot(
+            group["PrioSeatsPercentage"],
+            data,
+            label=f"Gruppo {name[0]}",
+            marker="o",
+        )
+        axes[0].fill_between(
+            group["PrioSeatsPercentage"],
+            data - group["ConfInterval"],
+            data + group["ConfInterval"],
+            alpha=0.2,
+        )
+
+        if (name[0] != "PRIORITY") :
+            axes[1].plot(group["PrioSeatsPercentage"], data, label=name[0], marker="o")
+            axes[1].fill_between(
                 group["PrioSeatsPercentage"],
-                np.log10(data),
-                label=f"Gruppo {name}",
-                marker="o",
-            )
-            plt.fill_between(
-                group["PrioSeatsPercentage"],
-                np.log10(data - group["ConfInterval"]),
-                np.log10(data + group["ConfInterval"]),
+                data - group["ConfInterval"],
+                data + group["ConfInterval"],
                 alpha=0.2,
             )
 
-            plt.xticks(ticks=np.arange(0, 1.05, 0.1))
-            plt.xlabel(xlabel="Priority Seats Percentage")
-            plt.ylabel(ylabel="Log_10 " + metricName)
+    for i in range(0, 2) :
+        axes[i].set_xticks(ticks=np.arange(0, 1.05, 0.1))
+        axes[i].set_xlabel(xlabel="Priority Seats Percentage")
+        axes[i].set_ylabel(ylabel="Fun Index")
 
-            plt.title("FunIndex Trend")
-
-            plt.tight_layout()
-            plt.legend()
-            plt.savefig(
-                "./Out/Charts/Fun/Basic/Small_" + str(idx) + "/" + metricName + ".png"
-            )
-
-        plt.clf()
+        axes[i].set_title("FunIndex Trend")
+        axes[i].legend()
+        print("CIAO")
+        axes[i].grid()
+            
+    plt.tight_layout()
+    plt.savefig(
+        "./Out/Charts/Fun/Basic/Small_" + str(idx) + "/" + "FunIndex" + ".png"
+    )
+    plt.clf()
 
 
 def priorityQueueTimeChart():

@@ -36,7 +36,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
     public FunIndexController() {
         // Modify this if you want to run the improved model
-        Constants.IMPROVED_MODEL = false;
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override
@@ -44,19 +44,29 @@ public class FunIndexController implements Controller<RiderGroup> {
         this.init_simulation();
 
         if (Constants.IMPROVED_MODEL) {
+            // Double[] poissValues = new Double[] { 1.0, 1.5, 2.0, 2.5, 3.0 };
+
             for (double poissLambda = 1; poissLambda <= 3.0; poissLambda += 0.5) {
                 Constants.AVG_GROUP_SIZE_POISSON = poissLambda;
 
                 for (int smallGroupSize : new int[] { 1, 2 }) {
                     Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
 
-                    // Not sure about the loop constraints
-                    for (Double smallPercSeats = 0.0; smallPercSeats < 0.2; smallPercSeats += 0.05) {
-                        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = smallPercSeats;
-
-                        this.simulateForOneValue();
-                        RandomHandler.reset();
+                    if (smallGroupSize == 1) {
+                        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
+                    } else {
+                        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
                     }
+                    this.simulateForOneValue();
+                    RandomHandler.reset();
+                }
+
+                for (int smallGroupSize : new int[] { 1, 2 }) {
+                    Constants.SMALL_GROUP_LIMIT_SIZE = smallGroupSize;
+                    Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.0;
+
+                    this.simulateForOneValue();
+                    RandomHandler.reset();
                 }
             }
         } else {
@@ -111,7 +121,7 @@ public class FunIndexController implements Controller<RiderGroup> {
 
                     queueTimeMap.putIfAbsent(key, new ArrayList<>());
                     queueTimeMap.get(key).add(attractionStatCenter.getWholeDayStats()
-                            .getQueueAreaStats(StatsType.GROUP, prio).getSizeAvgdStat());
+                            .getQueueAreaStats(StatsType.PERSON, prio).getSizeAvgdStat());
                 }
             }
         }

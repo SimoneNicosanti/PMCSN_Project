@@ -7,21 +7,19 @@ metricList = ["FunIndex"]  # , "AvgVisits", "AvgServiceTime", "AvgQueueTime"]
 fileIdx = [1, 2]
 
 
-def plotFunIdxChart() :
+def plotFunIdxChart():
     for idx in fileIdx:
-        try:
             dataFrame = pd.read_csv(
                 "./Out/Data/Fun/Improved/FunIndex_" + str(idx) + ".csv"
             )
-            plotFunIndexLambdaVariationChart(dataFrame)
-        except:
-            pass
+            plotFunIndexLambdaVariationChart(idx, dataFrame)
 
-def plotFunIndexLambdaVariationChart(dataFrame: pd.DataFrame):
+
+def plotFunIndexLambdaVariationChart(idx: int, dataFrame: pd.DataFrame):
     groupedDataFrame = dataFrame.groupby(by=["Priority"])
 
     for smallPerc in dataFrame["SmallSeatsPercentage"].unique():
-        plt.figure(figsize=(10, 5))
+        fig, axes = plt.subplots(nrows = 1, ncols = 2, figsize=(12.5, 5))
         for name, group in groupedDataFrame:
             lambdaSeries = group[group["SmallSeatsPercentage"] == smallPerc][
                 "PoissonParam"
@@ -29,28 +27,50 @@ def plotFunIndexLambdaVariationChart(dataFrame: pd.DataFrame):
             data = group[group["SmallSeatsPercentage"] == smallPerc]["FunIndex"]
             interval = group[group["SmallSeatsPercentage"] == smallPerc]["ConfInterval"]
 
-            plt.plot(lambdaSeries, np.log10(data), label=name[0], marker="o")
-            plt.fill_between(
+            axes[0].plot(lambdaSeries, data, label=name[0], marker="o")
+            axes[0].fill_between(
                 lambdaSeries,
-                np.log10(data - interval),
-                np.log10(data + interval),
+                data - interval,
+                data + interval,
                 alpha=0.2,
             )
 
-        plt.title("Small Percentage Seats = " + str(smallPerc))
-        plt.ylabel("Log_10 FunIndex")
-        plt.xlabel("Lambda Values")
+            if (name[0] != "PRIORITY") :
+                axes[1].plot(lambdaSeries, data, label=name[0], marker="o")
+                axes[1].fill_between(
+                    lambdaSeries,
+                    data - interval,
+                    data + interval,
+                    alpha=0.2,
+                )
+        for i in range(0, 2) :
+            axes[i].set_title("Small Percentage Seats = " + str(smallPerc))
+            axes[i].set_ylabel("FunIndex")
+            axes[i].set_xlabel("Lambda Values")
 
-        plt.xticks(lambdaSeries)
-        plt.yticks(np.arange(-1.5, 0.6, 0.25))
+            axes[i].set_xticks(lambdaSeries)
+            axes[i].legend()
+
+            axes[i].grid()
+
+            if (i == 1) :
+                #axes[i].set_yticks(np.arange(0.0, 0.8, 0.05))
+                pass
+        #plt.yticks(np.arange(-1.5, 0.6, 0.25))
 
         plt.tight_layout()
-        plt.savefig("./Out/Charts/Fun/Improved/SmallPerc_" + str(smallPerc) + ".png")
+        
+        plt.savefig(
+            "./Out/Charts/Fun/Improved/Small_"
+            + str(idx)
+            + "/FunIndex_SmallPerc_"
+            + str(smallPerc)
+            + ".png"
+        )
         plt.clf()
 
 
 def priorityQueueTimeChart():
-    plt.figure(figsize=(10, 5))
     for idx in fileIdx:
         try:
             dataFrame: pd.DataFrame = pd.read_csv(
@@ -61,12 +81,17 @@ def priorityQueueTimeChart():
             pass
 
 
+# SmallSeatsPercentage,PoissonParam,CenterName,Priority,AvgQueueTime,ConfInterval
 def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
     groupedDataFrame = dataFrame.groupby(["CenterName"])
     for smallPercSeats in dataFrame["SmallSeatsPercentage"].unique():
         for name, group in groupedDataFrame:
+            plt.figure(figsize=(10, 5))
             for priority in dataFrame["Priority"].unique():
-                data = group[(group["Priority"] == priority) & (group["SmallSeatsPercentage"] == smallPercSeats)]
+                data = group[
+                    (group["Priority"] == priority)
+                    & (group["SmallSeatsPercentage"] == smallPercSeats)
+                ]
                 plt.plot(
                     data["PoissonParam"],
                     data["AvgQueueTime"],
@@ -76,8 +101,8 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
 
                 plt.fill_between(
                     data["PoissonParam"],
-                    data["AvgQueueTime"] - data["Interval"],
-                    data["AvgQueueTime"] + data["Interval"],
+                    data["AvgQueueTime"] - data["ConfInterval"],
+                    data["AvgQueueTime"] + data["ConfInterval"],
                     alpha=0.2,
                 )
 
@@ -94,8 +119,7 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
             plt.savefig(
                 "./Out/Charts/Fun/Improved/Small_"
                 + str(idx)
-                + "/"
-                + "PriorityQueueTime_"
+                + "/PriorityQueueTime_"
                 + name[0]
                 + ".png"
             )
@@ -103,8 +127,8 @@ def plotQueueTimeChart(dataFrame: pd.DataFrame, idx: int):
 
 
 if __name__ == "__main__":
-    for idx in fileIdx :
-        os.makedirs("./Out/Charts/Fun/Improved/Small_" + str(idx), exist_ok=True)
     os.makedirs("./Out/Charts/Fun/Improved/", exist_ok=True)
+    for idx in fileIdx:
+        os.makedirs("./Out/Charts/Fun/Improved/Small_" + str(idx), exist_ok=True)
     plotFunIdxChart()
     priorityQueueTimeChart()

@@ -1,3 +1,0 @@
-- Autocorrelazione nei controlli di consistenza alta a causa dell'esecuzione in batch delle attrazioni
-- Between the two simulations we have to use the same random streams -> Must be the same configuaration, but with an higher arrival rate.
-- Aumentando i posti prioritari nelle giostre è possibile avere un tempo di attesa maggiore, poichè ciò comporta che i gruppi prioritari finiscano prima su tutte le giostre e, quindi, facciano mediamente più giri (in un certo senso è come avere più gruppi prioritari rispetto a prima)

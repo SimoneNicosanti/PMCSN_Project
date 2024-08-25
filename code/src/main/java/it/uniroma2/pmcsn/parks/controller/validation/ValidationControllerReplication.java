@@ -13,13 +13,13 @@ import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
+import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.Attraction;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
 import it.uniroma2.pmcsn.parks.model.stats.AreaStats;
 import it.uniroma2.pmcsn.parks.model.stats.StatsType;
 import it.uniroma2.pmcsn.parks.writers.ValidationWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
-import it.uniroma2.pmcsn.parks.model.server.AbstractCenter;
 
 public class ValidationControllerReplication implements Controller<RiderGroup> {
 
@@ -30,6 +30,7 @@ public class ValidationControllerReplication implements Controller<RiderGroup> {
 
     public ValidationControllerReplication() {
         Constants.MODE = SimulationMode.VALIDATION;
+        Constants.IMPROVED_MODEL = true;
     }
 
     @Override

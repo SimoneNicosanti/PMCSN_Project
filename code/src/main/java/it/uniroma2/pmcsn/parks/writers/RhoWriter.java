@@ -2,6 +2,7 @@ package it.uniroma2.pmcsn.parks.writers;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 
 import it.uniroma2.pmcsn.parks.engineering.Constants;
@@ -18,7 +19,10 @@ public class RhoWriter {
         String[] header = { "SmallGroupSize", "SmallPercentageSize", "CenterName", "MultipliedRho", "Interval", "Rho" };
         CsvWriter.writeHeader(filePath, header);
 
-        for (String centerName : confIntervalMap.keySet()) {
+        List<String> keys = new ArrayList<>();
+        confIntervalMap.keySet().forEach((elem) -> keys.add(elem));
+        keys.sort(null);
+        for (String centerName : keys) {
             ConfidenceInterval confInterval = confIntervalMap.get(centerName);
 
             List<Object> record = List.of(
