@@ -50,8 +50,8 @@ public class Constants {
     public static final String VERIFICATION_RESTAURANT_FILE = "RestaurantsDataVerify.csv";
     public static final String VERIFICATION_ENTRANCE_FILE = "EntranceDataVerify.csv";
     public static final String VERIFICATION_CONFIG_FILENAME = "ConfigVerify.json";
-    public static int VERIFICATION_BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
-    public static int VERIFICATION_BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
+    public static int BATCH_SIZE = 2048; // DO NOT CHANGE THIS VALUE
+    public static int BATCH_NUMBER = 200; // DO NOT CHANGE THIS VALUE
 
     public static final String VALIDATION_CONFIG_FILENAME = "ConfigValidation.json";
     public static final String VALIDATION_ATTRACTION_FILE = "AttractionsData.csv";
@@ -61,8 +61,6 @@ public class Constants {
     public static final String PRE_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_pre.json";
     public static final String POST_CONSISTENCY_CHECKS_CONFIG_FILENAME = "ConfigConsistency_post.json";
     public static final String CONSISTENCY_CHECKS_ATTRACTION_FILE = "AttractionsData.csv";
-    public static final Integer CONSISTENCY_CHECKS_BATCH_NUMBER = 2048;
-    public static final Integer CONSISTENCY_CHECKS_BATCH_SIZE = 200;
 
     public static final Integer REPLICATIONS_NUMBER = 75;
     public static final Integer MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES = 3;
