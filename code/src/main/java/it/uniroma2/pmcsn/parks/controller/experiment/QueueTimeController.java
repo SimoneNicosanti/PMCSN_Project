@@ -25,24 +25,25 @@ import it.uniroma2.pmcsn.parks.utils.ExperimentsUtils;
 import it.uniroma2.pmcsn.parks.writers.IntervalsQueueTimesWriter;
 import it.uniroma2.pmcsn.parks.writers.WriterHelper;
 
-public class IntervalQueueTimeController implements Controller<RiderGroup> {
+public class QueueTimeController implements Controller<RiderGroup> {
 
     public static void main(String[] args) {
         WriterHelper.createAllFolders();
-        new IntervalQueueTimeController().simulate();
+        new QueueTimeController().simulate();
     }
 
-    public IntervalQueueTimeController() {
+    public QueueTimeController() {
         Constants.IMPROVED_MODEL = false;
-        Constants.PRIORITY_PASS_PROB = 0.3;
+        Constants.PRIORITY_PASS_PROB = 0.1;
         Constants.PRIORITY_PERCENTAGE_PER_RIDE = 0.4;
 
         // Using this percentage, the HP attraction has 3 seats reserved for small
         // groups, while the others have 0 or 1 seat
         // Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
         Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
-        Constants.SMALL_GROUP_LIMIT_SIZE = 2;
+        Constants.SMALL_GROUP_LIMIT_SIZE = 1;
 
+        Constants.TRANSIENT_ANALYSIS = true;
     }
 
     @Override

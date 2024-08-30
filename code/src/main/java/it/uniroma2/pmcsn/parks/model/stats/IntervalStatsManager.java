@@ -1,13 +1,15 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
-import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
-import it.uniroma2.pmcsn.parks.model.Interval;
-import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
+
+import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
+import it.uniroma2.pmcsn.parks.model.Interval;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class IntervalStatsManager {
 
@@ -15,8 +17,14 @@ public class IntervalStatsManager {
 
     public IntervalStatsManager() {
         this.intervalStatsMap = new HashMap<>();
-        for (Interval interval : ConfigHandler.getInstance().getAllIntervals()) {
-            intervalStatsMap.put(interval, new CenterStatistics());
+        if (Constants.TRANSIENT_ANALYSIS) {
+            IntStream.range(0, 720).forEach(i -> {
+                intervalStatsMap.put(new Interval((double) i, (double) i + 1, i), new CenterStatistics());
+            });
+        } else {
+            for (Interval interval : ConfigHandler.getInstance().getAllIntervals()) {
+                intervalStatsMap.put(interval, new CenterStatistics());
+            }
         }
     }
 
@@ -29,7 +37,11 @@ public class IntervalStatsManager {
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
-            intervalStatistics.updateServiceArea(coveredTime, jobSize, multiplier);
+            if (Constants.TRANSIENT_ANALYSIS) {
+                intervalStatistics.updateServiceArea(endService - startService, jobSize, multiplier);
+            } else {
+                intervalStatistics.updateServiceArea(coveredTime, jobSize, multiplier);
+            }
         }
     }
 
@@ -42,7 +54,11 @@ public class IntervalStatsManager {
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
-            intervalStatistics.updateQueueArea(coveredTime, prio, jobSize);
+            if (Constants.TRANSIENT_ANALYSIS) {
+                intervalStatistics.updateQueueArea(endQueue - startQueue, prio, jobSize);
+            } else {
+                intervalStatistics.updateQueueArea(coveredTime, prio, jobSize);
+            }
         }
     }
 

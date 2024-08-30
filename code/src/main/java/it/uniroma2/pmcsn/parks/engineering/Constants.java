@@ -70,4 +70,5 @@ public class Constants {
 
     public static double AVG_GROUP_SIZE_POISSON = 3;
 
+    public static boolean TRANSIENT_ANALYSIS = false;
 }
