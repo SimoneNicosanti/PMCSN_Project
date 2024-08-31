@@ -235,4 +235,8 @@ public class StatsCenter implements Center<RiderGroup> {
         return center.getSlotNumber();
     }
 
+    public void sampleCenter() {
+        this.wholeDayStats.sampleStats();
+    }
+
 }

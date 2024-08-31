@@ -1,5 +1,7 @@
 package it.uniroma2.pmcsn.parks.controller;
 
+import java.util.List;
+
 import it.uniroma2.pmcsn.parks.SimulationMode;
 import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.engineering.factory.EventBuilder;
@@ -9,6 +11,7 @@ import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
 import it.uniroma2.pmcsn.parks.engineering.singleton.EventsPool;
 import it.uniroma2.pmcsn.parks.model.Interval;
+import it.uniroma2.pmcsn.parks.model.event.EventType;
 import it.uniroma2.pmcsn.parks.model.event.SystemEvent;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
@@ -77,6 +80,10 @@ public class Simulation {
     }
 
     private void scheduleFirstArrival(Center<RiderGroup> entranceCenter) {
+        if (Constants.TRANSIENT_ANALYSIS) {
+            SystemEvent sampleEvent = EventBuilder.buildSampleEvent(ClockHandler.getInstance().getClock());
+            EventsPool.getInstance().scheduleNewEvent(sampleEvent);
+        }
         SystemEvent arrivalEvent = EventBuilder.getNewArrivalEvent(entranceCenter);
         EventsPool.getInstance().scheduleNewEvent(arrivalEvent);
     }
@@ -113,7 +120,12 @@ public class Simulation {
 
     private void processNextEvent(SystemEvent nextEvent, NetworkBuilder networkBuilder) {
         RiderGroup job = nextEvent.getJob();
-        Center<RiderGroup> center = networkBuilder.getCenterByName(nextEvent.getCenterName());
+
+        Center<RiderGroup> center = null;
+        if (nextEvent.getEventType() != EventType.SAMPLE) {
+            center = networkBuilder.getCenterByName(nextEvent.getCenterName());
+        }
+
         switch (nextEvent.getEventType()) {
             case ARRIVAL:
                 boolean mustServe = center.isQueueEmptyAndCanServe(job.getGroupSize());
@@ -128,6 +140,23 @@ public class Simulation {
                 if (center.canServe(1)) {
                     center.startService();
                 }
+                break;
+            case SAMPLE:
+                List<Center<RiderGroup>> centerList = networkBuilder.getAllCenters();
+                for (Center<RiderGroup> centerElem : centerList) {
+                    if (centerElem instanceof StatsCenter) {
+                        ((StatsCenter) centerElem).sampleCenter();
+                    }
+                }
+
+                Double nextClock = ClockHandler.getInstance().getClock() + Constants.SAMPLE_INTERVAL;
+                if (nextClock < 720.0) {
+                    SystemEvent newEvent = EventBuilder.buildSampleEvent(nextClock);
+                    EventsPool.getInstance().scheduleNewEvent(newEvent);
+                }
+                break;
+
+            default:
                 break;
         }
     }

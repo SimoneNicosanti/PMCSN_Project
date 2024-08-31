@@ -17,14 +17,8 @@ public class IntervalStatsManager {
 
     public IntervalStatsManager() {
         this.intervalStatsMap = new HashMap<>();
-        if (Constants.TRANSIENT_ANALYSIS) {
-            IntStream.range(0, 720).forEach(i -> {
-                intervalStatsMap.put(new Interval((double) i, (double) i + 1, i), new CenterStatistics());
-            });
-        } else {
-            for (Interval interval : ConfigHandler.getInstance().getAllIntervals()) {
-                intervalStatsMap.put(interval, new CenterStatistics());
-            }
+        for (Interval interval : ConfigHandler.getInstance().getAllIntervals()) {
+            intervalStatsMap.put(interval, new CenterStatistics());
         }
     }
 
@@ -37,11 +31,7 @@ public class IntervalStatsManager {
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
-            if (Constants.TRANSIENT_ANALYSIS) {
-                intervalStatistics.updateServiceArea(endService - startService, jobSize, multiplier);
-            } else {
-                intervalStatistics.updateServiceArea(coveredTime, jobSize, multiplier);
-            }
+            intervalStatistics.updateServiceArea(coveredTime, jobSize, multiplier);
         }
     }
 
@@ -54,11 +44,7 @@ public class IntervalStatsManager {
                 break;
             }
             CenterStatistics intervalStatistics = intervalStatsMap.get(interval);
-            if (Constants.TRANSIENT_ANALYSIS) {
-                intervalStatistics.updateQueueArea(endQueue - startQueue, prio, jobSize);
-            } else {
-                intervalStatistics.updateQueueArea(coveredTime, prio, jobSize);
-            }
+            intervalStatistics.updateQueueArea(coveredTime, prio, jobSize);
         }
     }
 

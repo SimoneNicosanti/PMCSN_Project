@@ -3,6 +3,7 @@ package it.uniroma2.pmcsn.parks.model.stats;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.uniroma2.pmcsn.parks.engineering.Constants;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class CenterStatistics {
@@ -15,6 +16,8 @@ public class CenterStatistics {
     private Map<QueuePriority, AreaStats> queueAreaPerPrioGroup;
     private Map<QueuePriority, AreaStats> queueAreaPerPrioPeople;
 
+    private Integer sampleIdx;
+
     public CenterStatistics() {
 
         // NEW STATS
@@ -26,6 +29,8 @@ public class CenterStatistics {
 
         this.queueAreaPerPrioGroup = new HashMap<>();
         this.queueAreaPerPrioPeople = new HashMap<>();
+
+        this.sampleIdx = 0;
     }
 
     // Multiplier is intended as the number by which the area has to be multiplied
@@ -97,5 +102,12 @@ public class CenterStatistics {
             case GROUP -> this.queueAreaPerPrioGroup;
             case PERSON -> this.queueAreaPerPrioPeople;
         };
+    }
+
+    public void sampleStats() {
+        for (QueuePriority prio : queueAreaPerPrioPeople.keySet()) {
+            this.queueAreaPerPrioPeople.get(prio).sampleAverage(sampleIdx);
+        }
+        sampleIdx += 1;
     }
 }

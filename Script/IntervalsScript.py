@@ -24,23 +24,37 @@ def plot_data():
                 data["AvgQueueTime"],
                 data["ConfInterval"],
             )
+        data = group[group["Priority"] == prio].sort_values(by = "IntervalIndex")
 
-        customize_and_save_plot(centerName[0], OUT_DIR)
+        customize_and_save_plot(centerName[0], OUT_DIR, len(data["IntervalIndex"]))
+
         plt.close()  # Close the figure to avoid display in interactive environments
 
 
 def plot_queue_time(intervalIdx, prio, avgQueueTime, confInterval):
     """Plot the queue time for a given time interval and priority."""
-    plt.plot(intervalIdx, avgQueueTime, label=f"Priority: {prio}", marker="o")
+    if (len(avgQueueTime) > 10) :
+        marker = None
+        plt.axvline(180, color="green", linestyle="--")
+        plt.axvline(300, color="green", linestyle="--")
+        plt.axvline(600, color="green", linestyle="--")
+    else :
+        marker = "o"
+    plt.plot(intervalIdx, avgQueueTime, label=f"Priority: {prio}", marker=marker)
 
     plt.fill_between(
         intervalIdx, avgQueueTime - confInterval, avgQueueTime + confInterval, alpha=0.2
     )
 
 
-def customize_and_save_plot(center_name: str, output_dir: str):
+def customize_and_save_plot(center_name: str, output_dir: str, size : int):
     """Customize the plot and save it as a PNG file."""
-    plt.xlabel("Interval Index")
+    if (size > 10) :
+        xLabel = "Time"
+    else :
+        xLabel = "Interval Index"
+    
+    plt.xlabel(xLabel)
     plt.ylabel("Average Queue Time")
     plt.title(f"{center_name} - Queue Time Analysis")
     plt.legend()

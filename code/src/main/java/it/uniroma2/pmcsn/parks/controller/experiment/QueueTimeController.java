@@ -13,7 +13,6 @@ import it.uniroma2.pmcsn.parks.engineering.factory.NetworkBuilder;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Center;
 import it.uniroma2.pmcsn.parks.engineering.interfaces.Controller;
 import it.uniroma2.pmcsn.parks.engineering.singleton.ClockHandler;
-import it.uniroma2.pmcsn.parks.model.Interval;
 import it.uniroma2.pmcsn.parks.model.job.RiderGroup;
 import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 import it.uniroma2.pmcsn.parks.model.server.concrete_servers.StatsCenter;
@@ -40,7 +39,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
         // Using this percentage, the HP attraction has 3 seats reserved for small
         // groups, while the others have 0 or 1 seat
         // Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
-        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.1;
+        Constants.SMALL_GROUP_PERCENTAGE_PER_RIDE = 0.017;
         Constants.SMALL_GROUP_LIMIT_SIZE = 1;
 
         Constants.TRANSIENT_ANALYSIS = true;
@@ -52,6 +51,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
         this.init_simulation();
 
         Map<String, List<Double>> intervalsQueueTimes = new HashMap<>();
+        Map<String, List<Double>> transientQueueTimes = new HashMap<>();
 
         for (int i = 0; i < Constants.REPLICATIONS_NUMBER; i++) {
             System.out.println("Replication Number >>> " + i);
@@ -69,7 +69,7 @@ public class QueueTimeController implements Controller<RiderGroup> {
                             continue;
                         }
 
-                        String key = queueStatsKey(interval, attractionStatCenter.getCenter(), prio);
+                        String key = queueStatsKey(interval.getIndex(), attractionStatCenter.getCenter(), prio);
                         // Update the confidence interval for the current interval
                         intervalsQueueTimes.putIfAbsent(key, new ArrayList<>());
                         AreaStats queueAreaStats = stats.getQueueAreaStats(StatsType.PERSON, prio);
@@ -78,18 +78,43 @@ public class QueueTimeController implements Controller<RiderGroup> {
                         }
                     }
                 });
+
+                if (Constants.TRANSIENT_ANALYSIS) {
+                    Map<QueuePriority, AreaStats> areaStatsMap = attractionStatCenter.getWholeDayStats()
+                            .getAllQueueAreaStats(StatsType.PERSON);
+
+                    for (QueuePriority prio : areaStatsMap.keySet()) {
+
+                        Map<Integer, Double> currentRunSamples = areaStatsMap.get(prio).getSampleList();
+                        for (int sampleIdx = 0; sampleIdx < 720; sampleIdx += Constants.SAMPLE_INTERVAL) {
+                            String key = queueStatsKey(sampleIdx, attractionStatCenter, prio);
+
+                            transientQueueTimes.putIfAbsent(key, new ArrayList<>());
+
+                            transientQueueTimes.get(key).add(currentRunSamples.getOrDefault(sampleIdx, 0.0));
+                        }
+                    }
+                }
             }
         }
 
         Map<String, ConfidenceInterval> queueTimesConfidenceIntervals = new HashMap<>();
-
         intervalsQueueTimes.forEach((key, queueTimes) -> {
             queueTimesConfidenceIntervals.put(key,
                     ConfidenceIntervalComputer.computeConfidenceInterval(queueTimes, this.extractCenterNameFromKey(key),
                             "QueueTimeIntervals"));
         });
-
         IntervalsQueueTimesWriter.writeIntervalsQueueTimes(queueTimesConfidenceIntervals);
+
+        if (Constants.TRANSIENT_ANALYSIS) {
+            Map<String, ConfidenceInterval> transientTimesConfidenceIntervals = new HashMap<>();
+            transientQueueTimes.forEach((key, queueTimes) -> {
+                transientTimesConfidenceIntervals.put(key,
+                        ConfidenceIntervalComputer.computeConfidenceInterval(queueTimes,
+                                this.extractCenterNameFromKey(key), "TransientQueueTimes"));
+            });
+            IntervalsQueueTimesWriter.writeTransientQueueTimes(transientTimesConfidenceIntervals);
+        }
     }
 
     private void init_simulation() {
@@ -105,8 +130,8 @@ public class QueueTimeController implements Controller<RiderGroup> {
 
     // Constructs a key for the map that stores the queue stats for each interval,
     // given a center and one of its queue priority
-    private String queueStatsKey(Interval interval, Center<RiderGroup> center, QueuePriority prio) {
-        return interval.getIndex() + "::" + center.getName() + "::" + prio.name();
+    private String queueStatsKey(Integer intervalIdx, Center<RiderGroup> center, QueuePriority prio) {
+        return intervalIdx + "::" + center.getName() + "::" + prio.name();
     }
 
     private String extractCenterNameFromKey(String key) {
