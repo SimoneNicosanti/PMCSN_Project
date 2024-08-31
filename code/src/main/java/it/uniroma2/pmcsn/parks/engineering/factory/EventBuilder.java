@@ -54,4 +54,11 @@ public class EventBuilder {
         return new SystemEvent(eventType, center.getName(), eventTime, job);
     }
 
+    public static SystemEvent buildSampleEvent(Double eventClock) {
+        Long id = -1L;
+        RiderGroup fakeRiderGroup = new RiderGroup(id, 1, GroupPriority.NORMAL, 0.0);
+        return new SystemEvent(EventType.SAMPLE, "ALL_CENTERS", eventClock,
+                fakeRiderGroup);
+    }
+
 }

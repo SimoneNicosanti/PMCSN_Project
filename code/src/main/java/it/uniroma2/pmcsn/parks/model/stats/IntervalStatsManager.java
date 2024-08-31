@@ -1,13 +1,15 @@
 package it.uniroma2.pmcsn.parks.model.stats;
 
-import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
-import it.uniroma2.pmcsn.parks.model.Interval;
-import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
-
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
+
+import it.uniroma2.pmcsn.parks.engineering.Constants;
+import it.uniroma2.pmcsn.parks.engineering.singleton.ConfigHandler;
+import it.uniroma2.pmcsn.parks.model.Interval;
+import it.uniroma2.pmcsn.parks.model.queue.QueuePriority;
 
 public class IntervalStatsManager {
 

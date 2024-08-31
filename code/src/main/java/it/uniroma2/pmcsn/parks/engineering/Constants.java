@@ -64,10 +64,12 @@ public class Constants {
 
     public static final Integer REPLICATIONS_NUMBER = 75;
     public static final Integer MAX_NORMAL_QUEUE_EXTRACTION_TRY_TIMES = 3;
+
+    public static final double SAMPLE_INTERVAL = 1;
+
     public static int SMALL_GROUP_LIMIT_SIZE = 1;
-
     public static boolean IMPROVED_MODEL = false;
-
     public static double AVG_GROUP_SIZE_POISSON = 3;
 
+    public static boolean TRANSIENT_ANALYSIS = false;
 }
